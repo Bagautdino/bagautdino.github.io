@@ -1,0 +1,14 @@
+@font-face {
+		font-family: 'Hauss'; 
+		src: url(ALSHAUSS-BOOK.TTF); 
+	}
+	 
+	/* Жирный */
+	@font-face {
+		font-family: 'ALSHAUSS-MEDIUM.TTF'; 
+		src: url(bold.ttf); 
+	}
+
+*{
+	font-family: Hauss;
+}
