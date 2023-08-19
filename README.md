@@ -1,109 +1,39 @@
-<style>
-  @font-face {
-		font-family: 'Hauss'; 
-		src: url(ALSHAUSS-BOOK.TTF); 
-	}
-	 
-	@font-face {
-		font-family: 'ALSHAUSS-MEDIUM.TTF'; 
-		src: url(bold.ttf); 
-	}
+<p align="center">
+    <a href="https://naynayren.github.io/">
+        <img src="img/logo.png" alt="My Logo" width="153" height="100" />
+    </a>
+</p>
 
-*{
-	font-family: Hauss;
-}
-	
-mark {
-  background-color: #C5DDE6;
-  color: black;
-}
-	
-mark:hover {
-  background-color: #3EBCE6;
-	text-decoration: underline;
-  color: black;
-}	
-  
-  </style>
+## About naynayren.github.io
 
-<script>
+This is the codebase for my portfolio/resume site. I'm a Junior Web Developer trying to make this a new career. It's a collection of little bits about me like:
 
-var days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+- a return to school after 20+ years
+- my 25+ years of work history
+- some web projects made
+- ways of contacting me
+- and some love for my puppy
 
+The stack used to build this portfolio is HTML, CSS, vanilla JavaScript, and a carousel-like slider that's used for my projects called <a href="https://nickpiscitelli.github.io/Glider.js/">Glider.js</a>. I'm always tweaking or adding or updating and pushing to this build as my home base of sorts.
 
-function updateTime(){
-    var currentTime = new Date();
-var status = "✅ Available for messaging only, calls will be declined 📵 ";
+My logo above is linked to my actual site.
 
-d = currentTime.getUTCDay();
-    h = currentTime.getUTCHours();
+## Projects Built
 
+These projects also have their codebase kept here. They are viewable through the list below, or through the Projects section of my personal site above.
 
+- **[ISS Current Location](https://naynayren.github.io/iss-location/)**
+- **[My Lil' Calculator](https://naynayren.github.io/calculator/)**
+- **[Your Social Offers Rebate App](https://ysot.yso.co/)**
+- **[Linux Audio Pop Fix](https://naynayren.github.io/linux-audio-pop/)**
+- **[Shine n' Shimmer Pool Service](https://naynayren.github.io/shine-shimmer/)**
+- **[Just Breathe Meditation App](https://naynayren.github.io/inhale-exhale/)**
+- **[Summit Massage](https://naynayren.github.io/summit-massage/)**
+- **[Fur Babies Canine Boutique](https://naynayren.github.io/fur-baby/)**
+- **[Text to Speech App](https://naynayren.github.io/text-to-speech/)**
 
- if (h >= 0 && h <= 7)
-{
-	status = "Sleeping... 💤";
-}
+## Thank You
 
-if (h>=8 && h<=16)
-{
-	status = "Busy. ⚠️ Do not disturb. ⛔";
-}
+If you like or enjoy what you see, please feel free to contact me. If you're reading this, thank you for stopping by with intrigue as to what I've created.
 
-if (d == 0 && h < 9)
-{
-	status = "Sleeping... 💤";
-}
-else
-{
-if (d == 0 && h >= 9) status = "On a weekend. Enjoying real life 📳";
-}
-document.getElementById('status_span').innerHTML = status;
-    
-}
-setInterval(updateTime, 1000);
-
-
-</script>
-
-
-
-
-<!---
-xhackerino/rakin.tech is a ✨ special ✨ repository because its `README.md` (this file) appears on your GitHub profile.
-You can click the Preview link to take a look at your changes.
---->
-<body>
-<big>👋</big> Hello, that's homepage of <b><a href="https://drive.google.com/uc?export=view&id=1px94pcoPQYk14iCOFNGf50si9nZQ3Aak" target="_blank">Ilia Rakin</a></b><br>
-Right now I’m...<br>
-<div id="status_span">Checking the schedule...</div><br>
-
-<big>📫</big> How to reach me ... <br>
-E-mail: <a href="mailto:rakin1999@icloud.com">ayvaz.bagautdinov@icloud.com</a><br>
-Gmail: <a href="mailto:xhackerino@gmail.com">sir.ayvaz21@gmail.com</a><br>
-<!--Corporate: <a href="mailto:ilia.rakin@student.lab.fi">ilia.rakin@student.lab.fi</a><br>-->
-TG: <a href="https://ayvaz_pentest.t.me">TELEGRAM [main]</a><br>
-<!--Discord: <a href="https://discordapp.com/users/xhackerino">Discord</a><br><br>-->
-
-<big>📩</big> For <u>working issues</u> contact me at : <br>
-<a href="https://xhackerino.t.me">@xhackerino</a><br><br>
-<!--<a href="https://dyrnos.t.me">@dyrnos</a><br><br>-->
-
-<big>🤝</big> Also check ...<br>
-
-📷 Instagram: <a href="https://instagram.com/yurnerox">@yurnerox</a><br>
-💬 X (Twitter): <a href="https://twitter.com/humblekomi"><small>@humblekomi</small></a><br>
-<br><br>
-<big>💰</big> Wallets :<br>
-Revtag: <mark><small>@iliafyjoa</small></mark><br>
-USDT (BEP20): <mark><small>0xa43205f0bdd955ad5df455cd86f3fb11052a875b</small></mark><br>
-USDT (TRC20): <mark><small>TLpRFRNje7SHWExwu87TDtsG3ukostcFMp</small></mark><br>
-BTC: <mark><small>1Phbjhyuy5M5jurhLegNyawe1CMMJPyzcC</small></mark><br>
-ETH: <mark><small>0xa43205f0bdd955ad5df455cd86f3fb11052a875b</small></mark><br>
-TON: <mark><small>UQD7F5y8wdGEus0X6MfgLDZ7uBkUyhtXTe9RHg28mcX_8n0e</small></mark><br>
-<hr>
-<div align="center"><small>⚡️ rakin.tech   </small>
-<small><a href="https://apple.com">.onion [TOR]</a><br>	
-<small> 2023 </small>
-<body>
-
+Have a wonderful day. o/
