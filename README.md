@@ -79,10 +79,10 @@ Right now I’m...<br>
 <div id="status_span">Checking the schedule...</div><br>
 
 <big>📫</big> How to reach me ... <br>
-E-mail: <a href="mailto:rakin1999@icloud.com">rakin1999@icloud.com</a><br>
-Gmail: <a href="mailto:xhackerino@gmail.com">xhackerino@gmail.com</a><br>
+E-mail: <a href="mailto:rakin1999@icloud.com">ayvaz.bagautdinov@icloud.com</a><br>
+Gmail: <a href="mailto:xhackerino@gmail.com">sir.ayvaz21@gmail.com</a><br>
 <!--Corporate: <a href="mailto:ilia.rakin@student.lab.fi">ilia.rakin@student.lab.fi</a><br>-->
-TG: <a href="https://xhackerino.t.me">TELEGRAM [main]</a><br>
+TG: <a href="https://ayvaz_pentest.t.me">TELEGRAM [main]</a><br>
 <!--Discord: <a href="https://discordapp.com/users/xhackerino">Discord</a><br><br>-->
 
 <big>📩</big> For <u>working issues</u> contact me at : <br>
