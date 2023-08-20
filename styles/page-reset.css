@@ -1,0 +1,85 @@
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+/* A elements that don't have a class get default styles */
+a:not([class]) {
+    -webkit-text-decoration-skip: ink;
+    text-decoration-skip-ink: auto;
+}
+
+/* Set core body defaults */
+body {
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.5;
+    height: 100vh;
+    margin: 0;
+    overflow-x: hidden;
+    padding: 0;
+    text-rendering: optimizeSpeed;
+}
+
+/* Inherit fonts for inputs and buttons */
+button,
+input,
+select,
+textarea {
+    font: inherit;
+}
+
+/* Remove default margin */
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote,
+dl,
+dd {
+    margin: 0;
+}
+
+/* Set core html defaults */
+html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+    width: 100%;
+}
+
+ul,
+li {
+    margin: 0;
+    padding: 0;
+}
+
+/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+ul[role='list'],
+ol[role='list'] {
+    list-style: none;
+}
+
+/* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+    html:focus-within {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        -webkit-animation-duration: 0.01ms !important;
+        -webkit-animation-iteration-count: 1 !important;
+        -webkit-transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+    }
+}
