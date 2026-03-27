@@ -4,40 +4,43 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>База отдыха — Иркутская область</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-
-html,body{height:100%;overflow-x:hidden;font-family:'Inter',system-ui,sans-serif}
+html,body{height:100%;overflow-x:hidden;font-family:'Inter',-apple-system,BlinkMacSystemFont,'SF Pro Display',system-ui,sans-serif}
 html{scroll-snap-type:y mandatory;scroll-behavior:smooth}
-body{background:var(--bg-cream);color:var(--text-primary)}
+body{background:#f2f2f7;color:#1d1d1f}
 
 :root{
-  --title-size:clamp(1.8rem,5vw,4.2rem);
-  --h2-size:clamp(1.3rem,3.5vw,2.6rem);
-  --h3-size:clamp(1rem,2.5vw,1.5rem);
-  --body-size:clamp(0.78rem,1.4vw,1.05rem);
-  --small-size:clamp(0.68rem,1vw,0.88rem);
-  --slide-padding:clamp(1.5rem,5vw,5rem);
-  --content-gap:clamp(0.5rem,2vw,1.8rem);
-  --element-gap:clamp(0.25rem,1vw,0.8rem);
+  --title:clamp(1.8rem,5vw,4rem);
+  --h2:clamp(1.3rem,3.5vw,2.5rem);
+  --h3:clamp(1rem,2.5vw,1.4rem);
+  --body:clamp(0.78rem,1.4vw,1rem);
+  --small:clamp(0.68rem,1vw,0.85rem);
+  --pad:clamp(1.5rem,5vw,4.5rem);
+  --gap:clamp(0.5rem,2vw,1.5rem);
+  --gap-sm:clamp(0.25rem,1vw,0.6rem);
 
-  --bg-cream:#F5F0E8;
-  --bg-white:#FFFFFF;
-  --green:#2D6A4F;
-  --green-light:#3A8B6A;
-  --blue:#1B4F72;
-  --amber:#E9C46A;
-  --text-primary:#1A1A2E;
-  --text-secondary:#4A5568;
-  --text-tertiary:#718096;
-  --table-header:#2D6A4F;
-  --table-alt:#EAF4EE;
-  --border:rgba(45,106,79,0.12);
-  --card-bg:rgba(255,255,255,0.85);
-  --card-border:rgba(45,106,79,0.1);
-  --shadow:0 2px 16px rgba(0,0,0,0.06);
-  --shadow-md:0 4px 24px rgba(0,0,0,0.1);
+  --glass:rgba(255,255,255,0.72);
+  --glass-strong:rgba(255,255,255,0.88);
+  --glass-border:rgba(255,255,255,0.45);
+  --glass-shadow:0 8px 32px rgba(0,0,0,0.06),0 1px 3px rgba(0,0,0,0.04);
+  --glass-shadow-lg:0 16px 48px rgba(0,0,0,0.08),0 2px 8px rgba(0,0,0,0.04);
+  --blur:saturate(180%) blur(20px);
+
+  --surface:#f2f2f7;
+  --surface-warm:#faf8f5;
+  --white:#ffffff;
+  --green:#2d6a4f;
+  --green-soft:rgba(45,106,79,0.08);
+  --blue:#1b4f72;
+  --blue-soft:rgba(27,79,114,0.08);
+  --amber:#d4880f;
+  --amber-soft:rgba(233,196,106,0.15);
+  --text:#1d1d1f;
+  --text2:#6e6e73;
+  --text3:#aeaeb2;
+  --separator:rgba(60,60,67,0.06);
 }
 
 .slide{
@@ -46,298 +49,240 @@ body{background:var(--bg-cream);color:var(--text-primary)}
   display:flex;flex-direction:column;
   position:relative;
 }
-.slide-content{
+.slide-inner{
   flex:1;display:flex;flex-direction:column;
   justify-content:center;max-height:100%;
-  overflow:hidden;padding:var(--slide-padding);
+  overflow:hidden;padding:var(--pad);
 }
 
-/* =========== SLIDE TYPES =========== */
-
-/* HERO — title slide with background image */
-.slide--hero{background:var(--bg-cream);position:relative}
-.slide--hero::before{
-  content:'';position:absolute;inset:0;
-  background:url('images/baza_otdyha_vid_sverhu_1_3d_concept.png') center/cover no-repeat;
-  opacity:0.18;
+/* ============ MESH GRADIENT BG ============ */
+.bg-mesh{
+  position:absolute;inset:0;pointer-events:none;overflow:hidden;
 }
-.slide--hero .slide-content{
+.bg-mesh .orb{
+  position:absolute;border-radius:50%;filter:blur(100px);opacity:0.25;
+}
+
+/* ============ GLASS CARD ============ */
+.glass{
+  background:var(--glass);
+  backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur);
+  border:1px solid var(--glass-border);
+  border-radius:20px;box-shadow:var(--glass-shadow);
+}
+.glass-strong{
+  background:var(--glass-strong);
+  backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur);
+  border:1px solid rgba(255,255,255,0.6);
+  border-radius:20px;box-shadow:var(--glass-shadow-lg);
+}
+
+/* ============ HERO ============ */
+.slide--hero{background:var(--surface-warm)}
+.slide--hero .slide-inner{
   align-items:center;justify-content:center;text-align:center;
-  gap:clamp(0.6rem,1.5vw,1.2rem);position:relative;z-index:1;
+  gap:clamp(0.5rem,1.2vw,1rem);z-index:1;position:relative;
 }
 .slide--hero h1{
-  font-family:'Playfair Display',serif;
-  font-size:clamp(2.2rem,6vw,5rem);font-weight:800;
-  letter-spacing:-0.02em;line-height:1.05;color:var(--text-primary);
+  font-size:clamp(2.2rem,6vw,4.8rem);font-weight:700;
+  letter-spacing:-0.03em;line-height:1.06;color:var(--text);
 }
-.slide--hero .subtitle{
-  font-size:clamp(0.95rem,2vw,1.4rem);color:var(--text-secondary);
-  font-weight:400;max-width:650px;line-height:1.5;
-}
-.slide--hero .meta{
-  font-size:var(--small-size);color:var(--green);
-  letter-spacing:0.08em;text-transform:uppercase;font-weight:600;
+.slide--hero .sub{font-size:clamp(0.9rem,1.8vw,1.3rem);color:var(--text2);max-width:600px;line-height:1.5}
+.slide--hero .badge{
+  font-size:var(--small);color:var(--green);font-weight:600;
+  letter-spacing:0.06em;text-transform:uppercase;
 }
 
-/* SECTION — gradient divider */
-.slide--divider{background:linear-gradient(135deg,var(--blue),var(--green))}
-.slide--divider .slide-content{align-items:center;justify-content:center;text-align:center;gap:clamp(0.5rem,1.5vw,1rem)}
-.slide--divider h2{font-family:'Playfair Display',serif;font-size:var(--title-size);font-weight:700;color:#fff;line-height:1.1}
-.slide--divider p{color:rgba(255,255,255,0.85);font-size:var(--body-size);max-width:600px}
-.slide--divider .section-number{font-size:var(--small-size);color:var(--amber);font-weight:600;letter-spacing:0.1em;text-transform:uppercase}
+/* ============ SECTION LABEL ============ */
+.label{font-size:var(--small);font-weight:600;color:var(--green);letter-spacing:0.08em;text-transform:uppercase}
+.title{font-size:var(--h2);font-weight:700;color:var(--text);letter-spacing:-0.02em;line-height:1.15}
+.caption{font-size:var(--small);color:var(--text3)}
 
-/* CONTENT on cream */
-.slide--cream{background:var(--bg-cream)}
-.slide--cream .slide-content{gap:var(--content-gap)}
-
-/* CONTENT on white */
-.slide--white{background:var(--bg-white)}
-.slide--white .slide-content{gap:var(--content-gap)}
-
-/* SPLIT — image left, content right */
-.slide--split{display:grid;grid-template-columns:55% 45%;background:var(--bg-white)}
-.slide--split .split-image{
-  width:100%;height:100%;overflow:hidden;position:relative;
-}
-.slide--split .split-image img{
-  width:100%;height:100%;object-fit:cover;object-position:center;
-  transition:transform 0.8s ease;
-}
-.slide--split .split-image::after{
-  content:'';position:absolute;inset:0;
-  box-shadow:inset -20px 0 40px rgba(0,0,0,0.04);pointer-events:none;
-}
-.slide--split .split-content{
-  padding:var(--slide-padding);display:flex;flex-direction:column;
-  justify-content:center;gap:var(--content-gap);overflow:hidden;
-}
-@media(max-width:768px){
-  .slide--split{grid-template-columns:1fr;grid-template-rows:40vh 1fr}
-}
-
-/* Section label */
-.section-label{
-  font-size:var(--small-size);font-weight:600;
-  color:var(--green);letter-spacing:0.1em;text-transform:uppercase;
-}
-h2.slide-title{
-  font-family:'Playfair Display',serif;
-  font-size:var(--h2-size);font-weight:700;color:var(--text-primary);
-  letter-spacing:-0.01em;line-height:1.15;
-}
-h3.slide-subtitle{font-size:var(--h3-size);font-weight:600;color:var(--text-secondary);line-height:1.3}
-.slide-caption{font-size:var(--small-size);color:var(--text-tertiary)}
-
-/* =========== IMAGE PLACEHOLDER =========== */
-.img-placeholder{
-  border:2px dashed var(--green);border-radius:12px;
-  background:var(--table-alt);
+/* ============ IMAGE FRAME — contain, not crop ============ */
+.img-frame{
+  border-radius:16px;overflow:hidden;
+  background:var(--white);
+  box-shadow:var(--glass-shadow);
   display:flex;align-items:center;justify-content:center;
-  color:var(--green);font-size:var(--small-size);font-weight:500;
-  overflow:hidden;position:relative;flex-shrink:0;
-  min-height:100px;
+  position:relative;
 }
-.img-placeholder img{
-  width:100%;height:100%;object-fit:cover;object-position:center;
-  border-radius:10px;display:block;
+.img-frame img{
+  width:100%;height:100%;
+  object-fit:contain;
+  padding:clamp(4px,0.5vw,8px);
 }
-.img-placeholder img[src]{border:none}
-.img-placeholder.has-img{border:none;background:transparent}
+.img-frame--cover img{object-fit:cover;padding:0}
 
-/* =========== TABLES =========== */
-.table-wrap{overflow:hidden;border-radius:10px;box-shadow:var(--shadow);flex-shrink:0}
-table{width:100%;border-collapse:collapse;font-size:var(--small-size)}
-thead{background:var(--table-header)}
-th{
-  padding:clamp(5px,0.8vh,10px) clamp(8px,1vw,14px);
-  text-align:left;font-weight:600;color:#fff;white-space:nowrap;
-}
-td{
-  padding:clamp(4px,0.6vh,8px) clamp(8px,1vw,14px);
-  border-top:1px solid rgba(45,106,79,0.08);color:var(--text-primary);
-}
-tbody tr:nth-child(even){background:var(--table-alt)}
+/* ============ TABLES ============ */
+.tbl-wrap{overflow:hidden;border-radius:14px;box-shadow:var(--glass-shadow);background:var(--white);flex-shrink:0}
+table{width:100%;border-collapse:collapse;font-size:var(--small)}
+thead{background:var(--green)}
+th{padding:clamp(5px,0.7vh,9px) clamp(8px,1vw,14px);text-align:left;font-weight:600;color:#fff;white-space:nowrap}
+td{padding:clamp(4px,0.5vh,7px) clamp(8px,1vw,14px);color:var(--text);border-top:1px solid var(--separator)}
+tbody tr:nth-child(even){background:rgba(45,106,79,0.04)}
 tbody tr:hover td{background:rgba(45,106,79,0.06)}
-.row-total{font-weight:700;background:rgba(45,106,79,0.12)!important}
+.row-total{font-weight:700;background:rgba(45,106,79,0.1)!important}
 
-/* =========== STAT CARDS =========== */
-.stats-row{display:flex;gap:clamp(0.5rem,1.2vw,1rem);flex-wrap:wrap}
-.stat-card{
-  flex:1;min-width:clamp(90px,18vw,170px);
-  background:var(--card-bg);border-radius:12px;
-  padding:clamp(0.6rem,1.2vw,1rem);
-  border:1px solid var(--card-border);box-shadow:var(--shadow);
+/* ============ STAT CARDS ============ */
+.stats{display:flex;gap:clamp(0.4rem,1vw,0.8rem);flex-wrap:wrap}
+.stat{
+  flex:1;min-width:clamp(80px,16vw,150px);
+  padding:clamp(0.5rem,1vw,0.9rem);
+  border-radius:14px;
+  background:var(--white);
+  box-shadow:0 1px 6px rgba(0,0,0,0.04);
+  border:1px solid var(--separator);
 }
-.stat-card .stat-value{
-  font-size:clamp(1.2rem,2.8vw,2rem);font-weight:700;letter-spacing:-0.02em;
-}
-.stat-card .stat-value.v-green{color:var(--green)}
-.stat-card .stat-value.v-blue{color:var(--blue)}
-.stat-card .stat-value.v-amber{color:#D4880F}
-.stat-card .stat-label{
-  font-size:var(--small-size);color:var(--text-tertiary);
-  margin-top:clamp(2px,0.3vh,4px);line-height:1.3;
-}
+.stat .val{font-size:clamp(1.1rem,2.5vw,1.8rem);font-weight:700;letter-spacing:-0.02em}
+.stat .val.c-blue{color:var(--blue)}
+.stat .val.c-amber{color:var(--amber)}
+.stat .val.c-green{color:var(--green)}
+.stat .lbl{font-size:var(--small);color:var(--text3);margin-top:2px;line-height:1.3}
 
-/* =========== TEAM =========== */
-.team-list{display:flex;flex-direction:column;gap:clamp(0.6rem,1.2vw,1rem);max-width:520px}
-.team-member{
-  display:flex;align-items:center;gap:clamp(0.6rem,1.2vw,1rem);
-  background:var(--card-bg);border-radius:14px;
-  padding:clamp(0.4rem,0.8vw,0.7rem) clamp(0.6rem,1.2vw,1rem);
-  box-shadow:var(--shadow);border:1px solid var(--card-border);
-  transform:translateX(-30px);opacity:0;
-  transition:transform 0.6s ease,opacity 0.6s ease;
+/* ============ TWO-PANEL LAYOUT ============ */
+.panel-row{display:grid;grid-template-columns:1fr 1fr;gap:clamp(0.8rem,2vw,1.5rem);align-items:start}
+@media(max-width:768px){.panel-row{grid-template-columns:1fr}}
+
+/* ============ PLAN SLIDE — image centered with info panel ============ */
+.plan-layout{
+  display:grid;grid-template-columns:1.1fr 0.9fr;
+  gap:clamp(0.8rem,2vw,1.5rem);align-items:center;
+  flex:1;
 }
-.team-member.visible{transform:translateX(0);opacity:1}
-.team-member .avatar{
-  width:clamp(48px,7vw,72px);height:clamp(48px,7vw,72px);
+@media(max-width:768px){.plan-layout{grid-template-columns:1fr;grid-template-rows:auto auto}}
+.plan-layout .img-frame{
+  width:100%;height:min(60vh,500px);
+}
+.plan-layout .info{display:flex;flex-direction:column;gap:var(--gap)}
+
+/* ============ TEAM ============ */
+.team-list{display:flex;flex-direction:column;gap:clamp(0.5rem,1vw,0.8rem);max-width:480px}
+.member{
+  display:flex;align-items:center;gap:clamp(0.5rem,1vw,0.8rem);
+  padding:clamp(0.35rem,0.7vw,0.6rem) clamp(0.6rem,1vw,0.9rem);
+  border-radius:16px;background:var(--white);
+  box-shadow:0 1px 6px rgba(0,0,0,0.04);border:1px solid var(--separator);
+  transform:translateX(-20px);opacity:0;
+  transition:transform 0.5s ease,opacity 0.5s ease;
+}
+.member.visible{transform:translateX(0);opacity:1}
+.member .ava{
+  width:clamp(44px,6vw,64px);height:clamp(44px,6vw,64px);
   border-radius:50%;overflow:hidden;flex-shrink:0;
-  border:3px solid var(--green);
+  border:2.5px solid var(--green);
+  box-shadow:0 2px 8px rgba(45,106,79,0.15);
 }
-.team-member .avatar img{width:100%;height:100%;object-fit:cover}
-.team-member .info .name{font-size:var(--body-size);font-weight:600;color:var(--text-primary)}
-.team-member .info .role{font-size:var(--small-size);color:var(--green);font-weight:500}
+.member .ava img{width:100%;height:100%;object-fit:cover}
+.member .m-role{font-size:var(--small);color:var(--green);font-weight:500}
+.member .m-name{font-size:var(--body);font-weight:600;color:var(--text)}
 
-/* =========== GOAL CARDS =========== */
-.goals-grid{display:flex;gap:clamp(0.6rem,1.5vw,1.2rem);flex-wrap:wrap}
-.goal-card{
-  flex:1;min-width:min(100%,220px);
-  background:rgba(255,255,255,0.88);
-  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
-  border-radius:16px;padding:clamp(1rem,2vw,1.5rem);
-  box-shadow:var(--shadow-md);border:1px solid rgba(255,255,255,0.5);
-  transform:scale(0.85);opacity:0;
+/* ============ GOAL CARDS ============ */
+.goals{display:flex;gap:clamp(0.5rem,1.2vw,1rem);flex-wrap:wrap}
+.goal{
+  flex:1;min-width:min(100%,200px);
+  padding:clamp(0.8rem,1.5vw,1.2rem);
+  border-radius:18px;
+  background:var(--glass-strong);
+  backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur);
+  border:1px solid rgba(255,255,255,0.5);
+  box-shadow:var(--glass-shadow-lg);
+  transform:scale(0.88);opacity:0;
   transition:transform 0.5s cubic-bezier(0.34,1.56,0.64,1),opacity 0.5s ease;
 }
-.goal-card.visible{transform:scale(1);opacity:1}
-.goal-card .goal-icon{font-size:clamp(1.5rem,3vw,2.2rem);margin-bottom:clamp(0.3rem,0.5vw,0.5rem)}
-.goal-card .goal-title{font-size:var(--body-size);font-weight:600;color:var(--text-primary);line-height:1.35}
+.goal.visible{transform:scale(1);opacity:1}
+.goal .g-icon{font-size:clamp(1.4rem,2.5vw,2rem);margin-bottom:clamp(0.2rem,0.4vw,0.4rem)}
+.goal .g-text{font-size:var(--body);font-weight:600;color:var(--text);line-height:1.35}
 
-/* =========== FLOOR PLAN ROOMS =========== */
-.room-list{display:flex;flex-direction:column;gap:clamp(2px,0.3vh,4px)}
-.room-item{
-  display:flex;justify-content:space-between;
-  font-size:var(--small-size);padding:clamp(3px,0.4vh,6px) 0;
-  border-bottom:1px solid var(--border);
-}
-.room-item .room-name{color:var(--text-primary);font-weight:500}
-.room-item .room-area{color:var(--text-tertiary);font-weight:400;white-space:nowrap}
+/* ============ ROOMS ============ */
+.rooms{display:flex;flex-direction:column;gap:clamp(1px,0.2vh,3px)}
+.room{display:flex;justify-content:space-between;font-size:var(--small);padding:clamp(3px,0.35vh,5px) 0;border-bottom:1px solid var(--separator)}
+.room .rn{color:var(--text);font-weight:500}
+.room .ra{color:var(--text3);white-space:nowrap}
 
-/* =========== BUILDING LIST =========== */
-.building-grid{display:flex;flex-direction:column;gap:clamp(3px,0.4vh,6px)}
-.building-item{
-  background:var(--card-bg);border:1px solid var(--card-border);
-  border-radius:8px;padding:clamp(4px,0.6vw,8px) clamp(8px,1vw,12px);
+/* ============ BUILDING LIST ============ */
+.bldgs{display:flex;flex-direction:column;gap:clamp(2px,0.3vh,5px)}
+.bldg{
   display:flex;justify-content:space-between;align-items:center;
-  font-size:var(--small-size);box-shadow:0 1px 4px rgba(0,0,0,0.04);
+  font-size:var(--small);
+  padding:clamp(3px,0.5vw,6px) clamp(6px,0.8vw,10px);
+  border-radius:8px;background:var(--white);
+  border:1px solid var(--separator);
 }
-.building-item .b-name{color:var(--text-primary);font-weight:500}
-.building-item .b-area{color:var(--green);font-weight:600;white-space:nowrap}
+.bldg .bn{color:var(--text);font-weight:500}
+.bldg .ba{color:var(--green);font-weight:600;white-space:nowrap}
 
-/* =========== TIMELINE =========== */
-.timeline{display:flex;flex-direction:column;gap:clamp(0.6rem,1.2vw,1rem)}
-.timeline-item{
-  display:grid;grid-template-columns:auto 1fr;gap:clamp(0.6rem,1.2vw,1rem);
-  align-items:start;
-}
-.timeline-marker{
-  width:clamp(36px,5vw,48px);height:clamp(36px,5vw,48px);
+/* ============ TIMELINE ============ */
+.timeline{display:flex;flex-direction:column;gap:clamp(0.5rem,1vw,0.8rem)}
+.tl-item{display:grid;grid-template-columns:auto 1fr;gap:clamp(0.5rem,1vw,0.8rem);align-items:start}
+.tl-dot{
+  width:clamp(32px,4.5vw,44px);height:clamp(32px,4.5vw,44px);
   border-radius:50%;display:flex;align-items:center;justify-content:center;
-  font-weight:700;font-size:var(--small-size);color:#fff;flex-shrink:0;
+  font-weight:700;font-size:var(--small);color:#fff;flex-shrink:0;
 }
-.timeline-marker.tm-green{background:var(--green)}
-.timeline-marker.tm-blue{background:var(--blue)}
-.timeline-marker.tm-amber{background:#D4880F}
-.timeline-body{
-  background:var(--card-bg);border-radius:10px;
-  padding:clamp(0.5rem,1vw,0.8rem);
-  box-shadow:var(--shadow);border:1px solid var(--card-border);
+.tl-dot.d-g{background:var(--green)}
+.tl-dot.d-b{background:var(--blue)}
+.tl-dot.d-a{background:var(--amber)}
+.tl-body{
+  padding:clamp(0.4rem,0.8vw,0.7rem);
+  border-radius:12px;background:var(--white);
+  box-shadow:0 1px 6px rgba(0,0,0,0.04);border:1px solid var(--separator);
 }
-.timeline-body .tl-name{font-size:var(--body-size);font-weight:600;color:var(--text-primary)}
-.timeline-body .tl-role{font-size:var(--small-size);color:var(--green);margin-bottom:2px}
-.timeline-body .tl-desc{font-size:var(--small-size);color:var(--text-secondary);line-height:1.4}
+.tl-body .tl-role{font-size:var(--small);color:var(--green)}
+.tl-body .tl-name{font-size:var(--body);font-weight:600;color:var(--text)}
+.tl-body .tl-desc{font-size:var(--small);color:var(--text2);line-height:1.4}
 
-/* =========== TWO COL =========== */
-.two-col{display:grid;grid-template-columns:1fr 1fr;gap:clamp(1rem,2.5vw,2rem);align-items:start}
-@media(max-width:768px){.two-col{grid-template-columns:1fr}}
+/* ============ PLACEHOLDER ============ */
+.ph{
+  border:2px dashed rgba(45,106,79,0.3);border-radius:16px;
+  background:rgba(45,106,79,0.04);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--green);font-size:var(--small);font-weight:500;
+  min-height:100px;
+}
 
-/* =========== NAV =========== */
+/* ============ NAV ============ */
 .nav-dots{
-  position:fixed;right:clamp(10px,1.5vw,20px);top:50%;
+  position:fixed;right:clamp(8px,1.2vw,16px);top:50%;
   transform:translateY(-50%);z-index:100;
-  display:flex;flex-direction:column;gap:7px;
+  display:flex;flex-direction:column;gap:6px;
 }
 .nav-dot{
-  width:8px;height:8px;border-radius:50%;
-  background:rgba(45,106,79,0.2);cursor:pointer;
+  width:7px;height:7px;border-radius:50%;
+  background:rgba(0,0,0,0.12);cursor:pointer;
   transition:all 0.3s ease;border:none;padding:0;
 }
-.nav-dot.active{background:var(--green);transform:scale(1.4)}
-.nav-dot:hover{background:var(--green-light)}
+.nav-dot.active{background:var(--green);transform:scale(1.5)}
+.nav-dot:hover{background:rgba(0,0,0,0.25)}
 
 .slide-counter{
-  position:fixed;bottom:clamp(10px,1.5vw,20px);right:clamp(10px,1.5vw,20px);
-  font-size:var(--small-size);color:var(--text-tertiary);z-index:100;
-  font-variant-numeric:tabular-nums;background:rgba(255,255,255,0.8);
-  padding:4px 10px;border-radius:20px;backdrop-filter:blur(8px);
+  position:fixed;bottom:clamp(8px,1.2vw,16px);right:clamp(8px,1.2vw,16px);
+  font-size:var(--small);color:var(--text3);z-index:100;
+  font-variant-numeric:tabular-nums;
+  background:var(--glass);backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur);
+  padding:3px 10px;border-radius:20px;border:1px solid var(--glass-border);
 }
-.progress-bar{position:fixed;top:0;left:0;height:3px;background:var(--green);z-index:200;transition:width 0.3s ease;width:0}
+.progress-bar{position:fixed;top:0;left:0;height:2px;background:var(--green);z-index:200;transition:width 0.3s ease;width:0}
 
-/* =========== REVEAL =========== */
-.reveal{opacity:0;transform:translateY(20px);transition:opacity 0.7s ease,transform 0.7s ease}
-.reveal.visible{opacity:1;transform:translateY(0)}
-.reveal-delay-1{transition-delay:0.1s}
-.reveal-delay-2{transition-delay:0.2s}
-.reveal-delay-3{transition-delay:0.3s}
-.reveal-delay-4{transition-delay:0.4s}
-.reveal-delay-5{transition-delay:0.5s}
+/* ============ REVEAL ============ */
+.rv{opacity:0;transform:translateY(16px);transition:opacity 0.6s ease,transform 0.6s ease}
+.rv.visible{opacity:1;transform:translateY(0)}
+.rv-d1{transition-delay:0.1s}
+.rv-d2{transition-delay:0.2s}
+.rv-d3{transition-delay:0.3s}
+.rv-d4{transition-delay:0.4s}
 
-.reveal-scale{opacity:0;transform:scale(0.95);transition:opacity 0.6s ease,transform 0.6s ease}
-.reveal-scale.visible{opacity:1;transform:scale(1)}
+.rv-s{opacity:0;transform:scale(0.96);transition:opacity 0.5s ease,transform 0.5s ease}
+.rv-s.visible{opacity:1;transform:scale(1)}
 
-/* =========== KEN BURNS on 3D slide =========== */
-@keyframes kenBurns{
-  0%{transform:scale(1)}
-  100%{transform:scale(1.08)}
-}
-.ken-burns img{animation:kenBurns 8s ease-in-out infinite alternate}
+@keyframes kenBurns{0%{transform:scale(1)}100%{transform:scale(1.06)}}
+.kb img{animation:kenBurns 8s ease-in-out infinite alternate}
 
-/* =========== RESPONSIVE =========== */
-@media(max-height:700px){
-  :root{
-    --slide-padding:clamp(0.75rem,3vw,2rem);
-    --content-gap:clamp(0.4rem,1.5vw,1rem);
-    --title-size:clamp(1.25rem,4.5vw,2.5rem);
-    --h2-size:clamp(1rem,3vw,1.75rem);
-  }
-}
-@media(max-height:600px){
-  :root{
-    --slide-padding:clamp(0.5rem,2.5vw,1.5rem);
-    --content-gap:clamp(0.3rem,1vw,0.75rem);
-    --title-size:clamp(1.1rem,4vw,2rem);
-    --body-size:clamp(0.7rem,1.2vw,0.95rem);
-  }
-  .nav-dots{display:none}
-}
-@media(max-height:500px){
-  :root{
-    --slide-padding:clamp(0.4rem,2vw,1rem);
-    --title-size:clamp(1rem,3.5vw,1.5rem);
-    --h2-size:clamp(0.9rem,2.5vw,1.25rem);
-    --body-size:clamp(0.65rem,1vw,0.85rem);
-  }
-}
-@media(max-width:600px){
-  :root{--title-size:clamp(1.25rem,7vw,2.5rem)}
-  .stats-row{flex-direction:column}
-  .goals-grid{flex-direction:column}
-}
-@media(prefers-reduced-motion:reduce){
-  *,*::before,*::after{animation-duration:0.01ms!important;transition-duration:0.2s!important}
-  html{scroll-behavior:auto}
-}
+/* ============ RESPONSIVE ============ */
+@media(max-height:700px){:root{--pad:clamp(0.75rem,3vw,2rem);--gap:clamp(0.4rem,1.5vw,1rem);--h2:clamp(1rem,3vw,1.75rem)}}
+@media(max-height:600px){:root{--pad:clamp(0.5rem,2.5vw,1.5rem);--gap:clamp(0.3rem,1vw,0.75rem);--body:clamp(0.7rem,1.2vw,0.95rem)}.nav-dots{display:none}}
+@media(max-height:500px){:root{--pad:clamp(0.4rem,2vw,1rem);--h2:clamp(0.9rem,2.5vw,1.25rem);--body:clamp(0.65rem,1vw,0.85rem)}}
+@media(max-width:600px){:root{--title:clamp(1.25rem,7vw,2.5rem)}.stats,.goals{flex-direction:column}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:0.01ms!important;transition-duration:0.2s!important}html{scroll-behavior:auto}}
 </style>
 </head>
 <body>
@@ -346,172 +291,171 @@ tbody tr:hover td{background:rgba(45,106,79,0.06)}
 <nav class="nav-dots" id="navDots"></nav>
 <div class="slide-counter" id="slideCounter"></div>
 
-<!-- ============================================================
-     SLIDE 1 — TITLE / HERO
-     ============================================================ -->
+<!-- ======================== 1. TITLE ======================== -->
 <section class="slide slide--hero" data-slide="0">
-  <div class="slide-content">
-    <div class="meta reveal">Университет ИТМО &middot; Команда 4</div>
-    <h1 class="reveal reveal-delay-1">База отдыха<br>в Иркутской области</h1>
-    <p class="subtitle reveal reveal-delay-2">Исследование альтернативных источников энергии<br>Ролевая игра &laquo;Солнечный дом&raquo;</p>
-    <p class="slide-caption reveal reveal-delay-3" style="margin-top:clamp(0.3rem,0.5vw,0.5rem)">25 мест &middot; 51.988624 N, 104.674372 E</p>
+  <div class="bg-mesh">
+    <div class="orb" style="width:600px;height:600px;background:#a8d5ba;top:-200px;right:-100px"></div>
+    <div class="orb" style="width:500px;height:500px;background:#a3c4d9;bottom:-200px;left:-100px"></div>
+    <div class="orb" style="width:300px;height:300px;background:#e9c46a;top:40%;left:60%"></div>
+  </div>
+  <div class="slide-inner">
+    <div class="badge rv">Университет ИТМО &middot; Команда 4</div>
+    <h1 class="rv rv-d1">База отдыха<br>в Иркутской области</h1>
+    <p class="sub rv rv-d2">Исследование альтернативных источников энергии<br>Ролевая игра &laquo;Солнечный дом&raquo;</p>
+    <p class="caption rv rv-d3" style="margin-top:clamp(0.3rem,0.4vw,0.4rem)">25 мест &middot; 51.988624 N, 104.674372 E</p>
   </div>
 </section>
 
-<!-- ============================================================
-     SLIDE 2 — TEAM with Avatars
-     ============================================================ -->
-<section class="slide slide--cream" data-slide="1">
-  <div class="slide-content" style="align-items:center">
-    <span class="section-label reveal">Команда проекта</span>
-    <h2 class="slide-title reveal reveal-delay-1" style="text-align:center">Наша команда</h2>
-    <div class="team-list reveal-delay-2" id="teamList" style="margin-top:var(--content-gap)">
-      <div class="team-member" data-delay="0">
-        <div class="avatar"><img src="images/tamir_avatar.jpg" alt="Тамир" onerror="this.parentElement.style.background='var(--table-alt)'"></div>
-        <div class="info"><div class="role">Генеральный директор</div><div class="name">Тамир Будариев</div></div>
-      </div>
-      <div class="team-member" data-delay="200">
-        <div class="avatar"><img src="images/aivaz_avatar.jpg" alt="Айваз" onerror="this.parentElement.style.background='var(--table-alt)'"></div>
-        <div class="info"><div class="role">Проектировщик 1</div><div class="name">Айваз Багаутдинов</div></div>
-      </div>
-      <div class="team-member" data-delay="400">
-        <div class="avatar"><img src="images/andrey_avatar.jpg" alt="Андрей" onerror="this.parentElement.style.background='var(--table-alt)'"></div>
-        <div class="info"><div class="role">Проектировщик 2</div><div class="name">Андрей Михайлов</div></div>
-      </div>
-      <div class="team-member" data-delay="600">
-        <div class="avatar"><img src="images/alina_avatar.jpg" alt="Алина" onerror="this.parentElement.style.background='var(--table-alt)'"></div>
-        <div class="info"><div class="role">Монтажник 1</div><div class="name">Алина Костюкова</div></div>
-      </div>
-      <div class="team-member" data-delay="800">
-        <div class="avatar"><img src="images/polina_avatar.jpg" alt="Полина" onerror="this.parentElement.style.background='var(--table-alt)'"></div>
-        <div class="info"><div class="role">Монтажник 2</div><div class="name">Полина Синицына</div></div>
-      </div>
-    </div>
+<!-- ======================== 2. TEAM ======================== -->
+<section class="slide" style="background:var(--surface-warm)" data-slide="1">
+  <div class="bg-mesh">
+    <div class="orb" style="width:400px;height:400px;background:#a8d5ba;top:-80px;left:-80px"></div>
+    <div class="orb" style="width:300px;height:300px;background:#e9c46a;bottom:-60px;right:10%"></div>
   </div>
-</section>
-
-<!-- ============================================================
-     SLIDE 3 — GOALS (NEW)
-     ============================================================ -->
-<section class="slide slide--cream" data-slide="2" style="position:relative">
-  <div style="position:absolute;inset:0;background:url('images/proekt_bazy_otdyha_vid_sverhu_3d_concept.png') center/cover no-repeat;opacity:0.12"></div>
-  <div class="slide-content" style="position:relative;z-index:1;align-items:center;text-align:center">
-    <span class="section-label reveal">Цели и задачи</span>
-    <h2 class="slide-title reveal reveal-delay-1">Цель проекта</h2>
-    <div class="goals-grid reveal-delay-2" style="margin-top:var(--content-gap);max-width:900px" id="goalsGrid">
-      <div class="goal-card" data-delay="0">
-        <div class="goal-icon">&#9728;&#65039;</div>
-        <div class="goal-title">Расчёт солнечной системы ГВС и электроснабжения базы отдыха</div>
+  <div class="slide-inner" style="align-items:center;z-index:1;position:relative">
+    <span class="label rv">Команда проекта</span>
+    <h2 class="title rv rv-d1" style="text-align:center">Наша команда</h2>
+    <div class="team-list rv-d2" style="margin-top:var(--gap)" id="teamList">
+      <div class="member" data-delay="0">
+        <div class="ava"><img src="images/tamir_avatar.jpg" alt=""></div>
+        <div><div class="m-role">Генеральный директор</div><div class="m-name">Тамир Будариев</div></div>
       </div>
-      <div class="goal-card" data-delay="200">
-        <div class="goal-icon">&#128202;</div>
-        <div class="goal-title">Подбор оборудования по методике А&ndash;В&ndash;С анализа</div>
+      <div class="member" data-delay="150">
+        <div class="ava"><img src="images/aivaz_avatar.jpg" alt=""></div>
+        <div><div class="m-role">Проектировщик 1</div><div class="m-name">Айваз Багаутдинов</div></div>
       </div>
-      <div class="goal-card" data-delay="400">
-        <div class="goal-icon">&#128176;</div>
-        <div class="goal-title">Технико-экономическое обоснование и расчёт срока окупаемости</div>
+      <div class="member" data-delay="300">
+        <div class="ava"><img src="images/andrey_avatar.jpg" alt=""></div>
+        <div><div class="m-role">Проектировщик 2</div><div class="m-name">Андрей Михайлов</div></div>
+      </div>
+      <div class="member" data-delay="450">
+        <div class="ava"><img src="images/alina_avatar.jpg" alt=""></div>
+        <div><div class="m-role">Монтажник 1</div><div class="m-name">Алина Костюкова</div></div>
+      </div>
+      <div class="member" data-delay="600">
+        <div class="ava"><img src="images/polina_avatar.jpg" alt=""></div>
+        <div><div class="m-role">Монтажник 2</div><div class="m-name">Полина Синицына</div></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============================================================
-     SLIDE 4 — LOCATION (SPLIT)
-     ============================================================ -->
-<section class="slide slide--split" data-slide="3">
-  <div class="split-image reveal-scale">
-    <img src="images/map_expanded.png" alt="Карта местоположения" onerror="this.style.display='none'">
+<!-- ======================== 3. GOALS ======================== -->
+<section class="slide" style="background:var(--surface)" data-slide="2">
+  <div class="bg-mesh">
+    <div class="orb" style="width:500px;height:500px;background:#a3c4d9;top:-100px;right:-120px"></div>
+    <div class="orb" style="width:400px;height:400px;background:#a8d5ba;bottom:-120px;left:-80px"></div>
   </div>
-  <div class="split-content">
-    <span class="section-label reveal">01 &mdash; Местоположение</span>
-    <h2 class="slide-title reveal reveal-delay-1">Расположение<br>базы отдыха</h2>
-    <div class="stats-row reveal reveal-delay-2" style="flex-direction:column;gap:clamp(0.4rem,0.8vw,0.7rem)">
-      <div class="stat-card">
-        <div class="stat-value v-blue">51.99&deg; N</div>
-        <div class="stat-label">Широта</div>
+  <div class="slide-inner" style="align-items:center;text-align:center;z-index:1;position:relative">
+    <span class="label rv">Цели и задачи</span>
+    <h2 class="title rv rv-d1">Цель проекта</h2>
+    <div class="goals rv-d2" style="margin-top:var(--gap);max-width:850px" id="goalsGrid">
+      <div class="goal" data-delay="0">
+        <div class="g-icon">&#9728;&#65039;</div>
+        <div class="g-text">Расчёт солнечной системы ГВС и электроснабжения базы отдыха</div>
       </div>
-      <div class="stat-card">
-        <div class="stat-value v-blue">104.67&deg; E</div>
-        <div class="stat-label">Долгота</div>
+      <div class="goal" data-delay="200">
+        <div class="g-icon">&#128202;</div>
+        <div class="g-text">Подбор оборудования по методике А&ndash;В&ndash;С анализа</div>
       </div>
-      <div class="stat-card">
-        <div class="stat-value v-green" style="font-size:var(--body-size)">Иркутская область</div>
-        <div class="stat-label">Побережье озера Байкал</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================
-     SLIDE 5 — MASTERPLAN (SPLIT)
-     ============================================================ -->
-<section class="slide slide--split" data-slide="4">
-  <div class="split-image reveal-scale">
-    <img src="images/genplan.png" alt="Генеральный план" onerror="this.style.display='none'">
-  </div>
-  <div class="split-content">
-    <span class="section-label reveal">02 &mdash; Генеральный план</span>
-    <h2 class="slide-title reveal reveal-delay-1">Проект базы отдыха</h2>
-    <div class="building-grid reveal reveal-delay-2">
-      <div class="building-item"><span class="b-name">Кафе с террасой (105 мест)</span><span class="b-area">256,6 м&sup2;</span></div>
-      <div class="building-item"><span class="b-name">Админ. здание</span><span class="b-area">117,8 м&sup2;</span></div>
-      <div class="building-item"><span class="b-name">Гостиница (8 ном.)</span><span class="b-area">142,3 м&sup2;</span></div>
-      <div class="building-item"><span class="b-name">КПП</span><span class="b-area">12,0 м&sup2;</span></div>
-      <div class="building-item"><span class="b-name">Баня</span><span class="b-area">108,6 м&sup2;</span></div>
-      <div class="building-item"><span class="b-name">Модульный дом &times;10</span><span class="b-area">45,4 м&sup2;</span></div>
-      <div class="building-item"><span class="b-name">Дом-сфера &times;5</span><span class="b-area">40,7 м&sup2;</span></div>
-      <div class="building-item"><span class="b-name">Беседки</span><span class="b-area">5 шт</span></div>
-      <div class="building-item"><span class="b-name">Парковки</span><span class="b-area">35 м/м</span></div>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================
-     SLIDE 6 — ADMIN BUILDING (SPLIT with floor plan)
-     ============================================================ -->
-<section class="slide slide--split" data-slide="5" style="grid-template-columns:60% 40%">
-  <div class="split-image reveal-scale" style="box-shadow:4px 0 24px rgba(0,0,0,0.08)">
-    <img src="images/admin_plan.png" alt="План этажей" onerror="this.style.display='none'">
-  </div>
-  <div class="split-content" style="background:var(--bg-cream)">
-    <span class="section-label reveal">03 &mdash; Здания</span>
-    <h2 class="slide-title reveal reveal-delay-1" style="font-size:var(--h3-size)">Админ. здание</h2>
-    <p class="slide-caption reveal reveal-delay-1">117,8 м&sup2;</p>
-    <div class="reveal reveal-delay-2">
-      <p style="font-size:var(--small-size);font-weight:600;color:var(--green);margin-bottom:4px">1-й этаж</p>
-      <div class="room-list">
-        <div class="room-item"><span class="room-name">Ресепшн</span><span class="room-area">29,26 м&sup2;</span></div>
-        <div class="room-item"><span class="room-name">Хоз. помещение</span><span class="room-area">22,49 м&sup2;</span></div>
-        <div class="room-item"><span class="room-name">Хоз. помещение</span><span class="room-area">7,69 м&sup2;</span></div>
-        <div class="room-item"><span class="room-name">Коридор</span><span class="room-area">4,64 м&sup2;</span></div>
-        <div class="room-item"><span class="room-name">С/у</span><span class="room-area">2,89 м&sup2;</span></div>
-      </div>
-    </div>
-    <div class="reveal reveal-delay-3">
-      <p style="font-size:var(--small-size);font-weight:600;color:var(--green);margin-bottom:4px">2-й этаж</p>
-      <div class="room-list">
-        <div class="room-item"><span class="room-name">Помещения сотрудников &times;3</span><span class="room-area">12,25&ndash;12,53 м&sup2;</span></div>
-        <div class="room-item"><span class="room-name">Прачечная</span><span class="room-area">6,93 м&sup2;</span></div>
-        <div class="room-item"><span class="room-name">Зона приёма пищи</span><span class="room-area">16,49 м&sup2;</span></div>
-        <div class="room-item"><span class="room-name">С/у + душ</span><span class="room-area">4,15 м&sup2;</span></div>
+      <div class="goal" data-delay="400">
+        <div class="g-icon">&#128176;</div>
+        <div class="g-text">Технико-экономическое обоснование и расчёт срока окупаемости</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============================================================
-     SLIDE 7 — ADMIN ENERGY (data slide, no image)
-     ============================================================ -->
-<section class="slide slide--white" data-slide="6">
-  <div class="slide-content">
-    <span class="section-label reveal">03 &mdash; Энергопотребление</span>
-    <h2 class="slide-title reveal reveal-delay-1">Админ. здание &mdash; расход ресурсов</h2>
-    <div class="stats-row reveal reveal-delay-2" style="margin-top:var(--content-gap)">
-      <div class="stat-card"><div class="stat-value v-blue">640</div><div class="stat-label">кВт&middot;ч/мес &mdash; электроэнергия</div></div>
-      <div class="stat-card"><div class="stat-value v-amber">2 808</div><div class="stat-label">кВт&middot;ч/мес &mdash; отопление</div></div>
-      <div class="stat-card"><div class="stat-value v-green">22,5</div><div class="stat-label">м&sup3;/мес &mdash; ГВС</div></div>
+<!-- ======================== 4. LOCATION ======================== -->
+<section class="slide" style="background:var(--surface-warm)" data-slide="3">
+  <div class="slide-inner">
+    <span class="label rv">01 &mdash; Местоположение</span>
+    <h2 class="title rv rv-d1">Расположение базы отдыха</h2>
+    <div class="panel-row rv rv-d2" style="margin-top:var(--gap);flex:1;align-items:center">
+      <div class="img-frame rv-s" style="height:min(55vh,440px)">
+        <img src="images/map_expanded.png" alt="Карта">
+      </div>
+      <div style="display:flex;flex-direction:column;gap:var(--gap-sm)">
+        <div class="stat"><div class="val c-blue">51.99&deg; N</div><div class="lbl">Широта</div></div>
+        <div class="stat"><div class="val c-blue">104.67&deg; E</div><div class="lbl">Долгота</div></div>
+        <div class="stat"><div class="val c-green" style="font-size:var(--body)">Иркутская область</div><div class="lbl">Побережье озера Байкал</div></div>
+      </div>
     </div>
-    <div class="table-wrap reveal reveal-delay-3" style="margin-top:var(--content-gap)">
+  </div>
+</section>
+
+<!-- ======================== 5. MASTERPLAN ======================== -->
+<section class="slide" style="background:var(--surface)" data-slide="4">
+  <div class="slide-inner">
+    <span class="label rv">02 &mdash; Генеральный план</span>
+    <h2 class="title rv rv-d1">Проект базы отдыха</h2>
+    <div class="plan-layout rv rv-d2" style="margin-top:var(--gap)">
+      <div class="img-frame rv-s">
+        <img src="images/genplan.png" alt="Генплан">
+      </div>
+      <div class="info">
+        <div class="bldgs">
+          <div class="bldg"><span class="bn">Кафе с террасой (105 мест)</span><span class="ba">256,6 м&sup2;</span></div>
+          <div class="bldg"><span class="bn">Админ. здание</span><span class="ba">117,8 м&sup2;</span></div>
+          <div class="bldg"><span class="bn">Гостиница (8 ном.)</span><span class="ba">142,3 м&sup2;</span></div>
+          <div class="bldg"><span class="bn">КПП</span><span class="ba">12,0 м&sup2;</span></div>
+          <div class="bldg"><span class="bn">Баня</span><span class="ba">108,6 м&sup2;</span></div>
+          <div class="bldg"><span class="bn">Модульный дом &times;10</span><span class="ba">45,4 м&sup2;</span></div>
+          <div class="bldg"><span class="bn">Дом-сфера &times;5</span><span class="ba">40,7 м&sup2;</span></div>
+          <div class="bldg"><span class="bn">Беседки</span><span class="ba">5 шт</span></div>
+          <div class="bldg"><span class="bn">Парковки</span><span class="ba">35 м/м</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================== 6. ADMIN BUILDING ======================== -->
+<section class="slide" style="background:var(--surface-warm)" data-slide="5">
+  <div class="slide-inner">
+    <span class="label rv">03 &mdash; Здания</span>
+    <h2 class="title rv rv-d1">Админ.&ndash;хозяйственное здание</h2>
+    <p class="caption rv rv-d1">Общая площадь 117,8 м&sup2;</p>
+    <div class="plan-layout rv rv-d2" style="margin-top:var(--gap)">
+      <div class="img-frame rv-s">
+        <img src="images/admin_plan.png" alt="План этажей">
+      </div>
+      <div class="info">
+        <div>
+          <p style="font-size:var(--small);font-weight:600;color:var(--green);margin-bottom:3px">1-й этаж</p>
+          <div class="rooms">
+            <div class="room"><span class="rn">Ресепшн</span><span class="ra">29,26 м&sup2;</span></div>
+            <div class="room"><span class="rn">Хоз. помещение</span><span class="ra">22,49 м&sup2;</span></div>
+            <div class="room"><span class="rn">Хоз. помещение</span><span class="ra">7,69 м&sup2;</span></div>
+            <div class="room"><span class="rn">Коридор</span><span class="ra">4,64 м&sup2;</span></div>
+            <div class="room"><span class="rn">С/у</span><span class="ra">2,89 м&sup2;</span></div>
+          </div>
+        </div>
+        <div>
+          <p style="font-size:var(--small);font-weight:600;color:var(--green);margin-bottom:3px">2-й этаж</p>
+          <div class="rooms">
+            <div class="room"><span class="rn">Помещения сотр. &times;3</span><span class="ra">12,25&ndash;12,53 м&sup2;</span></div>
+            <div class="room"><span class="rn">Прачечная</span><span class="ra">6,93 м&sup2;</span></div>
+            <div class="room"><span class="rn">Зона приёма пищи</span><span class="ra">16,49 м&sup2;</span></div>
+            <div class="room"><span class="rn">С/у + душ</span><span class="ra">4,15 м&sup2;</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================== 7. ADMIN ENERGY ======================== -->
+<section class="slide" style="background:var(--surface)" data-slide="6">
+  <div class="slide-inner">
+    <span class="label rv">03 &mdash; Энергопотребление</span>
+    <h2 class="title rv rv-d1">Админ. здание &mdash; расход ресурсов</h2>
+    <div class="stats rv rv-d2" style="margin-top:var(--gap)">
+      <div class="stat"><div class="val c-blue">640</div><div class="lbl">кВт&middot;ч/мес &mdash; электро</div></div>
+      <div class="stat"><div class="val c-amber">2 808</div><div class="lbl">кВт&middot;ч/мес &mdash; отопление</div></div>
+      <div class="stat"><div class="val c-green">22,5</div><div class="lbl">м&sup3;/мес &mdash; ГВС</div></div>
+    </div>
+    <div class="tbl-wrap rv rv-d3" style="margin-top:var(--gap)">
       <table>
         <thead><tr><th>Прибор</th><th>Мощность</th><th>ч/сутки</th><th>кВт&middot;ч/сут</th></tr></thead>
         <tbody>
@@ -529,41 +473,41 @@ tbody tr:hover td{background:rgba(45,106,79,0.06)}
   </div>
 </section>
 
-<!-- ============================================================
-     SLIDE 8 — CAFE (SPLIT with floor plan)
-     ============================================================ -->
-<section class="slide slide--split" data-slide="7" style="grid-template-columns:60% 40%">
-  <div class="split-image reveal-scale" style="box-shadow:4px 0 24px rgba(0,0,0,0.08)">
-    <img src="images/cafe_plan.png" alt="План кафе" onerror="this.style.display='none'">
-  </div>
-  <div class="split-content" style="background:var(--bg-cream)">
-    <span class="section-label reveal">04 &mdash; Кафе</span>
-    <h2 class="slide-title reveal reveal-delay-1" style="font-size:var(--h3-size)">Кафе на 105 мест</h2>
-    <p class="slide-caption reveal reveal-delay-1">256,6 м&sup2;</p>
-    <div class="room-list reveal reveal-delay-2">
-      <div class="room-item"><span class="room-name">Зал на 57 мест</span><span class="room-area">82,05 м&sup2;</span></div>
-      <div class="room-item"><span class="room-name">Терраса на 48 мест</span><span class="room-area">60,57 м&sup2;</span></div>
-      <div class="room-item"><span class="room-name">Стойка хостес + гардероб</span><span class="room-area">&mdash;</span></div>
-      <div class="room-item"><span class="room-name">Бар</span><span class="room-area">&mdash;</span></div>
-      <div class="room-item"><span class="room-name">Кухня (гор./хол. цех)</span><span class="room-area">&mdash;</span></div>
-      <div class="room-item"><span class="room-name">Моечная</span><span class="room-area">&mdash;</span></div>
+<!-- ======================== 8. CAFE PLAN ======================== -->
+<section class="slide" style="background:var(--surface-warm)" data-slide="7">
+  <div class="slide-inner">
+    <span class="label rv">04 &mdash; Кафе</span>
+    <h2 class="title rv rv-d1">Кафе на 105 мест</h2>
+    <p class="caption rv rv-d1">Площадь застройки 256,6 м&sup2;</p>
+    <div class="plan-layout rv rv-d2" style="margin-top:var(--gap)">
+      <div class="img-frame rv-s">
+        <img src="images/cafe_plan.png" alt="План кафе">
+      </div>
+      <div class="info">
+        <div class="rooms">
+          <div class="room"><span class="rn">Зал на 57 мест</span><span class="ra">82,05 м&sup2;</span></div>
+          <div class="room"><span class="rn">Терраса на 48 мест</span><span class="ra">60,57 м&sup2;</span></div>
+          <div class="room"><span class="rn">Стойка хостес + гардероб</span><span class="ra">&mdash;</span></div>
+          <div class="room"><span class="rn">Бар</span><span class="ra">&mdash;</span></div>
+          <div class="room"><span class="rn">Кухня (гор./хол. цех)</span><span class="ra">&mdash;</span></div>
+          <div class="room"><span class="rn">Моечная</span><span class="ra">&mdash;</span></div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ============================================================
-     SLIDE 9 — CAFE ENERGY (data slide)
-     ============================================================ -->
-<section class="slide slide--white" data-slide="8">
-  <div class="slide-content">
-    <span class="section-label reveal">04 &mdash; Энергопотребление</span>
-    <h2 class="slide-title reveal reveal-delay-1">Кафе &mdash; расход ресурсов</h2>
-    <div class="stats-row reveal reveal-delay-2" style="margin-top:var(--content-gap)">
-      <div class="stat-card"><div class="stat-value v-blue">5 040</div><div class="stat-label">кВт&middot;ч/мес &mdash; электроэнергия</div></div>
-      <div class="stat-card"><div class="stat-value v-amber">6 912</div><div class="stat-label">кВт&middot;ч/мес &mdash; отопление</div></div>
-      <div class="stat-card"><div class="stat-value v-green">45</div><div class="stat-label">м&sup3;/мес &mdash; ГВС</div></div>
+<!-- ======================== 9. CAFE ENERGY ======================== -->
+<section class="slide" style="background:var(--surface)" data-slide="8">
+  <div class="slide-inner">
+    <span class="label rv">04 &mdash; Энергопотребление</span>
+    <h2 class="title rv rv-d1">Кафе &mdash; расход ресурсов</h2>
+    <div class="stats rv rv-d2" style="margin-top:var(--gap)">
+      <div class="stat"><div class="val c-blue">5 040</div><div class="lbl">кВт&middot;ч/мес &mdash; электро</div></div>
+      <div class="stat"><div class="val c-amber">6 912</div><div class="lbl">кВт&middot;ч/мес &mdash; отопление</div></div>
+      <div class="stat"><div class="val c-green">45</div><div class="lbl">м&sup3;/мес &mdash; ГВС</div></div>
     </div>
-    <div class="table-wrap reveal reveal-delay-3" style="margin-top:var(--content-gap)">
+    <div class="tbl-wrap rv rv-d3" style="margin-top:var(--gap)">
       <table>
         <thead><tr><th>Прибор</th><th>Мощность</th><th>ч/сутки</th><th>кВт&middot;ч/сут</th></tr></thead>
         <tbody>
@@ -580,88 +524,89 @@ tbody tr:hover td{background:rgba(45,106,79,0.06)}
   </div>
 </section>
 
-<!-- ============================================================
-     SLIDE 10 — GUEST MODULE 1 (SPLIT)
-     ============================================================ -->
-<section class="slide slide--split" data-slide="9" style="grid-template-columns:55% 45%">
-  <div class="split-image reveal-scale">
-    <img src="images/guest1_plan.png" alt="План модуля 1" onerror="this.style.display='none'">
-  </div>
-  <div class="split-content" style="background:var(--bg-cream)">
-    <span class="section-label reveal">05 &mdash; Гостевые модули</span>
-    <h2 class="slide-title reveal reveal-delay-1" style="font-size:var(--h3-size)">Гостевой модуль 1</h2>
-    <p class="slide-caption reveal reveal-delay-1">40 м&sup2; &middot; 5 чел &middot; 10 шт</p>
-    <div class="stats-row reveal reveal-delay-2" style="flex-direction:column;gap:clamp(0.3rem,0.6vw,0.5rem)">
-      <div class="stat-card"><div class="stat-value v-blue" style="font-size:clamp(1rem,2vw,1.5rem)">350 кВт&middot;ч</div><div class="stat-label">Электроэнергия / мес</div></div>
-      <div class="stat-card"><div class="stat-value v-amber" style="font-size:clamp(1rem,2vw,1.5rem)">960 кВт&middot;ч</div><div class="stat-label">Отопление / мес</div></div>
-      <div class="stat-card"><div class="stat-value v-green" style="font-size:clamp(1rem,2vw,1.5rem)">22,5 м&sup3;</div><div class="stat-label">ГВС / мес</div></div>
+<!-- ======================== 10. GUEST MODULE 1 ======================== -->
+<section class="slide" style="background:var(--surface-warm)" data-slide="9">
+  <div class="slide-inner">
+    <span class="label rv">05 &mdash; Гостевые модули</span>
+    <h2 class="title rv rv-d1">Гостевой модуль 1</h2>
+    <p class="caption rv rv-d1">40 м&sup2; &middot; 5 чел &middot; 10 шт</p>
+    <div class="plan-layout rv rv-d2" style="margin-top:var(--gap)">
+      <div class="img-frame rv-s">
+        <img src="images/guest1_plan.png" alt="План модуля 1">
+      </div>
+      <div class="info">
+        <div class="stats" style="flex-direction:column;gap:var(--gap-sm)">
+          <div class="stat"><div class="val c-blue" style="font-size:clamp(1rem,2vw,1.4rem)">350 кВт&middot;ч</div><div class="lbl">Электроэнергия / мес</div></div>
+          <div class="stat"><div class="val c-amber" style="font-size:clamp(1rem,2vw,1.4rem)">960 кВт&middot;ч</div><div class="lbl">Отопление / мес</div></div>
+          <div class="stat"><div class="val c-green" style="font-size:clamp(1rem,2vw,1.4rem)">22,5 м&sup3;</div><div class="lbl">ГВС / мес</div></div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ============================================================
-     SLIDE 11 — GUEST MODULE 2 (SPLIT)
-     ============================================================ -->
-<section class="slide slide--split" data-slide="10" style="grid-template-columns:55% 45%">
-  <div class="split-image reveal-scale">
-    <img src="images/guest2_plan.png" alt="План модуля 2" onerror="this.style.display='none'">
-  </div>
-  <div class="split-content" style="background:var(--bg-cream)">
-    <span class="section-label reveal">05 &mdash; Гостевые модули</span>
-    <h2 class="slide-title reveal reveal-delay-1" style="font-size:var(--h3-size)">Гостевой модуль 2</h2>
-    <p class="slide-caption reveal reveal-delay-1">40 м&sup2; &middot; 3 чел &middot; 5 шт</p>
-    <div class="stats-row reveal reveal-delay-2" style="flex-direction:column;gap:clamp(0.3rem,0.6vw,0.5rem)">
-      <div class="stat-card"><div class="stat-value v-blue" style="font-size:clamp(1rem,2vw,1.5rem)">275 кВт&middot;ч</div><div class="stat-label">Электроэнергия / мес</div></div>
-      <div class="stat-card"><div class="stat-value v-amber" style="font-size:clamp(1rem,2vw,1.5rem)">960 кВт&middot;ч</div><div class="stat-label">Отопление / мес</div></div>
-      <div class="stat-card"><div class="stat-value v-green" style="font-size:clamp(1rem,2vw,1.5rem)">13,5 м&sup3;</div><div class="stat-label">ГВС / мес</div></div>
+<!-- ======================== 11. GUEST MODULE 2 ======================== -->
+<section class="slide" style="background:var(--surface)" data-slide="10">
+  <div class="slide-inner">
+    <span class="label rv">05 &mdash; Гостевые модули</span>
+    <h2 class="title rv rv-d1">Гостевой модуль 2</h2>
+    <p class="caption rv rv-d1">40 м&sup2; &middot; 3 чел &middot; 5 шт</p>
+    <div class="plan-layout rv rv-d2" style="margin-top:var(--gap)">
+      <div class="img-frame rv-s">
+        <img src="images/guest2_plan.png" alt="План модуля 2">
+      </div>
+      <div class="info">
+        <div class="stats" style="flex-direction:column;gap:var(--gap-sm)">
+          <div class="stat"><div class="val c-blue" style="font-size:clamp(1rem,2vw,1.4rem)">275 кВт&middot;ч</div><div class="lbl">Электроэнергия / мес</div></div>
+          <div class="stat"><div class="val c-amber" style="font-size:clamp(1rem,2vw,1.4rem)">960 кВт&middot;ч</div><div class="lbl">Отопление / мес</div></div>
+          <div class="stat"><div class="val c-green" style="font-size:clamp(1rem,2vw,1.4rem)">13,5 м&sup3;</div><div class="lbl">ГВС / мес</div></div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ============================================================
-     SLIDE 12 — HOTEL BLOCK (SPLIT)
-     ============================================================ -->
-<section class="slide slide--split" data-slide="11" style="grid-template-columns:55% 45%">
-  <div class="split-image reveal-scale">
-    <img src="images/gostinichnyj_i_administrativnyj_blok_vid3_3d_concept.png" alt="Гостиничный блок" onerror="this.style.display='none'">
-  </div>
-  <div class="split-content" style="background:var(--bg-cream)">
-    <span class="section-label reveal">06 &mdash; Гостиница</span>
-    <h2 class="slide-title reveal reveal-delay-1" style="font-size:var(--h3-size)">Гостиничный блок</h2>
-    <p class="slide-caption reveal reveal-delay-1">8 номеров &middot; 142,3 м&sup2; &middot; 16 гостей</p>
-    <div class="stats-row reveal reveal-delay-2" style="flex-direction:column;gap:clamp(0.3rem,0.6vw,0.5rem)">
-      <div class="stat-card"><div class="stat-value v-blue" style="font-size:clamp(1rem,2vw,1.5rem)">1 340 кВт&middot;ч</div><div class="stat-label">Электроэнергия / мес</div></div>
-      <div class="stat-card"><div class="stat-value v-amber" style="font-size:clamp(1rem,2vw,1.5rem)">3 456 кВт&middot;ч</div><div class="stat-label">Отопление / мес</div></div>
-      <div class="stat-card"><div class="stat-value v-green" style="font-size:clamp(1rem,2vw,1.5rem)">72 м&sup3;</div><div class="stat-label">ГВС / мес</div></div>
-    </div>
-    <div class="table-wrap reveal reveal-delay-3" style="margin-top:var(--element-gap)">
-      <table>
-        <thead><tr><th>Прибор</th><th>кВт&middot;ч/сут</th></tr></thead>
-        <tbody>
-          <tr><td>Освещение</td><td>11,5</td></tr>
-          <tr><td>ТВ (8 шт)</td><td>4,0</td></tr>
-          <tr><td>Холодильники (8)</td><td>7,7</td></tr>
-          <tr><td>Кондиционеры</td><td>48,0</td></tr>
-          <tr><td>Вентиляция</td><td>18,0</td></tr>
-        </tbody>
-      </table>
+<!-- ======================== 12. HOTEL ======================== -->
+<section class="slide" style="background:var(--surface-warm)" data-slide="11">
+  <div class="slide-inner">
+    <span class="label rv">06 &mdash; Гостиница</span>
+    <h2 class="title rv rv-d1">Гостиничный блок на 8 номеров</h2>
+    <p class="caption rv rv-d1">142,3 м&sup2; &middot; 16 гостей</p>
+    <div class="panel-row rv rv-d2" style="margin-top:var(--gap);align-items:center">
+      <div style="display:flex;flex-direction:column;gap:var(--gap-sm)">
+        <div class="stats" style="flex-direction:column;gap:var(--gap-sm)">
+          <div class="stat"><div class="val c-blue" style="font-size:clamp(1rem,2vw,1.4rem)">1 340 кВт&middot;ч</div><div class="lbl">Электроэнергия / мес</div></div>
+          <div class="stat"><div class="val c-amber" style="font-size:clamp(1rem,2vw,1.4rem)">3 456 кВт&middot;ч</div><div class="lbl">Отопление / мес</div></div>
+          <div class="stat"><div class="val c-green" style="font-size:clamp(1rem,2vw,1.4rem)">72 м&sup3;</div><div class="lbl">ГВС / мес</div></div>
+        </div>
+      </div>
+      <div class="tbl-wrap rv rv-d3">
+        <table>
+          <thead><tr><th>Прибор</th><th>кВт&middot;ч/сут</th></tr></thead>
+          <tbody>
+            <tr><td>Освещение</td><td>11,5</td></tr>
+            <tr><td>ТВ (8 шт)</td><td>4,0</td></tr>
+            <tr><td>Холодильники (8)</td><td>7,7</td></tr>
+            <tr><td>Кондиционеры</td><td>48,0</td></tr>
+            <tr><td>Вентиляция</td><td>18,0</td></tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ============================================================
-     SLIDE 13 — SUMMARY (data slide, full tables + KPIs)
-     ============================================================ -->
-<section class="slide slide--white" data-slide="12">
-  <div class="slide-content">
-    <span class="section-label reveal">07 &mdash; Итоги</span>
-    <h2 class="slide-title reveal reveal-delay-1">Сводное потребление по базе</h2>
-    <div class="stats-row reveal reveal-delay-2" style="margin-top:var(--content-gap)">
-      <div class="stat-card"><div class="stat-value v-blue">7 645</div><div class="stat-label">кВт&middot;ч/мес — Электроэнергия</div></div>
-      <div class="stat-card"><div class="stat-value v-amber">15 096</div><div class="stat-label">кВт&middot;ч/мес — Отопление</div></div>
-      <div class="stat-card"><div class="stat-value v-green">175,5</div><div class="stat-label">м&sup3;/мес — ГВС</div></div>
+<!-- ======================== 13. SUMMARY ======================== -->
+<section class="slide" style="background:var(--surface)" data-slide="12">
+  <div class="slide-inner">
+    <span class="label rv">07 &mdash; Итоги</span>
+    <h2 class="title rv rv-d1">Сводное потребление по базе</h2>
+    <div class="stats rv rv-d2" style="margin-top:var(--gap)">
+      <div class="stat"><div class="val c-blue">7 645</div><div class="lbl">кВт&middot;ч/мес &mdash; Электроэнергия</div></div>
+      <div class="stat"><div class="val c-amber">15 096</div><div class="lbl">кВт&middot;ч/мес &mdash; Отопление</div></div>
+      <div class="stat"><div class="val c-green">175,5</div><div class="lbl">м&sup3;/мес &mdash; ГВС</div></div>
     </div>
-    <div class="table-wrap reveal reveal-delay-3" style="margin-top:var(--content-gap)">
+    <div class="tbl-wrap rv rv-d3" style="margin-top:var(--gap)">
       <table>
         <thead><tr><th>Объект</th><th style="text-align:right">Электро, кВт&middot;ч</th><th style="text-align:right">Отопл., кВт&middot;ч</th><th style="text-align:right">ГВС, м&sup3;</th></tr></thead>
         <tbody>
@@ -677,54 +622,53 @@ tbody tr:hover td{background:rgba(45,106,79,0.06)}
   </div>
 </section>
 
-<!-- ============================================================
-     SLIDE 14 — SOLAR ACTIVITY (NEW)
-     ============================================================ -->
-<section class="slide slide--cream" data-slide="13">
-  <div class="slide-content" style="align-items:center;text-align:center">
-    <span class="section-label reveal">08 &mdash; Солнечная энергия</span>
-    <h2 class="slide-title reveal reveal-delay-1">Солнечная активность региона</h2>
-    <p class="slide-caption reveal reveal-delay-1">Иркутская область &middot; 51.988624, 104.674372</p>
-    <div class="img-placeholder reveal-scale reveal-delay-2" style="width:min(90%,800px);min-height:min(40vh,340px);margin-top:var(--content-gap)">
-      <span>&#128247; Вставить: solar_activity.jpg</span>
+<!-- ======================== 14. SOLAR ACTIVITY ======================== -->
+<section class="slide" style="background:var(--surface-warm)" data-slide="13">
+  <div class="bg-mesh">
+    <div class="orb" style="width:500px;height:500px;background:#e9c46a;top:-100px;left:30%"></div>
+  </div>
+  <div class="slide-inner" style="align-items:center;text-align:center;z-index:1;position:relative">
+    <span class="label rv">08 &mdash; Солнечная энергия</span>
+    <h2 class="title rv rv-d1">Солнечная активность региона</h2>
+    <p class="caption rv rv-d1">Иркутская область &middot; 51.988624, 104.674372</p>
+    <div class="ph rv-s rv-d2" style="width:min(90%,750px);min-height:min(38vh,300px);margin-top:var(--gap)">
+      &#128247; Вставить: solar_activity.jpg
     </div>
-    <div class="stats-row reveal reveal-delay-3" style="margin-top:var(--content-gap);max-width:700px">
-      <div class="stat-card" style="text-align:center">
-        <div class="stat-value v-amber" style="font-size:clamp(1.1rem,2.5vw,1.8rem)">~1 200&ndash;1 400</div>
-        <div class="stat-label">кВт&middot;ч/м&sup2;/год &mdash; суммарная солнечная радиация</div>
+    <div class="stats rv rv-d3" style="margin-top:var(--gap);justify-content:center">
+      <div class="stat" style="text-align:center;max-width:350px">
+        <div class="val c-amber" style="font-size:clamp(1rem,2.2vw,1.6rem)">~1 200&ndash;1 400</div>
+        <div class="lbl">кВт&middot;ч/м&sup2;/год &mdash; суммарная солнечная радиация</div>
       </div>
     </div>
-    <p class="slide-caption reveal reveal-delay-4" style="margin-top:var(--element-gap)">Источник: Карта солнечной активности РФ</p>
+    <p class="caption rv rv-d4">Источник: Карта солнечной активности РФ</p>
   </div>
 </section>
 
-<!-- ============================================================
-     SLIDE 15 — WORK DISTRIBUTION (NEW)
-     ============================================================ -->
-<section class="slide slide--cream" data-slide="14">
-  <div class="slide-content">
-    <span class="section-label reveal">09 &mdash; Организация</span>
-    <h2 class="slide-title reveal reveal-delay-1">Распределение этапов</h2>
-    <div class="timeline reveal reveal-delay-2" style="margin-top:var(--content-gap);max-width:700px">
-      <div class="timeline-item">
-        <div class="timeline-marker tm-green">1</div>
-        <div class="timeline-body">
+<!-- ======================== 15. WORK DISTRIBUTION ======================== -->
+<section class="slide" style="background:var(--surface)" data-slide="14">
+  <div class="slide-inner">
+    <span class="label rv">09 &mdash; Организация</span>
+    <h2 class="title rv rv-d1">Распределение этапов</h2>
+    <div class="timeline rv rv-d2" style="margin-top:var(--gap);max-width:650px">
+      <div class="tl-item">
+        <div class="tl-dot d-g">1</div>
+        <div class="tl-body">
           <div class="tl-role">Генеральный директор</div>
           <div class="tl-name">Тамир Будариев</div>
           <div class="tl-desc">Этапы 1, 2, 3 &mdash; Исходные данные, карта расположения, расчёт ресурсов</div>
         </div>
       </div>
-      <div class="timeline-item">
-        <div class="timeline-marker tm-blue">2</div>
-        <div class="timeline-body">
+      <div class="tl-item">
+        <div class="tl-dot d-b">2</div>
+        <div class="tl-body">
           <div class="tl-role">Проектировщики</div>
           <div class="tl-name">Айваз Багаутдинов + Андрей Михайлов</div>
           <div class="tl-desc">Этапы 4, 5, 9 &mdash; Карта солнечной активности, расчёт коллектора/батареи, размещение</div>
         </div>
       </div>
-      <div class="timeline-item">
-        <div class="timeline-marker tm-amber">3</div>
-        <div class="timeline-body">
+      <div class="tl-item">
+        <div class="tl-dot d-a">3</div>
+        <div class="tl-body">
           <div class="tl-role">Монтажники</div>
           <div class="tl-name">Алина Костюкова + Полина Синицына</div>
           <div class="tl-desc">Этапы 6, 7, 8, 9, 10 &mdash; Обзор/выбор оборудования, схемы монтажа, ТЭО</div>
@@ -734,27 +678,29 @@ tbody tr:hover td{background:rgba(45,106,79,0.06)}
   </div>
 </section>
 
-<!-- ============================================================
-     SLIDE 16 — 3D CONCEPT (Ken Burns)
-     ============================================================ -->
-<section class="slide slide--split" data-slide="15" style="grid-template-columns:65% 35%">
-  <div class="split-image ken-burns reveal-scale">
-    <img src="images/kafe_vid1_3d_concept.png" alt="3D Концепт" onerror="this.style.display='none'">
+<!-- ======================== 16. 3D CONCEPT ======================== -->
+<section class="slide" style="background:var(--surface-warm)" data-slide="15">
+  <div class="bg-mesh">
+    <div class="orb" style="width:500px;height:500px;background:#a8d5ba;bottom:-150px;right:-80px"></div>
+    <div class="orb" style="width:350px;height:350px;background:#a3c4d9;top:-80px;left:-60px"></div>
   </div>
-  <div class="split-content" style="background:linear-gradient(135deg,var(--blue),var(--green))">
-    <span class="section-label reveal" style="color:var(--amber)">10 &mdash; Визуализация</span>
-    <h2 class="slide-title reveal reveal-delay-1" style="color:#fff;font-size:var(--h2-size)">3D Концепт базы</h2>
-    <p class="reveal reveal-delay-2" style="color:rgba(255,255,255,0.8);font-size:var(--body-size);line-height:1.5">
-      Визуализация проекта базы отдыха на 25 мест в Иркутской области с системой солнечного энергоснабжения.
-    </p>
-    <div class="stats-row reveal reveal-delay-3" style="flex-direction:column;gap:clamp(0.3rem,0.6vw,0.5rem)">
-      <div class="stat-card" style="background:rgba(255,255,255,0.12);border-color:rgba(255,255,255,0.15)">
-        <div class="stat-value" style="color:#fff;font-size:clamp(1rem,2vw,1.4rem)">25 мест</div>
-        <div class="stat-label" style="color:rgba(255,255,255,0.65)">Вместимость</div>
+  <div class="slide-inner" style="z-index:1;position:relative">
+    <span class="label rv">10 &mdash; Визуализация</span>
+    <h2 class="title rv rv-d1">3D Концепт базы</h2>
+    <div class="panel-row rv rv-d2" style="margin-top:var(--gap);align-items:center;flex:1">
+      <div class="img-frame img-frame--cover kb rv-s" style="height:min(55vh,440px);border-radius:20px;box-shadow:var(--glass-shadow-lg)">
+        <img src="images/kafe_vid1_3d_concept.png" alt="3D Концепт">
       </div>
-      <div class="stat-card" style="background:rgba(255,255,255,0.12);border-color:rgba(255,255,255,0.15)">
-        <div class="stat-value" style="color:var(--amber);font-size:clamp(1rem,2vw,1.4rem)">Солнечная энергия</div>
-        <div class="stat-label" style="color:rgba(255,255,255,0.65)">Источник энергоснабжения</div>
+      <div class="glass-strong rv rv-d3" style="padding:clamp(1rem,2vw,1.5rem);display:flex;flex-direction:column;gap:var(--gap-sm)">
+        <p style="font-size:var(--body);color:var(--text2);line-height:1.5">Визуализация проекта базы отдыха на 25 мест с системой солнечного энергоснабжения</p>
+        <div class="stat" style="background:var(--green-soft)">
+          <div class="val c-green" style="font-size:clamp(1rem,1.8vw,1.3rem)">25 мест</div>
+          <div class="lbl">Вместимость базы</div>
+        </div>
+        <div class="stat" style="background:var(--amber-soft)">
+          <div class="val c-amber" style="font-size:clamp(1rem,1.8vw,1.3rem)">Солнечная энергия</div>
+          <div class="lbl">Источник энергоснабжения</div>
+        </div>
       </div>
     </div>
   </div>
@@ -762,78 +708,60 @@ tbody tr:hover td{background:rgba(45,106,79,0.06)}
 
 <script>
 (function(){
-  const slides = document.querySelectorAll('.slide');
-  const total = slides.length;
-  const navDots = document.getElementById('navDots');
-  const counter = document.getElementById('slideCounter');
-  const progress = document.getElementById('progressBar');
+  const slides=document.querySelectorAll('.slide');
+  const total=slides.length;
+  const navDots=document.getElementById('navDots');
+  const counter=document.getElementById('slideCounter');
+  const progress=document.getElementById('progressBar');
 
-  slides.forEach((_,i) => {
-    const d = document.createElement('button');
-    d.className = 'nav-dot';
+  slides.forEach((_,i)=>{
+    const d=document.createElement('button');
+    d.className='nav-dot';
     d.setAttribute('aria-label','Slide '+(i+1));
-    d.addEventListener('click', () => slides[i].scrollIntoView({behavior:'smooth'}));
+    d.addEventListener('click',()=>slides[i].scrollIntoView({behavior:'smooth'}));
     navDots.appendChild(d);
   });
-  const dots = navDots.querySelectorAll('.nav-dot');
+  const dots=navDots.querySelectorAll('.nav-dot');
 
   function activate(idx){
-    dots.forEach((d,i) => d.classList.toggle('active', i===idx));
-    counter.textContent = (idx+1)+' / '+total;
-    progress.style.width = ((idx+1)/total*100)+'%';
+    dots.forEach((d,i)=>d.classList.toggle('active',i===idx));
+    counter.textContent=(idx+1)+' / '+total;
+    progress.style.width=((idx+1)/total*100)+'%';
   }
 
-  const io = new IntersectionObserver(entries => {
-    entries.forEach(e => {
+  const io=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
       if(e.isIntersecting){
-        const idx = parseInt(e.target.dataset.slide);
-        activate(idx);
-        e.target.querySelectorAll('.reveal, .reveal-scale').forEach(el => el.classList.add('visible'));
-
-        const teamMembers = e.target.querySelectorAll('.team-member');
-        teamMembers.forEach(m => {
-          const delay = parseInt(m.dataset.delay)||0;
-          setTimeout(() => m.classList.add('visible'), delay);
+        activate(parseInt(e.target.dataset.slide));
+        e.target.querySelectorAll('.rv,.rv-s').forEach(el=>el.classList.add('visible'));
+        e.target.querySelectorAll('.member').forEach(m=>{
+          setTimeout(()=>m.classList.add('visible'),parseInt(m.dataset.delay)||0);
         });
-
-        const goalCards = e.target.querySelectorAll('.goal-card');
-        goalCards.forEach(c => {
-          const delay = parseInt(c.dataset.delay)||0;
-          setTimeout(() => c.classList.add('visible'), delay);
+        e.target.querySelectorAll('.goal').forEach(c=>{
+          setTimeout(()=>c.classList.add('visible'),parseInt(c.dataset.delay)||0);
         });
       }
     });
-  }, {threshold:0.4});
+  },{threshold:0.4});
 
-  slides.forEach(s => io.observe(s));
+  slides.forEach(s=>io.observe(s));
 
-  document.addEventListener('keydown', e => {
-    const cur = [...dots].findIndex(d => d.classList.contains('active'));
-    if(e.key==='ArrowDown'||e.key==='ArrowRight'||e.key===' '){
-      e.preventDefault();
-      if(cur<total-1) slides[cur+1].scrollIntoView({behavior:'smooth'});
-    } else if(e.key==='ArrowUp'||e.key==='ArrowLeft'){
-      e.preventDefault();
-      if(cur>0) slides[cur-1].scrollIntoView({behavior:'smooth'});
-    }
+  document.addEventListener('keydown',e=>{
+    const c=[...dots].findIndex(d=>d.classList.contains('active'));
+    if(e.key==='ArrowDown'||e.key==='ArrowRight'||e.key===' '){e.preventDefault();if(c<total-1)slides[c+1].scrollIntoView({behavior:'smooth'})}
+    else if(e.key==='ArrowUp'||e.key==='ArrowLeft'){e.preventDefault();if(c>0)slides[c-1].scrollIntoView({behavior:'smooth'})}
   });
 
   let ty=0;
-  document.addEventListener('touchstart', e=>{ty=e.touches[0].clientY},{passive:true});
-  document.addEventListener('touchend', e=>{
+  document.addEventListener('touchstart',e=>{ty=e.touches[0].clientY},{passive:true});
+  document.addEventListener('touchend',e=>{
     const d=ty-e.changedTouches[0].clientY;
-    const cur=[...dots].findIndex(x=>x.classList.contains('active'));
-    if(Math.abs(d)>50){
-      if(d>0&&cur<total-1) slides[cur+1].scrollIntoView({behavior:'smooth'});
-      else if(d<0&&cur>0) slides[cur-1].scrollIntoView({behavior:'smooth'});
-    }
+    const c=[...dots].findIndex(x=>x.classList.contains('active'));
+    if(Math.abs(d)>50){if(d>0&&c<total-1)slides[c+1].scrollIntoView({behavior:'smooth'});else if(d<0&&c>0)slides[c-1].scrollIntoView({behavior:'smooth'})}
   },{passive:true});
 
   activate(0);
-  slides[0].querySelectorAll('.reveal, .reveal-scale').forEach(el => el.classList.add('visible'));
-  slides[0].querySelectorAll('.team-member').forEach(m => {
-    setTimeout(()=>m.classList.add('visible'), parseInt(m.dataset.delay)||0);
-  });
+  slides[0].querySelectorAll('.rv,.rv-s').forEach(el=>el.classList.add('visible'));
 })();
 </script>
 </body>
