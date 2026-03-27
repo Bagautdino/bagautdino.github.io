@@ -12,11 +12,11 @@ html{scroll-snap-type:y mandatory;scroll-behavior:smooth}
 body{background:#f2f2f7;color:#1d1d1f}
 
 :root{
-  --title:clamp(1.8rem,5vw,4rem);
-  --h2:clamp(1.3rem,3.5vw,2.5rem);
-  --h3:clamp(1rem,2.5vw,1.4rem);
-  --body:clamp(0.78rem,1.4vw,1rem);
-  --small:clamp(0.68rem,1vw,0.85rem);
+  --title:clamp(2rem,5.5vw,4.2rem);
+  --h2:clamp(1.5rem,4vw,2.8rem);
+  --h3:clamp(1.1rem,2.8vw,1.6rem);
+  --body:clamp(0.9rem,1.6vw,1.15rem);
+  --small:clamp(0.8rem,1.2vw,0.95rem);
   --pad:clamp(1.5rem,5vw,4.5rem);
   --gap:clamp(0.5rem,2vw,1.5rem);
   --gap-sm:clamp(0.25rem,1vw,0.6rem);
@@ -55,13 +55,9 @@ body{background:#f2f2f7;color:#1d1d1f}
   overflow:hidden;padding:var(--pad);
 }
 
-/* ============ MESH GRADIENT BG ============ */
-.bg-mesh{
-  position:absolute;inset:0;pointer-events:none;overflow:hidden;
-}
-.bg-mesh .orb{
-  position:absolute;border-radius:50%;filter:blur(100px);opacity:0.25;
-}
+/* ============ MESH GRADIENT BG (JS-animated) ============ */
+.bg-mesh{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.bg-mesh canvas{width:100%;height:100%}
 
 /* ============ GLASS CARD ============ */
 .glass{
@@ -278,9 +274,9 @@ tbody tr:hover td{background:rgba(45,106,79,0.06)}
 .kb img{animation:kenBurns 8s ease-in-out infinite alternate}
 
 /* ============ RESPONSIVE ============ */
-@media(max-height:700px){:root{--pad:clamp(0.75rem,3vw,2rem);--gap:clamp(0.4rem,1.5vw,1rem);--h2:clamp(1rem,3vw,1.75rem)}}
-@media(max-height:600px){:root{--pad:clamp(0.5rem,2.5vw,1.5rem);--gap:clamp(0.3rem,1vw,0.75rem);--body:clamp(0.7rem,1.2vw,0.95rem)}.nav-dots{display:none}}
-@media(max-height:500px){:root{--pad:clamp(0.4rem,2vw,1rem);--h2:clamp(0.9rem,2.5vw,1.25rem);--body:clamp(0.65rem,1vw,0.85rem)}}
+@media(max-height:700px){:root{--pad:clamp(0.75rem,3vw,2rem);--gap:clamp(0.4rem,1.5vw,1rem);--h2:clamp(1.2rem,3vw,2rem);--body:clamp(0.82rem,1.3vw,1rem);--small:clamp(0.75rem,1.1vw,0.88rem)}}
+@media(max-height:600px){:root{--pad:clamp(0.5rem,2.5vw,1.5rem);--gap:clamp(0.3rem,1vw,0.75rem);--body:clamp(0.78rem,1.2vw,0.95rem)}.nav-dots{display:none}}
+@media(max-height:500px){:root{--pad:clamp(0.4rem,2vw,1rem);--h2:clamp(1rem,2.5vw,1.5rem);--body:clamp(0.72rem,1vw,0.88rem)}}
 @media(max-width:600px){:root{--title:clamp(1.25rem,7vw,2.5rem)}.stats,.goals{flex-direction:column}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:0.01ms!important;transition-duration:0.2s!important}html{scroll-behavior:auto}}
 </style>
@@ -293,11 +289,7 @@ tbody tr:hover td{background:rgba(45,106,79,0.06)}
 
 <!-- ======================== 1. TITLE ======================== -->
 <section class="slide slide--hero" data-slide="0">
-  <div class="bg-mesh">
-    <div class="orb" style="width:600px;height:600px;background:#a8d5ba;top:-200px;right:-100px"></div>
-    <div class="orb" style="width:500px;height:500px;background:#a3c4d9;bottom:-200px;left:-100px"></div>
-    <div class="orb" style="width:300px;height:300px;background:#e9c46a;top:40%;left:60%"></div>
-  </div>
+  <div class="bg-mesh"><canvas data-orbs='[{"c":"#a8d5ba","r":280},{"c":"#a3c4d9","r":240},{"c":"#e9c46a","r":140}]'></canvas></div>
   <div class="slide-inner">
     <div class="badge rv">Университет ИТМО &middot; Команда 4</div>
     <h1 class="rv rv-d1">База отдыха<br>в Иркутской области</h1>
@@ -308,10 +300,7 @@ tbody tr:hover td{background:rgba(45,106,79,0.06)}
 
 <!-- ======================== 2. TEAM ======================== -->
 <section class="slide" style="background:var(--surface-warm)" data-slide="1">
-  <div class="bg-mesh">
-    <div class="orb" style="width:400px;height:400px;background:#a8d5ba;top:-80px;left:-80px"></div>
-    <div class="orb" style="width:300px;height:300px;background:#e9c46a;bottom:-60px;right:10%"></div>
-  </div>
+  <div class="bg-mesh"><canvas data-orbs='[{"c":"#a8d5ba","r":200},{"c":"#e9c46a","r":150}]'></canvas></div>
   <div class="slide-inner" style="align-items:center;z-index:1;position:relative">
     <span class="label rv">Команда проекта</span>
     <h2 class="title rv rv-d1" style="text-align:center">Наша команда</h2>
@@ -342,10 +331,7 @@ tbody tr:hover td{background:rgba(45,106,79,0.06)}
 
 <!-- ======================== 3. GOALS ======================== -->
 <section class="slide" style="background:var(--surface)" data-slide="2">
-  <div class="bg-mesh">
-    <div class="orb" style="width:500px;height:500px;background:#a3c4d9;top:-100px;right:-120px"></div>
-    <div class="orb" style="width:400px;height:400px;background:#a8d5ba;bottom:-120px;left:-80px"></div>
-  </div>
+  <div class="bg-mesh"><canvas data-orbs='[{"c":"#a3c4d9","r":240},{"c":"#a8d5ba","r":200}]'></canvas></div>
   <div class="slide-inner" style="align-items:center;text-align:center;z-index:1;position:relative">
     <span class="label rv">Цели и задачи</span>
     <h2 class="title rv rv-d1">Цель проекта</h2>
@@ -535,10 +521,23 @@ tbody tr:hover td{background:rgba(45,106,79,0.06)}
         <img src="images/guest1_plan.png" alt="План модуля 1">
       </div>
       <div class="info">
-        <div class="stats" style="flex-direction:column;gap:var(--gap-sm)">
-          <div class="stat"><div class="val c-blue" style="font-size:clamp(1rem,2vw,1.4rem)">350 кВт&middot;ч</div><div class="lbl">Электроэнергия / мес</div></div>
-          <div class="stat"><div class="val c-amber" style="font-size:clamp(1rem,2vw,1.4rem)">960 кВт&middot;ч</div><div class="lbl">Отопление / мес</div></div>
-          <div class="stat"><div class="val c-green" style="font-size:clamp(1rem,2vw,1.4rem)">22,5 м&sup3;</div><div class="lbl">ГВС / мес</div></div>
+        <div class="stats" style="gap:var(--gap-sm)">
+          <div class="stat"><div class="val c-blue" style="font-size:clamp(1rem,2vw,1.4rem)">350</div><div class="lbl">кВт&middot;ч/мес электро</div></div>
+          <div class="stat"><div class="val c-amber" style="font-size:clamp(1rem,2vw,1.4rem)">960</div><div class="lbl">кВт&middot;ч/мес отопл.</div></div>
+          <div class="stat"><div class="val c-green" style="font-size:clamp(1rem,2vw,1.4rem)">22,5</div><div class="lbl">м&sup3;/мес ГВС</div></div>
+        </div>
+        <div class="tbl-wrap">
+          <table>
+            <thead><tr><th>Прибор</th><th>Мощность</th><th>кВт&middot;ч/сут</th></tr></thead>
+            <tbody>
+              <tr><td>Освещение</td><td>400 Вт</td><td>2,4</td></tr>
+              <tr><td>Холодильник</td><td>150 Вт</td><td>1,4</td></tr>
+              <tr><td>Плита</td><td>2 000 Вт</td><td>4,0</td></tr>
+              <tr><td>ТВ</td><td>100 Вт</td><td>0,5</td></tr>
+              <tr><td>Водонагреватель</td><td>2 000 Вт</td><td>6,0</td></tr>
+              <tr><td>Кондиционер</td><td>1 500 Вт</td><td>9,0</td></tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
@@ -556,10 +555,23 @@ tbody tr:hover td{background:rgba(45,106,79,0.06)}
         <img src="images/guest2_plan.png" alt="План модуля 2">
       </div>
       <div class="info">
-        <div class="stats" style="flex-direction:column;gap:var(--gap-sm)">
-          <div class="stat"><div class="val c-blue" style="font-size:clamp(1rem,2vw,1.4rem)">275 кВт&middot;ч</div><div class="lbl">Электроэнергия / мес</div></div>
-          <div class="stat"><div class="val c-amber" style="font-size:clamp(1rem,2vw,1.4rem)">960 кВт&middot;ч</div><div class="lbl">Отопление / мес</div></div>
-          <div class="stat"><div class="val c-green" style="font-size:clamp(1rem,2vw,1.4rem)">13,5 м&sup3;</div><div class="lbl">ГВС / мес</div></div>
+        <div class="stats" style="gap:var(--gap-sm)">
+          <div class="stat"><div class="val c-blue" style="font-size:clamp(1rem,2vw,1.4rem)">275</div><div class="lbl">кВт&middot;ч/мес электро</div></div>
+          <div class="stat"><div class="val c-amber" style="font-size:clamp(1rem,2vw,1.4rem)">960</div><div class="lbl">кВт&middot;ч/мес отопл.</div></div>
+          <div class="stat"><div class="val c-green" style="font-size:clamp(1rem,2vw,1.4rem)">13,5</div><div class="lbl">м&sup3;/мес ГВС</div></div>
+        </div>
+        <div class="tbl-wrap">
+          <table>
+            <thead><tr><th>Прибор</th><th>Мощность</th><th>кВт&middot;ч/сут</th></tr></thead>
+            <tbody>
+              <tr><td>Освещение</td><td>400 Вт</td><td>2,4</td></tr>
+              <tr><td>Холодильник</td><td>150 Вт</td><td>1,4</td></tr>
+              <tr><td>Плита</td><td>2 000 Вт</td><td>3,0</td></tr>
+              <tr><td>ТВ</td><td>100 Вт</td><td>0,4</td></tr>
+              <tr><td>Водонагреватель</td><td>2 000 Вт</td><td>4,0</td></tr>
+              <tr><td>Кондиционер</td><td>1 500 Вт</td><td>7,5</td></tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
@@ -624,23 +636,25 @@ tbody tr:hover td{background:rgba(45,106,79,0.06)}
 
 <!-- ======================== 14. SOLAR ACTIVITY ======================== -->
 <section class="slide" style="background:var(--surface-warm)" data-slide="13">
-  <div class="bg-mesh">
-    <div class="orb" style="width:500px;height:500px;background:#e9c46a;top:-100px;left:30%"></div>
-  </div>
+  <div class="bg-mesh"><canvas data-orbs='[{"c":"#e9c46a","r":260},{"c":"#a8d5ba","r":180}]'></canvas></div>
   <div class="slide-inner" style="align-items:center;text-align:center;z-index:1;position:relative">
     <span class="label rv">08 &mdash; Солнечная энергия</span>
     <h2 class="title rv rv-d1">Солнечная активность региона</h2>
     <p class="caption rv rv-d1">Иркутская область &middot; 51.988624, 104.674372</p>
-    <div class="ph rv-s rv-d2" style="width:min(90%,750px);min-height:min(38vh,300px);margin-top:var(--gap)">
-      &#128247; Вставить: solar_activity.jpg
-    </div>
-    <div class="stats rv rv-d3" style="margin-top:var(--gap);justify-content:center">
-      <div class="stat" style="text-align:center;max-width:350px">
-        <div class="val c-amber" style="font-size:clamp(1rem,2.2vw,1.6rem)">~1 200&ndash;1 400</div>
-        <div class="lbl">кВт&middot;ч/м&sup2;/год &mdash; суммарная солнечная радиация</div>
+    <div class="glass-strong rv rv-d2" style="padding:clamp(1.5rem,3vw,2.5rem);margin-top:var(--gap);max-width:700px;text-align:center">
+      <p style="font-size:var(--body);color:var(--text2);line-height:1.6;margin-bottom:var(--gap)">Регион расположен в зоне высокой солнечной активности. Суммарная годовая инсоляция позволяет эффективно использовать солнечные коллекторы и фотоэлектрические панели для энергоснабжения базы отдыха.</p>
+      <div class="stats rv rv-d3" style="justify-content:center">
+        <div class="stat" style="text-align:center">
+          <div class="val c-amber" style="font-size:clamp(1.2rem,2.5vw,1.8rem)">~1 200&ndash;1 400</div>
+          <div class="lbl">кВт&middot;ч/м&sup2;/год &mdash; суммарная солнечная радиация</div>
+        </div>
+        <div class="stat" style="text-align:center">
+          <div class="val c-blue" style="font-size:clamp(1.2rem,2.5vw,1.8rem)">~2 000</div>
+          <div class="lbl">часов солнечного сияния в год</div>
+        </div>
       </div>
     </div>
-    <p class="caption rv rv-d4">Источник: Карта солнечной активности РФ</p>
+    <p class="caption rv rv-d4" style="margin-top:var(--gap-sm)">Источник: Карта солнечной активности РФ</p>
   </div>
 </section>
 
@@ -680,27 +694,21 @@ tbody tr:hover td{background:rgba(45,106,79,0.06)}
 
 <!-- ======================== 16. 3D CONCEPT ======================== -->
 <section class="slide" style="background:var(--surface-warm)" data-slide="15">
-  <div class="bg-mesh">
-    <div class="orb" style="width:500px;height:500px;background:#a8d5ba;bottom:-150px;right:-80px"></div>
-    <div class="orb" style="width:350px;height:350px;background:#a3c4d9;top:-80px;left:-60px"></div>
-  </div>
   <div class="slide-inner" style="z-index:1;position:relative">
     <span class="label rv">10 &mdash; Визуализация</span>
     <h2 class="title rv rv-d1">3D Концепт базы</h2>
-    <div class="panel-row rv rv-d2" style="margin-top:var(--gap);align-items:center;flex:1">
-      <div class="img-frame img-frame--cover kb rv-s" style="height:min(55vh,440px);border-radius:20px;box-shadow:var(--glass-shadow-lg)">
-        <img src="images/kafe_vid1_3d_concept.png" alt="3D Концепт">
+    <div class="concept-grid rv rv-d2" style="margin-top:var(--gap);display:grid;grid-template-columns:1fr 1fr;gap:clamp(0.5rem,1vw,0.8rem);flex:1">
+      <div class="img-frame img-frame--cover rv-s" style="border-radius:16px;box-shadow:var(--glass-shadow-lg);min-height:min(35vh,260px)">
+        <img src="images/baza_otdyha_vid_sverhu_1_3d_concept.png" alt="Вид сверху">
       </div>
-      <div class="glass-strong rv rv-d3" style="padding:clamp(1rem,2vw,1.5rem);display:flex;flex-direction:column;gap:var(--gap-sm)">
-        <p style="font-size:var(--body);color:var(--text2);line-height:1.5">Визуализация проекта базы отдыха на 25 мест с системой солнечного энергоснабжения</p>
-        <div class="stat" style="background:var(--green-soft)">
-          <div class="val c-green" style="font-size:clamp(1rem,1.8vw,1.3rem)">25 мест</div>
-          <div class="lbl">Вместимость базы</div>
-        </div>
-        <div class="stat" style="background:var(--amber-soft)">
-          <div class="val c-amber" style="font-size:clamp(1rem,1.8vw,1.3rem)">Солнечная энергия</div>
-          <div class="lbl">Источник энергоснабжения</div>
-        </div>
+      <div class="img-frame img-frame--cover rv-s rv-d1" style="border-radius:16px;box-shadow:var(--glass-shadow-lg);min-height:min(35vh,260px)">
+        <img src="images/kafe_vid1_3d_concept.png" alt="Кафе">
+      </div>
+      <div class="img-frame img-frame--cover rv-s rv-d2" style="border-radius:16px;box-shadow:var(--glass-shadow-lg);min-height:min(35vh,260px)">
+        <img src="images/gostinichnyj_i_administrativnyj_blok_vid3_3d_concept.png" alt="Гостиница">
+      </div>
+      <div class="img-frame img-frame--cover rv-s rv-d3" style="border-radius:16px;box-shadow:var(--glass-shadow-lg);min-height:min(35vh,260px)">
+        <img src="images/proekt_bazy_otdyha_vid_sverhu_3d_concept.png" alt="Проект сверху">
       </div>
     </div>
   </div>
@@ -708,6 +716,49 @@ tbody tr:hover td{background:rgba(45,106,79,0.06)}
 
 <script>
 (function(){
+  /* ======= Animated gradient orbs via Canvas ======= */
+  document.querySelectorAll('canvas[data-orbs]').forEach(cvs=>{
+    const cfg=JSON.parse(cvs.dataset.orbs);
+    const ctx=cvs.getContext('2d');
+    const orbs=cfg.map(o=>{
+      const a=Math.random()*Math.PI*2;
+      return{
+        x:Math.random(),y:Math.random(),
+        vx:Math.cos(a)*0.0003,vy:Math.sin(a)*0.0003,
+        r:o.r,color:o.c
+      };
+    });
+    function resize(){
+      const rect=cvs.parentElement.getBoundingClientRect();
+      cvs.width=rect.width*devicePixelRatio;
+      cvs.height=rect.height*devicePixelRatio;
+      ctx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0);
+    }
+    resize();
+    let resizeTimer;
+    new ResizeObserver(()=>{clearTimeout(resizeTimer);resizeTimer=setTimeout(resize,100)}).observe(cvs.parentElement);
+
+    function draw(){
+      const w=cvs.width/devicePixelRatio,h=cvs.height/devicePixelRatio;
+      ctx.clearRect(0,0,w,h);
+      orbs.forEach(o=>{
+        o.x+=o.vx;o.y+=o.vy;
+        if(o.x<-0.2||o.x>1.2)o.vx*=-1;
+        if(o.y<-0.2||o.y>1.2)o.vy*=-1;
+        const grd=ctx.createRadialGradient(o.x*w,o.y*h,0,o.x*w,o.y*h,o.r);
+        grd.addColorStop(0,o.color+'66');
+        grd.addColorStop(1,o.color+'00');
+        ctx.fillStyle=grd;
+        ctx.beginPath();
+        ctx.arc(o.x*w,o.y*h,o.r,0,Math.PI*2);
+        ctx.fill();
+      });
+      requestAnimationFrame(draw);
+    }
+    draw();
+  });
+
+  /* ======= Slide navigation ======= */
   const slides=document.querySelectorAll('.slide');
   const total=slides.length;
   const navDots=document.getElementById('navDots');
