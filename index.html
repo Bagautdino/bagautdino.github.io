@@ -1,308 +1,840 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description"
-    content="My name is Ayvaz Bagautdinov, welcome to my personal portfolio site that I built to use as my online resume. It is intended to give a description of my self, education and schooling, web projects created, work history, and a means to contact me." />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch&family=Poppins:wght@300&display=swap"
-    rel="stylesheet">
-  <link rel="stylesheet" href="styles/page-reset.css" />
-  <link rel="stylesheet" href="styles/glider.css" />
-  <link rel="stylesheet" href="styles/styles.css" />
-  <title>- Hello & Welcome -</title>
-  <link rel="icon" href="img/logo.png" type="image/x-icon" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>База отдыха — Иркутская область</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+
+html,body{height:100%;overflow-x:hidden;font-family:'Inter',system-ui,sans-serif}
+html{scroll-snap-type:y mandatory;scroll-behavior:smooth}
+body{background:var(--bg-cream);color:var(--text-primary)}
+
+:root{
+  --title-size:clamp(1.8rem,5vw,4.2rem);
+  --h2-size:clamp(1.3rem,3.5vw,2.6rem);
+  --h3-size:clamp(1rem,2.5vw,1.5rem);
+  --body-size:clamp(0.78rem,1.4vw,1.05rem);
+  --small-size:clamp(0.68rem,1vw,0.88rem);
+  --slide-padding:clamp(1.5rem,5vw,5rem);
+  --content-gap:clamp(0.5rem,2vw,1.8rem);
+  --element-gap:clamp(0.25rem,1vw,0.8rem);
+
+  --bg-cream:#F5F0E8;
+  --bg-white:#FFFFFF;
+  --green:#2D6A4F;
+  --green-light:#3A8B6A;
+  --blue:#1B4F72;
+  --amber:#E9C46A;
+  --text-primary:#1A1A2E;
+  --text-secondary:#4A5568;
+  --text-tertiary:#718096;
+  --table-header:#2D6A4F;
+  --table-alt:#EAF4EE;
+  --border:rgba(45,106,79,0.12);
+  --card-bg:rgba(255,255,255,0.85);
+  --card-border:rgba(45,106,79,0.1);
+  --shadow:0 2px 16px rgba(0,0,0,0.06);
+  --shadow-md:0 4px 24px rgba(0,0,0,0.1);
+}
+
+.slide{
+  width:100vw;height:100vh;height:100dvh;
+  overflow:hidden;scroll-snap-align:start;
+  display:flex;flex-direction:column;
+  position:relative;
+}
+.slide-content{
+  flex:1;display:flex;flex-direction:column;
+  justify-content:center;max-height:100%;
+  overflow:hidden;padding:var(--slide-padding);
+}
+
+/* =========== SLIDE TYPES =========== */
+
+/* HERO — title slide with background image */
+.slide--hero{background:var(--bg-cream);position:relative}
+.slide--hero::before{
+  content:'';position:absolute;inset:0;
+  background:url('images/baza_otdyha_vid_sverhu_1_3d_concept.png') center/cover no-repeat;
+  opacity:0.18;
+}
+.slide--hero .slide-content{
+  align-items:center;justify-content:center;text-align:center;
+  gap:clamp(0.6rem,1.5vw,1.2rem);position:relative;z-index:1;
+}
+.slide--hero h1{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(2.2rem,6vw,5rem);font-weight:800;
+  letter-spacing:-0.02em;line-height:1.05;color:var(--text-primary);
+}
+.slide--hero .subtitle{
+  font-size:clamp(0.95rem,2vw,1.4rem);color:var(--text-secondary);
+  font-weight:400;max-width:650px;line-height:1.5;
+}
+.slide--hero .meta{
+  font-size:var(--small-size);color:var(--green);
+  letter-spacing:0.08em;text-transform:uppercase;font-weight:600;
+}
+
+/* SECTION — gradient divider */
+.slide--divider{background:linear-gradient(135deg,var(--blue),var(--green))}
+.slide--divider .slide-content{align-items:center;justify-content:center;text-align:center;gap:clamp(0.5rem,1.5vw,1rem)}
+.slide--divider h2{font-family:'Playfair Display',serif;font-size:var(--title-size);font-weight:700;color:#fff;line-height:1.1}
+.slide--divider p{color:rgba(255,255,255,0.85);font-size:var(--body-size);max-width:600px}
+.slide--divider .section-number{font-size:var(--small-size);color:var(--amber);font-weight:600;letter-spacing:0.1em;text-transform:uppercase}
+
+/* CONTENT on cream */
+.slide--cream{background:var(--bg-cream)}
+.slide--cream .slide-content{gap:var(--content-gap)}
+
+/* CONTENT on white */
+.slide--white{background:var(--bg-white)}
+.slide--white .slide-content{gap:var(--content-gap)}
+
+/* SPLIT — image left, content right */
+.slide--split{display:grid;grid-template-columns:55% 45%;background:var(--bg-white)}
+.slide--split .split-image{
+  width:100%;height:100%;overflow:hidden;position:relative;
+}
+.slide--split .split-image img{
+  width:100%;height:100%;object-fit:cover;object-position:center;
+  transition:transform 0.8s ease;
+}
+.slide--split .split-image::after{
+  content:'';position:absolute;inset:0;
+  box-shadow:inset -20px 0 40px rgba(0,0,0,0.04);pointer-events:none;
+}
+.slide--split .split-content{
+  padding:var(--slide-padding);display:flex;flex-direction:column;
+  justify-content:center;gap:var(--content-gap);overflow:hidden;
+}
+@media(max-width:768px){
+  .slide--split{grid-template-columns:1fr;grid-template-rows:40vh 1fr}
+}
+
+/* Section label */
+.section-label{
+  font-size:var(--small-size);font-weight:600;
+  color:var(--green);letter-spacing:0.1em;text-transform:uppercase;
+}
+h2.slide-title{
+  font-family:'Playfair Display',serif;
+  font-size:var(--h2-size);font-weight:700;color:var(--text-primary);
+  letter-spacing:-0.01em;line-height:1.15;
+}
+h3.slide-subtitle{font-size:var(--h3-size);font-weight:600;color:var(--text-secondary);line-height:1.3}
+.slide-caption{font-size:var(--small-size);color:var(--text-tertiary)}
+
+/* =========== IMAGE PLACEHOLDER =========== */
+.img-placeholder{
+  border:2px dashed var(--green);border-radius:12px;
+  background:var(--table-alt);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--green);font-size:var(--small-size);font-weight:500;
+  overflow:hidden;position:relative;flex-shrink:0;
+  min-height:100px;
+}
+.img-placeholder img{
+  width:100%;height:100%;object-fit:cover;object-position:center;
+  border-radius:10px;display:block;
+}
+.img-placeholder img[src]{border:none}
+.img-placeholder.has-img{border:none;background:transparent}
+
+/* =========== TABLES =========== */
+.table-wrap{overflow:hidden;border-radius:10px;box-shadow:var(--shadow);flex-shrink:0}
+table{width:100%;border-collapse:collapse;font-size:var(--small-size)}
+thead{background:var(--table-header)}
+th{
+  padding:clamp(5px,0.8vh,10px) clamp(8px,1vw,14px);
+  text-align:left;font-weight:600;color:#fff;white-space:nowrap;
+}
+td{
+  padding:clamp(4px,0.6vh,8px) clamp(8px,1vw,14px);
+  border-top:1px solid rgba(45,106,79,0.08);color:var(--text-primary);
+}
+tbody tr:nth-child(even){background:var(--table-alt)}
+tbody tr:hover td{background:rgba(45,106,79,0.06)}
+.row-total{font-weight:700;background:rgba(45,106,79,0.12)!important}
+
+/* =========== STAT CARDS =========== */
+.stats-row{display:flex;gap:clamp(0.5rem,1.2vw,1rem);flex-wrap:wrap}
+.stat-card{
+  flex:1;min-width:clamp(90px,18vw,170px);
+  background:var(--card-bg);border-radius:12px;
+  padding:clamp(0.6rem,1.2vw,1rem);
+  border:1px solid var(--card-border);box-shadow:var(--shadow);
+}
+.stat-card .stat-value{
+  font-size:clamp(1.2rem,2.8vw,2rem);font-weight:700;letter-spacing:-0.02em;
+}
+.stat-card .stat-value.v-green{color:var(--green)}
+.stat-card .stat-value.v-blue{color:var(--blue)}
+.stat-card .stat-value.v-amber{color:#D4880F}
+.stat-card .stat-label{
+  font-size:var(--small-size);color:var(--text-tertiary);
+  margin-top:clamp(2px,0.3vh,4px);line-height:1.3;
+}
+
+/* =========== TEAM =========== */
+.team-list{display:flex;flex-direction:column;gap:clamp(0.6rem,1.2vw,1rem);max-width:520px}
+.team-member{
+  display:flex;align-items:center;gap:clamp(0.6rem,1.2vw,1rem);
+  background:var(--card-bg);border-radius:14px;
+  padding:clamp(0.4rem,0.8vw,0.7rem) clamp(0.6rem,1.2vw,1rem);
+  box-shadow:var(--shadow);border:1px solid var(--card-border);
+  transform:translateX(-30px);opacity:0;
+  transition:transform 0.6s ease,opacity 0.6s ease;
+}
+.team-member.visible{transform:translateX(0);opacity:1}
+.team-member .avatar{
+  width:clamp(48px,7vw,72px);height:clamp(48px,7vw,72px);
+  border-radius:50%;overflow:hidden;flex-shrink:0;
+  border:3px solid var(--green);
+}
+.team-member .avatar img{width:100%;height:100%;object-fit:cover}
+.team-member .info .name{font-size:var(--body-size);font-weight:600;color:var(--text-primary)}
+.team-member .info .role{font-size:var(--small-size);color:var(--green);font-weight:500}
+
+/* =========== GOAL CARDS =========== */
+.goals-grid{display:flex;gap:clamp(0.6rem,1.5vw,1.2rem);flex-wrap:wrap}
+.goal-card{
+  flex:1;min-width:min(100%,220px);
+  background:rgba(255,255,255,0.88);
+  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border-radius:16px;padding:clamp(1rem,2vw,1.5rem);
+  box-shadow:var(--shadow-md);border:1px solid rgba(255,255,255,0.5);
+  transform:scale(0.85);opacity:0;
+  transition:transform 0.5s cubic-bezier(0.34,1.56,0.64,1),opacity 0.5s ease;
+}
+.goal-card.visible{transform:scale(1);opacity:1}
+.goal-card .goal-icon{font-size:clamp(1.5rem,3vw,2.2rem);margin-bottom:clamp(0.3rem,0.5vw,0.5rem)}
+.goal-card .goal-title{font-size:var(--body-size);font-weight:600;color:var(--text-primary);line-height:1.35}
+
+/* =========== FLOOR PLAN ROOMS =========== */
+.room-list{display:flex;flex-direction:column;gap:clamp(2px,0.3vh,4px)}
+.room-item{
+  display:flex;justify-content:space-between;
+  font-size:var(--small-size);padding:clamp(3px,0.4vh,6px) 0;
+  border-bottom:1px solid var(--border);
+}
+.room-item .room-name{color:var(--text-primary);font-weight:500}
+.room-item .room-area{color:var(--text-tertiary);font-weight:400;white-space:nowrap}
+
+/* =========== BUILDING LIST =========== */
+.building-grid{display:flex;flex-direction:column;gap:clamp(3px,0.4vh,6px)}
+.building-item{
+  background:var(--card-bg);border:1px solid var(--card-border);
+  border-radius:8px;padding:clamp(4px,0.6vw,8px) clamp(8px,1vw,12px);
+  display:flex;justify-content:space-between;align-items:center;
+  font-size:var(--small-size);box-shadow:0 1px 4px rgba(0,0,0,0.04);
+}
+.building-item .b-name{color:var(--text-primary);font-weight:500}
+.building-item .b-area{color:var(--green);font-weight:600;white-space:nowrap}
+
+/* =========== TIMELINE =========== */
+.timeline{display:flex;flex-direction:column;gap:clamp(0.6rem,1.2vw,1rem)}
+.timeline-item{
+  display:grid;grid-template-columns:auto 1fr;gap:clamp(0.6rem,1.2vw,1rem);
+  align-items:start;
+}
+.timeline-marker{
+  width:clamp(36px,5vw,48px);height:clamp(36px,5vw,48px);
+  border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-weight:700;font-size:var(--small-size);color:#fff;flex-shrink:0;
+}
+.timeline-marker.tm-green{background:var(--green)}
+.timeline-marker.tm-blue{background:var(--blue)}
+.timeline-marker.tm-amber{background:#D4880F}
+.timeline-body{
+  background:var(--card-bg);border-radius:10px;
+  padding:clamp(0.5rem,1vw,0.8rem);
+  box-shadow:var(--shadow);border:1px solid var(--card-border);
+}
+.timeline-body .tl-name{font-size:var(--body-size);font-weight:600;color:var(--text-primary)}
+.timeline-body .tl-role{font-size:var(--small-size);color:var(--green);margin-bottom:2px}
+.timeline-body .tl-desc{font-size:var(--small-size);color:var(--text-secondary);line-height:1.4}
+
+/* =========== TWO COL =========== */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:clamp(1rem,2.5vw,2rem);align-items:start}
+@media(max-width:768px){.two-col{grid-template-columns:1fr}}
+
+/* =========== NAV =========== */
+.nav-dots{
+  position:fixed;right:clamp(10px,1.5vw,20px);top:50%;
+  transform:translateY(-50%);z-index:100;
+  display:flex;flex-direction:column;gap:7px;
+}
+.nav-dot{
+  width:8px;height:8px;border-radius:50%;
+  background:rgba(45,106,79,0.2);cursor:pointer;
+  transition:all 0.3s ease;border:none;padding:0;
+}
+.nav-dot.active{background:var(--green);transform:scale(1.4)}
+.nav-dot:hover{background:var(--green-light)}
+
+.slide-counter{
+  position:fixed;bottom:clamp(10px,1.5vw,20px);right:clamp(10px,1.5vw,20px);
+  font-size:var(--small-size);color:var(--text-tertiary);z-index:100;
+  font-variant-numeric:tabular-nums;background:rgba(255,255,255,0.8);
+  padding:4px 10px;border-radius:20px;backdrop-filter:blur(8px);
+}
+.progress-bar{position:fixed;top:0;left:0;height:3px;background:var(--green);z-index:200;transition:width 0.3s ease;width:0}
+
+/* =========== REVEAL =========== */
+.reveal{opacity:0;transform:translateY(20px);transition:opacity 0.7s ease,transform 0.7s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-delay-1{transition-delay:0.1s}
+.reveal-delay-2{transition-delay:0.2s}
+.reveal-delay-3{transition-delay:0.3s}
+.reveal-delay-4{transition-delay:0.4s}
+.reveal-delay-5{transition-delay:0.5s}
+
+.reveal-scale{opacity:0;transform:scale(0.95);transition:opacity 0.6s ease,transform 0.6s ease}
+.reveal-scale.visible{opacity:1;transform:scale(1)}
+
+/* =========== KEN BURNS on 3D slide =========== */
+@keyframes kenBurns{
+  0%{transform:scale(1)}
+  100%{transform:scale(1.08)}
+}
+.ken-burns img{animation:kenBurns 8s ease-in-out infinite alternate}
+
+/* =========== RESPONSIVE =========== */
+@media(max-height:700px){
+  :root{
+    --slide-padding:clamp(0.75rem,3vw,2rem);
+    --content-gap:clamp(0.4rem,1.5vw,1rem);
+    --title-size:clamp(1.25rem,4.5vw,2.5rem);
+    --h2-size:clamp(1rem,3vw,1.75rem);
+  }
+}
+@media(max-height:600px){
+  :root{
+    --slide-padding:clamp(0.5rem,2.5vw,1.5rem);
+    --content-gap:clamp(0.3rem,1vw,0.75rem);
+    --title-size:clamp(1.1rem,4vw,2rem);
+    --body-size:clamp(0.7rem,1.2vw,0.95rem);
+  }
+  .nav-dots{display:none}
+}
+@media(max-height:500px){
+  :root{
+    --slide-padding:clamp(0.4rem,2vw,1rem);
+    --title-size:clamp(1rem,3.5vw,1.5rem);
+    --h2-size:clamp(0.9rem,2.5vw,1.25rem);
+    --body-size:clamp(0.65rem,1vw,0.85rem);
+  }
+}
+@media(max-width:600px){
+  :root{--title-size:clamp(1.25rem,7vw,2.5rem)}
+  .stats-row{flex-direction:column}
+  .goals-grid{flex-direction:column}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:0.01ms!important;transition-duration:0.2s!important}
+  html{scroll-behavior:auto}
+}
+</style>
 </head>
-
 <body>
-  <!-- TOP BUTTON ANCHOR -->
-  <a id="top"></a>
-  <!-- BURGER MENU SCREEN TINT -->
-  <div id="burger-overlay" class="burger-overlay"></div>
-  <header class="header">
-    <div class="header-title-container">
-      <h1 class="red-text">Ayvaz Bagautdinov</h1>
-      <span class="yellow-text">DevOps Specialist</span>
-      <span class="blue-text">Cybersecurity, Integration, Automatization</span>
-    </div>
-    <div class="header-logo">
-      <img src="img/logo.png" alt="Personal Logo" title="Personal Logo" width="153" height="100" />
-    </div>
-    <!-- BURGER BUTTON -->
-    <div class="burger-menu">
-      <div id="burger-bars-1" class="burger-bars"></div>
-      <div id="burger-bars-2" class="burger-bars"></div>
-      <div id="burger-bars-3" class="burger-bars"></div>
-    </div>
-    <!-- PAGE NAVIGATION -->
-    <div class="navigation-links-container">
-      <ul>
-        <li>
-          <a href="#me" class="navigation-link purple-text" value="A Dive Inside...">Myself<i
-              class="fa-solid fa-code navigation-link-dot green-text" aria-hidden="true"></i>
-          </a>
-        </li>
-        <li>
-          <a href="#education" class="navigation-link purple-text" value="Educational Value...">Education<i
-              class="fa-solid fa-code navigation-link-dot green-text" aria-hidden="true"></i></a>
-        </li>
-        <li>
-          <a href="#projects" class="navigation-link purple-text" value="Projects Created...">Projects<i
-              class="fa-solid fa-code navigation-link-dot green-text" aria-hidden="true"></i></a>
-        </li>
-        <li>
-          <a href="#work" class="navigation-link purple-text" value="A History Of Work...">Work<i
-              class="fa-solid fa-code navigation-link-dot green-text" aria-hidden="true"></i></a>
-        </li>
-        <li>
-          <a href="#skills" class="navigation-link purple-text" value="Skills Possessed...">Skills<i
-              class="fa-solid fa-code navigation-link-dot green-text" aria-hidden="true"></i></a>
-        </li>
-        <li>
-          <a href="#contact" class="navigation-link purple-text" value="Ways Of Contact...">Contact<i
-              class="fa-solid fa-code navigation-link-dot green-text" aria-hidden="true"></i></a>
-        </li>
-      </ul>
-    </div>
-  </header>
-  <main>
-    <!-- GREETING -->
-    <div class="greeting">
-      <h1 class="yellow-text">
-        - Hello & Welcome -
-      </h1>
-      <p class="content-text">
-        Thank you for stopping by to see what I've created here. I just wanted
-        to hello and give a little introduction before you went on your way through the rest of my site. My name is
-        <span class="red-text">Ayvaz Bagautdinov</span>, I am 21 years old, residing in <span class="blue-text">Saint-Petersburg,
-          Russia</span> and progressing as a <span class="blue-text">DevSecOps Specialist</span> for
-        a little over five years now. I started with virtualization (VMware), then I learned how to deploy Docker images....
-      </p>
-    </div>
-    <!-- PERSONAL INTRO -->
-    <div class="content-container">
-      <a id="me"></a>
-      <h2 class="container-heading red-text">
-        A Dive Inside...
-        <div class="container-heading-underline"></div>
-      </h2>
-      <div class="image-text-container">
-        <div>
-          <img class="image-of-me" src="img/me.webp" alt="Photo of Me" title="Photo of Me" width="400" height="541" />
-        </div>
-        <div>
-          <!-- fading content -->
-          <p class="content-text fading-text">
-            I am constantly learning something new, I like new technologies, how the old long is replaced by the new fast.The sections covering my
-            <span class="blue-text">Education</span> and
-            <span class="blue-text">Projects</span> contain more information about my training and creations. About where I worked, you can see at the bottom, in my section <span class="blue-text">Work</span> , if you want.
-          </p>
-        </div>
-      </div>
-      <!-- fading content -->
-      <p class="content-text fading-text">
-        The skills I have acquired over the years can be seen in my
-collection of <span class="blue-text">Qualities</span>. Although not
-everything is listed, you can get an idea of some of the abilities I possess.
-If you would like <span class="blue-text">Contact</span>  to contact me, please do so in any way
-indicated below. Below is a pdf version of my resume with my media links and contact details. My intention
-is not to conquer the world, but simply to create a comfortable life by creating creative and attractive services.
-      </p>
-    </div>
-    <!-- EDUCATION -->
-    <div class="content-container">
-      <a id="education"></a>
-      <h2 class="container-heading red-text">
-        Educational Value...
-        <div class="container-heading-underline"></div>
-      </h2>
-      <!-- fading content -->
-      <p class="content-text fading-text">
-        After graduation, my educational paths became more exciting and intense. My choice fell on a secondary vocational school, where I studied the specialty Information Security. My first attempts to train at "Infotecs" showed that I still have a lot to learn. This was a kind of impetus to the decision to deepen their knowledge.
-      </p>
-      <!-- fading content -->
-      <p class="content-text fading-text">
-        Then I decided to enroll in ITMO University at the Faculty of Information Security. Here the world of knowledge revealed itself to me in all its glory. I have deepened my basic knowledge and acquired new levels of competence. Together with friends, we are actively engaged in CTF, using advanced technologies such as Active Directory, Linux, Kerberos, Nginx, SQL, Python, C/C++. Now I have delved into Docker, Kubernetes, ELK. I want to delve into CI/CD soon.
-      </p>
-      <a href="https://drive.google.com/file/d/12eh8iWxQUYeSlZXCLbLYlwpxDLdpcwC9/view?usp=sharing">
-        <div class="certification-container">
-          <img src="img/as-degree.webp" alt="Associate in Science" title="Associate in Science" width="900"
-            height="700" />
-      </div></a>
-    </div>
-    <!-- PROJECTS -->
-    <div class="content-container">
-      <a id="projects"></a>
-      <h2 class="container-heading red-text">
-        Projects Created...
-        <div class="container-heading-underline"></div>
-      </h2>
-      <!-- fading content -->
-      <p class="content-text fading-text">
-        I've done various projects in my life. Most of all, I liked to write automated tools for the pentest, so that one command outputs all the information about the system. I wrote scripts on Golang to send GET POST requests to servers. Wrote a backend on Golang. 
-        I also have about 500 solved problems on Leetcode and 40 hacked machines on HackTheBox.
-        
-        With a team from the university, we did CTF projects, went to forums, used to do computer vision projects. 
-        
-        If you are interested, you can take a look at my github and profile on leetcode.
-      </p>
-      </div>
-    </div>
-    <!-- WORK HISTORY -->
-    <div class="content-container">
-      <a id="work"></a>
-      <h2 class="container-heading red-text">
-        A History Of Work...
-        <div class="container-heading-underline"></div>
-      </h2>
-      <!-- fading content -->
-      <p class="content-text fading-text">
-        In 2021, I worked as a system administrator at a hospital. There were such tasks as setting up networks, restoring Windows systems, setting up a mail server. There was a system in the medical sector that needed to be able to administer, many did not understand it, I figured it out. There was no micro-service architecture, it was a monolith. No dockers, no virtualization.
-There was a website, there was a mail server, SQL databases. All of this had to be monitored. There were also unpopular software, such as Machaon or X-ray, which often broke down and had to be configured anew.
-I worked here for about six months.
-      </p>
-      <!-- fading content -->
-      <p class="content-text fading-text">
-        In 2022, I tried to pass various interviews, sometimes I had to sign a contract. The fact is that studying was very difficult this year and I could not devote all the time to my development, but I will continue to advance, delve into new technologies, improve my skills.
-      </p>
-      <!-- fading content -->
-      <p class="content-text fading-text">
-        In the year 2023, as colleagues in goals, I made efforts to promote our CTF club. In parallel, my efforts were aimed at overcoming the Yandex thresholds through the interview stage, which, unfortunately, did not submit to me. In the same period, fate guided me on the path of an internship at Ozon Tech Route 256, where I deeply immersed myself in Golang programming.
 
-        Joining this, two additional internships appeared: first at Deteact, where I expanded my knowledge in the field of vulnerability analysis, and then at Positive Technologies, where I honed the art of data protection. Thus, my days and nights were absorbed in the search for knowledge and their practical development.
-        
-        In this relentless pursuit of development, stingy with sleep, I continued to chest forward, creating a mosaic of my own professional growth and personal development.
-      </p>
+<div class="progress-bar" id="progressBar"></div>
+<nav class="nav-dots" id="navDots"></nav>
+<div class="slide-counter" id="slideCounter"></div>
+
+<!-- ============================================================
+     SLIDE 1 — TITLE / HERO
+     ============================================================ -->
+<section class="slide slide--hero" data-slide="0">
+  <div class="slide-content">
+    <div class="meta reveal">Университет ИТМО &middot; Команда 4</div>
+    <h1 class="reveal reveal-delay-1">База отдыха<br>в Иркутской области</h1>
+    <p class="subtitle reveal reveal-delay-2">Исследование альтернативных источников энергии<br>Ролевая игра &laquo;Солнечный дом&raquo;</p>
+    <p class="slide-caption reveal reveal-delay-3" style="margin-top:clamp(0.3rem,0.5vw,0.5rem)">25 мест &middot; 51.988624 N, 104.674372 E</p>
+  </div>
+</section>
+
+<!-- ============================================================
+     SLIDE 2 — TEAM with Avatars
+     ============================================================ -->
+<section class="slide slide--cream" data-slide="1">
+  <div class="slide-content" style="align-items:center">
+    <span class="section-label reveal">Команда проекта</span>
+    <h2 class="slide-title reveal reveal-delay-1" style="text-align:center">Наша команда</h2>
+    <div class="team-list reveal-delay-2" id="teamList" style="margin-top:var(--content-gap)">
+      <div class="team-member" data-delay="0">
+        <div class="avatar"><img src="images/tamir_avatar.jpg" alt="Тамир" onerror="this.parentElement.style.background='var(--table-alt)'"></div>
+        <div class="info"><div class="role">Генеральный директор</div><div class="name">Тамир Будариев</div></div>
+      </div>
+      <div class="team-member" data-delay="200">
+        <div class="avatar"><img src="images/aivaz_avatar.jpg" alt="Айваз" onerror="this.parentElement.style.background='var(--table-alt)'"></div>
+        <div class="info"><div class="role">Проектировщик 1</div><div class="name">Айваз Багаутдинов</div></div>
+      </div>
+      <div class="team-member" data-delay="400">
+        <div class="avatar"><img src="images/andrey_avatar.jpg" alt="Андрей" onerror="this.parentElement.style.background='var(--table-alt)'"></div>
+        <div class="info"><div class="role">Проектировщик 2</div><div class="name">Андрей Михайлов</div></div>
+      </div>
+      <div class="team-member" data-delay="600">
+        <div class="avatar"><img src="images/alina_avatar.jpg" alt="Алина" onerror="this.parentElement.style.background='var(--table-alt)'"></div>
+        <div class="info"><div class="role">Монтажник 1</div><div class="name">Алина Костюкова</div></div>
+      </div>
+      <div class="team-member" data-delay="800">
+        <div class="avatar"><img src="images/polina_avatar.jpg" alt="Полина" onerror="this.parentElement.style.background='var(--table-alt)'"></div>
+        <div class="info"><div class="role">Монтажник 2</div><div class="name">Полина Синицына</div></div>
+      </div>
     </div>
-    <!-- SKILLS -->
-    <div class="content-container">
-      <a id="skills"></a>
-      <h2 class="container-heading red-text">
-        Skills Possessed...
-        <div class="container-heading-underline"></div>
-      </h2>
-      <!-- fading content -->
-      <p class="content-text fading-text">
-        Throughout the years, one gains skills and qualities that help
-        construct abilities to be successful at life and survive in the ever
-        changing world. Some retained, others not, all add to the learning
-        experience, from child to adult life. Listed would be some of those
-        qualities that I myself have come across. Some have more use than others, but they all add up in one way or
-        another.
-      </p>
-      <div class="skills-container">
-        <div>
-          <!-- fading content -->
-          <ul class="fading-skills">
-            <li>
-              Linux<img src="img/skills/linux.png" alt="Linux" title="Linux" width="100" height="114" />
-            </li>
-            <li>
-              Active Directory<img src="img/skills/ad.png" alt="AD Logo" title="AD Logo" width="100" height="98" />
-            </li>
-            <li>
-              Docker<img src="img/skills/docker.png" alt="Docker Logo" title="Docker Logo" width="100"
-                height="100" />
-            </li>
-            <li>
-              Kubernetes<img src="img/skills/k8s.png" alt="k8s logo" title="k8s Logo"
-                width="100" height="107" />
-            </li>
-            <li>
-              Git<img src="img/skills/git.png" alt="Git Logo" title="Git Logo" width="100" height="114" />
-            </li>
-          </ul>
-          <!-- fading content -->
-          <ul class="fading-skills">
-            <li>
-              JavaScript<img src="img/skills/javascript.png" alt="JavaScript Logo" title="JavaScript Logo" width="100"
-                height="100" />
-            </li>
-            <li>
-              Go<img src="img/skills/golang.png" alt="Go Logo" title="Go Logo" width="100" height="98" />
-            </li>
-            <li>
-              Python<img src="img/skills/python.png" alt="Python Logo" title="Python Logo" width="100"
-                height="103" />
-            </li>
-            <li>
-              Powershell<img src="img/skills/powershell.png" alt="Powershell Logo" title="Powershell Logo" width="100"
-                height="100" />
-            </li>
-            <li>
-              C++<img src="img/skills/c++.png" alt="C++ Logo" title="C++ Logo" width="100"
-                height="94" />
-            </li>
-          </ul>
-          <!-- fading content -->
-          <ul class="fading-skills">
-            <li>
-              MySQL<img src="img/skills/mysql.png" alt="MySQL Logo" title="MySQL Logo" width="100" height="80" />
-            </li>
-            <li>
-              RabbitMQ<img src="img/skills/rabbitmq.png" alt="RabbitMq Logo" title="RabbitMq Logo" width="100" height="100" />
-            </li>
-            <li>
-              Elastic<img src="img/skills/elastic.png" alt="Elastic Logo" title="Elastic Logo" width="100"
-                height="56" />
-            </li>
-            <li>
-              OpenVPN<img src="img/skills/openvpn.png" alt="OpenVPN Logo" title="OpenVPN Logo" width="100"
-                height="60" />
-            </li>
-            <li>
-              VS Code<img src="img/skills/cisco.png" alt="Cisco Logo" title="Cisco Logo" width="100"
-                height="100" />
-            </li>
-          </ul>
+  </div>
+</section>
+
+<!-- ============================================================
+     SLIDE 3 — GOALS (NEW)
+     ============================================================ -->
+<section class="slide slide--cream" data-slide="2" style="position:relative">
+  <div style="position:absolute;inset:0;background:url('images/proekt_bazy_otdyha_vid_sverhu_3d_concept.png') center/cover no-repeat;opacity:0.12"></div>
+  <div class="slide-content" style="position:relative;z-index:1;align-items:center;text-align:center">
+    <span class="section-label reveal">Цели и задачи</span>
+    <h2 class="slide-title reveal reveal-delay-1">Цель проекта</h2>
+    <div class="goals-grid reveal-delay-2" style="margin-top:var(--content-gap);max-width:900px" id="goalsGrid">
+      <div class="goal-card" data-delay="0">
+        <div class="goal-icon">&#9728;&#65039;</div>
+        <div class="goal-title">Расчёт солнечной системы ГВС и электроснабжения базы отдыха</div>
+      </div>
+      <div class="goal-card" data-delay="200">
+        <div class="goal-icon">&#128202;</div>
+        <div class="goal-title">Подбор оборудования по методике А&ndash;В&ndash;С анализа</div>
+      </div>
+      <div class="goal-card" data-delay="400">
+        <div class="goal-icon">&#128176;</div>
+        <div class="goal-title">Технико-экономическое обоснование и расчёт срока окупаемости</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SLIDE 4 — LOCATION (SPLIT)
+     ============================================================ -->
+<section class="slide slide--split" data-slide="3">
+  <div class="split-image reveal-scale">
+    <img src="images/map_expanded.png" alt="Карта местоположения" onerror="this.style.display='none'">
+  </div>
+  <div class="split-content">
+    <span class="section-label reveal">01 &mdash; Местоположение</span>
+    <h2 class="slide-title reveal reveal-delay-1">Расположение<br>базы отдыха</h2>
+    <div class="stats-row reveal reveal-delay-2" style="flex-direction:column;gap:clamp(0.4rem,0.8vw,0.7rem)">
+      <div class="stat-card">
+        <div class="stat-value v-blue">51.99&deg; N</div>
+        <div class="stat-label">Широта</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value v-blue">104.67&deg; E</div>
+        <div class="stat-label">Долгота</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value v-green" style="font-size:var(--body-size)">Иркутская область</div>
+        <div class="stat-label">Побережье озера Байкал</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SLIDE 5 — MASTERPLAN (SPLIT)
+     ============================================================ -->
+<section class="slide slide--split" data-slide="4">
+  <div class="split-image reveal-scale">
+    <img src="images/genplan.png" alt="Генеральный план" onerror="this.style.display='none'">
+  </div>
+  <div class="split-content">
+    <span class="section-label reveal">02 &mdash; Генеральный план</span>
+    <h2 class="slide-title reveal reveal-delay-1">Проект базы отдыха</h2>
+    <div class="building-grid reveal reveal-delay-2">
+      <div class="building-item"><span class="b-name">Кафе с террасой (105 мест)</span><span class="b-area">256,6 м&sup2;</span></div>
+      <div class="building-item"><span class="b-name">Админ. здание</span><span class="b-area">117,8 м&sup2;</span></div>
+      <div class="building-item"><span class="b-name">Гостиница (8 ном.)</span><span class="b-area">142,3 м&sup2;</span></div>
+      <div class="building-item"><span class="b-name">КПП</span><span class="b-area">12,0 м&sup2;</span></div>
+      <div class="building-item"><span class="b-name">Баня</span><span class="b-area">108,6 м&sup2;</span></div>
+      <div class="building-item"><span class="b-name">Модульный дом &times;10</span><span class="b-area">45,4 м&sup2;</span></div>
+      <div class="building-item"><span class="b-name">Дом-сфера &times;5</span><span class="b-area">40,7 м&sup2;</span></div>
+      <div class="building-item"><span class="b-name">Беседки</span><span class="b-area">5 шт</span></div>
+      <div class="building-item"><span class="b-name">Парковки</span><span class="b-area">35 м/м</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SLIDE 6 — ADMIN BUILDING (SPLIT with floor plan)
+     ============================================================ -->
+<section class="slide slide--split" data-slide="5" style="grid-template-columns:60% 40%">
+  <div class="split-image reveal-scale" style="box-shadow:4px 0 24px rgba(0,0,0,0.08)">
+    <img src="images/admin_plan.png" alt="План этажей" onerror="this.style.display='none'">
+  </div>
+  <div class="split-content" style="background:var(--bg-cream)">
+    <span class="section-label reveal">03 &mdash; Здания</span>
+    <h2 class="slide-title reveal reveal-delay-1" style="font-size:var(--h3-size)">Админ. здание</h2>
+    <p class="slide-caption reveal reveal-delay-1">117,8 м&sup2;</p>
+    <div class="reveal reveal-delay-2">
+      <p style="font-size:var(--small-size);font-weight:600;color:var(--green);margin-bottom:4px">1-й этаж</p>
+      <div class="room-list">
+        <div class="room-item"><span class="room-name">Ресепшн</span><span class="room-area">29,26 м&sup2;</span></div>
+        <div class="room-item"><span class="room-name">Хоз. помещение</span><span class="room-area">22,49 м&sup2;</span></div>
+        <div class="room-item"><span class="room-name">Хоз. помещение</span><span class="room-area">7,69 м&sup2;</span></div>
+        <div class="room-item"><span class="room-name">Коридор</span><span class="room-area">4,64 м&sup2;</span></div>
+        <div class="room-item"><span class="room-name">С/у</span><span class="room-area">2,89 м&sup2;</span></div>
+      </div>
+    </div>
+    <div class="reveal reveal-delay-3">
+      <p style="font-size:var(--small-size);font-weight:600;color:var(--green);margin-bottom:4px">2-й этаж</p>
+      <div class="room-list">
+        <div class="room-item"><span class="room-name">Помещения сотрудников &times;3</span><span class="room-area">12,25&ndash;12,53 м&sup2;</span></div>
+        <div class="room-item"><span class="room-name">Прачечная</span><span class="room-area">6,93 м&sup2;</span></div>
+        <div class="room-item"><span class="room-name">Зона приёма пищи</span><span class="room-area">16,49 м&sup2;</span></div>
+        <div class="room-item"><span class="room-name">С/у + душ</span><span class="room-area">4,15 м&sup2;</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SLIDE 7 — ADMIN ENERGY (data slide, no image)
+     ============================================================ -->
+<section class="slide slide--white" data-slide="6">
+  <div class="slide-content">
+    <span class="section-label reveal">03 &mdash; Энергопотребление</span>
+    <h2 class="slide-title reveal reveal-delay-1">Админ. здание &mdash; расход ресурсов</h2>
+    <div class="stats-row reveal reveal-delay-2" style="margin-top:var(--content-gap)">
+      <div class="stat-card"><div class="stat-value v-blue">640</div><div class="stat-label">кВт&middot;ч/мес &mdash; электроэнергия</div></div>
+      <div class="stat-card"><div class="stat-value v-amber">2 808</div><div class="stat-label">кВт&middot;ч/мес &mdash; отопление</div></div>
+      <div class="stat-card"><div class="stat-value v-green">22,5</div><div class="stat-label">м&sup3;/мес &mdash; ГВС</div></div>
+    </div>
+    <div class="table-wrap reveal reveal-delay-3" style="margin-top:var(--content-gap)">
+      <table>
+        <thead><tr><th>Прибор</th><th>Мощность</th><th>ч/сутки</th><th>кВт&middot;ч/сут</th></tr></thead>
+        <tbody>
+          <tr><td>Освещение LED</td><td>1 170 Вт</td><td>10</td><td>11,7</td></tr>
+          <tr><td>Компьютеры (3 шт)</td><td>300 Вт</td><td>8</td><td>2,4</td></tr>
+          <tr><td>Оргтехника</td><td>500 Вт</td><td>4</td><td>2,0</td></tr>
+          <tr><td>Стиральная машина</td><td>2 000 Вт</td><td>2</td><td>4,0</td></tr>
+          <tr><td>Сушильная машина</td><td>2 500 Вт</td><td>2</td><td>5,0</td></tr>
+          <tr><td>Холодильник</td><td>150 Вт</td><td>24&times;0,4</td><td>1,4</td></tr>
+          <tr><td>Электроплита</td><td>2 000 Вт</td><td>2</td><td>4,0</td></tr>
+          <tr><td>Кондиционеры (2)</td><td>2 000 Вт</td><td>6</td><td>12,0</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SLIDE 8 — CAFE (SPLIT with floor plan)
+     ============================================================ -->
+<section class="slide slide--split" data-slide="7" style="grid-template-columns:60% 40%">
+  <div class="split-image reveal-scale" style="box-shadow:4px 0 24px rgba(0,0,0,0.08)">
+    <img src="images/cafe_plan.png" alt="План кафе" onerror="this.style.display='none'">
+  </div>
+  <div class="split-content" style="background:var(--bg-cream)">
+    <span class="section-label reveal">04 &mdash; Кафе</span>
+    <h2 class="slide-title reveal reveal-delay-1" style="font-size:var(--h3-size)">Кафе на 105 мест</h2>
+    <p class="slide-caption reveal reveal-delay-1">256,6 м&sup2;</p>
+    <div class="room-list reveal reveal-delay-2">
+      <div class="room-item"><span class="room-name">Зал на 57 мест</span><span class="room-area">82,05 м&sup2;</span></div>
+      <div class="room-item"><span class="room-name">Терраса на 48 мест</span><span class="room-area">60,57 м&sup2;</span></div>
+      <div class="room-item"><span class="room-name">Стойка хостес + гардероб</span><span class="room-area">&mdash;</span></div>
+      <div class="room-item"><span class="room-name">Бар</span><span class="room-area">&mdash;</span></div>
+      <div class="room-item"><span class="room-name">Кухня (гор./хол. цех)</span><span class="room-area">&mdash;</span></div>
+      <div class="room-item"><span class="room-name">Моечная</span><span class="room-area">&mdash;</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SLIDE 9 — CAFE ENERGY (data slide)
+     ============================================================ -->
+<section class="slide slide--white" data-slide="8">
+  <div class="slide-content">
+    <span class="section-label reveal">04 &mdash; Энергопотребление</span>
+    <h2 class="slide-title reveal reveal-delay-1">Кафе &mdash; расход ресурсов</h2>
+    <div class="stats-row reveal reveal-delay-2" style="margin-top:var(--content-gap)">
+      <div class="stat-card"><div class="stat-value v-blue">5 040</div><div class="stat-label">кВт&middot;ч/мес &mdash; электроэнергия</div></div>
+      <div class="stat-card"><div class="stat-value v-amber">6 912</div><div class="stat-label">кВт&middot;ч/мес &mdash; отопление</div></div>
+      <div class="stat-card"><div class="stat-value v-green">45</div><div class="stat-label">м&sup3;/мес &mdash; ГВС</div></div>
+    </div>
+    <div class="table-wrap reveal reveal-delay-3" style="margin-top:var(--content-gap)">
+      <table>
+        <thead><tr><th>Прибор</th><th>Мощность</th><th>ч/сутки</th><th>кВт&middot;ч/сут</th></tr></thead>
+        <tbody>
+          <tr><td>Освещение</td><td>2 560 Вт</td><td>12</td><td>30,7</td></tr>
+          <tr><td>Электроплиты (4)</td><td>10 000 Вт</td><td>6</td><td>60,0</td></tr>
+          <tr><td>Фритюр (2)</td><td>6 000 Вт</td><td>5</td><td>30,0</td></tr>
+          <tr><td>Холодильники (3)</td><td>2 000 Вт</td><td>24&times;0,5</td><td>24,0</td></tr>
+          <tr><td>Посудомойка</td><td>3 500 Вт</td><td>4</td><td>14,0</td></tr>
+          <tr><td>Вентиляция</td><td>5 000 Вт</td><td>12</td><td>60,0</td></tr>
+          <tr><td>Кондиционеры</td><td>8 000 Вт</td><td>8</td><td>64,0</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SLIDE 10 — GUEST MODULE 1 (SPLIT)
+     ============================================================ -->
+<section class="slide slide--split" data-slide="9" style="grid-template-columns:55% 45%">
+  <div class="split-image reveal-scale">
+    <img src="images/guest1_plan.png" alt="План модуля 1" onerror="this.style.display='none'">
+  </div>
+  <div class="split-content" style="background:var(--bg-cream)">
+    <span class="section-label reveal">05 &mdash; Гостевые модули</span>
+    <h2 class="slide-title reveal reveal-delay-1" style="font-size:var(--h3-size)">Гостевой модуль 1</h2>
+    <p class="slide-caption reveal reveal-delay-1">40 м&sup2; &middot; 5 чел &middot; 10 шт</p>
+    <div class="stats-row reveal reveal-delay-2" style="flex-direction:column;gap:clamp(0.3rem,0.6vw,0.5rem)">
+      <div class="stat-card"><div class="stat-value v-blue" style="font-size:clamp(1rem,2vw,1.5rem)">350 кВт&middot;ч</div><div class="stat-label">Электроэнергия / мес</div></div>
+      <div class="stat-card"><div class="stat-value v-amber" style="font-size:clamp(1rem,2vw,1.5rem)">960 кВт&middot;ч</div><div class="stat-label">Отопление / мес</div></div>
+      <div class="stat-card"><div class="stat-value v-green" style="font-size:clamp(1rem,2vw,1.5rem)">22,5 м&sup3;</div><div class="stat-label">ГВС / мес</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SLIDE 11 — GUEST MODULE 2 (SPLIT)
+     ============================================================ -->
+<section class="slide slide--split" data-slide="10" style="grid-template-columns:55% 45%">
+  <div class="split-image reveal-scale">
+    <img src="images/guest2_plan.png" alt="План модуля 2" onerror="this.style.display='none'">
+  </div>
+  <div class="split-content" style="background:var(--bg-cream)">
+    <span class="section-label reveal">05 &mdash; Гостевые модули</span>
+    <h2 class="slide-title reveal reveal-delay-1" style="font-size:var(--h3-size)">Гостевой модуль 2</h2>
+    <p class="slide-caption reveal reveal-delay-1">40 м&sup2; &middot; 3 чел &middot; 5 шт</p>
+    <div class="stats-row reveal reveal-delay-2" style="flex-direction:column;gap:clamp(0.3rem,0.6vw,0.5rem)">
+      <div class="stat-card"><div class="stat-value v-blue" style="font-size:clamp(1rem,2vw,1.5rem)">275 кВт&middot;ч</div><div class="stat-label">Электроэнергия / мес</div></div>
+      <div class="stat-card"><div class="stat-value v-amber" style="font-size:clamp(1rem,2vw,1.5rem)">960 кВт&middot;ч</div><div class="stat-label">Отопление / мес</div></div>
+      <div class="stat-card"><div class="stat-value v-green" style="font-size:clamp(1rem,2vw,1.5rem)">13,5 м&sup3;</div><div class="stat-label">ГВС / мес</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SLIDE 12 — HOTEL BLOCK (SPLIT)
+     ============================================================ -->
+<section class="slide slide--split" data-slide="11" style="grid-template-columns:55% 45%">
+  <div class="split-image reveal-scale">
+    <img src="images/gostinichnyj_i_administrativnyj_blok_vid3_3d_concept.png" alt="Гостиничный блок" onerror="this.style.display='none'">
+  </div>
+  <div class="split-content" style="background:var(--bg-cream)">
+    <span class="section-label reveal">06 &mdash; Гостиница</span>
+    <h2 class="slide-title reveal reveal-delay-1" style="font-size:var(--h3-size)">Гостиничный блок</h2>
+    <p class="slide-caption reveal reveal-delay-1">8 номеров &middot; 142,3 м&sup2; &middot; 16 гостей</p>
+    <div class="stats-row reveal reveal-delay-2" style="flex-direction:column;gap:clamp(0.3rem,0.6vw,0.5rem)">
+      <div class="stat-card"><div class="stat-value v-blue" style="font-size:clamp(1rem,2vw,1.5rem)">1 340 кВт&middot;ч</div><div class="stat-label">Электроэнергия / мес</div></div>
+      <div class="stat-card"><div class="stat-value v-amber" style="font-size:clamp(1rem,2vw,1.5rem)">3 456 кВт&middot;ч</div><div class="stat-label">Отопление / мес</div></div>
+      <div class="stat-card"><div class="stat-value v-green" style="font-size:clamp(1rem,2vw,1.5rem)">72 м&sup3;</div><div class="stat-label">ГВС / мес</div></div>
+    </div>
+    <div class="table-wrap reveal reveal-delay-3" style="margin-top:var(--element-gap)">
+      <table>
+        <thead><tr><th>Прибор</th><th>кВт&middot;ч/сут</th></tr></thead>
+        <tbody>
+          <tr><td>Освещение</td><td>11,5</td></tr>
+          <tr><td>ТВ (8 шт)</td><td>4,0</td></tr>
+          <tr><td>Холодильники (8)</td><td>7,7</td></tr>
+          <tr><td>Кондиционеры</td><td>48,0</td></tr>
+          <tr><td>Вентиляция</td><td>18,0</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SLIDE 13 — SUMMARY (data slide, full tables + KPIs)
+     ============================================================ -->
+<section class="slide slide--white" data-slide="12">
+  <div class="slide-content">
+    <span class="section-label reveal">07 &mdash; Итоги</span>
+    <h2 class="slide-title reveal reveal-delay-1">Сводное потребление по базе</h2>
+    <div class="stats-row reveal reveal-delay-2" style="margin-top:var(--content-gap)">
+      <div class="stat-card"><div class="stat-value v-blue">7 645</div><div class="stat-label">кВт&middot;ч/мес — Электроэнергия</div></div>
+      <div class="stat-card"><div class="stat-value v-amber">15 096</div><div class="stat-label">кВт&middot;ч/мес — Отопление</div></div>
+      <div class="stat-card"><div class="stat-value v-green">175,5</div><div class="stat-label">м&sup3;/мес — ГВС</div></div>
+    </div>
+    <div class="table-wrap reveal reveal-delay-3" style="margin-top:var(--content-gap)">
+      <table>
+        <thead><tr><th>Объект</th><th style="text-align:right">Электро, кВт&middot;ч</th><th style="text-align:right">Отопл., кВт&middot;ч</th><th style="text-align:right">ГВС, м&sup3;</th></tr></thead>
+        <tbody>
+          <tr><td>Админ. здание</td><td style="text-align:right">640</td><td style="text-align:right">2 808</td><td style="text-align:right">22,5</td></tr>
+          <tr><td>Домик 1 (&times;10)</td><td style="text-align:right">350</td><td style="text-align:right">960</td><td style="text-align:right">22,5</td></tr>
+          <tr><td>Домик 2 (&times;5)</td><td style="text-align:right">275</td><td style="text-align:right">960</td><td style="text-align:right">13,5</td></tr>
+          <tr><td>Гостиница</td><td style="text-align:right">1 340</td><td style="text-align:right">3 456</td><td style="text-align:right">72,0</td></tr>
+          <tr><td>Кафе</td><td style="text-align:right">5 040</td><td style="text-align:right">6 912</td><td style="text-align:right">45,0</td></tr>
+          <tr class="row-total"><td>Итого</td><td style="text-align:right">7 645</td><td style="text-align:right">15 096</td><td style="text-align:right">175,5</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SLIDE 14 — SOLAR ACTIVITY (NEW)
+     ============================================================ -->
+<section class="slide slide--cream" data-slide="13">
+  <div class="slide-content" style="align-items:center;text-align:center">
+    <span class="section-label reveal">08 &mdash; Солнечная энергия</span>
+    <h2 class="slide-title reveal reveal-delay-1">Солнечная активность региона</h2>
+    <p class="slide-caption reveal reveal-delay-1">Иркутская область &middot; 51.988624, 104.674372</p>
+    <div class="img-placeholder reveal-scale reveal-delay-2" style="width:min(90%,800px);min-height:min(40vh,340px);margin-top:var(--content-gap)">
+      <span>&#128247; Вставить: solar_activity.jpg</span>
+    </div>
+    <div class="stats-row reveal reveal-delay-3" style="margin-top:var(--content-gap);max-width:700px">
+      <div class="stat-card" style="text-align:center">
+        <div class="stat-value v-amber" style="font-size:clamp(1.1rem,2.5vw,1.8rem)">~1 200&ndash;1 400</div>
+        <div class="stat-label">кВт&middot;ч/м&sup2;/год &mdash; суммарная солнечная радиация</div>
+      </div>
+    </div>
+    <p class="slide-caption reveal reveal-delay-4" style="margin-top:var(--element-gap)">Источник: Карта солнечной активности РФ</p>
+  </div>
+</section>
+
+<!-- ============================================================
+     SLIDE 15 — WORK DISTRIBUTION (NEW)
+     ============================================================ -->
+<section class="slide slide--cream" data-slide="14">
+  <div class="slide-content">
+    <span class="section-label reveal">09 &mdash; Организация</span>
+    <h2 class="slide-title reveal reveal-delay-1">Распределение этапов</h2>
+    <div class="timeline reveal reveal-delay-2" style="margin-top:var(--content-gap);max-width:700px">
+      <div class="timeline-item">
+        <div class="timeline-marker tm-green">1</div>
+        <div class="timeline-body">
+          <div class="tl-role">Генеральный директор</div>
+          <div class="tl-name">Тамир Будариев</div>
+          <div class="tl-desc">Этапы 1, 2, 3 &mdash; Исходные данные, карта расположения, расчёт ресурсов</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-marker tm-blue">2</div>
+        <div class="timeline-body">
+          <div class="tl-role">Проектировщики</div>
+          <div class="tl-name">Айваз Багаутдинов + Андрей Михайлов</div>
+          <div class="tl-desc">Этапы 4, 5, 9 &mdash; Карта солнечной активности, расчёт коллектора/батареи, размещение</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-marker tm-amber">3</div>
+        <div class="timeline-body">
+          <div class="tl-role">Монтажники</div>
+          <div class="tl-name">Алина Костюкова + Полина Синицына</div>
+          <div class="tl-desc">Этапы 6, 7, 8, 9, 10 &mdash; Обзор/выбор оборудования, схемы монтажа, ТЭО</div>
         </div>
       </div>
     </div>
-    <!-- CONTACT INFO -->
-    <div class="content-container">
-      <a id="contact"></a>
-      <h2 class="container-heading red-text">
-        Ways Of Contact...
-        <div class="container-heading-underline"></div>
-      </h2>
-      <!-- fading content -->
-      <p class="content-text fading-text">
-        If you would like to contact me, by all means please do, reach out if
-        you'd like. Check out some of my code and projects on GitHub, drop by
-        LinkedIn, or send an email my way. If you'd like, you can grab my
-        resume below as well. I look forward to meeting new people, making new
-        friends.
-      </p>
-      <!-- CONTACT LINKS -->
-      <div class="social-media-container">
-        <a href="https://github.com/Bagautdino" target="_blank" aria-label="GitHub" class="purple-text"><i
-            aria-hidden="false" class="fa-brands fa-github-alt"></i><span class="social-media-name">GitHub</span></a>
-        <a href="https://www.linkedin.com/in/goatest" target="_blank" aria-label="LinkedIn" class="purple-text"><i
-            aria-hidden="false" class="fa-brands fa-linkedin"></i><span class="social-media-name">LinkedIn</span></a>
-        <a href="mailto: sir.aivaz21@gmail.com" aria-label="GMail" class="purple-text"><i aria-hidden="false"
-            class="fa-regular fa-envelope"></i><span class="social-media-name">Gmail</span></a>
+  </div>
+</section>
+
+<!-- ============================================================
+     SLIDE 16 — 3D CONCEPT (Ken Burns)
+     ============================================================ -->
+<section class="slide slide--split" data-slide="15" style="grid-template-columns:65% 35%">
+  <div class="split-image ken-burns reveal-scale">
+    <img src="images/kafe_vid1_3d_concept.png" alt="3D Концепт" onerror="this.style.display='none'">
+  </div>
+  <div class="split-content" style="background:linear-gradient(135deg,var(--blue),var(--green))">
+    <span class="section-label reveal" style="color:var(--amber)">10 &mdash; Визуализация</span>
+    <h2 class="slide-title reveal reveal-delay-1" style="color:#fff;font-size:var(--h2-size)">3D Концепт базы</h2>
+    <p class="reveal reveal-delay-2" style="color:rgba(255,255,255,0.8);font-size:var(--body-size);line-height:1.5">
+      Визуализация проекта базы отдыха на 25 мест в Иркутской области с системой солнечного энергоснабжения.
+    </p>
+    <div class="stats-row reveal reveal-delay-3" style="flex-direction:column;gap:clamp(0.3rem,0.6vw,0.5rem)">
+      <div class="stat-card" style="background:rgba(255,255,255,0.12);border-color:rgba(255,255,255,0.15)">
+        <div class="stat-value" style="color:#fff;font-size:clamp(1rem,2vw,1.4rem)">25 мест</div>
+        <div class="stat-label" style="color:rgba(255,255,255,0.65)">Вместимость</div>
       </div>
-      <div class="resume-container">
-        <a href="img/myResume.pdf" target="_blank" title="My Current Resume">
-          <i class="fa-regular fa-file-pdf" aria-hidden="true"></i>
-          RESUME
-          <i class="fa-regular fa-file-pdf" aria-hidden="true"></i>
-        </a>
+      <div class="stat-card" style="background:rgba(255,255,255,0.12);border-color:rgba(255,255,255,0.15)">
+        <div class="stat-value" style="color:var(--amber);font-size:clamp(1rem,2vw,1.4rem)">Солнечная энергия</div>
+        <div class="stat-label" style="color:rgba(255,255,255,0.65)">Источник энергоснабжения</div>
       </div>
     </div>
-  </main>
-  <!-- BACK TO TOP ARROW -->
-  <a href="#top" aria-label="Back to the top arrow." class="up-arrow purple-text" value="- Welcome -"><i
-      class="fa-solid fa-arrow-up" aria-hidden="false"></i></a>
-  <!-- FOOTER -->
-  <script src="https://cdn.jsdelivr.net/npm/glider-js@1/glider.min.js"></script>
-  <script src="scripts/glider.js"></script>
-  <script src="scripts/scripts.js"></script>
-  <script src="https://kit.fontawesome.com/5dd3e4fc9a.js" crossorigin="anonymous" defer></script>
+  </div>
+</section>
+
+<script>
+(function(){
+  const slides = document.querySelectorAll('.slide');
+  const total = slides.length;
+  const navDots = document.getElementById('navDots');
+  const counter = document.getElementById('slideCounter');
+  const progress = document.getElementById('progressBar');
+
+  slides.forEach((_,i) => {
+    const d = document.createElement('button');
+    d.className = 'nav-dot';
+    d.setAttribute('aria-label','Slide '+(i+1));
+    d.addEventListener('click', () => slides[i].scrollIntoView({behavior:'smooth'}));
+    navDots.appendChild(d);
+  });
+  const dots = navDots.querySelectorAll('.nav-dot');
+
+  function activate(idx){
+    dots.forEach((d,i) => d.classList.toggle('active', i===idx));
+    counter.textContent = (idx+1)+' / '+total;
+    progress.style.width = ((idx+1)/total*100)+'%';
+  }
+
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if(e.isIntersecting){
+        const idx = parseInt(e.target.dataset.slide);
+        activate(idx);
+        e.target.querySelectorAll('.reveal, .reveal-scale').forEach(el => el.classList.add('visible'));
+
+        const teamMembers = e.target.querySelectorAll('.team-member');
+        teamMembers.forEach(m => {
+          const delay = parseInt(m.dataset.delay)||0;
+          setTimeout(() => m.classList.add('visible'), delay);
+        });
+
+        const goalCards = e.target.querySelectorAll('.goal-card');
+        goalCards.forEach(c => {
+          const delay = parseInt(c.dataset.delay)||0;
+          setTimeout(() => c.classList.add('visible'), delay);
+        });
+      }
+    });
+  }, {threshold:0.4});
+
+  slides.forEach(s => io.observe(s));
+
+  document.addEventListener('keydown', e => {
+    const cur = [...dots].findIndex(d => d.classList.contains('active'));
+    if(e.key==='ArrowDown'||e.key==='ArrowRight'||e.key===' '){
+      e.preventDefault();
+      if(cur<total-1) slides[cur+1].scrollIntoView({behavior:'smooth'});
+    } else if(e.key==='ArrowUp'||e.key==='ArrowLeft'){
+      e.preventDefault();
+      if(cur>0) slides[cur-1].scrollIntoView({behavior:'smooth'});
+    }
+  });
+
+  let ty=0;
+  document.addEventListener('touchstart', e=>{ty=e.touches[0].clientY},{passive:true});
+  document.addEventListener('touchend', e=>{
+    const d=ty-e.changedTouches[0].clientY;
+    const cur=[...dots].findIndex(x=>x.classList.contains('active'));
+    if(Math.abs(d)>50){
+      if(d>0&&cur<total-1) slides[cur+1].scrollIntoView({behavior:'smooth'});
+      else if(d<0&&cur>0) slides[cur-1].scrollIntoView({behavior:'smooth'});
+    }
+  },{passive:true});
+
+  activate(0);
+  slides[0].querySelectorAll('.reveal, .reveal-scale').forEach(el => el.classList.add('visible'));
+  slides[0].querySelectorAll('.team-member').forEach(m => {
+    setTimeout(()=>m.classList.add('visible'), parseInt(m.dataset.delay)||0);
+  });
+})();
+</script>
 </body>
-
 </html>
