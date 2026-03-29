@@ -273,6 +273,21 @@ tbody tr:hover td{background:rgba(45,106,79,0.06)}
 @keyframes kenBurns{0%{transform:scale(1)}100%{transform:scale(1.06)}}
 .kb img{animation:kenBurns 8s ease-in-out infinite alternate}
 
+/* ============ CHART ANIMATIONS ============ */
+@keyframes barGrow{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+@keyframes barGrowX{from{width:0}to{width:var(--bar-w)}}
+@keyframes donutDraw{from{stroke-dashoffset:var(--circ)}to{stroke-dashoffset:var(--dash-end)}}
+
+.svg-chart-bar{transform-origin:bottom;transform:scaleY(0)}
+.visible .svg-chart-bar{animation:barGrow 0.7s cubic-bezier(0.22,1,0.36,1) forwards;animation-delay:var(--d,0s)}
+
+.hbar-row{overflow:hidden}
+.hbar-row .hbar-fill{width:0}
+.visible .hbar-fill{animation:barGrowX 0.6s cubic-bezier(0.22,1,0.36,1) forwards;animation-delay:var(--d,0s)}
+
+.donut-arc{stroke-dashoffset:var(--circ)}
+.visible .donut-arc{animation:donutDraw 1s cubic-bezier(0.22,1,0.36,1) 0.2s forwards}
+
 /* ============ CALC STEPS ============ */
 .calc-chain{display:flex;flex-direction:column;gap:clamp(0.3rem,0.6vw,0.5rem)}
 .calc-step{
@@ -682,6 +697,41 @@ tbody tr:hover td{background:rgba(45,106,79,0.06)}
         </tbody>
       </table>
     </div>
+    <div class="glass-strong rv rv-d4" style="padding:clamp(0.6rem,1vw,1rem);border-radius:14px;margin-top:var(--gap-sm)">
+      <p style="font-size:var(--small);font-weight:600;color:var(--text);margin-bottom:6px">Структура электропотребления по объектам</p>
+      <svg viewBox="0 0 520 168" width="100%" style="display:block;font-family:Inter,sans-serif">
+        <g class="hbar-row">
+          <text x="0" y="19" font-size="10" fill="#1d1d1f" font-weight="500">Кафе</text>
+          <rect x="80" y="7" width="343" height="20" rx="4" fill="#e8e8ed"/>
+          <rect class="hbar-fill" x="80" y="7" height="20" rx="4" fill="#2d6a4f" style="--bar-w:343px;--d:0.1s"/>
+          <text x="260" y="21" font-size="9" fill="#fff" font-weight="600">5 040 кВт·ч (66%)</text>
+        </g>
+        <g class="hbar-row">
+          <text x="0" y="53" font-size="10" fill="#1d1d1f" font-weight="500">Гостиница</text>
+          <rect x="80" y="41" width="343" height="20" rx="4" fill="#e8e8ed"/>
+          <rect class="hbar-fill" x="80" y="41" height="20" rx="4" fill="#40916c" style="--bar-w:91px;--d:0.2s"/>
+          <text x="176" y="55" font-size="9" fill="#1d1d1f" font-weight="600">1 340 (17,5%)</text>
+        </g>
+        <g class="hbar-row">
+          <text x="0" y="87" font-size="10" fill="#1d1d1f" font-weight="500">Админ</text>
+          <rect x="80" y="75" width="343" height="20" rx="4" fill="#e8e8ed"/>
+          <rect class="hbar-fill" x="80" y="75" height="20" rx="4" fill="#52b788" style="--bar-w:44px;--d:0.3s"/>
+          <text x="130" y="89" font-size="9" fill="#1d1d1f" font-weight="600">640 (8,4%)</text>
+        </g>
+        <g class="hbar-row">
+          <text x="0" y="121" font-size="10" fill="#1d1d1f" font-weight="500">Домик 1 &times;10</text>
+          <rect x="80" y="109" width="343" height="20" rx="4" fill="#e8e8ed"/>
+          <rect class="hbar-fill" x="80" y="109" height="20" rx="4" fill="#74c69d" style="--bar-w:24px;--d:0.4s"/>
+          <text x="110" y="123" font-size="9" fill="#1d1d1f" font-weight="600">350 (4,6%)</text>
+        </g>
+        <g class="hbar-row">
+          <text x="0" y="155" font-size="10" fill="#1d1d1f" font-weight="500">Домик 2 &times;5</text>
+          <rect x="80" y="143" width="343" height="20" rx="4" fill="#e8e8ed"/>
+          <rect class="hbar-fill" x="80" y="143" height="20" rx="4" fill="#95d5b2" style="--bar-w:19px;--d:0.5s"/>
+          <text x="105" y="157" font-size="9" fill="#1d1d1f" font-weight="600">275 (3,6%)</text>
+        </g>
+      </svg>
+    </div>
   </div>
 </section>
 
@@ -716,20 +766,60 @@ tbody tr:hover td{background:rgba(45,106,79,0.06)}
       <div style="display:flex;flex-direction:column;gap:var(--gap-sm)">
         <div class="glass-strong" style="padding:clamp(0.6rem,1vw,1rem);border-radius:14px">
           <p style="font-size:var(--small);font-weight:600;color:var(--text);margin-bottom:6px;text-align:center">Среднесуточная инсоляция по месяцам (кВт&middot;ч/м&sup2;/день)</p>
-          <div class="bar-chart" id="solarChart">
-            <div class="bar-col"><div class="bar-val">1.3</div><div class="bar" style="height:17%"></div><div class="bar-lbl">Я</div></div>
-            <div class="bar-col"><div class="bar-val">2.4</div><div class="bar" style="height:31%"></div><div class="bar-lbl">Ф</div></div>
-            <div class="bar-col"><div class="bar-val">4.0</div><div class="bar" style="height:52%"></div><div class="bar-lbl">М</div></div>
-            <div class="bar-col"><div class="bar-val">5.4</div><div class="bar" style="height:70%"></div><div class="bar-lbl">А</div></div>
-            <div class="bar-col"><div class="bar-val">6.2</div><div class="bar" style="height:80%"></div><div class="bar-lbl">М</div></div>
-            <div class="bar-col"><div class="bar-val">6.1</div><div class="bar" style="height:79%"></div><div class="bar-lbl">И</div></div>
-            <div class="bar-col"><div class="bar-val">5.7</div><div class="bar" style="height:73%"></div><div class="bar-lbl">И</div></div>
-            <div class="bar-col"><div class="bar-val">4.8</div><div class="bar" style="height:62%"></div><div class="bar-lbl">А</div></div>
-            <div class="bar-col"><div class="bar-val">3.5</div><div class="bar" style="height:45%"></div><div class="bar-lbl">С</div></div>
-            <div class="bar-col"><div class="bar-val">2.3</div><div class="bar" style="height:30%"></div><div class="bar-lbl">О</div></div>
-            <div class="bar-col"><div class="bar-val">1.2</div><div class="bar" style="height:16%"></div><div class="bar-lbl">Н</div></div>
-            <div class="bar-col"><div class="bar-val">0.8</div><div class="bar" style="height:10%"></div><div class="bar-lbl">Д</div></div>
-          </div>
+          <svg viewBox="0 0 380 140" width="100%" style="display:block;font-family:Inter,sans-serif" id="solarChart">
+            <!-- avg PSH reference line at 4.77 => y = 110 - (4.77/7)*90 = 48.7 -->
+            <line x1="28" y1="48.7" x2="370" y2="48.7" stroke="#aeaeb2" stroke-width="0.7" stroke-dasharray="3,2"/>
+            <text x="372" y="51" font-size="7" fill="#aeaeb2" text-anchor="start">avg 4,77</text>
+            <!-- Bars: x-base=34, spacing=28, bar-width=20, chart-bottom=110, max=7 => scale=90/7=12.86 -->
+            <!-- Jan 1.3 h=16.7 -->
+            <rect class="svg-chart-bar" x="34" y="93.3" width="20" height="16.7" rx="3" fill="#d4880f" style="--d:0.05s"/>
+            <text x="44" y="89" font-size="8" fill="#6e6e73" text-anchor="middle" font-weight="600">1.3</text>
+            <text x="44" y="122" font-size="8" fill="#aeaeb2" text-anchor="middle">Я</text>
+            <!-- Feb 2.4 h=30.9 -->
+            <rect class="svg-chart-bar" x="62" y="79.1" width="20" height="30.9" rx="3" fill="#c87f0a" style="--d:0.1s"/>
+            <text x="72" y="75" font-size="8" fill="#6e6e73" text-anchor="middle" font-weight="600">2.4</text>
+            <text x="72" y="122" font-size="8" fill="#aeaeb2" text-anchor="middle">Ф</text>
+            <!-- Mar 4.0 h=51.4 -->
+            <rect class="svg-chart-bar" x="90" y="58.6" width="20" height="51.4" rx="3" fill="#5e9e80" style="--d:0.15s"/>
+            <text x="100" y="54" font-size="8" fill="#6e6e73" text-anchor="middle" font-weight="600">4.0</text>
+            <text x="100" y="122" font-size="8" fill="#aeaeb2" text-anchor="middle">М</text>
+            <!-- Apr 5.4 h=69.4 -->
+            <rect class="svg-chart-bar" x="118" y="40.6" width="20" height="69.4" rx="3" fill="#40916c" style="--d:0.2s"/>
+            <text x="128" y="37" font-size="8" fill="#6e6e73" text-anchor="middle" font-weight="600">5.4</text>
+            <text x="128" y="122" font-size="8" fill="#aeaeb2" text-anchor="middle">А</text>
+            <!-- May 6.2 h=79.7 -->
+            <rect class="svg-chart-bar" x="146" y="30.3" width="20" height="79.7" rx="3" fill="#2d6a4f" style="--d:0.25s"/>
+            <text x="156" y="26" font-size="8" fill="#6e6e73" text-anchor="middle" font-weight="600">6.2</text>
+            <text x="156" y="122" font-size="8" fill="#aeaeb2" text-anchor="middle">М</text>
+            <!-- Jun 6.1 h=78.4 -->
+            <rect class="svg-chart-bar" x="174" y="31.6" width="20" height="78.4" rx="3" fill="#2d6a4f" style="--d:0.3s"/>
+            <text x="184" y="27" font-size="8" fill="#6e6e73" text-anchor="middle" font-weight="600">6.1</text>
+            <text x="184" y="122" font-size="8" fill="#aeaeb2" text-anchor="middle">И</text>
+            <!-- Jul 5.7 h=73.3 -->
+            <rect class="svg-chart-bar" x="202" y="36.7" width="20" height="73.3" rx="3" fill="#2d6a4f" style="--d:0.35s"/>
+            <text x="212" y="33" font-size="8" fill="#6e6e73" text-anchor="middle" font-weight="600">5.7</text>
+            <text x="212" y="122" font-size="8" fill="#aeaeb2" text-anchor="middle">И</text>
+            <!-- Aug 4.8 h=61.7 -->
+            <rect class="svg-chart-bar" x="230" y="48.3" width="20" height="61.7" rx="3" fill="#40916c" style="--d:0.4s"/>
+            <text x="240" y="44" font-size="8" fill="#6e6e73" text-anchor="middle" font-weight="600">4.8</text>
+            <text x="240" y="122" font-size="8" fill="#aeaeb2" text-anchor="middle">А</text>
+            <!-- Sep 3.5 h=45.0 -->
+            <rect class="svg-chart-bar" x="258" y="65.0" width="20" height="45.0" rx="3" fill="#5e9e80" style="--d:0.45s"/>
+            <text x="268" y="61" font-size="8" fill="#6e6e73" text-anchor="middle" font-weight="600">3.5</text>
+            <text x="268" y="122" font-size="8" fill="#aeaeb2" text-anchor="middle">С</text>
+            <!-- Oct 2.3 h=29.6 -->
+            <rect class="svg-chart-bar" x="286" y="80.4" width="20" height="29.6" rx="3" fill="#c87f0a" style="--d:0.5s"/>
+            <text x="296" y="76" font-size="8" fill="#6e6e73" text-anchor="middle" font-weight="600">2.3</text>
+            <text x="296" y="122" font-size="8" fill="#aeaeb2" text-anchor="middle">О</text>
+            <!-- Nov 1.2 h=15.4 -->
+            <rect class="svg-chart-bar" x="314" y="94.6" width="20" height="15.4" rx="3" fill="#d4880f" style="--d:0.55s"/>
+            <text x="324" y="91" font-size="8" fill="#6e6e73" text-anchor="middle" font-weight="600">1.2</text>
+            <text x="324" y="122" font-size="8" fill="#aeaeb2" text-anchor="middle">Н</text>
+            <!-- Dec 0.8 h=10.3 -->
+            <rect class="svg-chart-bar" x="342" y="99.7" width="20" height="10.3" rx="3" fill="#d4880f" style="--d:0.6s"/>
+            <text x="352" y="96" font-size="8" fill="#6e6e73" text-anchor="middle" font-weight="600">0.8</text>
+            <text x="352" y="122" font-size="8" fill="#aeaeb2" text-anchor="middle">Д</text>
+          </svg>
         </div>
         <div class="stats" style="gap:var(--gap-sm)">
           <div class="stat" style="text-align:center"><div class="val c-amber" style="font-size:clamp(1rem,2vw,1.5rem)">1 330</div><div class="lbl">кВт&middot;ч/м&sup2;/год</div></div>
@@ -785,6 +875,31 @@ tbody tr:hover td{background:rgba(45,106,79,0.06)}
             </tbody>
           </table>
         </div>
+        <div class="glass-strong rv rv-d3" style="padding:clamp(0.5rem,0.8vw,0.8rem);border-radius:14px">
+          <p style="font-size:clamp(0.7rem,0.9vw,0.82rem);font-weight:600;color:var(--text);margin-bottom:4px;text-align:center">Солнечная фракция ГВС по сезонам</p>
+          <svg viewBox="0 0 260 115" width="100%" style="display:block;font-family:Inter,sans-serif">
+            <!-- 100% reference -->
+            <line x1="30" y1="10" x2="240" y2="10" stroke="#aeaeb2" stroke-width="0.5" stroke-dasharray="3,2"/>
+            <text x="244" y="13" font-size="7" fill="#aeaeb2">100%</text>
+            <!-- chart bottom = 95, chart height = 85 => 1% = 0.85px -->
+            <!-- Summer 90% h=76.5 -->
+            <rect class="svg-chart-bar" x="40" y="18.5" width="36" height="76.5" rx="4" fill="#2d6a4f" style="--d:0.1s"/>
+            <text x="58" y="14" font-size="9" fill="#2d6a4f" text-anchor="middle" font-weight="700">90%</text>
+            <text x="58" y="106" font-size="8" fill="#6e6e73" text-anchor="middle">Лето</text>
+            <!-- Spring/Autumn 60% h=51 -->
+            <rect class="svg-chart-bar" x="90" y="44" width="36" height="51" rx="4" fill="#1b4f72" style="--d:0.2s"/>
+            <text x="108" y="40" font-size="9" fill="#1b4f72" text-anchor="middle" font-weight="700">60%</text>
+            <text x="108" y="106" font-size="8" fill="#6e6e73" text-anchor="middle">Вес/Ос</text>
+            <!-- Winter 27% h=23 -->
+            <rect class="svg-chart-bar" x="140" y="72" width="36" height="23" rx="4" fill="#aeaeb2" style="--d:0.3s"/>
+            <text x="158" y="68" font-size="9" fill="#6e6e73" text-anchor="middle" font-weight="700">27%</text>
+            <text x="158" y="106" font-size="8" fill="#6e6e73" text-anchor="middle">Зима</text>
+            <!-- Annual avg 60% h=51 -->
+            <rect class="svg-chart-bar" x="190" y="44" width="36" height="51" rx="4" fill="#d4880f" style="--d:0.4s"/>
+            <text x="208" y="40" font-size="9" fill="#d4880f" text-anchor="middle" font-weight="700">60%</text>
+            <text x="208" y="106" font-size="8" fill="#6e6e73" text-anchor="middle">Год</text>
+          </svg>
+        </div>
         <div class="stats" style="gap:var(--gap-sm)">
           <div class="stat" style="text-align:center"><div class="val c-green" style="font-size:clamp(1rem,2vw,1.4rem)">35</div><div class="lbl">коллекторов</div></div>
           <div class="stat" style="text-align:center"><div class="val c-blue" style="font-size:clamp(1rem,2vw,1.4rem)">139 м&sup2;</div><div class="lbl">площадь</div></div>
@@ -836,6 +951,20 @@ tbody tr:hover td{background:rgba(45,106,79,0.06)}
               <tr><td>Покрытие потребности</td><td style="text-align:right">~30%</td></tr>
             </tbody>
           </table>
+        </div>
+        <div class="glass-strong rv rv-d3" style="padding:clamp(0.5rem,0.8vw,0.8rem);border-radius:14px;display:flex;flex-direction:column;align-items:center">
+          <p style="font-size:clamp(0.7rem,0.9vw,0.82rem);font-weight:600;color:var(--text);margin-bottom:4px">Покрытие потребности электроэнергии</p>
+          <!-- Donut: r=54, circumference=2*pi*54=339.29, 30% => arc=101.79, dashoffset end=237.50 -->
+          <svg viewBox="0 0 160 160" width="140" height="140" style="display:block;font-family:Inter,sans-serif">
+            <circle cx="80" cy="80" r="54" fill="none" stroke="#e5e5ea" stroke-width="20"/>
+            <circle class="donut-arc" cx="80" cy="80" r="54" fill="none" stroke="#2d6a4f" stroke-width="20" stroke-linecap="round" transform="rotate(-90 80 80)" stroke-dasharray="339.29" style="--circ:339.29;--dash-end:237.50"/>
+            <text x="80" y="74" text-anchor="middle" font-size="22" font-weight="700" fill="#2d6a4f">30%</text>
+            <text x="80" y="92" text-anchor="middle" font-size="10" fill="#6e6e73">солнце</text>
+          </svg>
+          <div style="display:flex;gap:clamp(8px,1vw,14px);font-size:clamp(0.6rem,0.8vw,0.72rem);color:var(--text2);margin-top:2px">
+            <span style="display:flex;align-items:center;gap:3px"><span style="width:8px;height:8px;border-radius:2px;background:#2d6a4f;display:inline-block"></span>Солнце 30%</span>
+            <span style="display:flex;align-items:center;gap:3px"><span style="width:8px;height:8px;border-radius:2px;background:#e5e5ea;display:inline-block"></span>Сеть 70%</span>
+          </div>
         </div>
         <div class="stats" style="gap:var(--gap-sm)">
           <div class="stat" style="text-align:center"><div class="val c-green" style="font-size:clamp(1rem,2vw,1.4rem)">42</div><div class="lbl">панели &times; 500 Вт</div></div>
