@@ -970,64 +970,90 @@ tbody tr:hover td{background:rgba(45,106,79,0.06)}
     <div class="plan-layout rv rv-d2" style="margin-top:var(--gap)">
       <div class="img-frame rv-s" style="position:relative">
         <div class="plan-overlay">
-          <img src="images/admin-build.png" alt="Админ. здание">
-          <svg viewBox="0 0 1000 750" xmlns="http://www.w3.org/2000/svg">
-            <!-- PV array on south-facing roof -->
-            <rect x="150" y="80" width="180" height="80" rx="6" fill="rgba(27,79,114,0.25)" stroke="#1b4f72" stroke-width="2.5"/>
-            <text x="240" y="115" text-anchor="middle" fill="#0D2E45" font-size="16" font-weight="700">4 &times; 500W ФЭМ</text>
-            <text x="240" y="140" text-anchor="middle" fill="#0D2E45" font-size="12">9,48 м&sup2;, наклон 47&deg;</text>
-            <!-- Solar collectors on south-facing roof -->
-            <rect x="440" y="80" width="200" height="80" rx="6" fill="rgba(233,148,15,0.3)" stroke="#d4880f" stroke-width="2.5"/>
-            <text x="540" y="115" text-anchor="middle" fill="#8B5E00" font-size="16" font-weight="700">5 &times; SCH-30</text>
-            <text x="540" y="140" text-anchor="middle" fill="#8B5E00" font-size="12">19,8 м&sup2;, наклон 47&deg;</text>
-            <!-- Inverter + MPPT in technical room (1st floor) -->
-            <rect x="720" y="380" width="100" height="50" rx="5" fill="rgba(45,106,79,0.35)" stroke="#2d6a4f" stroke-width="2"/>
-            <text x="770" y="400" text-anchor="middle" fill="#1a4a35" font-size="11" font-weight="700">Инвертор 3 кВт</text>
-            <text x="770" y="418" text-anchor="middle" fill="#1a4a35" font-size="10">MPPT + щит</text>
-            <!-- Battery in technical room -->
-            <rect x="720" y="450" width="100" height="40" rx="5" fill="rgba(107,76,154,0.3)" stroke="#6b4c9a" stroke-width="2"/>
-            <text x="770" y="472" text-anchor="middle" fill="#4a2d73" font-size="11" font-weight="700">АКБ 16 кВт&middot;ч</text>
-            <!-- Storage tank in technical room -->
-            <rect x="720" y="510" width="100" height="40" rx="5" fill="rgba(45,106,79,0.3)" stroke="#2d6a4f" stroke-width="2"/>
-            <text x="770" y="534" text-anchor="middle" fill="#1a4a35" font-size="11" font-weight="700">Бак 1 500 л</text>
-            <!-- Cable from PV to inverter -->
-            <line x1="330" y1="130" x2="720" y2="400" stroke="#1b4f72" stroke-width="2" stroke-dasharray="6,3"/>
-            <!-- Pipe from collectors to tank -->
-            <line x1="640" y1="130" x2="720" y2="530" stroke="#d4880f" stroke-width="2" stroke-dasharray="6,3"/>
-            <!-- Technical room label -->
-            <rect x="700" y="350" width="140" height="220" rx="8" fill="none" stroke="#6e6e73" stroke-width="1.5" stroke-dasharray="4,3"/>
-            <text x="770" y="370" text-anchor="middle" fill="#6e6e73" font-size="10" font-weight="600">Хоз. помещение</text>
+          <img src="images/admin-build.png" alt="Админ. здание (зд. 5)">
+          <svg viewBox="0 0 1030 770" xmlns="http://www.w3.org/2000/svg">
+            <!-- ═══ ROOF: PV zone (south-west slope of building 5) ═══ -->
+            <rect x="285" y="195" width="120" height="70" rx="5" fill="rgba(27,79,114,0.82)" stroke="#fff" stroke-width="2.5"/>
+            <text x="345" y="228" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">&#9889; ФЭМ</text>
+            <text x="345" y="248" text-anchor="middle" fill="rgba(255,255,255,0.85)" font-size="10">4&times;500W</text>
+            <!-- callout line to label box -->
+            <line x1="285" y1="230" x2="60" y2="115" stroke="#1b4f72" stroke-width="2"/>
+            <rect x="5" y="80" width="168" height="55" rx="8" fill="#fff" stroke="#1b4f72" stroke-width="2" filter="url(#ds)"/>
+            <circle cx="18" cy="95" r="9" fill="#1b4f72"/><text x="18" y="99" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">1</text>
+            <text x="33" y="100" fill="#1b4f72" font-size="10.5" font-weight="700">ФЭМ массив</text>
+            <text x="33" y="115" fill="#3d3d3d" font-size="9">4 &times; 500 Вт = 2,0 кВт<tspan x="33" dy="12">9,48 м&sup2; &middot; 47&deg; / Юг</tspan></text>
+
+            <!-- ═══ ROOF: Collectors zone (south-east slope of building 5) ═══ -->
+            <rect x="430" y="195" width="130" height="70" rx="5" fill="rgba(212,136,15,0.85)" stroke="#fff" stroke-width="2.5"/>
+            <text x="495" y="228" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">&#9728; Коллекторы</text>
+            <text x="495" y="248" text-anchor="middle" fill="rgba(255,255,255,0.85)" font-size="10">5&times;SCH-30</text>
+            <!-- callout line to label box -->
+            <line x1="560" y1="230" x2="800" y2="110" stroke="#d4880f" stroke-width="2"/>
+            <rect x="740" y="75" width="178" height="55" rx="8" fill="#fff" stroke="#d4880f" stroke-width="2" filter="url(#ds)"/>
+            <circle cx="753" cy="90" r="9" fill="#d4880f"/><text x="753" y="94" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">2</text>
+            <text x="768" y="95" fill="#b5700c" font-size="10.5" font-weight="700">Солн. коллекторы</text>
+            <text x="768" y="110" fill="#3d3d3d" font-size="9">5 &times; SCH-30 = 19,8 м&sup2;<tspan x="768" dy="12">47&deg; / Юг &middot; вакуумные</tspan></text>
+
+            <!-- ═══ CABLE from PV to tech room ═══ -->
+            <line x1="345" y1="265" x2="345" y2="380" stroke="#1b4f72" stroke-width="2.5" stroke-dasharray="7,4"/>
+            <line x1="345" y1="380" x2="425" y2="440" stroke="#1b4f72" stroke-width="2.5" stroke-dasharray="7,4"/>
+            <!-- small "DC" label on cable -->
+            <rect x="310" y="370" width="28" height="14" rx="3" fill="#1b4f72"/><text x="324" y="381" text-anchor="middle" fill="#fff" font-size="8" font-weight="600">DC</text>
+
+            <!-- ═══ PIPE from collectors to tech room ═══ -->
+            <line x1="495" y1="265" x2="495" y2="380" stroke="#d4880f" stroke-width="2.5" stroke-dasharray="7,4"/>
+            <line x1="495" y1="380" x2="465" y2="440" stroke="#d4880f" stroke-width="2.5" stroke-dasharray="7,4"/>
+            <!-- small pipe label -->
+            <rect x="498" y="370" width="36" height="14" rx="3" fill="#d4880f"/><text x="516" y="381" text-anchor="middle" fill="#fff" font-size="8" font-weight="600">ГВС</text>
+
+            <!-- ═══ TECHNICAL ROOM (hashed outline over 1st floor room) ═══ -->
+            <rect x="395" y="420" width="130" height="105" rx="6" fill="rgba(255,255,255,0.75)" stroke="#2d6a4f" stroke-width="2.5"/>
+            <!-- indoor equipment markers -->
+            <circle cx="425" cy="448" r="10" fill="#2d6a4f"/><text x="425" y="452" text-anchor="middle" fill="#fff" font-size="10" font-weight="700">3</text>
+            <text x="440" y="452" fill="#1a4a35" font-size="9.5" font-weight="600">Инвертор 3 кВт</text>
+            <circle cx="425" cy="472" r="10" fill="#2d6a4f"/><text x="425" y="476" text-anchor="middle" fill="#fff" font-size="10" font-weight="700">4</text>
+            <text x="440" y="476" fill="#1a4a35" font-size="9.5" font-weight="600">MPPT контроллер</text>
+            <circle cx="425" cy="496" r="10" fill="#6b4c9a"/><text x="425" y="500" text-anchor="middle" fill="#fff" font-size="10" font-weight="700">5</text>
+            <text x="440" y="500" fill="#4a2d73" font-size="9.5" font-weight="600">АКБ 16 кВт&middot;ч</text>
+            <circle cx="425" cy="516" r="10" fill="#d4880f"/><text x="425" y="520" text-anchor="middle" fill="#fff" font-size="10" font-weight="700">6</text>
+            <text x="440" y="520" fill="#8B5E00" font-size="9.5" font-weight="600">Бак 1 500 л</text>
+
+            <!-- callout line from tech room to label -->
+            <line x1="525" y1="475" x2="740" y2="560" stroke="#2d6a4f" stroke-width="1.5"/>
+            <rect x="740" y="540" width="175" height="48" rx="8" fill="#fff" stroke="#2d6a4f" stroke-width="2" filter="url(#ds)"/>
+            <text x="755" y="558" fill="#2d6a4f" font-size="10" font-weight="700">Техпомещение 1 эт.</text>
+            <text x="755" y="572" fill="#3d3d3d" font-size="9">Инвертор + MPPT + АКБ</text>
+            <text x="755" y="584" fill="#3d3d3d" font-size="9">Бак-аккумулятор ГВС</text>
+
+            <!-- drop shadow filter -->
+            <defs><filter id="ds" x="-4%" y="-4%" width="108%" height="116%"><feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.12"/></filter></defs>
           </svg>
           <div class="north-arrow">N&uarr;</div>
-          <div class="legend">
-            <div class="legend-item"><div class="legend-swatch" style="background:rgba(27,79,114,0.3);border:1px solid #1b4f72"></div>ФЭМ панели</div>
-            <div class="legend-item"><div class="legend-swatch" style="background:rgba(233,148,15,0.3);border:1px solid #d4880f"></div>Коллекторы</div>
-            <div class="legend-item"><div class="legend-swatch" style="background:rgba(45,106,79,0.35);border:1px solid #2d6a4f"></div>Инвертор / Бак</div>
-            <div class="legend-item"><div class="legend-swatch" style="background:rgba(107,76,154,0.3);border:1px solid #6b4c9a"></div>АКБ</div>
-          </div>
         </div>
       </div>
       <div class="info">
-        <div class="tbl-wrap form-tbl">
-          <table>
-            <thead><tr><th>Оборудование</th><th>Размещение</th></tr></thead>
-            <tbody>
-              <tr><td>4 &times; ФЭМ 500W</td><td style="text-align:right">Крыша, юг</td></tr>
-              <tr><td>5 &times; SCH-30</td><td style="text-align:right">Крыша, юг</td></tr>
-              <tr><td>Инвертор 3 кВт</td><td style="text-align:right">Хоз. пом. 1 эт.</td></tr>
-              <tr><td>MPPT + щит</td><td style="text-align:right">Хоз. пом. 1 эт.</td></tr>
-              <tr><td>АКБ 16 кВт&middot;ч</td><td style="text-align:right">Хоз. пом. 1 эт.</td></tr>
-              <tr><td>Бак 1 500 л</td><td style="text-align:right">Хоз. пом. 1 эт.</td></tr>
-            </tbody>
-          </table>
+        <div style="display:flex;flex-direction:column;gap:clamp(4px,0.5vh,8px)">
+          <div style="display:flex;align-items:center;gap:6px"><span style="display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:#1b4f72;color:#fff;font-size:11px;font-weight:700;flex-shrink:0">1</span><span style="font-size:var(--small);color:var(--text)"><b>ФЭМ массив</b> &mdash; 4&times;500W, 2,0 кВт<sub>p</sub>, 9,48 м&sup2;</span></div>
+          <div style="display:flex;align-items:center;gap:6px"><span style="display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:#d4880f;color:#fff;font-size:11px;font-weight:700;flex-shrink:0">2</span><span style="font-size:var(--small);color:var(--text)"><b>Коллекторы</b> &mdash; 5&times;SCH-30, 19,8 м&sup2;</span></div>
+          <div style="display:flex;align-items:center;gap:6px"><span style="display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:#2d6a4f;color:#fff;font-size:11px;font-weight:700;flex-shrink:0">3</span><span style="font-size:var(--small);color:var(--text)"><b>Инвертор</b> &mdash; 3 кВт, двойное преобразование</span></div>
+          <div style="display:flex;align-items:center;gap:6px"><span style="display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:#2d6a4f;color:#fff;font-size:11px;font-weight:700;flex-shrink:0">4</span><span style="font-size:var(--small);color:var(--text)"><b>MPPT</b> &mdash; контроллер заряда + щит</span></div>
+          <div style="display:flex;align-items:center;gap:6px"><span style="display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:#6b4c9a;color:#fff;font-size:11px;font-weight:700;flex-shrink:0">5</span><span style="font-size:var(--small);color:var(--text)"><b>АКБ</b> &mdash; LiFePO4, 16 кВт&middot;ч (15&ndash;25&deg;C)</span></div>
+          <div style="display:flex;align-items:center;gap:6px"><span style="display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:#d4880f;color:#fff;font-size:11px;font-weight:700;flex-shrink:0">6</span><span style="font-size:var(--small);color:var(--text)"><b>Бак ГВС</b> &mdash; 1&times;1 500 л, в техпомещении</span></div>
         </div>
-        <div style="display:flex;flex-direction:column;gap:clamp(2px,0.3vh,4px);font-size:var(--small);color:var(--text2);line-height:1.45">
-          <p>&bull; Наклон: 47&deg;, азимут: Юг (180&deg;)</p>
-          <p>&bull; ФЭМ и коллекторы на южном скате</p>
-          <p>&bull; Кабели DC &rarr; техпомещение 1 эт.</p>
+        <div style="margin-top:var(--gap-sm);padding-top:var(--gap-sm);border-top:1px solid var(--separator)">
+          <p style="font-size:var(--small);font-weight:600;color:var(--green);margin-bottom:3px">Условные обозначения</p>
+          <div style="display:flex;flex-direction:column;gap:2px;font-size:clamp(0.65rem,0.9vw,0.78rem);color:var(--text2)">
+            <span><span style="display:inline-block;width:20px;border-bottom:2.5px dashed #1b4f72;margin-right:4px;vertical-align:middle"></span>Кабель DC (ФЭМ &rarr; инвертор)</span>
+            <span><span style="display:inline-block;width:20px;border-bottom:2.5px dashed #d4880f;margin-right:4px;vertical-align:middle"></span>Трубопровод ГВС (колл. &rarr; бак)</span>
+            <span><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:rgba(255,255,255,0.75);border:2px solid #2d6a4f;margin-right:4px;vertical-align:middle"></span>Техпомещение 1 эт.</span>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:clamp(2px,0.3vh,4px);font-size:var(--small);color:var(--text2);line-height:1.45;margin-top:var(--gap-sm)">
+          <p>&bull; Наклон: 47&deg;, азимут: 180&deg; (Юг)</p>
+          <p>&bull; ФЭМ и коллекторы &mdash; южный скат крыши</p>
+          <p>&bull; Всё внутр. оборудование &mdash; хоз. пом. 1 эт.</p>
           <p>&bull; Трубы ГВС: &lt;15 м до коллекторов</p>
           <p>&bull; Заземление по ПУЭ</p>
-          <p>&bull; Доп. геометрия крыши: <span style="color:var(--amber)">[требуется уточнение]</span></p>
         </div>
       </div>
     </div>
