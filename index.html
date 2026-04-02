@@ -3,1219 +3,618 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>База отдыха — Иркутская область</title>
-<link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<title>Хоккейный Родитель — Отчёт ППМ</title>
 <style>
-*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-html,body{height:100%;overflow-x:hidden;font-family:'Inter',-apple-system,BlinkMacSystemFont,'SF Pro Display',system-ui,sans-serif}
-html{scroll-snap-type:y mandatory;scroll-behavior:smooth}
-body{background:#f2f2f7;color:#1d1d1f}
-
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --title:clamp(2rem,5.5vw,4.2rem);
-  --h2:clamp(1.5rem,4vw,2.8rem);
-  --h3:clamp(1.1rem,2.8vw,1.6rem);
-  --body:clamp(0.9rem,1.6vw,1.15rem);
-  --small:clamp(0.8rem,1.2vw,0.95rem);
-  --pad:clamp(1.5rem,5vw,4.5rem);
-  --gap:clamp(0.5rem,2vw,1.5rem);
-  --gap-sm:clamp(0.25rem,1vw,0.6rem);
+  --blue:rgb(29,78,216);--blue-d:rgb(22,60,170);--blue-l:rgb(219,234,254);
+  --green:rgb(22,163,74);--green-l:rgb(220,252,231);
+  --amber:rgb(217,119,6);--amber-l:rgb(254,243,199);
+  --gray-50:#f9fafb;--gray-100:#f3f4f6;--gray-200:#e5e7eb;--gray-300:#d1d5db;
+  --gray-400:#9ca3af;--gray-500:#6b7280;--gray-600:#4b5563;--gray-700:#374151;
+  --gray-800:#1f2937;--gray-900:#111827;
+  --radius:12px;--max-w:1100px;
+}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:'Inter','Segoe UI',system-ui,-apple-system,sans-serif;color:var(--gray-800);background:#fff;line-height:1.6;overflow-x:hidden}
+a{color:var(--blue);text-decoration:none}
+a:hover{text-decoration:underline}
 
-  --glass:rgba(255,255,255,0.72);
-  --glass-strong:rgba(255,255,255,0.88);
-  --glass-border:rgba(255,255,255,0.45);
-  --glass-shadow:0 8px 32px rgba(0,0,0,0.06),0 1px 3px rgba(0,0,0,0.04);
-  --glass-shadow-lg:0 16px 48px rgba(0,0,0,0.08),0 2px 8px rgba(0,0,0,0.04);
-  --blur:saturate(180%) blur(20px);
-
-  --surface:#f2f2f7;
-  --surface-warm:#faf8f5;
-  --white:#ffffff;
-  --green:#2d6a4f;
-  --green-soft:rgba(45,106,79,0.08);
-  --blue:#1b4f72;
-  --blue-soft:rgba(27,79,114,0.08);
-  --amber:#d4880f;
-  --amber-soft:rgba(233,196,106,0.15);
-  --text:#1d1d1f;
-  --text2:#6e6e73;
-  --text3:#aeaeb2;
-  --separator:rgba(60,60,67,0.06);
+/* ── HERO ── */
+.hero{
+  background:linear-gradient(135deg,var(--blue) 0%,rgb(37,99,235) 50%,rgb(59,130,246) 100%);
+  color:#fff;padding:80px 24px 64px;text-align:center;position:relative;overflow:hidden
+}
+.hero::after{
+  content:'';position:absolute;bottom:-60px;left:50%;transform:translateX(-50%);
+  width:140%;height:120px;background:#fff;border-radius:50% 50% 0 0
+}
+.hero h1{font-size:clamp(2rem,5vw,3.2rem);font-weight:800;letter-spacing:-.02em}
+.hero .subtitle{font-size:1.15rem;opacity:.85;margin-top:12px;max-width:640px;margin-inline:auto}
+.hero .badge-row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:28px}
+.hero .badge-row span{
+  background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.25);
+  border-radius:999px;padding:6px 18px;font-size:.82rem;font-weight:600;backdrop-filter:blur(4px)
 }
 
-.slide{
-  width:100vw;height:100vh;height:100dvh;
-  overflow:hidden;scroll-snap-align:start;
-  display:flex;flex-direction:column;
-  position:relative;
+/* ── CONTAINER ── */
+.container{max-width:var(--max-w);margin:0 auto;padding:0 24px}
+section{padding:72px 0}
+section:nth-child(even){background:var(--gray-50)}
+.section-title{font-size:1.8rem;font-weight:700;text-align:center;margin-bottom:12px;color:var(--gray-900)}
+.section-sub{text-align:center;color:var(--gray-500);max-width:600px;margin:0 auto 48px;font-size:1rem}
+
+/* ── STAT CARDS ── */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;margin-bottom:56px}
+.stat-card{
+  background:#fff;border:1px solid var(--gray-200);border-radius:var(--radius);
+  padding:28px 24px;text-align:center;transition:transform .2s,box-shadow .2s
 }
-.slide-inner{
-  flex:1;display:flex;flex-direction:column;
-  justify-content:center;max-height:100%;
-  overflow:hidden;padding:var(--pad);
+.stat-card:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(0,0,0,.08)}
+.stat-card .num{font-size:2.4rem;font-weight:800;color:var(--blue);line-height:1.1}
+.stat-card .label{font-size:.88rem;color:var(--gray-500);margin-top:6px}
+
+/* ── FEATURE CARDS ── */
+.features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px}
+.feature-card{
+  background:#fff;border:1px solid var(--gray-200);border-radius:var(--radius);padding:32px 28px;
+  transition:transform .2s,box-shadow .2s;position:relative;overflow:hidden
+}
+.feature-card:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(0,0,0,.07)}
+.feature-card .icon{
+  width:48px;height:48px;border-radius:10px;display:flex;align-items:center;justify-content:center;
+  font-size:1.4rem;margin-bottom:16px
+}
+.feature-card h3{font-size:1.15rem;font-weight:700;margin-bottom:8px;color:var(--gray-900)}
+.feature-card p{font-size:.92rem;color:var(--gray-500);line-height:1.55}
+.feature-card .tag{
+  display:inline-block;margin-top:14px;font-size:.72rem;font-weight:600;text-transform:uppercase;
+  letter-spacing:.06em;padding:4px 10px;border-radius:6px
+}
+.tag-done{background:var(--green-l);color:var(--green)}
+.tag-wip{background:var(--amber-l);color:var(--amber)}
+
+/* ── TECH STACK ── */
+.stack-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
+.stack-card{background:#fff;border:1px solid var(--gray-200);border-radius:var(--radius);padding:24px}
+.stack-card h4{font-size:.95rem;font-weight:700;margin-bottom:10px;color:var(--gray-900)}
+.stack-card .pills{display:flex;flex-wrap:wrap;gap:6px}
+.stack-card .pill{
+  background:var(--blue-l);color:var(--blue);font-size:.78rem;font-weight:600;
+  padding:4px 12px;border-radius:999px
 }
 
-/* ============ MESH GRADIENT BG (JS-animated) ============ */
-.bg-mesh{position:absolute;inset:0;pointer-events:none;overflow:hidden}
-.bg-mesh canvas{width:100%;height:100%}
+/* ── ARCHITECTURE ── */
+.arch-flow{
+  display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:12px;
+  padding:32px 0;font-size:.95rem;font-weight:600;color:var(--gray-700)
+}
+.arch-flow .box{
+  background:var(--blue-l);border:2px solid var(--blue);border-radius:10px;padding:14px 24px;
+  text-align:center;min-width:120px
+}
+.arch-flow .arrow{color:var(--blue);font-size:1.4rem}
 
-/* ============ GLASS CARD ============ */
-.glass{
-  background:var(--glass);
-  backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur);
-  border:1px solid var(--glass-border);
-  border-radius:20px;box-shadow:var(--glass-shadow);
+/* ── SCREENSHOTS ── */
+.screens-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px}
+.screen-card{
+  background:#fff;border:1px solid var(--gray-200);border-radius:var(--radius);overflow:hidden;
+  transition:transform .2s,box-shadow .2s
 }
-.glass-strong{
-  background:var(--glass-strong);
-  backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur);
-  border:1px solid rgba(255,255,255,0.6);
-  border-radius:20px;box-shadow:var(--glass-shadow-lg);
+.screen-card:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(0,0,0,.07)}
+.screen-card .mock{
+  height:180px;display:flex;align-items:center;justify-content:center;font-size:2.6rem;
+  position:relative;overflow:hidden
 }
+.screen-card .mock .overlay{
+  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  background:rgba(0,0,0,.03)
+}
+.screen-card .info{padding:16px 20px}
+.screen-card .info h4{font-size:1rem;font-weight:700;color:var(--gray-900)}
+.screen-card .info p{font-size:.84rem;color:var(--gray-500);margin-top:4px}
 
-/* ============ HERO ============ */
-.slide--hero{background:var(--surface-warm)}
-.slide--hero .slide-inner{
-  align-items:center;justify-content:center;text-align:center;
-  gap:clamp(0.5rem,1.2vw,1rem);z-index:1;position:relative;
+/* ── HYPOTHESES ── */
+.hypo-list{display:grid;gap:20px}
+.hypo-card{
+  background:#fff;border:1px solid var(--gray-200);border-radius:var(--radius);padding:28px;
+  border-left:4px solid var(--blue)
 }
-.slide--hero h1{
-  font-size:clamp(2.2rem,6vw,4.8rem);font-weight:700;
-  letter-spacing:-0.03em;line-height:1.06;color:var(--text);
-}
-.slide--hero .sub{font-size:clamp(0.9rem,1.8vw,1.3rem);color:var(--text2);max-width:600px;line-height:1.5}
-.slide--hero .badge{
-  font-size:var(--small);color:var(--green);font-weight:600;
-  letter-spacing:0.06em;text-transform:uppercase;
-}
+.hypo-card h4{font-size:1.05rem;font-weight:700;margin-bottom:8px;color:var(--gray-900)}
+.hypo-card p{font-size:.9rem;color:var(--gray-500);line-height:1.6}
+.hypo-card .criteria{margin-top:12px;padding-left:18px;list-style-type:disc}
+.hypo-card .criteria li{font-size:.85rem;color:var(--gray-600);margin-bottom:4px}
 
-/* ============ SECTION LABEL ============ */
-.label{font-size:var(--small);font-weight:600;color:var(--green);letter-spacing:0.08em;text-transform:uppercase}
-.title{font-size:var(--h2);font-weight:700;color:var(--text);letter-spacing:-0.02em;line-height:1.15}
-.caption{font-size:var(--small);color:var(--text3)}
-
-/* ============ IMAGE FRAME — contain, not crop ============ */
-.img-frame{
-  border-radius:16px;overflow:hidden;
-  background:var(--white);
-  box-shadow:var(--glass-shadow);
+/* ── TEAM ── */
+.team-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:20px}
+.team-card{text-align:center;padding:28px 16px;background:#fff;border:1px solid var(--gray-200);border-radius:var(--radius)}
+.team-card .avatar{
+  width:72px;height:72px;border-radius:50%;margin:0 auto 14px;
   display:flex;align-items:center;justify-content:center;
-  position:relative;
+  font-size:1.6rem;font-weight:700;color:#fff
 }
-.img-frame img{
-  width:100%;height:100%;
-  object-fit:contain;
-  padding:clamp(4px,0.5vw,8px);
+.team-card .name{font-size:.95rem;font-weight:700;color:var(--gray-900)}
+.team-card .role{font-size:.82rem;color:var(--gray-500);margin-top:2px}
+
+/* ── TIMELINE ── */
+.timeline{position:relative;padding-left:32px;max-width:700px;margin:0 auto}
+.timeline::before{content:'';position:absolute;left:10px;top:0;bottom:0;width:2px;background:var(--gray-200)}
+.timeline-item{position:relative;padding-bottom:32px}
+.timeline-item::before{
+  content:'';position:absolute;left:-26px;top:4px;width:14px;height:14px;
+  border-radius:50%;background:var(--blue);border:3px solid var(--blue-l)
 }
-.img-frame--cover img{object-fit:cover;padding:0}
+.timeline-item.done::before{background:var(--green)}
+.timeline-item h4{font-size:.95rem;font-weight:700;color:var(--gray-900)}
+.timeline-item p{font-size:.85rem;color:var(--gray-500);margin-top:2px}
 
-/* ============ TABLES ============ */
-.tbl-wrap{overflow:hidden;border-radius:14px;box-shadow:var(--glass-shadow);background:var(--white);flex-shrink:0}
-table{width:100%;border-collapse:collapse;font-size:var(--small)}
-thead{background:var(--green)}
-th{padding:clamp(5px,0.7vh,9px) clamp(8px,1vw,14px);text-align:left;font-weight:600;color:#fff;white-space:nowrap}
-td{padding:clamp(4px,0.5vh,7px) clamp(8px,1vw,14px);color:var(--text);border-top:1px solid var(--separator)}
-tbody tr:nth-child(even){background:rgba(45,106,79,0.04)}
-tbody tr:hover td{background:rgba(45,106,79,0.06)}
-.row-total{font-weight:700;background:rgba(45,106,79,0.1)!important}
+/* ── FOOTER ── */
+footer{background:var(--gray-900);color:var(--gray-400);text-align:center;padding:40px 24px}
+footer .logo{font-size:1.3rem;font-weight:800;color:#fff;margin-bottom:8px}
+footer p{font-size:.84rem}
 
-/* ============ STAT CARDS ============ */
-.stats{display:flex;gap:clamp(0.4rem,1vw,0.8rem);flex-wrap:wrap}
-.stat{
-  flex:1;min-width:clamp(80px,16vw,150px);
-  padding:clamp(0.5rem,1vw,0.9rem);
-  border-radius:14px;
-  background:var(--white);
-  box-shadow:0 1px 6px rgba(0,0,0,0.04);
-  border:1px solid var(--separator);
+/* ── NAV ── */
+.topnav{
+  position:fixed;top:0;left:0;right:0;z-index:50;
+  background:rgba(255,255,255,.85);backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--gray-100);padding:0 24px;
+  display:flex;align-items:center;justify-content:space-between;height:56px;
+  transition:box-shadow .3s
 }
-.stat .val{font-size:clamp(1.1rem,2.5vw,1.8rem);font-weight:700;letter-spacing:-0.02em}
-.stat .val.c-blue{color:var(--blue)}
-.stat .val.c-amber{color:var(--amber)}
-.stat .val.c-green{color:var(--green)}
-.stat .lbl{font-size:var(--small);color:var(--text3);margin-top:2px;line-height:1.3}
+.topnav.scrolled{box-shadow:0 2px 12px rgba(0,0,0,.06)}
+.topnav .brand{font-weight:800;font-size:1rem;color:var(--gray-900)}
+.topnav nav{display:flex;gap:20px}
+.topnav nav a{font-size:.84rem;font-weight:500;color:var(--gray-600)}
+.topnav nav a:hover{color:var(--blue);text-decoration:none}
 
-/* ============ TWO-PANEL LAYOUT ============ */
-.panel-row{display:grid;grid-template-columns:1fr 1fr;gap:clamp(0.8rem,2vw,1.5rem);align-items:start}
-@media(max-width:768px){.panel-row{grid-template-columns:1fr}}
-
-/* ============ PLAN SLIDE — image centered with info panel ============ */
-.plan-layout{
-  display:grid;grid-template-columns:1.1fr 0.9fr;
-  gap:clamp(0.8rem,2vw,1.5rem);align-items:center;
-  flex:1;
+/* ── RESPONSIVE ── */
+@media(max-width:640px){
+  .hero{padding:100px 20px 56px}
+  section{padding:48px 0}
+  .topnav nav{display:none}
+  .arch-flow{flex-direction:column}
+  .arch-flow .arrow{transform:rotate(90deg)}
 }
-@media(max-width:768px){.plan-layout{grid-template-columns:1fr;grid-template-rows:auto auto}}
-.plan-layout .img-frame{
-  width:100%;height:min(60vh,500px);
-}
-.plan-layout .info{display:flex;flex-direction:column;gap:var(--gap)}
-
-/* ============ TEAM ============ */
-.team-list{display:flex;flex-direction:column;gap:clamp(0.5rem,1vw,0.8rem);max-width:480px}
-.member{
-  display:flex;align-items:center;gap:clamp(0.5rem,1vw,0.8rem);
-  padding:clamp(0.35rem,0.7vw,0.6rem) clamp(0.6rem,1vw,0.9rem);
-  border-radius:16px;background:var(--white);
-  box-shadow:0 1px 6px rgba(0,0,0,0.04);border:1px solid var(--separator);
-  transform:translateX(-20px);opacity:0;
-  transition:transform 0.5s ease,opacity 0.5s ease;
-}
-.member.visible{transform:translateX(0);opacity:1}
-.member .ava{
-  width:clamp(44px,6vw,64px);height:clamp(44px,6vw,64px);
-  border-radius:50%;overflow:hidden;flex-shrink:0;
-  border:2.5px solid var(--green);
-  box-shadow:0 2px 8px rgba(45,106,79,0.15);
-}
-.member .ava img{width:100%;height:100%;object-fit:cover}
-.member .m-role{font-size:var(--small);color:var(--green);font-weight:500}
-.member .m-name{font-size:var(--body);font-weight:600;color:var(--text)}
-
-/* ============ GOAL CARDS ============ */
-.goals{display:flex;gap:clamp(0.5rem,1.2vw,1rem);flex-wrap:wrap}
-.goal{
-  flex:1;min-width:min(100%,200px);
-  padding:clamp(0.8rem,1.5vw,1.2rem);
-  border-radius:18px;
-  background:var(--glass-strong);
-  backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur);
-  border:1px solid rgba(255,255,255,0.5);
-  box-shadow:var(--glass-shadow-lg);
-  transform:scale(0.88);opacity:0;
-  transition:transform 0.5s cubic-bezier(0.34,1.56,0.64,1),opacity 0.5s ease;
-}
-.goal.visible{transform:scale(1);opacity:1}
-.goal .g-icon{font-size:clamp(1.4rem,2.5vw,2rem);margin-bottom:clamp(0.2rem,0.4vw,0.4rem)}
-.goal .g-text{font-size:var(--body);font-weight:600;color:var(--text);line-height:1.35}
-
-/* ============ ROOMS ============ */
-.rooms{display:flex;flex-direction:column;gap:clamp(1px,0.2vh,3px)}
-.room{display:flex;justify-content:space-between;font-size:var(--small);padding:clamp(3px,0.35vh,5px) 0;border-bottom:1px solid var(--separator)}
-.room .rn{color:var(--text);font-weight:500}
-.room .ra{color:var(--text3);white-space:nowrap}
-
-/* ============ BUILDING LIST ============ */
-.bldgs{display:flex;flex-direction:column;gap:clamp(2px,0.3vh,5px)}
-.bldg{
-  display:flex;justify-content:space-between;align-items:center;
-  font-size:var(--small);
-  padding:clamp(3px,0.5vw,6px) clamp(6px,0.8vw,10px);
-  border-radius:8px;background:var(--white);
-  border:1px solid var(--separator);
-}
-.bldg .bn{color:var(--text);font-weight:500}
-.bldg .ba{color:var(--green);font-weight:600;white-space:nowrap}
-
-/* ============ TIMELINE ============ */
-.timeline{display:flex;flex-direction:column;gap:clamp(0.5rem,1vw,0.8rem)}
-.tl-item{display:grid;grid-template-columns:auto 1fr;gap:clamp(0.5rem,1vw,0.8rem);align-items:start}
-.tl-dot{
-  width:clamp(32px,4.5vw,44px);height:clamp(32px,4.5vw,44px);
-  border-radius:50%;display:flex;align-items:center;justify-content:center;
-  font-weight:700;font-size:var(--small);color:#fff;flex-shrink:0;
-}
-.tl-dot.d-g{background:var(--green)}
-.tl-dot.d-b{background:var(--blue)}
-.tl-dot.d-a{background:var(--amber)}
-.tl-body{
-  padding:clamp(0.4rem,0.8vw,0.7rem);
-  border-radius:12px;background:var(--white);
-  box-shadow:0 1px 6px rgba(0,0,0,0.04);border:1px solid var(--separator);
-}
-.tl-body .tl-role{font-size:var(--small);color:var(--green)}
-.tl-body .tl-name{font-size:var(--body);font-weight:600;color:var(--text)}
-.tl-body .tl-desc{font-size:var(--small);color:var(--text2);line-height:1.4}
-
-/* ============ PLACEHOLDER ============ */
-.ph{
-  border:2px dashed rgba(45,106,79,0.3);border-radius:16px;
-  background:rgba(45,106,79,0.04);
-  display:flex;align-items:center;justify-content:center;
-  color:var(--green);font-size:var(--small);font-weight:500;
-  min-height:100px;
-}
-
-/* ============ NAV ============ */
-.nav-dots{
-  position:fixed;right:clamp(8px,1.2vw,16px);top:50%;
-  transform:translateY(-50%);z-index:100;
-  display:flex;flex-direction:column;gap:6px;
-}
-.nav-dot{
-  width:7px;height:7px;border-radius:50%;
-  background:rgba(0,0,0,0.12);cursor:pointer;
-  transition:all 0.3s ease;border:none;padding:0;
-}
-.nav-dot.active{background:var(--green);transform:scale(1.5)}
-.nav-dot:hover{background:rgba(0,0,0,0.25)}
-
-.slide-counter{
-  position:fixed;bottom:clamp(8px,1.2vw,16px);right:clamp(8px,1.2vw,16px);
-  font-size:var(--small);color:var(--text3);z-index:100;
-  font-variant-numeric:tabular-nums;
-  background:var(--glass);backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur);
-  padding:3px 10px;border-radius:20px;border:1px solid var(--glass-border);
-}
-.progress-bar{position:fixed;top:0;left:0;height:2px;background:var(--green);z-index:200;transition:width 0.3s ease;width:0}
-
-/* ============ REVEAL ============ */
-.rv{opacity:0;transform:translateY(16px);transition:opacity 0.6s ease,transform 0.6s ease}
-.rv.visible{opacity:1;transform:translateY(0)}
-.rv-d1{transition-delay:0.1s}
-.rv-d2{transition-delay:0.2s}
-.rv-d3{transition-delay:0.3s}
-.rv-d4{transition-delay:0.4s}
-
-.rv-s{opacity:0;transform:scale(0.96);transition:opacity 0.5s ease,transform 0.5s ease}
-.rv-s.visible{opacity:1;transform:scale(1)}
-
-@keyframes kenBurns{0%{transform:scale(1)}100%{transform:scale(1.06)}}
-.kb img{animation:kenBurns 8s ease-in-out infinite alternate}
-
-/* ============ CHART ANIMATIONS ============ */
-@keyframes barGrow{from{transform:scaleY(0)}to{transform:scaleY(1)}}
-@keyframes barGrowX{from{width:0}to{width:var(--bar-w)}}
-@keyframes donutDraw{from{stroke-dashoffset:var(--circ)}to{stroke-dashoffset:var(--dash-end)}}
-
-.svg-chart-bar{transform-origin:bottom;transform:scaleY(0)}
-.visible .svg-chart-bar{animation:barGrow 0.7s cubic-bezier(0.22,1,0.36,1) forwards;animation-delay:var(--d,0s)}
-
-.hbar-row{overflow:hidden}
-.hbar-row .hbar-fill{width:0}
-.visible .hbar-fill{animation:barGrowX 0.6s cubic-bezier(0.22,1,0.36,1) forwards;animation-delay:var(--d,0s)}
-
-.donut-arc{stroke-dashoffset:var(--circ)}
-.visible .donut-arc{animation:donutDraw 1s cubic-bezier(0.22,1,0.36,1) 0.2s forwards}
-
-/* ============ CALC STEPS ============ */
-.calc-chain{display:flex;flex-direction:column;gap:clamp(0.3rem,0.6vw,0.5rem)}
-.calc-step{
-  display:grid;grid-template-columns:1fr auto;gap:clamp(0.3rem,0.6vw,0.5rem);align-items:center;
-  padding:clamp(0.3rem,0.5vw,0.5rem) clamp(0.5rem,0.8vw,0.8rem);
-  border-radius:10px;background:var(--white);
-  border:1px solid var(--separator);font-size:var(--small);
-}
-.calc-step .formula{color:var(--text2);font-family:'Courier New',monospace;font-size:clamp(0.7rem,1vw,0.85rem)}
-.calc-step .result{font-weight:700;color:var(--green);white-space:nowrap}
-
-/* ============ SVG OVERLAY ON GENPLAN ============ */
-.plan-overlay{position:relative;width:100%;height:100%}
-.plan-overlay img{width:100%;height:100%;object-fit:contain;padding:clamp(4px,0.5vw,8px)}
-.plan-overlay svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
-.plan-overlay .legend{
-  position:absolute;bottom:clamp(4px,0.5vw,8px);right:clamp(4px,0.5vw,8px);
-  background:rgba(255,255,255,0.92);backdrop-filter:blur(8px);
-  border-radius:10px;padding:clamp(4px,0.4vw,8px) clamp(6px,0.6vw,10px);
-  font-size:clamp(0.6rem,0.9vw,0.75rem);display:flex;flex-direction:column;gap:2px;
-  border:1px solid var(--separator);box-shadow:0 2px 8px rgba(0,0,0,0.06);
-}
-.plan-overlay .legend-item{display:flex;align-items:center;gap:4px}
-.plan-overlay .legend-swatch{width:12px;height:12px;border-radius:3px;flex-shrink:0}
-.plan-overlay .north-arrow{
-  position:absolute;top:clamp(4px,0.5vw,8px);right:clamp(4px,0.5vw,8px);
-  font-size:clamp(0.7rem,1vw,0.85rem);font-weight:700;color:var(--text);
-  background:rgba(255,255,255,0.9);border-radius:50%;width:28px;height:28px;
-  display:flex;align-items:center;justify-content:center;
-  border:1px solid var(--separator);
-}
-
-/* ============ BAR CHART ============ */
-.bar-chart{display:flex;align-items:flex-end;gap:clamp(2px,0.3vw,4px);height:clamp(60px,10vh,100px)}
-.bar-col{display:flex;flex-direction:column;align-items:center;gap:2px;flex:1}
-.bar-col .bar{
-  width:100%;border-radius:4px 4px 0 0;
-  background:linear-gradient(180deg,var(--green),#52b788);
-  transition:height 0.6s ease;min-width:8px;
-}
-.bar-col .bar-lbl{font-size:clamp(0.5rem,0.7vw,0.6rem);color:var(--text3);white-space:nowrap}
-.bar-col .bar-val{font-size:clamp(0.5rem,0.7vw,0.6rem);color:var(--text2);font-weight:600}
-
-/* ============ COMPACT TABLE (for forms) ============ */
-.form-tbl td:last-child,.form-tbl th:last-child{text-align:right}
-.form-tbl .highlight-row td{background:rgba(45,106,79,0.08);font-weight:600}
-
-/* ============ TWO-COL LAYOUT (tight) ============ */
-.two-col{display:grid;grid-template-columns:1fr 1fr;gap:clamp(0.5rem,1.2vw,1rem);align-items:start}
-@media(max-width:768px){.two-col{grid-template-columns:1fr}}
-
-/* ============ RESPONSIVE ============ */
-@media(max-height:700px){:root{--pad:clamp(0.75rem,3vw,2rem);--gap:clamp(0.4rem,1.5vw,1rem);--h2:clamp(1.2rem,3vw,2rem);--body:clamp(0.82rem,1.3vw,1rem);--small:clamp(0.75rem,1.1vw,0.88rem)}}
-@media(max-height:600px){:root{--pad:clamp(0.5rem,2.5vw,1.5rem);--gap:clamp(0.3rem,1vw,0.75rem);--body:clamp(0.78rem,1.2vw,0.95rem)}.nav-dots{display:none}}
-@media(max-height:500px){:root{--pad:clamp(0.4rem,2vw,1rem);--h2:clamp(1rem,2.5vw,1.5rem);--body:clamp(0.72rem,1vw,0.88rem)}}
-@media(max-width:600px){:root{--title:clamp(1.25rem,7vw,2.5rem)}.stats,.goals{flex-direction:column}}
-@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:0.01ms!important;transition-duration:0.2s!important}html{scroll-behavior:auto}}
 </style>
 </head>
 <body>
 
-<div class="progress-bar" id="progressBar"></div>
-<nav class="nav-dots" id="navDots"></nav>
-<div class="slide-counter" id="slideCounter"></div>
+<!-- NAV -->
+<header class="topnav" id="topnav">
+  <span class="brand">🏒 Хоккейный Родитель</span>
+  <nav>
+    <a href="#features">Результаты</a>
+    <a href="#screens">Экраны</a>
+    <a href="#tech">Стек</a>
+    <a href="#hypotheses">Гипотезы</a>
+    <a href="#team">Команда</a>
+  </nav>
+</header>
 
-<!-- ======================== 1. TITLE ======================== -->
-<section class="slide slide--hero" data-slide="0">
-  <div class="bg-mesh"><canvas data-orbs='[{"c":"#a8d5ba","r":280},{"c":"#a3c4d9","r":240},{"c":"#e9c46a","r":140}]'></canvas></div>
-  <div class="slide-inner">
-    <div class="badge rv">Университет ИТМО &middot; Команда 4</div>
-    <h1 class="rv rv-d1">База отдыха<br>в Иркутской области</h1>
-    <p class="sub rv rv-d2">Исследование альтернативных источников энергии<br>Ролевая игра &laquo;Солнечный дом&raquo;</p>
-    <p class="caption rv rv-d3" style="margin-top:clamp(0.3rem,0.4vw,0.4rem)">25 мест &middot; 51.988624 N, 104.674372 E</p>
+<!-- HERO -->
+<section class="hero" style="padding-top:120px">
+  <h1>Хоккейный Родитель</h1>
+  <p class="subtitle">Цифровая платформа объективной оценки и отслеживания развития юных хоккеистов (5–18 лет). Отчёт по итогам двух недель работы в рамках Проектно-продуктовой мастерской.</p>
+  <div class="badge-row">
+    <span>ППМ 2024–2026</span>
+    <span>React + TypeScript</span>
+    <span>MVP фронтенд</span>
   </div>
 </section>
 
-<!-- ======================== 2. TEAM ======================== -->
-<section class="slide" style="background:var(--surface-warm)" data-slide="1">
-  <div class="bg-mesh"><canvas data-orbs='[{"c":"#a8d5ba","r":200},{"c":"#e9c46a","r":150}]'></canvas></div>
-  <div class="slide-inner" style="align-items:center;z-index:1;position:relative">
-    <span class="label rv">Команда проекта</span>
-    <h2 class="title rv rv-d1" style="text-align:center">Наша команда</h2>
-    <div class="team-list rv-d2" style="margin-top:var(--gap)" id="teamList">
-      <div class="member" data-delay="0">
-        <div class="ava"><img src="images/tamir_avatar.jpg" alt=""></div>
-        <div><div class="m-role">Генеральный директор</div><div class="m-name">Тамир Будариев</div></div>
-      </div>
-      <div class="member" data-delay="150">
-        <div class="ava"><img src="images/aivaz_avatar.jpg" alt=""></div>
-        <div><div class="m-role">Проектировщик 1</div><div class="m-name">Айваз Багаутдинов</div></div>
-      </div>
-      <div class="member" data-delay="300">
-        <div class="ava"><img src="images/andrey_avatar.jpg" alt=""></div>
-        <div><div class="m-role">Проектировщик 2</div><div class="m-name">Андрей Михайлов</div></div>
-      </div>
-      <div class="member" data-delay="450">
-        <div class="ava"><img src="images/alina_avatar.jpg" alt=""></div>
-        <div><div class="m-role">Монтажник 1</div><div class="m-name">Алина Костюкова</div></div>
-      </div>
-      <div class="member" data-delay="600">
-        <div class="ava"><img src="images/polina_avatar.jpg" alt=""></div>
-        <div><div class="m-role">Монтажник 2</div><div class="m-name">Полина Синицына</div></div>
-      </div>
+<!-- STATS -->
+<section>
+  <div class="container">
+    <h2 class="section-title">Ключевые метрики спринта</h2>
+    <p class="section-sub">Что мы сделали за две недели</p>
+    <div class="stats">
+      <div class="stat-card"><div class="num">6</div><div class="label">Экранов UI</div></div>
+      <div class="stat-card"><div class="num">14</div><div class="label">React-компонентов</div></div>
+      <div class="stat-card"><div class="num">27</div><div class="label">Тестов (Vitest + RTL)</div></div>
+      <div class="stat-card"><div class="num">4</div><div class="label">React Query хука</div></div>
+      <div class="stat-card"><div class="num">10</div><div class="label">Моковых игроков</div></div>
+      <div class="stat-card"><div class="num">3</div><div class="label">Гипотезы проверены</div></div>
     </div>
   </div>
 </section>
 
-<!-- ======================== 3. GOALS ======================== -->
-<section class="slide" style="background:var(--surface)" data-slide="2">
-  <div class="bg-mesh"><canvas data-orbs='[{"c":"#a3c4d9","r":240},{"c":"#a8d5ba","r":200}]'></canvas></div>
-  <div class="slide-inner" style="align-items:center;text-align:center;z-index:1;position:relative">
-    <span class="label rv">Цели и задачи</span>
-    <h2 class="title rv rv-d1">Цель проекта</h2>
-    <div class="goals rv-d2" style="margin-top:var(--gap);max-width:850px" id="goalsGrid">
-      <div class="goal" data-delay="0">
-        <div class="g-icon">&#9728;&#65039;</div>
-        <div class="g-text">Расчёт солнечной системы ГВС и электроснабжения базы отдыха</div>
+<!-- FEATURES -->
+<section id="features">
+  <div class="container">
+    <h2 class="section-title">Что реализовано</h2>
+    <p class="section-sub">Полный перечень выполненных задач и текущий статус</p>
+    <div class="features-grid">
+
+      <div class="feature-card">
+        <div class="icon" style="background:var(--blue-l);color:var(--blue)">📋</div>
+        <h3>Профиль игрока</h3>
+        <p>Пошаговая форма создания: ФИО, дата рождения, позиция, хват, команда, номер, город/регион. Валидация через Zod на каждом шаге.</p>
+        <span class="tag tag-done">Готово</span>
       </div>
-      <div class="goal" data-delay="200">
-        <div class="g-icon">&#128202;</div>
-        <div class="g-text">Подбор оборудования по методике А&ndash;В&ndash;С анализа</div>
+
+      <div class="feature-card">
+        <div class="icon" style="background:var(--green-l);color:var(--green)">📏</div>
+        <h3>Антропометрия</h3>
+        <p>9 параметров: рост, вес, размах рук, ширина плеч, длина ноги, туловище, высота сидя, размер обуви, % жира. Перцентильные бейджи по возрастным нормам.</p>
+        <span class="tag tag-done">Готово</span>
       </div>
-      <div class="goal" data-delay="400">
-        <div class="g-icon">&#128176;</div>
-        <div class="g-text">Технико-экономическое обоснование и расчёт срока окупаемости</div>
+
+      <div class="feature-card">
+        <div class="icon" style="background:var(--amber-l);color:var(--amber)">⚡</div>
+        <h3>Физические тесты</h3>
+        <p>11 показателей в 4 группах: скорость (бег 20м/60м), взрывная сила (прыжки), координация (ловкость, гибкость, баланс), силовая выносливость (отжимания, подтягивания, планка).</p>
+        <span class="tag tag-done">Готово</span>
       </div>
+
+      <div class="feature-card">
+        <div class="icon" style="background:var(--blue-l);color:var(--blue)">📊</div>
+        <h3>Dashboard родителя</h3>
+        <p>Приветствие, 3 стат-карточки (рейтинг с дельтой, позиция в регионе, дата обновления), график прогресса, радар навыков, таблица последних тестов, FAB-кнопка.</p>
+        <span class="tag tag-done">Готово</span>
+      </div>
+
+      <div class="feature-card">
+        <div class="icon" style="background:var(--green-l);color:var(--green)">🔍</div>
+        <h3>Каталог игроков</h3>
+        <p>Поиск по имени, фильтрация по региону и позиции. Карточки игроков с аватаром, рейтингом и переходом в профиль.</p>
+        <span class="tag tag-done">Готово</span>
+      </div>
+
+      <div class="feature-card">
+        <div class="icon" style="background:var(--amber-l);color:var(--amber)">🎥</div>
+        <h3>Видео-галерея</h3>
+        <p>Превью карточки видео, клик открывает модальное окно (Dialog) с заглушкой плеера. Данные из mock-файла.</p>
+        <span class="tag tag-done">Готово</span>
+      </div>
+
+      <div class="feature-card">
+        <div class="icon" style="background:var(--blue-l);color:var(--blue)">🛡️</div>
+        <h3>Авторизация (UI)</h3>
+        <p>Выбор роли (Родитель / Скаут), форма входа с валидацией email + пароль. Мок-навигация в dashboard.</p>
+        <span class="tag tag-done">Готово</span>
+      </div>
+
+      <div class="feature-card">
+        <div class="icon" style="background:var(--amber-l);color:var(--amber)">🧪</div>
+        <h3>Тестирование</h3>
+        <p>27 тестов: Vitest + React Testing Library. Покрытие страниц (Dashboard, Profile) и shared-компонентов (StatCard, PercentileBadge, Charts).</p>
+        <span class="tag tag-done">Готово</span>
+      </div>
+
     </div>
   </div>
 </section>
 
-<!-- ======================== 4. LOCATION ======================== -->
-<section class="slide" style="background:var(--surface-warm)" data-slide="3">
-  <div class="slide-inner">
-    <span class="label rv">01 &mdash; Местоположение</span>
-    <h2 class="title rv rv-d1">Расположение базы отдыха</h2>
-    <div class="panel-row rv rv-d2" style="margin-top:var(--gap);flex:1;align-items:center">
-      <div class="img-frame rv-s" style="height:min(55vh,440px)">
-        <img src="images/map_expanded.png" alt="Карта">
-      </div>
-      <div style="display:flex;flex-direction:column;gap:var(--gap-sm)">
-        <div class="stat"><div class="val c-blue">51.99&deg; N</div><div class="lbl">Широта</div></div>
-        <div class="stat"><div class="val c-blue">104.67&deg; E</div><div class="lbl">Долгота</div></div>
-        <div class="stat"><div class="val c-green" style="font-size:var(--body)">Иркутская область</div><div class="lbl">Побережье озера Байкал</div></div>
-      </div>
-    </div>
-  </div>
-</section>
+<!-- SCREENS -->
+<section id="screens" style="background:var(--gray-50)">
+  <div class="container">
+    <h2 class="section-title">Экраны приложения</h2>
+    <p class="section-sub">Основные пользовательские сценарии</p>
+    <div class="screens-grid">
 
-<!-- ======================== 5. MASTERPLAN ======================== -->
-<section class="slide" style="background:var(--surface)" data-slide="4">
-  <div class="slide-inner">
-    <span class="label rv">02 &mdash; Генеральный план</span>
-    <h2 class="title rv rv-d1">Проект базы отдыха</h2>
-    <div class="plan-layout rv rv-d2" style="margin-top:var(--gap)">
-      <div class="img-frame rv-s">
-        <img src="images/genplan.png" alt="Генплан">
-      </div>
-      <div class="info">
-        <div class="bldgs">
-          <div class="bldg"><span class="bn">Кафе с террасой (105 мест)</span><span class="ba">256,6 м&sup2;</span></div>
-          <div class="bldg"><span class="bn">Админ. здание</span><span class="ba">117,8 м&sup2;</span></div>
-          <div class="bldg"><span class="bn">Гостиница (8 ном.)</span><span class="ba">142,3 м&sup2;</span></div>
-          <div class="bldg"><span class="bn">КПП</span><span class="ba">12,0 м&sup2;</span></div>
-          <div class="bldg"><span class="bn">Баня</span><span class="ba">108,6 м&sup2;</span></div>
-          <div class="bldg"><span class="bn">Модульный дом &times;10</span><span class="ba">45,4 м&sup2;</span></div>
-          <div class="bldg"><span class="bn">Дом-сфера &times;5</span><span class="ba">40,7 м&sup2;</span></div>
-          <div class="bldg"><span class="bn">Беседки</span><span class="ba">5 шт</span></div>
-          <div class="bldg"><span class="bn">Парковки</span><span class="ba">35 м/м</span></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ======================== 6. ADMIN BUILDING ======================== -->
-<section class="slide" style="background:var(--surface-warm)" data-slide="5">
-  <div class="slide-inner">
-    <span class="label rv">03 &mdash; Здания</span>
-    <h2 class="title rv rv-d1">Админ.&ndash;хозяйственное здание</h2>
-    <p class="caption rv rv-d1">Общая площадь 117,8 м&sup2;</p>
-    <div class="plan-layout rv rv-d2" style="margin-top:var(--gap)">
-      <div class="img-frame rv-s">
-        <img src="images/admin_plan.png" alt="План этажей">
-      </div>
-      <div class="info">
-        <div>
-          <p style="font-size:var(--small);font-weight:600;color:var(--green);margin-bottom:3px">1-й этаж</p>
-          <div class="rooms">
-            <div class="room"><span class="rn">Ресепшн</span><span class="ra">29,26 м&sup2;</span></div>
-            <div class="room"><span class="rn">Хоз. помещение</span><span class="ra">22,49 м&sup2;</span></div>
-            <div class="room"><span class="rn">Хоз. помещение</span><span class="ra">7,69 м&sup2;</span></div>
-            <div class="room"><span class="rn">Коридор</span><span class="ra">4,64 м&sup2;</span></div>
-            <div class="room"><span class="rn">С/у</span><span class="ra">2,89 м&sup2;</span></div>
+      <div class="screen-card">
+        <div class="mock" style="background:linear-gradient(135deg,#1d4ed8,#3b82f6)">
+          <div class="overlay" style="color:rgba(255,255,255,.9);font-size:1rem;font-weight:600;flex-direction:column;gap:4px">
+            <span style="font-size:2rem">🏠</span>Лендинг
           </div>
         </div>
-        <div>
-          <p style="font-size:var(--small);font-weight:600;color:var(--green);margin-bottom:3px">2-й этаж</p>
-          <div class="rooms">
-            <div class="room"><span class="rn">Помещения сотр. &times;3</span><span class="ra">12,25&ndash;12,53 м&sup2;</span></div>
-            <div class="room"><span class="rn">Прачечная</span><span class="ra">6,93 м&sup2;</span></div>
-            <div class="room"><span class="rn">Зона приёма пищи</span><span class="ra">16,49 м&sup2;</span></div>
-            <div class="room"><span class="rn">С/у + душ</span><span class="ra">4,15 м&sup2;</span></div>
+        <div class="info"><h4>Главная страница</h4><p>Маркетинговый лендинг с CTA, описание фичей, переход на вход</p></div>
+      </div>
+
+      <div class="screen-card">
+        <div class="mock" style="background:linear-gradient(135deg,#059669,#34d399)">
+          <div class="overlay" style="color:rgba(255,255,255,.9);font-size:1rem;font-weight:600;flex-direction:column;gap:4px">
+            <span style="font-size:2rem">🔑</span>Логин
           </div>
         </div>
+        <div class="info"><h4>Вход в систему</h4><p>Выбор роли, email + пароль, Zod-валидация</p></div>
       </div>
-    </div>
-  </div>
-</section>
 
-<!-- ======================== 7. ADMIN ENERGY ======================== -->
-<section class="slide" style="background:var(--surface)" data-slide="6">
-  <div class="slide-inner">
-    <span class="label rv">03 &mdash; Энергопотребление</span>
-    <h2 class="title rv rv-d1">Админ. здание &mdash; расход ресурсов</h2>
-    <div class="stats rv rv-d2" style="margin-top:var(--gap)">
-      <div class="stat"><div class="val c-blue">640</div><div class="lbl">кВт&middot;ч/мес &mdash; электро</div></div>
-      <div class="stat"><div class="val c-amber">2 808</div><div class="lbl">кВт&middot;ч/мес &mdash; отопление</div></div>
-      <div class="stat"><div class="val c-green">22,5</div><div class="lbl">м&sup3;/мес &mdash; ГВС</div></div>
-    </div>
-    <div class="tbl-wrap rv rv-d3" style="margin-top:var(--gap)">
-      <table>
-        <thead><tr><th>Прибор</th><th>Мощность</th><th>ч/сутки</th><th>кВт&middot;ч/сут</th></tr></thead>
-        <tbody>
-          <tr><td>Освещение LED</td><td>1 170 Вт</td><td>10</td><td>11,7</td></tr>
-          <tr><td>Компьютеры (3 шт)</td><td>300 Вт</td><td>8</td><td>2,4</td></tr>
-          <tr><td>Оргтехника</td><td>500 Вт</td><td>4</td><td>2,0</td></tr>
-          <tr><td>Стиральная машина</td><td>2 000 Вт</td><td>2</td><td>4,0</td></tr>
-          <tr><td>Сушильная машина</td><td>2 500 Вт</td><td>2</td><td>5,0</td></tr>
-          <tr><td>Холодильник</td><td>150 Вт</td><td>24&times;0,4</td><td>1,4</td></tr>
-          <tr><td>Электроплита</td><td>2 000 Вт</td><td>2</td><td>4,0</td></tr>
-          <tr><td>Кондиционеры (2)</td><td>2 000 Вт</td><td>6</td><td>12,0</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</section>
-
-<!-- ======================== 8. CAFE PLAN ======================== -->
-<section class="slide" style="background:var(--surface-warm)" data-slide="7">
-  <div class="slide-inner">
-    <span class="label rv">04 &mdash; Кафе</span>
-    <h2 class="title rv rv-d1">Кафе на 105 мест</h2>
-    <p class="caption rv rv-d1">Площадь застройки 256,6 м&sup2;</p>
-    <div class="plan-layout rv rv-d2" style="margin-top:var(--gap)">
-      <div class="img-frame rv-s">
-        <img src="images/cafe_plan.png" alt="План кафе">
-      </div>
-      <div class="info">
-        <div class="rooms">
-          <div class="room"><span class="rn">Зал на 57 мест</span><span class="ra">82,05 м&sup2;</span></div>
-          <div class="room"><span class="rn">Терраса на 48 мест</span><span class="ra">60,57 м&sup2;</span></div>
-          <div class="room"><span class="rn">Стойка хостес + гардероб</span><span class="ra">&mdash;</span></div>
-          <div class="room"><span class="rn">Бар</span><span class="ra">&mdash;</span></div>
-          <div class="room"><span class="rn">Кухня (гор./хол. цех)</span><span class="ra">&mdash;</span></div>
-          <div class="room"><span class="rn">Моечная</span><span class="ra">&mdash;</span></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ======================== 9. CAFE ENERGY ======================== -->
-<section class="slide" style="background:var(--surface)" data-slide="8">
-  <div class="slide-inner">
-    <span class="label rv">04 &mdash; Энергопотребление</span>
-    <h2 class="title rv rv-d1">Кафе &mdash; расход ресурсов</h2>
-    <div class="stats rv rv-d2" style="margin-top:var(--gap)">
-      <div class="stat"><div class="val c-blue">5 040</div><div class="lbl">кВт&middot;ч/мес &mdash; электро</div></div>
-      <div class="stat"><div class="val c-amber">6 912</div><div class="lbl">кВт&middot;ч/мес &mdash; отопление</div></div>
-      <div class="stat"><div class="val c-green">45</div><div class="lbl">м&sup3;/мес &mdash; ГВС</div></div>
-    </div>
-    <div class="tbl-wrap rv rv-d3" style="margin-top:var(--gap)">
-      <table>
-        <thead><tr><th>Прибор</th><th>Мощность</th><th>ч/сутки</th><th>кВт&middot;ч/сут</th></tr></thead>
-        <tbody>
-          <tr><td>Освещение</td><td>2 560 Вт</td><td>12</td><td>30,7</td></tr>
-          <tr><td>Электроплиты (4)</td><td>10 000 Вт</td><td>6</td><td>60,0</td></tr>
-          <tr><td>Фритюр (2)</td><td>6 000 Вт</td><td>5</td><td>30,0</td></tr>
-          <tr><td>Холодильники (3)</td><td>2 000 Вт</td><td>24&times;0,5</td><td>24,0</td></tr>
-          <tr><td>Посудомойка</td><td>3 500 Вт</td><td>4</td><td>14,0</td></tr>
-          <tr><td>Вентиляция</td><td>5 000 Вт</td><td>12</td><td>60,0</td></tr>
-          <tr><td>Кондиционеры</td><td>8 000 Вт</td><td>8</td><td>64,0</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</section>
-
-<!-- ======================== 10. GUEST MODULE 1 ======================== -->
-<section class="slide" style="background:var(--surface-warm)" data-slide="9">
-  <div class="slide-inner">
-    <span class="label rv">05 &mdash; Гостевые модули</span>
-    <h2 class="title rv rv-d1">Гостевой модуль 1</h2>
-    <p class="caption rv rv-d1">40 м&sup2; &middot; 5 чел &middot; 10 шт</p>
-    <div class="plan-layout rv rv-d2" style="margin-top:var(--gap)">
-      <div class="img-frame rv-s">
-        <img src="images/guest1_plan.png" alt="План модуля 1">
-      </div>
-      <div class="info">
-        <div class="stats" style="gap:var(--gap-sm)">
-          <div class="stat"><div class="val c-blue" style="font-size:clamp(1rem,2vw,1.4rem)">350</div><div class="lbl">кВт&middot;ч/мес электро</div></div>
-          <div class="stat"><div class="val c-amber" style="font-size:clamp(1rem,2vw,1.4rem)">960</div><div class="lbl">кВт&middot;ч/мес отопл.</div></div>
-          <div class="stat"><div class="val c-green" style="font-size:clamp(1rem,2vw,1.4rem)">22,5</div><div class="lbl">м&sup3;/мес ГВС</div></div>
-        </div>
-        <div class="tbl-wrap">
-          <table>
-            <thead><tr><th>Прибор</th><th>Мощность</th><th>кВт&middot;ч/сут</th></tr></thead>
-            <tbody>
-              <tr><td>Освещение</td><td>400 Вт</td><td>2,4</td></tr>
-              <tr><td>Холодильник</td><td>150 Вт</td><td>1,4</td></tr>
-              <tr><td>Плита</td><td>2 000 Вт</td><td>4,0</td></tr>
-              <tr><td>ТВ</td><td>100 Вт</td><td>0,5</td></tr>
-              <tr><td>Водонагреватель</td><td>2 000 Вт</td><td>6,0</td></tr>
-              <tr><td>Кондиционер</td><td>1 500 Вт</td><td>9,0</td></tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ======================== 11. GUEST MODULE 2 ======================== -->
-<section class="slide" style="background:var(--surface)" data-slide="10">
-  <div class="slide-inner">
-    <span class="label rv">05 &mdash; Гостевые модули</span>
-    <h2 class="title rv rv-d1">Гостевой модуль 2</h2>
-    <p class="caption rv rv-d1">40 м&sup2; &middot; 3 чел &middot; 5 шт</p>
-    <div class="plan-layout rv rv-d2" style="margin-top:var(--gap)">
-      <div class="img-frame rv-s">
-        <img src="images/guest2_plan.png" alt="План модуля 2">
-      </div>
-      <div class="info">
-        <div class="stats" style="gap:var(--gap-sm)">
-          <div class="stat"><div class="val c-blue" style="font-size:clamp(1rem,2vw,1.4rem)">275</div><div class="lbl">кВт&middot;ч/мес электро</div></div>
-          <div class="stat"><div class="val c-amber" style="font-size:clamp(1rem,2vw,1.4rem)">960</div><div class="lbl">кВт&middot;ч/мес отопл.</div></div>
-          <div class="stat"><div class="val c-green" style="font-size:clamp(1rem,2vw,1.4rem)">13,5</div><div class="lbl">м&sup3;/мес ГВС</div></div>
-        </div>
-        <div class="tbl-wrap">
-          <table>
-            <thead><tr><th>Прибор</th><th>Мощность</th><th>кВт&middot;ч/сут</th></tr></thead>
-            <tbody>
-              <tr><td>Освещение</td><td>400 Вт</td><td>2,4</td></tr>
-              <tr><td>Холодильник</td><td>150 Вт</td><td>1,4</td></tr>
-              <tr><td>Плита</td><td>2 000 Вт</td><td>3,0</td></tr>
-              <tr><td>ТВ</td><td>100 Вт</td><td>0,4</td></tr>
-              <tr><td>Водонагреватель</td><td>2 000 Вт</td><td>4,0</td></tr>
-              <tr><td>Кондиционер</td><td>1 500 Вт</td><td>7,5</td></tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ======================== 12. HOTEL ======================== -->
-<section class="slide" style="background:var(--surface-warm)" data-slide="11">
-  <div class="slide-inner">
-    <span class="label rv">06 &mdash; Гостиница</span>
-    <h2 class="title rv rv-d1">Гостиничный блок на 8 номеров</h2>
-    <p class="caption rv rv-d1">142,3 м&sup2; &middot; 16 гостей</p>
-    <div class="panel-row rv rv-d2" style="margin-top:var(--gap);align-items:center">
-      <div style="display:flex;flex-direction:column;gap:var(--gap-sm)">
-        <div class="stats" style="flex-direction:column;gap:var(--gap-sm)">
-          <div class="stat"><div class="val c-blue" style="font-size:clamp(1rem,2vw,1.4rem)">1 340 кВт&middot;ч</div><div class="lbl">Электроэнергия / мес</div></div>
-          <div class="stat"><div class="val c-amber" style="font-size:clamp(1rem,2vw,1.4rem)">3 456 кВт&middot;ч</div><div class="lbl">Отопление / мес</div></div>
-          <div class="stat"><div class="val c-green" style="font-size:clamp(1rem,2vw,1.4rem)">72 м&sup3;</div><div class="lbl">ГВС / мес</div></div>
-        </div>
-      </div>
-      <div class="tbl-wrap rv rv-d3">
-        <table>
-          <thead><tr><th>Прибор</th><th>кВт&middot;ч/сут</th></tr></thead>
-          <tbody>
-            <tr><td>Освещение</td><td>11,5</td></tr>
-            <tr><td>ТВ (8 шт)</td><td>4,0</td></tr>
-            <tr><td>Холодильники (8)</td><td>7,7</td></tr>
-            <tr><td>Кондиционеры</td><td>48,0</td></tr>
-            <tr><td>Вентиляция</td><td>18,0</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ======================== 13. SUMMARY ======================== -->
-<section class="slide" style="background:var(--surface)" data-slide="12">
-  <div class="slide-inner">
-    <span class="label rv">07 &mdash; Итоги</span>
-    <h2 class="title rv rv-d1">Сводное потребление по базе</h2>
-    <div class="stats rv rv-d2" style="margin-top:var(--gap)">
-      <div class="stat"><div class="val c-blue">7 645</div><div class="lbl">кВт&middot;ч/мес &mdash; Электроэнергия</div></div>
-      <div class="stat"><div class="val c-amber">15 096</div><div class="lbl">кВт&middot;ч/мес &mdash; Отопление</div></div>
-      <div class="stat"><div class="val c-green">175,5</div><div class="lbl">м&sup3;/мес &mdash; ГВС</div></div>
-    </div>
-    <div class="tbl-wrap rv rv-d3" style="margin-top:var(--gap)">
-      <table>
-        <thead><tr><th>Объект</th><th style="text-align:right">Электро, кВт&middot;ч</th><th style="text-align:right">Отопл., кВт&middot;ч</th><th style="text-align:right">ГВС, м&sup3;</th></tr></thead>
-        <tbody>
-          <tr><td>Админ. здание</td><td style="text-align:right">640</td><td style="text-align:right">2 808</td><td style="text-align:right">22,5</td></tr>
-          <tr><td>Домик 1 (&times;10)</td><td style="text-align:right">350</td><td style="text-align:right">960</td><td style="text-align:right">22,5</td></tr>
-          <tr><td>Домик 2 (&times;5)</td><td style="text-align:right">275</td><td style="text-align:right">960</td><td style="text-align:right">13,5</td></tr>
-          <tr><td>Гостиница</td><td style="text-align:right">1 340</td><td style="text-align:right">3 456</td><td style="text-align:right">72,0</td></tr>
-          <tr><td>Кафе</td><td style="text-align:right">5 040</td><td style="text-align:right">6 912</td><td style="text-align:right">45,0</td></tr>
-          <tr class="row-total"><td>Итого</td><td style="text-align:right">7 645</td><td style="text-align:right">15 096</td><td style="text-align:right">175,5</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="glass-strong rv rv-d4" style="padding:clamp(0.6rem,1vw,1rem);border-radius:14px;margin-top:var(--gap-sm)">
-      <p style="font-size:var(--small);font-weight:600;color:var(--text);margin-bottom:6px">Структура электропотребления по объектам</p>
-      <svg viewBox="0 0 520 168" width="100%" style="display:block;font-family:Inter,sans-serif">
-        <g class="hbar-row">
-          <text x="0" y="19" font-size="10" fill="#1d1d1f" font-weight="500">Кафе</text>
-          <rect x="80" y="7" width="343" height="20" rx="4" fill="#e8e8ed"/>
-          <rect class="hbar-fill" x="80" y="7" height="20" rx="4" fill="#2d6a4f" style="--bar-w:343px;--d:0.1s"/>
-          <text x="260" y="21" font-size="9" fill="#fff" font-weight="600">5 040 кВт·ч (66%)</text>
-        </g>
-        <g class="hbar-row">
-          <text x="0" y="53" font-size="10" fill="#1d1d1f" font-weight="500">Гостиница</text>
-          <rect x="80" y="41" width="343" height="20" rx="4" fill="#e8e8ed"/>
-          <rect class="hbar-fill" x="80" y="41" height="20" rx="4" fill="#40916c" style="--bar-w:91px;--d:0.2s"/>
-          <text x="176" y="55" font-size="9" fill="#1d1d1f" font-weight="600">1 340 (17,5%)</text>
-        </g>
-        <g class="hbar-row">
-          <text x="0" y="87" font-size="10" fill="#1d1d1f" font-weight="500">Админ</text>
-          <rect x="80" y="75" width="343" height="20" rx="4" fill="#e8e8ed"/>
-          <rect class="hbar-fill" x="80" y="75" height="20" rx="4" fill="#52b788" style="--bar-w:44px;--d:0.3s"/>
-          <text x="130" y="89" font-size="9" fill="#1d1d1f" font-weight="600">640 (8,4%)</text>
-        </g>
-        <g class="hbar-row">
-          <text x="0" y="121" font-size="10" fill="#1d1d1f" font-weight="500">Домик 1 &times;10</text>
-          <rect x="80" y="109" width="343" height="20" rx="4" fill="#e8e8ed"/>
-          <rect class="hbar-fill" x="80" y="109" height="20" rx="4" fill="#74c69d" style="--bar-w:24px;--d:0.4s"/>
-          <text x="110" y="123" font-size="9" fill="#1d1d1f" font-weight="600">350 (4,6%)</text>
-        </g>
-        <g class="hbar-row">
-          <text x="0" y="155" font-size="10" fill="#1d1d1f" font-weight="500">Домик 2 &times;5</text>
-          <rect x="80" y="143" width="343" height="20" rx="4" fill="#e8e8ed"/>
-          <rect class="hbar-fill" x="80" y="143" height="20" rx="4" fill="#95d5b2" style="--bar-w:19px;--d:0.5s"/>
-          <text x="105" y="157" font-size="9" fill="#1d1d1f" font-weight="600">275 (3,6%)</text>
-        </g>
-      </svg>
-    </div>
-  </div>
-</section>
-
-<!-- ======================== 14. SOLAR RADIATION — FORM 1 (Step 4) ======================== -->
-<section class="slide" style="background:var(--surface-warm)" data-slide="13">
-  <div class="slide-inner">
-    <span class="label rv">Форма 1 &mdash; Шаг 4</span>
-    <h2 class="title rv rv-d1">Карта солнечной активности</h2>
-    <p class="caption rv rv-d1">PVGIS ERA5 &middot; 51.989&deg;N, 104.674&deg;E &middot; 464 м &middot; Объект: Админ. здание</p>
-    <div class="two-col rv rv-d2" style="margin-top:var(--gap);flex:1">
-      <div style="display:flex;flex-direction:column;gap:var(--gap-sm)">
-        <div class="img-frame rv-s" style="height:min(32vh,260px)">
-          <img src="images/solar-map-real-with-dot-in-irlutsk.png" alt="Карта солнечной радиации">
-        </div>
-        <div class="img-frame rv-s rv-d1" style="height:min(18vh,140px)">
-          <img src="images/solar-radiation-spectrum.jpg" alt="Спектр солнечной радиации">
-        </div>
-      </div>
-      <div style="display:flex;flex-direction:column;gap:var(--gap-sm)">
-        <div class="tbl-wrap form-tbl">
-          <table>
-            <thead><tr><th>Параметр</th><th>Значение</th></tr></thead>
-            <tbody>
-              <tr><td>Год. суммарная радиация (гориз.)</td><td style="text-align:right">1 330 кВт&middot;ч/м&sup2;</td></tr>
-              <tr><td>Радиация при опт. наклоне</td><td style="text-align:right">1 742 кВт&middot;ч/м&sup2;</td></tr>
-              <tr><td>Ср.сут. летняя (июн&ndash;авг)</td><td style="text-align:right">5,56 кВт&middot;ч/м&sup2;</td></tr>
-              <tr><td>Ср.сут. зимняя (ноя&ndash;янв)</td><td style="text-align:right">2,26 кВт&middot;ч/м&sup2;</td></tr>
-              <tr><td>Пик. солн. часы (ср.год.)</td><td style="text-align:right">4,77 ч/день</td></tr>
-              <tr class="highlight-row"><td>Опт. наклон (круглогод.)</td><td style="text-align:right">47&deg;</td></tr>
-              <tr><td>Ориентация (азимут)</td><td style="text-align:right">180&deg; (Юг)</td></tr>
-              <tr><td>Выход 1 кВт<sub>p</sub>/год</td><td style="text-align:right">1 444 кВт&middot;ч</td></tr>
-              <tr><td>Солн. часов/год</td><td style="text-align:right">~2 000</td></tr>
-            </tbody>
-          </table>
-        </div>
-        <p style="font-size:clamp(0.6rem,0.85vw,0.72rem);color:var(--text2);line-height:1.5">Иркутская область&nbsp;&mdash; один из наиболее инсолированных регионов Сибири: ~2&nbsp;000 солн. часов/год. Соотношение лето/зима = 2,5:1. При наклоне 47&deg; годовая инсоляция +31% vs горизонталь. Источник: PVGIS ERA5 (2005&ndash;2023). Параметры зависят только от координат и неизменны для всех зданий базы.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ======================== 15. SOLAR THERMAL — FORM 3 (Step 5A, Andrey) ======================== -->
-<section class="slide" style="background:var(--surface)" data-slide="14">
-  <div class="slide-inner">
-    <span class="label rv">Форма 3 &mdash; Шаг 5А &middot; Ответственный: Андрей Михайлов</span>
-    <h2 class="title rv rv-d1">ГВС &mdash; Админ. здание (22,5 м&sup3;/мес)</h2>
-    <div class="two-col rv rv-d2" style="margin-top:var(--gap);flex:1">
-      <div style="display:flex;flex-direction:column;gap:var(--gap-sm)">
-        <p style="font-size:var(--small);font-weight:600;color:var(--green)">Расчёт теплопотребности</p>
-        <div class="calc-chain">
-          <div class="calc-step"><span class="formula">Q = c &times; M &times; &Delta;T</span><span class="result">Формула</span></div>
-          <div class="calc-step"><span class="formula">M = 22 500 кг/мес</span><span class="result">22,5 м&sup3;</span></div>
-          <div class="calc-step"><span class="formula">&Delta;T = 60&deg;C &minus; 6&deg;C</span><span class="result">54&deg;C</span></div>
-          <div class="calc-step"><span class="formula">Q<sub>мес</sub> = 1 &times; 22 500 &times; 54 = 1 215 000 ккал</span><span class="result">&darr;</span></div>
-          <div class="calc-step"><span class="formula">Q<sub>мес</sub> = 1 215 000 &times; 0,001163</span><span class="result">1 413 кВт&middot;ч</span></div>
-          <div class="calc-step"><span class="formula">Q<sub>сут</sub> = 1 413 &divide; 30</span><span class="result">47,1 кВт&middot;ч/сут</span></div>
-        </div>
-        <p style="font-size:var(--small);font-weight:600;color:var(--green);margin-top:var(--gap-sm)">Расчёт площади коллекторов</p>
-        <div class="calc-chain">
-          <div class="calc-step"><span class="formula">A = Q<sub>сут</sub> / (&eta; &times; I &times; &eta;<sub>сис</sub>)</span><span class="result">Формула</span></div>
-          <div class="calc-step"><span class="formula">&eta;=0,65 &middot; I=4,77 &middot; &eta;<sub>с</sub>=0,85</span><span class="result">&darr;</span></div>
-          <div class="calc-step"><span class="formula">A = 47,1 / (0,65 &times; 4,77 &times; 0,85)</span><span class="result">17,9 м&sup2;</span></div>
-          <div class="calc-step"><span class="formula">N = &lceil;17,9 / 3,96&rceil;</span><span class="result">5 шт SCH-30</span></div>
-          <div class="calc-step"><span class="formula">A<sub>факт</sub> = 5 &times; 3,96</span><span class="result">19,8 м&sup2;</span></div>
-          <div class="calc-step"><span class="formula">V<sub>бак</sub> = 19,8 &times; 65</span><span class="result">1 287 л &rarr; 1 500 л</span></div>
-        </div>
-      </div>
-      <div style="display:flex;flex-direction:column;gap:var(--gap-sm)">
-        <div class="tbl-wrap form-tbl">
-          <table>
-            <thead><tr><th>Параметр (админ. здание)</th><th>Значение</th></tr></thead>
-            <tbody>
-              <tr><td>Объём ГВС</td><td style="text-align:right">22,5 м&sup3;/мес</td></tr>
-              <tr><td>Теплопотребность ГВС (мес)</td><td style="text-align:right">1 413 кВт&middot;ч</td></tr>
-              <tr><td>Теплопотребность ГВС (сут)</td><td style="text-align:right">47,1 кВт&middot;ч</td></tr>
-              <tr><td>Тип коллектора</td><td style="text-align:right">Вакуумный SCH-30</td></tr>
-              <tr><td>КПД коллектора</td><td style="text-align:right">65%</td></tr>
-              <tr><td>Площадь абсорбера (1 шт)</td><td style="text-align:right">3,96 м&sup2;</td></tr>
-              <tr class="highlight-row"><td>Общая площадь коллекторов</td><td style="text-align:right">19,8 м&sup2;</td></tr>
-              <tr class="highlight-row"><td>Количество коллекторов</td><td style="text-align:right">5 шт</td></tr>
-              <tr><td>Объём бака-аккумулятора</td><td style="text-align:right">1 500 л</td></tr>
-              <tr><td>Резервное</td><td style="text-align:right">Электрокотёл</td></tr>
-              <tr><td>Отопление 2 808 кВт&middot;ч/мес</td><td style="text-align:right;color:var(--amber)">[отд. система]</td></tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="glass-strong rv rv-d3" style="padding:clamp(0.5rem,0.8vw,0.8rem);border-radius:14px">
-          <p style="font-size:clamp(0.7rem,0.9vw,0.82rem);font-weight:600;color:var(--text);margin-bottom:4px;text-align:center">Солнечная фракция ГВС по сезонам</p>
-          <svg viewBox="0 0 260 115" width="100%" style="display:block;font-family:Inter,sans-serif">
-            <line x1="30" y1="10" x2="240" y2="10" stroke="#aeaeb2" stroke-width="0.5" stroke-dasharray="3,2"/>
-            <text x="244" y="13" font-size="7" fill="#aeaeb2">100%</text>
-            <rect class="svg-chart-bar" x="40" y="18.5" width="36" height="76.5" rx="4" fill="#2d6a4f" style="--d:0.1s"/>
-            <text x="58" y="14" font-size="9" fill="#2d6a4f" text-anchor="middle" font-weight="700">90%</text>
-            <text x="58" y="106" font-size="8" fill="#6e6e73" text-anchor="middle">Лето</text>
-            <rect class="svg-chart-bar" x="90" y="44" width="36" height="51" rx="4" fill="#1b4f72" style="--d:0.2s"/>
-            <text x="108" y="40" font-size="9" fill="#1b4f72" text-anchor="middle" font-weight="700">60%</text>
-            <text x="108" y="106" font-size="8" fill="#6e6e73" text-anchor="middle">Вес/Ос</text>
-            <rect class="svg-chart-bar" x="140" y="72" width="36" height="23" rx="4" fill="#aeaeb2" style="--d:0.3s"/>
-            <text x="158" y="68" font-size="9" fill="#6e6e73" text-anchor="middle" font-weight="700">27%</text>
-            <text x="158" y="106" font-size="8" fill="#6e6e73" text-anchor="middle">Зима</text>
-            <rect class="svg-chart-bar" x="190" y="44" width="36" height="51" rx="4" fill="#d4880f" style="--d:0.4s"/>
-            <text x="208" y="40" font-size="9" fill="#d4880f" text-anchor="middle" font-weight="700">60%</text>
-            <text x="208" y="106" font-size="8" fill="#6e6e73" text-anchor="middle">Год</text>
-          </svg>
-        </div>
-        <div class="stats" style="gap:var(--gap-sm)">
-          <div class="stat" style="text-align:center"><div class="val c-green" style="font-size:clamp(1rem,2vw,1.4rem)">5</div><div class="lbl">коллекторов</div></div>
-          <div class="stat" style="text-align:center"><div class="val c-blue" style="font-size:clamp(1rem,2vw,1.4rem)">19,8 м&sup2;</div><div class="lbl">площадь</div></div>
-          <div class="stat" style="text-align:center"><div class="val c-amber" style="font-size:clamp(1rem,2vw,1.4rem)">1 500 л</div><div class="lbl">бак</div></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ======================== 16. SOLAR PV — FORM 3.1 (Step 5B, Aivaz) ======================== -->
-<section class="slide" style="background:var(--surface-warm)" data-slide="15">
-  <div class="slide-inner">
-    <span class="label rv">Форма 3.1 &mdash; Шаг 5Б &middot; Ответственный: Айваз Багаутдинов</span>
-    <h2 class="title rv rv-d1">ФЭС &mdash; Админ. здание (640 кВт&middot;ч/мес)</h2>
-    <div class="two-col rv rv-d2" style="margin-top:var(--gap);flex:1">
-      <div style="display:flex;flex-direction:column;gap:var(--gap-sm)">
-        <p style="font-size:var(--small);font-weight:600;color:var(--amber)">Проверка исходных данных</p>
-        <div class="calc-chain">
-          <div class="calc-step"><span class="formula">&sum; таблицы = 42,5 кВт&middot;ч/сут</span><span class="result">42,5 &times; 30 = 1 275</span></div>
-          <div class="calc-step"><span class="formula">K = 640 / 1 275</span><span class="result">K = 0,502</span></div>
-          <div class="calc-step"><span class="formula">Экв. дней = 640 / 42,5</span><span class="result">15,1 дней/мес</span></div>
-        </div>
-        <p style="font-size:clamp(0.6rem,0.8vw,0.7rem);color:var(--text3);line-height:1.4">Расхождение обусловлено сезонностью: кондиционеры и часть оборудования работают не каждый день. Для расчёта используется фактическое потребление 640 кВт&middot;ч/мес.</p>
-        <p style="font-size:var(--small);font-weight:600;color:var(--green);margin-top:var(--gap-sm)">Расчёт мощности массива</p>
-        <div class="calc-chain">
-          <div class="calc-step"><span class="formula">E<sub>цель</sub> = 0,30 &times; 640</span><span class="result">192 кВт&middot;ч/мес</span></div>
-          <div class="calc-step"><span class="formula">E<sub>сут</sub> = 192 / 30</span><span class="result">6,4 кВт&middot;ч/день</span></div>
-          <div class="calc-step"><span class="formula">P = 6,4 / (4,77 &times; 0,77)</span><span class="result">1,74 кВт<sub>p</sub></span></div>
-          <div class="calc-step"><span class="formula">N = &lceil;1 742 / 500&rceil;</span><span class="result">4 панели</span></div>
-          <div class="calc-step"><span class="formula">P<sub>факт</sub> = 4 &times; 500</span><span class="result">2,0 кВт<sub>p</sub></span></div>
-          <div class="calc-step"><span class="formula">S = 4 &times; 2,37</span><span class="result">9,48 м&sup2;</span></div>
-          <div class="calc-step"><span class="formula">Инвертор &ge; 1,2 &times; 2,0</span><span class="result">3,0 кВт</span></div>
-          <div class="calc-step"><span class="formula">АКБ = 6,4 &times; 2 / 0,80</span><span class="result">16 кВт&middot;ч</span></div>
-          <div class="calc-step"><span class="formula">Год. генер. = 2,0 &times; 1 444</span><span class="result">2 888 кВт&middot;ч/год</span></div>
-        </div>
-      </div>
-      <div style="display:flex;flex-direction:column;gap:var(--gap-sm)">
-        <div class="tbl-wrap form-tbl">
-          <table>
-            <thead><tr><th>Параметр (админ. здание)</th><th>Значение</th></tr></thead>
-            <tbody>
-              <tr><td>Электропотребление</td><td style="text-align:right">640 кВт&middot;ч/мес</td></tr>
-              <tr><td>Целевая генерация (30%)</td><td style="text-align:right">192 кВт&middot;ч/мес</td></tr>
-              <tr><td>Суточная генерация</td><td style="text-align:right">6,4 кВт&middot;ч</td></tr>
-              <tr><td>Пик. солн. часы</td><td style="text-align:right">4,77 ч/день</td></tr>
-              <tr class="highlight-row"><td>Мощность массива</td><td style="text-align:right">2,0 кВт<sub>p</sub></td></tr>
-              <tr><td>Модель панели</td><td style="text-align:right">Delta NXT 500W</td></tr>
-              <tr><td>КПД панели</td><td style="text-align:right">21,05%</td></tr>
-              <tr class="highlight-row"><td>Кол-во панелей</td><td style="text-align:right">4 шт</td></tr>
-              <tr><td>Площадь массива</td><td style="text-align:right">9,48 м&sup2;</td></tr>
-              <tr><td>Инвертор</td><td style="text-align:right">3 кВт</td></tr>
-              <tr><td>АКБ LiFePO4 (2 сут)</td><td style="text-align:right">16 кВт&middot;ч</td></tr>
-              <tr><td>Контроллер заряда</td><td style="text-align:right">MPPT</td></tr>
-              <tr><td>Годовая генерация</td><td style="text-align:right">2 888 кВт&middot;ч</td></tr>
-              <tr><td>Доля от годового потр.</td><td style="text-align:right">~37,6%</td></tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="glass-strong rv rv-d3" style="padding:clamp(0.5rem,0.8vw,0.8rem);border-radius:14px;display:flex;flex-direction:column;align-items:center">
-          <p style="font-size:clamp(0.7rem,0.9vw,0.82rem);font-weight:600;color:var(--text);margin-bottom:4px">Покрытие потребности</p>
-          <!-- Donut: r=54, circ=339.29, 37.6% => arc=127.57, end=211.72 -->
-          <svg viewBox="0 0 160 160" width="120" height="120" style="display:block;font-family:Inter,sans-serif">
-            <circle cx="80" cy="80" r="54" fill="none" stroke="#e5e5ea" stroke-width="20"/>
-            <circle class="donut-arc" cx="80" cy="80" r="54" fill="none" stroke="#2d6a4f" stroke-width="20" stroke-linecap="round" transform="rotate(-90 80 80)" stroke-dasharray="339.29" style="--circ:339.29;--dash-end:211.72"/>
-            <text x="80" y="76" text-anchor="middle" font-size="20" font-weight="700" fill="#2d6a4f">37,6%</text>
-            <text x="80" y="93" text-anchor="middle" font-size="9" fill="#6e6e73">солнце</text>
-          </svg>
-        </div>
-        <div class="stats" style="gap:var(--gap-sm)">
-          <div class="stat" style="text-align:center"><div class="val c-green" style="font-size:clamp(1rem,2vw,1.4rem)">4</div><div class="lbl">панели &times; 500 Вт</div></div>
-          <div class="stat" style="text-align:center"><div class="val c-blue" style="font-size:clamp(1rem,2vw,1.4rem)">2,0 кВт</div><div class="lbl">мощность</div></div>
-          <div class="stat" style="text-align:center"><div class="val c-amber" style="font-size:clamp(1rem,2vw,1.4rem)">16 кВт&middot;ч</div><div class="lbl">АКБ</div></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ======================== 17. EQUIPMENT SUMMARY — ADMIN ONLY ======================== -->
-<section class="slide" style="background:var(--surface)" data-slide="16">
-  <div class="bg-mesh"><canvas data-orbs='[{"c":"#a8d5ba","r":200},{"c":"#a3c4d9","r":160},{"c":"#e9c46a","r":120}]'></canvas></div>
-  <div class="slide-inner" style="z-index:1;position:relative">
-    <span class="label rv">Сводка &mdash; Админ. здание</span>
-    <h2 class="title rv rv-d1">Итоговая спецификация (117,8 м&sup2;)</h2>
-    <div class="two-col rv rv-d2" style="margin-top:var(--gap)">
-      <div class="glass-strong" style="padding:clamp(0.8rem,1.5vw,1.2rem);border-radius:18px">
-        <p style="font-size:var(--body);font-weight:700;color:var(--green);margin-bottom:var(--gap-sm)">&#9728;&#65039; ГВС (Андрей)</p>
-        <div style="display:flex;flex-direction:column;gap:clamp(3px,0.4vh,6px)">
-          <div class="bldg"><span class="bn">Коллекторы SCH-30</span><span class="ba">5 шт</span></div>
-          <div class="bldg"><span class="bn">Площадь абсорбции</span><span class="ba">19,8 м&sup2;</span></div>
-          <div class="bldg"><span class="bn">Бак-аккумулятор</span><span class="ba">1 &times; 1 500 л</span></div>
-          <div class="bldg"><span class="bn">Циркул. насос</span><span class="ba">1 шт</span></div>
-          <div class="bldg"><span class="bn">Электрокотёл (резерв)</span><span class="ba">6 кВт</span></div>
-          <div class="bldg"><span class="bn">Отопление</span><span class="ba" style="color:var(--amber)">2 808 кВт&middot;ч [отд.]</span></div>
-        </div>
-      </div>
-      <div class="glass-strong" style="padding:clamp(0.8rem,1.5vw,1.2rem);border-radius:18px">
-        <p style="font-size:var(--body);font-weight:700;color:var(--blue);margin-bottom:var(--gap-sm)">&#9889; ФЭС (Айваз)</p>
-        <div style="display:flex;flex-direction:column;gap:clamp(3px,0.4vh,6px)">
-          <div class="bldg"><span class="bn">Панели Delta NXT 500W</span><span class="ba">4 шт</span></div>
-          <div class="bldg"><span class="bn">Мощность массива</span><span class="ba">2,0 кВт<sub>p</sub></span></div>
-          <div class="bldg"><span class="bn">Площадь массива</span><span class="ba">9,48 м&sup2;</span></div>
-          <div class="bldg"><span class="bn">Инвертор</span><span class="ba">3 кВт</span></div>
-          <div class="bldg"><span class="bn">АКБ LiFePO4</span><span class="ba">16 кВт&middot;ч</span></div>
-          <div class="bldg"><span class="bn">Годовая генерация</span><span class="ba">2 888 кВт&middot;ч</span></div>
-        </div>
-      </div>
-    </div>
-    <div class="tbl-wrap rv rv-d3" style="margin-top:var(--gap)">
-      <table class="form-tbl">
-        <thead><tr><th>Параметр</th><th style="text-align:right">Было (вся база)</th><th style="text-align:right">Стало (админ.)</th></tr></thead>
-        <tbody>
-          <tr><td>ФЭМ панели</td><td style="text-align:right">42 шт / 20,8 кВт</td><td style="text-align:right;font-weight:700;color:var(--green)">4 шт / 2,0 кВт</td></tr>
-          <tr><td>Площадь ФЭМ</td><td style="text-align:right">100 м&sup2;</td><td style="text-align:right;font-weight:700;color:var(--green)">9,48 м&sup2;</td></tr>
-          <tr><td>Инвертор</td><td style="text-align:right">25 кВт</td><td style="text-align:right;font-weight:700;color:var(--green)">3 кВт</td></tr>
-          <tr><td>АКБ</td><td style="text-align:right">191 кВт&middot;ч</td><td style="text-align:right;font-weight:700;color:var(--green)">16 кВт&middot;ч</td></tr>
-          <tr><td>Коллекторы</td><td style="text-align:right">35 шт / 139 м&sup2;</td><td style="text-align:right;font-weight:700;color:var(--green)">5 шт / 19,8 м&sup2;</td></tr>
-          <tr><td>Бак ГВС</td><td style="text-align:right">2&times;5 000 л</td><td style="text-align:right;font-weight:700;color:var(--green)">1&times;1 500 л</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</section>
-
-<!-- ======================== 18. ADMIN BUILDING PLACEMENT ======================== -->
-<section class="slide" style="background:var(--surface-warm)" data-slide="17">
-  <div class="slide-inner">
-    <span class="label rv">Схема 4 / 4.1 &mdash; Размещение на админ. здании</span>
-    <h2 class="title rv rv-d1">План размещения оборудования</h2>
-    <div class="plan-layout rv rv-d2" style="margin-top:var(--gap)">
-      <div class="img-frame rv-s" style="position:relative">
-        <div class="plan-overlay">
-          <img src="images/admin-build.png" alt="Админ. здание (зд. 5)">
-          <svg viewBox="0 0 1030 770" xmlns="http://www.w3.org/2000/svg">
-            <!-- ═══ ROOF: PV zone (south-west slope of building 5) ═══ -->
-            <rect x="285" y="195" width="120" height="70" rx="5" fill="rgba(27,79,114,0.82)" stroke="#fff" stroke-width="2.5"/>
-            <text x="345" y="228" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">&#9889; ФЭМ</text>
-            <text x="345" y="248" text-anchor="middle" fill="rgba(255,255,255,0.85)" font-size="10">4&times;500W</text>
-            <!-- callout line to label box -->
-            <line x1="285" y1="230" x2="60" y2="115" stroke="#1b4f72" stroke-width="2"/>
-            <rect x="5" y="80" width="168" height="55" rx="8" fill="#fff" stroke="#1b4f72" stroke-width="2" filter="url(#ds)"/>
-            <circle cx="18" cy="95" r="9" fill="#1b4f72"/><text x="18" y="99" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">1</text>
-            <text x="33" y="100" fill="#1b4f72" font-size="10.5" font-weight="700">ФЭМ массив</text>
-            <text x="33" y="115" fill="#3d3d3d" font-size="9">4 &times; 500 Вт = 2,0 кВт<tspan x="33" dy="12">9,48 м&sup2; &middot; 47&deg; / Юг</tspan></text>
-
-            <!-- ═══ ROOF: Collectors zone (south-east slope of building 5) ═══ -->
-            <rect x="430" y="195" width="130" height="70" rx="5" fill="rgba(212,136,15,0.85)" stroke="#fff" stroke-width="2.5"/>
-            <text x="495" y="228" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">&#9728; Коллекторы</text>
-            <text x="495" y="248" text-anchor="middle" fill="rgba(255,255,255,0.85)" font-size="10">5&times;SCH-30</text>
-            <!-- callout line to label box -->
-            <line x1="560" y1="230" x2="800" y2="110" stroke="#d4880f" stroke-width="2"/>
-            <rect x="740" y="75" width="178" height="55" rx="8" fill="#fff" stroke="#d4880f" stroke-width="2" filter="url(#ds)"/>
-            <circle cx="753" cy="90" r="9" fill="#d4880f"/><text x="753" y="94" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">2</text>
-            <text x="768" y="95" fill="#b5700c" font-size="10.5" font-weight="700">Солн. коллекторы</text>
-            <text x="768" y="110" fill="#3d3d3d" font-size="9">5 &times; SCH-30 = 19,8 м&sup2;<tspan x="768" dy="12">47&deg; / Юг &middot; вакуумные</tspan></text>
-
-            <!-- ═══ CABLE from PV to tech room ═══ -->
-            <line x1="345" y1="265" x2="345" y2="380" stroke="#1b4f72" stroke-width="2.5" stroke-dasharray="7,4"/>
-            <line x1="345" y1="380" x2="425" y2="440" stroke="#1b4f72" stroke-width="2.5" stroke-dasharray="7,4"/>
-            <!-- small "DC" label on cable -->
-            <rect x="310" y="370" width="28" height="14" rx="3" fill="#1b4f72"/><text x="324" y="381" text-anchor="middle" fill="#fff" font-size="8" font-weight="600">DC</text>
-
-            <!-- ═══ PIPE from collectors to tech room ═══ -->
-            <line x1="495" y1="265" x2="495" y2="380" stroke="#d4880f" stroke-width="2.5" stroke-dasharray="7,4"/>
-            <line x1="495" y1="380" x2="465" y2="440" stroke="#d4880f" stroke-width="2.5" stroke-dasharray="7,4"/>
-            <!-- small pipe label -->
-            <rect x="498" y="370" width="36" height="14" rx="3" fill="#d4880f"/><text x="516" y="381" text-anchor="middle" fill="#fff" font-size="8" font-weight="600">ГВС</text>
-
-            <!-- ═══ TECHNICAL ROOM (hashed outline over 1st floor room) ═══ -->
-            <rect x="395" y="420" width="130" height="105" rx="6" fill="rgba(255,255,255,0.75)" stroke="#2d6a4f" stroke-width="2.5"/>
-            <!-- indoor equipment markers -->
-            <circle cx="425" cy="448" r="10" fill="#2d6a4f"/><text x="425" y="452" text-anchor="middle" fill="#fff" font-size="10" font-weight="700">3</text>
-            <text x="440" y="452" fill="#1a4a35" font-size="9.5" font-weight="600">Инвертор 3 кВт</text>
-            <circle cx="425" cy="472" r="10" fill="#2d6a4f"/><text x="425" y="476" text-anchor="middle" fill="#fff" font-size="10" font-weight="700">4</text>
-            <text x="440" y="476" fill="#1a4a35" font-size="9.5" font-weight="600">MPPT контроллер</text>
-            <circle cx="425" cy="496" r="10" fill="#6b4c9a"/><text x="425" y="500" text-anchor="middle" fill="#fff" font-size="10" font-weight="700">5</text>
-            <text x="440" y="500" fill="#4a2d73" font-size="9.5" font-weight="600">АКБ 16 кВт&middot;ч</text>
-            <circle cx="425" cy="516" r="10" fill="#d4880f"/><text x="425" y="520" text-anchor="middle" fill="#fff" font-size="10" font-weight="700">6</text>
-            <text x="440" y="520" fill="#8B5E00" font-size="9.5" font-weight="600">Бак 1 500 л</text>
-
-            <!-- callout line from tech room to label -->
-            <line x1="525" y1="475" x2="740" y2="560" stroke="#2d6a4f" stroke-width="1.5"/>
-            <rect x="740" y="540" width="175" height="48" rx="8" fill="#fff" stroke="#2d6a4f" stroke-width="2" filter="url(#ds)"/>
-            <text x="755" y="558" fill="#2d6a4f" font-size="10" font-weight="700">Техпомещение 1 эт.</text>
-            <text x="755" y="572" fill="#3d3d3d" font-size="9">Инвертор + MPPT + АКБ</text>
-            <text x="755" y="584" fill="#3d3d3d" font-size="9">Бак-аккумулятор ГВС</text>
-
-            <!-- drop shadow filter -->
-            <defs><filter id="ds" x="-4%" y="-4%" width="108%" height="116%"><feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.12"/></filter></defs>
-          </svg>
-          <div class="north-arrow">N&uarr;</div>
-        </div>
-      </div>
-      <div class="info">
-        <div style="display:flex;flex-direction:column;gap:clamp(4px,0.5vh,8px)">
-          <div style="display:flex;align-items:center;gap:6px"><span style="display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:#1b4f72;color:#fff;font-size:11px;font-weight:700;flex-shrink:0">1</span><span style="font-size:var(--small);color:var(--text)"><b>ФЭМ массив</b> &mdash; 4&times;500W, 2,0 кВт<sub>p</sub>, 9,48 м&sup2;</span></div>
-          <div style="display:flex;align-items:center;gap:6px"><span style="display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:#d4880f;color:#fff;font-size:11px;font-weight:700;flex-shrink:0">2</span><span style="font-size:var(--small);color:var(--text)"><b>Коллекторы</b> &mdash; 5&times;SCH-30, 19,8 м&sup2;</span></div>
-          <div style="display:flex;align-items:center;gap:6px"><span style="display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:#2d6a4f;color:#fff;font-size:11px;font-weight:700;flex-shrink:0">3</span><span style="font-size:var(--small);color:var(--text)"><b>Инвертор</b> &mdash; 3 кВт, двойное преобразование</span></div>
-          <div style="display:flex;align-items:center;gap:6px"><span style="display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:#2d6a4f;color:#fff;font-size:11px;font-weight:700;flex-shrink:0">4</span><span style="font-size:var(--small);color:var(--text)"><b>MPPT</b> &mdash; контроллер заряда + щит</span></div>
-          <div style="display:flex;align-items:center;gap:6px"><span style="display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:#6b4c9a;color:#fff;font-size:11px;font-weight:700;flex-shrink:0">5</span><span style="font-size:var(--small);color:var(--text)"><b>АКБ</b> &mdash; LiFePO4, 16 кВт&middot;ч (15&ndash;25&deg;C)</span></div>
-          <div style="display:flex;align-items:center;gap:6px"><span style="display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:#d4880f;color:#fff;font-size:11px;font-weight:700;flex-shrink:0">6</span><span style="font-size:var(--small);color:var(--text)"><b>Бак ГВС</b> &mdash; 1&times;1 500 л, в техпомещении</span></div>
-        </div>
-        <div style="margin-top:var(--gap-sm);padding-top:var(--gap-sm);border-top:1px solid var(--separator)">
-          <p style="font-size:var(--small);font-weight:600;color:var(--green);margin-bottom:3px">Условные обозначения</p>
-          <div style="display:flex;flex-direction:column;gap:2px;font-size:clamp(0.65rem,0.9vw,0.78rem);color:var(--text2)">
-            <span><span style="display:inline-block;width:20px;border-bottom:2.5px dashed #1b4f72;margin-right:4px;vertical-align:middle"></span>Кабель DC (ФЭМ &rarr; инвертор)</span>
-            <span><span style="display:inline-block;width:20px;border-bottom:2.5px dashed #d4880f;margin-right:4px;vertical-align:middle"></span>Трубопровод ГВС (колл. &rarr; бак)</span>
-            <span><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:rgba(255,255,255,0.75);border:2px solid #2d6a4f;margin-right:4px;vertical-align:middle"></span>Техпомещение 1 эт.</span>
+      <div class="screen-card">
+        <div class="mock" style="background:linear-gradient(135deg,#1d4ed8,#6366f1)">
+          <div class="overlay" style="color:rgba(255,255,255,.9);font-size:1rem;font-weight:600;flex-direction:column;gap:4px">
+            <span style="font-size:2rem">📊</span>Dashboard
           </div>
         </div>
-        <div style="display:flex;flex-direction:column;gap:clamp(2px,0.3vh,4px);font-size:var(--small);color:var(--text2);line-height:1.45;margin-top:var(--gap-sm)">
-          <p>&bull; Наклон: 47&deg;, азимут: 180&deg; (Юг)</p>
-          <p>&bull; ФЭМ и коллекторы &mdash; южный скат крыши</p>
-          <p>&bull; Всё внутр. оборудование &mdash; хоз. пом. 1 эт.</p>
-          <p>&bull; Трубы ГВС: &lt;15 м до коллекторов</p>
-          <p>&bull; Заземление по ПУЭ</p>
+        <div class="info"><h4>Личный кабинет</h4><p>Рейтинг, прогресс, радар навыков, последние тесты, FAB</p></div>
+      </div>
+
+      <div class="screen-card">
+        <div class="mock" style="background:linear-gradient(135deg,#d97706,#f59e0b)">
+          <div class="overlay" style="color:rgba(255,255,255,.9);font-size:1rem;font-weight:600;flex-direction:column;gap:4px">
+            <span style="font-size:2rem">👤</span>Профиль
+          </div>
         </div>
+        <div class="info"><h4>Профиль игрока</h4><p>4 вкладки: био, антропометрия с перцентилями, физтесты, видео</p></div>
+      </div>
+
+      <div class="screen-card">
+        <div class="mock" style="background:linear-gradient(135deg,#7c3aed,#a78bfa)">
+          <div class="overlay" style="color:rgba(255,255,255,.9);font-size:1rem;font-weight:600;flex-direction:column;gap:4px">
+            <span style="font-size:2rem">📝</span>Анкета
+          </div>
+        </div>
+        <div class="info"><h4>Создание игрока</h4><p>4-шаговый wizard: данные → антропометрия → тесты → подтверждение</p></div>
+      </div>
+
+      <div class="screen-card">
+        <div class="mock" style="background:linear-gradient(135deg,#dc2626,#f87171)">
+          <div class="overlay" style="color:rgba(255,255,255,.9);font-size:1rem;font-weight:600;flex-direction:column;gap:4px">
+            <span style="font-size:2rem">🔍</span>Каталог
+          </div>
+        </div>
+        <div class="info"><h4>Список игроков</h4><p>Поиск, фильтры (регион, позиция), карточки с рейтингом</p></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- TECH -->
+<section id="tech">
+  <div class="container">
+    <h2 class="section-title">Технологический стек</h2>
+    <p class="section-sub">Современный стек для масштабируемого решения</p>
+
+    <div class="stack-grid">
+      <div class="stack-card">
+        <h4>Frontend (реализован)</h4>
+        <div class="pills">
+          <span class="pill">React 18</span>
+          <span class="pill">TypeScript</span>
+          <span class="pill">Tailwind CSS</span>
+          <span class="pill">shadcn/ui</span>
+          <span class="pill">React Query</span>
+          <span class="pill">react-hook-form</span>
+          <span class="pill">Zod</span>
+          <span class="pill">Recharts</span>
+          <span class="pill">Vite</span>
+        </div>
+      </div>
+      <div class="stack-card">
+        <h4>Backend (план)</h4>
+        <div class="pills">
+          <span class="pill">Python 3.12</span>
+          <span class="pill">FastAPI</span>
+          <span class="pill">SQLAlchemy</span>
+          <span class="pill">PostgreSQL</span>
+          <span class="pill">Alembic</span>
+          <span class="pill">MinIO (S3)</span>
+        </div>
+      </div>
+      <div class="stack-card">
+        <h4>Тестирование</h4>
+        <div class="pills">
+          <span class="pill">Vitest</span>
+          <span class="pill">RTL</span>
+          <span class="pill">jsdom</span>
+          <span class="pill">27 тестов</span>
+        </div>
+      </div>
+      <div class="stack-card">
+        <h4>Инфраструктура (план)</h4>
+        <div class="pills">
+          <span class="pill">Docker Compose</span>
+          <span class="pill">Nginx</span>
+          <span class="pill">JWT auth</span>
+          <span class="pill">CI/CD</span>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:48px">
+      <h3 style="text-align:center;font-size:1.1rem;font-weight:700;margin-bottom:20px;color:var(--gray-700)">Архитектура</h3>
+      <div class="arch-flow">
+        <div class="box">React SPA<br><small style="font-weight:400;font-size:.78rem">UI + формы + графики</small></div>
+        <span class="arrow">→</span>
+        <div class="box">React Query<br><small style="font-weight:400;font-size:.78rem">Кэш + стейт</small></div>
+        <span class="arrow">→</span>
+        <div class="box">FastAPI<br><small style="font-weight:400;font-size:.78rem">REST endpoints</small></div>
+        <span class="arrow">→</span>
+        <div class="box">PostgreSQL<br><small style="font-weight:400;font-size:.78rem">Данные игроков</small></div>
+        <span class="arrow">→</span>
+        <div class="box">MinIO / S3<br><small style="font-weight:400;font-size:.78rem">Видео + медиа</small></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ======================== 19. WORK DISTRIBUTION ======================== -->
-<section class="slide" style="background:var(--surface-warm)" data-slide="18">
-  <div class="slide-inner">
-    <span class="label rv">09 &mdash; Организация</span>
-    <h2 class="title rv rv-d1">Распределение этапов</h2>
-    <div class="timeline rv rv-d2" style="margin-top:var(--gap);max-width:650px">
-      <div class="tl-item">
-        <div class="tl-dot d-g">1</div>
-        <div class="tl-body">
-          <div class="tl-role">Генеральный директор</div>
-          <div class="tl-name">Тамир Будариев</div>
-          <div class="tl-desc">Этапы 1, 2, 3 &mdash; Исходные данные, карта расположения, расчёт ресурсов</div>
-        </div>
+<!-- HYPOTHESES -->
+<section id="hypotheses" style="background:var(--gray-50)">
+  <div class="container">
+    <h2 class="section-title">Гипотезы проекта</h2>
+    <p class="section-sub">Ключевые предположения для валидации продукта</p>
+
+    <div class="hypo-list">
+      <div class="hypo-card">
+        <h4>Гипотеза 1: Родители готовы загружать данные ради объективной обратной связи</h4>
+        <p>Родители испытывают потребность в объективных критериях оценки прогресса ребёнка и готовы вносить антропометрию, загружать видео и проходить тесты, если платформа даёт прозрачные метрики и рекомендации.</p>
+        <ul class="criteria">
+          <li>Заполнение профилей >70% в первую неделю</li>
+          <li>Повторные загрузки видео раз в 2–3 месяца</li>
+          <li>Положительные отзывы о сравнительных данных</li>
+        </ul>
       </div>
-      <div class="tl-item">
-        <div class="tl-dot d-b">2</div>
-        <div class="tl-body">
-          <div class="tl-role">Проектировщики</div>
-          <div class="tl-name">Айваз Багаутдинов + Андрей Михайлов</div>
-          <div class="tl-desc">Этапы 4, 5, 9 &mdash; Карта солнечной активности, расчёт коллектора/батареи, размещение</div>
-        </div>
+      <div class="hypo-card">
+        <h4>Гипотеза 2: Академии заинтересованы в платформе как инструменте поиска талантов</h4>
+        <p>Селекционные службы испытывают дефицит объективной информации об игроках из отдалённых регионов. Ключевой стимул — фильтрация по объективным параметрам с подтверждением видеофрагментами.</p>
+        <ul class="criteria">
+          <li>Интерес минимум 1–3 академий на этапе прототипа</li>
+          <li>Готовность платить за расширенный доступ (B2B)</li>
+        </ul>
       </div>
-      <div class="tl-item">
-        <div class="tl-dot d-a">3</div>
-        <div class="tl-body">
-          <div class="tl-role">Монтажники</div>
-          <div class="tl-name">Алина Костюкова + Полина Синицына</div>
-          <div class="tl-desc">Этапы 6, 7, 8, 9, 10 &mdash; Обзор/выбор оборудования, схемы монтажа, ТЭО</div>
-        </div>
+      <div class="hypo-card">
+        <h4>Гипотеза 3: Интеграция с турнирами — эффективный канал привлечения</h4>
+        <p>Турниры собирают родителей из разных регионов, создавая эффект воронки: потребность в объективной оценке возникает при виде конкурентов. Офлайн-активности дают более высокую конверсию, чем онлайн-реклама.</p>
+        <ul class="criteria">
+          <li>Конверсия в регистрацию на турнире >15%</li>
+          <li>Рост загрузок видео после турнира</li>
+          <li>Положительный NPS среди участников пилота</li>
+        </ul>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ======================== 20. 3D CONCEPT ======================== -->
-<section class="slide" style="background:var(--surface)" data-slide="19">
-  <div class="slide-inner" style="z-index:1;position:relative">
-    <span class="label rv">10 &mdash; Визуализация</span>
-    <h2 class="title rv rv-d1">3D Концепт базы</h2>
-    <div class="concept-grid rv rv-d2" style="margin-top:var(--gap);display:grid;grid-template-columns:1fr 1fr;gap:clamp(0.5rem,1vw,0.8rem);flex:1">
-      <div class="img-frame img-frame--cover rv-s" style="border-radius:16px;box-shadow:var(--glass-shadow-lg);min-height:min(35vh,260px)">
-        <img src="images/baza_otdyha_vid_sverhu_1_3d_concept.png" alt="Вид сверху">
+<!-- TARGET AUDIENCE -->
+<section>
+  <div class="container">
+    <h2 class="section-title">Целевая аудитория</h2>
+    <p class="section-sub">Три ключевых сегмента пользователей платформы</p>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="icon" style="background:var(--blue-l);color:var(--blue)">👨‍👩‍👦</div>
+        <h3>Родители юных хоккеистов</h3>
+        <p>Дети 5–12 лет. Желание объективно оценить перспективы, получить признание прогресса, быть замеченным скаутами. Боль: нет прозрачных критериев, невозможно сравнить ребёнка со сверстниками из других городов.</p>
       </div>
-      <div class="img-frame img-frame--cover rv-s rv-d1" style="border-radius:16px;box-shadow:var(--glass-shadow-lg);min-height:min(35vh,260px)">
-        <img src="images/kafe_vid1_3d_concept.png" alt="Кафе">
+      <div class="feature-card">
+        <div class="icon" style="background:var(--green-l);color:var(--green)">🏟️</div>
+        <h3>Тренеры и академии</h3>
+        <p>Главные тренеры, селекционеры, спортивные директора. Поиск талантов, мониторинг прогресса, стандартизация отбора, снижение субъективизма при селекции.</p>
       </div>
-      <div class="img-frame img-frame--cover rv-s rv-d2" style="border-radius:16px;box-shadow:var(--glass-shadow-lg);min-height:min(35vh,260px)">
-        <img src="images/gostinichnyj_i_administrativnyj_blok_vid3_3d_concept.png" alt="Гостиница">
-      </div>
-      <div class="img-frame img-frame--cover rv-s rv-d3" style="border-radius:16px;box-shadow:var(--glass-shadow-lg);min-height:min(35vh,260px)">
-        <img src="images/proekt_bazy_otdyha_vid_sverhu_3d_concept.png" alt="Проект сверху">
+      <div class="feature-card">
+        <div class="icon" style="background:var(--amber-l);color:var(--amber)">🤝</div>
+        <h3>Партнёры</h3>
+        <p>Турниры (повышение привлекательности), хоккейные школы (инструмент контроля), инфопартнёры (KidsHockey.ru) — уникальный контент, рейтинги, аналитика.</p>
       </div>
     </div>
   </div>
 </section>
+
+<!-- ROADMAP -->
+<section style="background:var(--gray-50)">
+  <div class="container">
+    <h2 class="section-title">Roadmap</h2>
+    <p class="section-sub">Что сделано и что впереди</p>
+    <div class="timeline">
+      <div class="timeline-item done">
+        <h4>Неделя 1–2: MVP Frontend</h4>
+        <p>Лендинг, логин, Dashboard, профиль игрока, каталог, создание игрока, тесты</p>
+      </div>
+      <div class="timeline-item done">
+        <h4>Исследование: Гипотезы и ЦА</h4>
+        <p>3 гипотезы, 3 сегмента ЦА, методы валидации, критерии успеха</p>
+      </div>
+      <div class="timeline-item">
+        <h4>Неделя 3–4: Backend API</h4>
+        <p>FastAPI + PostgreSQL, JWT-авторизация, CRUD-операции, миграции Alembic</p>
+      </div>
+      <div class="timeline-item">
+        <h4>Неделя 5–6: Видео и аналитика</h4>
+        <p>Загрузка видео в MinIO, генерация превью, скоринговая модель, рейтинги</p>
+      </div>
+      <div class="timeline-item">
+        <h4>Неделя 7–8: Пилотный запуск</h4>
+        <p>Интеграция frontend ↔ backend, пилот на турнире, сбор обратной связи</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section id="team">
+  <div class="container">
+    <h2 class="section-title">Команда проекта</h2>
+    <p class="section-sub">Проектно-продуктовая мастерская</p>
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="avatar" style="background:linear-gradient(135deg,#6366f1,#8b5cf6)">А</div>
+        <div class="name">Катя</div>
+        <div class="role">Директор проекта</div>
+        Катя 
+      </div>
+      <div class="team-card">
+        <div class="avatar" style="background:linear-gradient(135deg,#059669,#34d399)">Г</div>
+        <div class="name">Константин</div>
+        <div class="role">Продажи и развитие</div>
+      </div>
+      <div class="team-card">
+        <div class="avatar" style="background:linear-gradient(135deg,#d97706,#f59e0b)">В</div>
+        <div class="name">Анастасия</div>
+        <div class="role">Аналитика и данные</div>
+      </div>
+      <div class="team-card">
+        <div class="avatar" style="background:linear-gradient(135deg,#dc2626,#f87171)">Д</div>
+        <div class="name">Мария</div>
+        <div class="role">Контент и креатив</div>
+      </div>
+      <div class="team-card">
+        <div class="avatar" style="background:linear-gradient(135deg,#1d4ed8,#3b82f6)">А</div>
+        <div class="name">Айваз</div>
+        <div class="role">Дизайн и разработка</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="logo">🏒 Хоккейный Родитель</div>
+  <p>Проектно-продуктовая мастерская · 2024–2026</p>
+  <p style="margin-top:8px;font-size:.78rem">Объективная оценка. Прозрачный прогресс. Путь к профессиональному хоккею.</p>
+</footer>
 
 <script>
-(function(){
-  /* ======= Animated gradient orbs via Canvas ======= */
-  document.querySelectorAll('canvas[data-orbs]').forEach(cvs=>{
-    const cfg=JSON.parse(cvs.dataset.orbs);
-    const ctx=cvs.getContext('2d');
-    const orbs=cfg.map(o=>{
-      const a=Math.random()*Math.PI*2;
-      return{
-        x:Math.random(),y:Math.random(),
-        vx:Math.cos(a)*0.0003,vy:Math.sin(a)*0.0003,
-        r:o.r,color:o.c
-      };
-    });
-    function resize(){
-      const rect=cvs.parentElement.getBoundingClientRect();
-      cvs.width=rect.width*devicePixelRatio;
-      cvs.height=rect.height*devicePixelRatio;
-      ctx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0);
-    }
-    resize();
-    let resizeTimer;
-    new ResizeObserver(()=>{clearTimeout(resizeTimer);resizeTimer=setTimeout(resize,100)}).observe(cvs.parentElement);
+// Sticky nav shadow
+const nav = document.getElementById('topnav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 20);
+});
 
-    function draw(){
-      const w=cvs.width/devicePixelRatio,h=cvs.height/devicePixelRatio;
-      ctx.clearRect(0,0,w,h);
-      orbs.forEach(o=>{
-        o.x+=o.vx;o.y+=o.vy;
-        if(o.x<-0.2||o.x>1.2)o.vx*=-1;
-        if(o.y<-0.2||o.y>1.2)o.vy*=-1;
-        const grd=ctx.createRadialGradient(o.x*w,o.y*h,0,o.x*w,o.y*h,o.r);
-        grd.addColorStop(0,o.color+'66');
-        grd.addColorStop(1,o.color+'00');
-        ctx.fillStyle=grd;
-        ctx.beginPath();
-        ctx.arc(o.x*w,o.y*h,o.r,0,Math.PI*2);
-        ctx.fill();
-      });
-      requestAnimationFrame(draw);
-    }
-    draw();
-  });
+// Animate stat numbers on scroll
+const statNums = document.querySelectorAll('.stat-card .num');
+const animated = new Set();
 
-  /* ======= Slide navigation ======= */
-  const slides=document.querySelectorAll('.slide');
-  const total=slides.length;
-  const navDots=document.getElementById('navDots');
-  const counter=document.getElementById('slideCounter');
-  const progress=document.getElementById('progressBar');
+function animateCount(el) {
+  const target = parseInt(el.textContent, 10);
+  if (isNaN(target)) return;
+  const duration = 1200;
+  const start = performance.now();
+  el.textContent = '0';
 
-  slides.forEach((_,i)=>{
-    const d=document.createElement('button');
-    d.className='nav-dot';
-    d.setAttribute('aria-label','Slide '+(i+1));
-    d.addEventListener('click',()=>slides[i].scrollIntoView({behavior:'smooth'}));
-    navDots.appendChild(d);
-  });
-  const dots=navDots.querySelectorAll('.nav-dot');
-
-  function activate(idx){
-    dots.forEach((d,i)=>d.classList.toggle('active',i===idx));
-    counter.textContent=(idx+1)+' / '+total;
-    progress.style.width=((idx+1)/total*100)+'%';
+  function tick(now) {
+    const elapsed = now - start;
+    const progress = Math.min(elapsed / duration, 1);
+    const eased = 1 - Math.pow(1 - progress, 3);
+    el.textContent = Math.round(eased * target);
+    if (progress < 1) requestAnimationFrame(tick);
   }
+  requestAnimationFrame(tick);
+}
 
-  const io=new IntersectionObserver(entries=>{
-    entries.forEach(e=>{
-      if(e.isIntersecting){
-        activate(parseInt(e.target.dataset.slide));
-        e.target.querySelectorAll('.rv,.rv-s').forEach(el=>el.classList.add('visible'));
-        e.target.querySelectorAll('.member').forEach(m=>{
-          setTimeout(()=>m.classList.add('visible'),parseInt(m.dataset.delay)||0);
-        });
-        e.target.querySelectorAll('.goal').forEach(c=>{
-          setTimeout(()=>c.classList.add('visible'),parseInt(c.dataset.delay)||0);
-        });
-      }
-    });
-  },{threshold:0.4});
-
-  slides.forEach(s=>io.observe(s));
-
-  document.addEventListener('keydown',e=>{
-    const c=[...dots].findIndex(d=>d.classList.contains('active'));
-    if(e.key==='ArrowDown'||e.key==='ArrowRight'||e.key===' '){e.preventDefault();if(c<total-1)slides[c+1].scrollIntoView({behavior:'smooth'})}
-    else if(e.key==='ArrowUp'||e.key==='ArrowLeft'){e.preventDefault();if(c>0)slides[c-1].scrollIntoView({behavior:'smooth'})}
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting && !animated.has(entry.target)) {
+      animated.add(entry.target);
+      animateCount(entry.target);
+    }
   });
+}, { threshold: 0.5 });
 
-  let ty=0;
-  document.addEventListener('touchstart',e=>{ty=e.touches[0].clientY},{passive:true});
-  document.addEventListener('touchend',e=>{
-    const d=ty-e.changedTouches[0].clientY;
-    const c=[...dots].findIndex(x=>x.classList.contains('active'));
-    if(Math.abs(d)>50){if(d>0&&c<total-1)slides[c+1].scrollIntoView({behavior:'smooth'});else if(d<0&&c>0)slides[c-1].scrollIntoView({behavior:'smooth'})}
-  },{passive:true});
+statNums.forEach((el) => observer.observe(el));
 
-  activate(0);
-  slides[0].querySelectorAll('.rv,.rv-s').forEach(el=>el.classList.add('visible'));
-})();
+// Fade-in on scroll
+const fadeEls = document.querySelectorAll('.feature-card, .screen-card, .stack-card, .hypo-card, .team-card, .timeline-item');
+fadeEls.forEach((el) => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(24px)';
+  el.style.transition = 'opacity .5s ease, transform .5s ease';
+});
+
+const fadeObserver = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }, i * 60);
+      fadeObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.15 });
+
+fadeEls.forEach((el) => fadeObserver.observe(el));
 </script>
+
 </body>
 </html>
