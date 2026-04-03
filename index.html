@@ -795,7 +795,7 @@ tbody tr:hover td{background:rgba(45,106,79,0.06)}
               <tr><td>Пик. солн. часы (ср.год.)</td><td style="text-align:right">4,77 ч/день</td></tr>
               <tr class="highlight-row"><td>Опт. наклон (круглогод.)</td><td style="text-align:right">47&deg;</td></tr>
               <tr><td>Ориентация (азимут)</td><td style="text-align:right">180&deg; (Юг)</td></tr>
-              <tr><td>Выход 1 кВт<sub>p</sub>/год</td><td style="text-align:right">1 444 кВт&middot;ч</td></tr>
+              <tr><td>Выход 1 кВт (пиковая) / год</td><td style="text-align:right">1 444 кВт&middot;ч</td></tr>
               <tr><td>Солн. часов/год</td><td style="text-align:right">~2 000</td></tr>
             </tbody>
           </table>
@@ -826,14 +826,14 @@ tbody tr:hover td{background:rgba(45,106,79,0.06)}
           <div class="calc-step"><span class="formula">Q<sub>сут</sub> = 1 414 / 30</span><span class="result">47,1 кВт&middot;ч/сут</span></div>
           <div class="calc-step"><span class="formula">Q<sub>год</sub> = 1 414 &times; 12</span><span class="result">16 968 кВт&middot;ч/год</span></div>
         </div>
-        <p style="font-size:var(--small);font-weight:600;color:var(--green);margin-top:var(--gap-sm)">Расчёт площади коллекторов (F = Q/E × 1/η)</p>
+        <p style="font-size:var(--small);font-weight:600;color:var(--green);margin-top:var(--gap-sm)">Расчёт площади коллекторов (F = Q / (E &middot; η))</p>
         <div class="calc-chain">
           <div class="calc-step"><span class="formula">q = 4,77 кВт&middot;ч/(м&sup2;&middot;день)</span><span class="result">Инсоляция</span></div>
           <div class="calc-step"><span class="formula">E = q &times; 365 = 4,77 &times; 365</span><span class="result">1 741 кВт&middot;ч/(м&sup2;&middot;год)</span></div>
           <div class="calc-step"><span class="formula">η0 = 0,8 (вакуумный)</span><span class="result">КПД коллектора</span></div>
           <div class="calc-step"><span class="formula">k = 0,001 кВт/(К&middot;м&sup2;)</span><span class="result">Коэфф. потерь</span></div>
-          <div class="calc-step"><span class="formula">η = 0,8 &minus; 0,001 &times; 54 / 4,77</span><span class="result">η ≈ 0,79</span></div>
-          <div class="calc-step"><span class="formula">F = 16 968 / 1 741 &times; 1 / 0,79</span><span class="result">12,3 м&sup2;</span></div>
+          <div class="calc-step"><span class="formula">η = η₀ &minus; k &middot; ΔT / E<sub>сут</sub> = 0,8 &minus; 0,001 &times; 54 / 4,77</span><span class="result">η ≈ 0,79</span></div>
+          <div class="calc-step"><span class="formula">F = 16 968 / (1 741 &times; 0,79)</span><span class="result">12,3 м&sup2;</span></div>
           <div class="calc-step"><span class="formula">Площадь 1 коллектора = 3,96 м&sup2;</span><span class="result">SCH-30</span></div>
           <div class="calc-step"><span class="formula">N = ⌈12,3 / 3,96⌉ = ⌈3,1⌉</span><span class="result">4 шт</span></div>
           <div class="calc-step"><span class="formula">F<sub>факт</sub> = 4 &times; 3,96</span><span class="result">15,84 м&sup2;</span></div>
@@ -885,7 +885,7 @@ tbody tr:hover td{background:rgba(45,106,79,0.06)}
 <section class="slide" style="background:var(--surface-warm)" data-slide="15">
   <div class="slide-inner">
     <span class="label rv">Форма 3.1 &mdash; Шаг 5Б &middot; Ответственный: Айваз Багаутдинов</span>
-    <h2 class="title rv rv-d1">ФЭС &mdash; Админ. здание (640 кВт&middot;ч/мес, 100% покрытие)</h2>
+    <h2 class="title rv rv-d1">СЭС &mdash; Админ. здание (640 кВт&middot;ч/мес, 100% покрытие)</h2>
     <div class="two-col rv rv-d2" style="margin-top:var(--gap);flex:1">
       <div style="display:flex;flex-direction:column;gap:var(--gap-sm)">
         <p style="font-size:var(--small);font-weight:600;color:var(--amber)">Проверка исходных данных</p>
@@ -895,24 +895,25 @@ tbody tr:hover td{background:rgba(45,106,79,0.06)}
           <div class="calc-step"><span class="formula">Коэфф. согласования = 640 / 1 275</span><span class="result">0,502</span></div>
           <div class="calc-step"><span class="formula">Экв. дней работы = 640 / 42,5</span><span class="result">15,1 дней/мес</span></div>
         </div>
-        <p style="font-size:clamp(0.6rem,0.8vw,0.7rem);color:var(--text3);line-height:1.4">Расхождение обусловлено сезонностью: кондиционеры и часть оборудования работают не каждый день. Для расчёта используется фактическое потребление 640 кВт&middot;ч/мес.</p>
+        <p style="font-size:clamp(0.6rem,0.8vw,0.7rem);color:var(--text3);line-height:1.4">Расхождение обусловлено сезонностью: кондиционеры и часть оборудования работают не каждый день. Для расчёта используется фактическое потребление 640 кВт&middot;ч/мес. Оборудование подобрано по методике А&ndash;В&ndash;С (2 отечественных + 1 зарубежный вариант).</p>
         <p style="font-size:var(--small);font-weight:600;color:var(--green);margin-top:var(--gap-sm)">Расчёт потребления админ. здания</p>
         <div class="calc-chain">
           <div class="calc-step"><span class="formula">N<sub>мес</sub> = 640 кВт&middot;ч</span><span class="result">Исходные данные</span></div>
           <div class="calc-step"><span class="formula">N<sub>сут</sub> = 640 / 30</span><span class="result">21,3 кВт&middot;ч/день</span></div>
           <div class="calc-step"><span class="formula">N<sub>год</sub> = 640 &times; 12</span><span class="result">7 680 кВт&middot;ч/год</span></div>
         </div>
-        <p style="font-size:var(--small);font-weight:600;color:var(--green);margin-top:var(--gap-sm)">Расчёт мощности батареи (Pw = 1000 N / KЕ)</p>
+        <p style="font-size:var(--small);font-weight:600;color:var(--green);margin-top:var(--gap-sm)">Расчёт мощности солнечной батареи (Pw = 1000 &middot; N / (K &middot; E))</p>
         <div class="calc-chain">
           <div class="calc-step"><span class="formula">N = 7 680 кВт&middot;ч/год</span><span class="result">Годовое потр.</span></div>
-          <div class="calc-step"><span class="formula">K = 0,5 (лето) / 0,7 (зима)</span><span class="result">Коэфф. КПД</span></div>
-          <div class="calc-step"><span class="formula">KЕ = 0,6 (среднегод.)</span><span class="result">Средний КПД</span></div>
-          <div class="calc-step"><span class="formula">Pw = 1000 &times; 7 680 / 0,6</span><span class="result">12 800 000 Вт</span></div>
-          <div class="calc-step"><span class="formula">Pw = 12 800 000 / 1000</span><span class="result">12 800 кВт</span></div>
-          <div class="calc-step"><span class="formula">Pw<sub>сут</sub> = 1000 &times; 21,3 / 0,6</span><span class="result">35,5 кВт</span></div>
-          <div class="calc-step"><span class="formula">N<sub>панелей</sub> = ⌈35 500 / 500⌉</span><span class="result">71 шт</span></div>
-          <div class="calc-step"><span class="formula">Pw<sub>факт</sub> = 71 &times; 500</span><span class="result">35,5 кВт<sub>p</sub></span></div>
-          <div class="calc-step"><span class="formula">S = 71 &times; 2,37</span><span class="result">168,3 м&sup2;</span></div>
+          <div class="calc-step"><span class="formula">K = 0,5 (лето) / 0,7 (зима)</span><span class="result">Коэфф. эфф. СБ</span></div>
+          <div class="calc-step"><span class="formula">K = 0,6 (среднегод.)</span><span class="result">Среднее значение</span></div>
+          <div class="calc-step"><span class="formula">q = 4,77 кВт&middot;ч/(м&sup2;&middot;день)</span><span class="result">Интенсивность</span></div>
+          <div class="calc-step"><span class="formula">E = q &times; 365 = 4,77 &times; 365</span><span class="result">1 741 кВт&middot;ч/год</span></div>
+          <div class="calc-step"><span class="formula">Pw = 1000 &times; 7 680 / (0,6 &times; 1 741)</span><span class="result">7 352 Вт</span></div>
+          <div class="calc-step"><span class="formula">Pw &asymp; 7,35 кВт</span><span class="result">Мощность СБ</span></div>
+          <div class="calc-step"><span class="formula">N<sub>панелей</sub> = ⌈7 350 / 500⌉</span><span class="result">15 шт</span></div>
+          <div class="calc-step"><span class="formula">Pw<sub>факт</sub> = 15 &times; 500</span><span class="result">7,5 кВт</span></div>
+          <div class="calc-step"><span class="formula">Площадь = 15 &times; 2,37</span><span class="result">35,6 м&sup2;</span></div>
         </div>
       </div>
       <div style="display:flex;flex-direction:column;gap:var(--gap-sm)">
@@ -923,16 +924,17 @@ tbody tr:hover td{background:rgba(45,106,79,0.06)}
               <tr><td>Электропотребление (день)</td><td style="text-align:right">21,3 кВт&middot;ч</td></tr>
               <tr><td>Электропотребление (месяц)</td><td style="text-align:right">640 кВт&middot;ч</td></tr>
               <tr><td>Электропотребление (год)</td><td style="text-align:right">7 680 кВт&middot;ч</td></tr>
-              <tr><td>Коэфф. КПД (среднегод.)</td><td style="text-align:right">0,6</td></tr>
-              <tr class="highlight-row"><td>Мощность массива Pw</td><td style="text-align:right">35,5 кВт<sub>p</sub></td></tr>
+              <tr><td>Коэфф. эффективности СБ (K, среднегод.)</td><td style="text-align:right">0,6</td></tr>
+              <tr><td>Годовая радиация E = q &times; 365</td><td style="text-align:right">1 741 кВт&middot;ч/год</td></tr>
+              <tr class="highlight-row"><td>Мощность солнечной батареи Pw</td><td style="text-align:right">7,5 кВт</td></tr>
               <tr><td>Модель панели</td><td style="text-align:right">Delta NXT 500W</td></tr>
               <tr><td>КПД панели</td><td style="text-align:right">21,05%</td></tr>
               <tr><td>Площадь 1 панели</td><td style="text-align:right">2,37 м&sup2;</td></tr>
-              <tr class="highlight-row"><td>Кол-во панелей</td><td style="text-align:right">71 шт</td></tr>
-              <tr class="highlight-row"><td>Площадь массива</td><td style="text-align:right">168,3 м&sup2;</td></tr>
-              <tr><td>Инвертор (Nи = Nмакс × 1,5)</td><td style="text-align:right">7,5 кВт</td></tr>
-              <tr><td>Nмакс (электроплита + кондиц.)</td><td style="text-align:right">5 кВт</td></tr>
-              <tr><td>АКБ (NАБ = N × K, K=1,1)</td><td style="text-align:right">23,4 кВт&middot;ч</td></tr>
+              <tr class="highlight-row"><td>Кол-во панелей</td><td style="text-align:right">15 шт</td></tr>
+              <tr class="highlight-row"><td>Площадь солнечных панелей</td><td style="text-align:right">35,6 м&sup2;</td></tr>
+              <tr><td>Инвертор (Nи = Nмакс &times; 1,5)</td><td style="text-align:right">7,5 кВт</td></tr>
+              <tr><td>Nмакс (макс. одноврем. нагрузка)</td><td style="text-align:right">5 кВт</td></tr>
+              <tr><td>АКБ (NАБ = N &times; K, K=1,1 кисл.)</td><td style="text-align:right">23,4 кВт&middot;ч</td></tr>
               <tr><td>U (напряжение)</td><td style="text-align:right">48 В</td></tr>
               <tr><td>A = NАБ / U</td><td style="text-align:right">488 А&middot;ч</td></tr>
               <tr><td>Контроллер заряда</td><td style="text-align:right">MPPT</td></tr>
@@ -950,8 +952,8 @@ tbody tr:hover td{background:rgba(45,106,79,0.06)}
           </svg>
         </div>
         <div class="stats" style="gap:var(--gap-sm)">
-          <div class="stat" style="text-align:center"><div class="val c-green" style="font-size:clamp(1rem,2vw,1.4rem)">71</div><div class="lbl">панели &times; 500 Вт</div></div>
-          <div class="stat" style="text-align:center"><div class="val c-blue" style="font-size:clamp(1rem,2vw,1.4rem)">35,5 кВт</div><div class="lbl">мощность</div></div>
+          <div class="stat" style="text-align:center"><div class="val c-green" style="font-size:clamp(1rem,2vw,1.4rem)">15</div><div class="lbl">панелей &times; 500 Вт</div></div>
+          <div class="stat" style="text-align:center"><div class="val c-blue" style="font-size:clamp(1rem,2vw,1.4rem)">7,5 кВт</div><div class="lbl">мощность СБ</div></div>
           <div class="stat" style="text-align:center"><div class="val c-amber" style="font-size:clamp(1rem,2vw,1.4rem)">23,4 кВт&middot;ч</div><div class="lbl">АКБ</div></div>
         </div>
       </div>
@@ -978,13 +980,13 @@ tbody tr:hover td{background:rgba(45,106,79,0.06)}
         </div>
       </div>
       <div class="glass-strong" style="padding:clamp(0.8rem,1.5vw,1.2rem);border-radius:18px">
-        <p style="font-size:var(--body);font-weight:700;color:var(--blue);margin-bottom:var(--gap-sm)">&#9889; ФЭС (Айваз) — 100% покрытие</p>
+        <p style="font-size:var(--body);font-weight:700;color:var(--blue);margin-bottom:var(--gap-sm)">&#9889; СЭС (Айваз) — 100% покрытие</p>
         <div style="display:flex;flex-direction:column;gap:clamp(3px,0.4vh,6px)">
-          <div class="bldg"><span class="bn">Панели Delta NXT 500W</span><span class="ba">71 шт</span></div>
-          <div class="bldg"><span class="bn">Мощность массива</span><span class="ba">35,5 кВт<sub>p</sub></span></div>
-          <div class="bldg"><span class="bn">Площадь массива</span><span class="ba">168,3 м&sup2;</span></div>
+          <div class="bldg"><span class="bn">Панели Delta NXT 500W</span><span class="ba">15 шт</span></div>
+          <div class="bldg"><span class="bn">Мощность солнечной батареи</span><span class="ba">7,5 кВт</span></div>
+          <div class="bldg"><span class="bn">Площадь солнечных панелей</span><span class="ba">35,6 м&sup2;</span></div>
           <div class="bldg"><span class="bn">Инвертор</span><span class="ba">7,5 кВт</span></div>
-          <div class="bldg"><span class="bn">АКБ LiFePO4</span><span class="ba">23,4 кВт&middot;ч</span></div>
+          <div class="bldg"><span class="bn">АКБ LiFePO4 (K=1,1, кисл. тип)</span><span class="ba">23,4 кВт&middot;ч</span></div>
           <div class="bldg"><span class="bn">Годовая генерация</span><span class="ba">7 680 кВт&middot;ч</span></div>
         </div>
       </div>
@@ -993,14 +995,27 @@ tbody tr:hover td{background:rgba(45,106,79,0.06)}
       <table class="form-tbl">
         <thead><tr><th>Параметр</th><th style="text-align:right">Было (вся база)</th><th style="text-align:right">Стало (админ. 100%)</th></tr></thead>
         <tbody>
-          <tr><td>ФЭМ панели</td><td style="text-align:right">42 шт / 20,8 кВт</td><td style="text-align:right;font-weight:700;color:var(--green)">71 шт / 35,5 кВт</td></tr>
-          <tr><td>Площадь ФЭМ</td><td style="text-align:right">100 м&sup2;</td><td style="text-align:right;font-weight:700;color:var(--green)">168,3 м&sup2;</td></tr>
-          <tr><td>Инвертор</td><td style="text-align:right">25 кВт</td><td style="text-align:right;font-weight:700;color:var(--green)">7,5 кВт</td></tr>
-          <tr><td>АКБ</td><td style="text-align:right">191 кВт&middot;ч</td><td style="text-align:right;font-weight:700;color:var(--green)">23,4 кВт&middot;ч</td></tr>
+          <tr><td>Панели ФЭП</td><td style="text-align:right">42 шт / 20,8 кВт</td><td style="text-align:right;font-weight:700;color:var(--green)">15 шт / 7,5 кВт</td></tr>
+          <tr><td>Площадь ФЭП</td><td style="text-align:right">100 м&sup2;</td><td style="text-align:right;font-weight:700;color:var(--green)">35,6 м&sup2;</td></tr>
+          <tr><td>Инвертор (N<sub>и</sub> = N<sub>макс</sub> &times; 1,5)</td><td style="text-align:right">25 кВт</td><td style="text-align:right;font-weight:700;color:var(--green)">7,5 кВт</td></tr>
+          <tr><td>АКБ (K=1,1, кисл. тип)</td><td style="text-align:right">191 кВт&middot;ч</td><td style="text-align:right;font-weight:700;color:var(--green)">23,4 кВт&middot;ч</td></tr>
           <tr><td>Коллекторы</td><td style="text-align:right">35 шт / 139 м&sup2;</td><td style="text-align:right;font-weight:700;color:var(--green)">4 шт / 15,84 м&sup2;</td></tr>
           <tr><td>Бак ГВС</td><td style="text-align:right">2&times;5 000 л</td><td style="text-align:right;font-weight:700;color:var(--green)">1&times;1 200 л</td></tr>
         </tbody>
       </table>
+    </div>
+    <div class="glass-strong rv rv-d4" style="padding:clamp(0.6rem,1vw,1rem);border-radius:14px;margin-top:var(--gap-sm)">
+      <p style="font-size:var(--body);font-weight:700;color:var(--green);margin-bottom:var(--gap-sm)">&#128176; Срок окупаемости (n = C / З)</p>
+      <div class="calc-chain" style="max-width:640px">
+        <div class="calc-step"><span class="formula">C<sub>обор</sub> (панели + инвертор + АКБ + колл. + бак)</span><span class="result">850 000 руб.</span></div>
+        <div class="calc-step"><span class="formula">C<sub>монт</sub> = 40% &times; C<sub>обор</sub></span><span class="result">340 000 руб.</span></div>
+        <div class="calc-step"><span class="formula">C = C<sub>обор</sub> + C<sub>монт</sub></span><span class="result">1 190 000 руб.</span></div>
+        <div class="calc-step"><span class="formula">T = 5,66 руб/кВт&middot;ч (тариф Иркутской обл.)</span><span class="result">Тариф</span></div>
+        <div class="calc-step"><span class="formula">N<sub>год</sub> = 7 680 кВт&middot;ч (электро) + 16 968 кВт&middot;ч (ГВС)</span><span class="result">24 648 кВт&middot;ч</span></div>
+        <div class="calc-step"><span class="formula">З = T &times; N = 5,66 &times; 24 648</span><span class="result">139 508 руб./год</span></div>
+        <div class="calc-step"><span class="formula">n = C / З = 1 190 000 / 139 508</span><span class="result" style="color:var(--amber);font-size:clamp(0.85rem,1.2vw,1rem)">&asymp; 8,5 лет</span></div>
+      </div>
+      <p style="font-size:clamp(0.6rem,0.8vw,0.7rem);color:var(--text3);margin-top:4px">* Оборудование подобрано по методике А&ndash;В&ndash;С: 2 отечественных варианта и 1 зарубежный</p>
     </div>
   </div>
 </section>
@@ -1017,13 +1032,13 @@ tbody tr:hover td{background:rgba(45,106,79,0.06)}
             <img src="images/admin-build.png" alt="Админ. здание (зд. 5)">
             <svg viewBox="0 0 1030 770" xmlns="http://www.w3.org/2000/svg">
               <rect x="285" y="195" width="120" height="70" rx="5" fill="rgba(27,79,114,0.82)" stroke="#fff" stroke-width="2.5"/>
-              <text x="345" y="228" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">&#9889; ФЭМ</text>
-              <text x="345" y="248" text-anchor="middle" fill="rgba(255,255,255,0.85)" font-size="10">71&times;500W</text>
+              <text x="345" y="228" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">&#9889; ФЭП</text>
+              <text x="345" y="248" text-anchor="middle" fill="rgba(255,255,255,0.85)" font-size="10">15&times;500W</text>
               <line x1="285" y1="230" x2="60" y2="115" stroke="#1b4f72" stroke-width="2"/>
               <rect x="5" y="80" width="178" height="55" rx="8" fill="#fff" stroke="#1b4f72" stroke-width="2" filter="url(#ds)"/>
               <circle cx="18" cy="95" r="9" fill="#1b4f72"/><text x="18" y="99" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">1</text>
-              <text x="33" y="100" fill="#1b4f72" font-size="10.5" font-weight="700">ФЭМ массив</text>
-              <text x="33" y="115" fill="#3d3d3d" font-size="9">71 &times; 500 Вт = 35,5 кВт<tspan x="33" dy="12">168,3 м&sup2; &middot; 47&deg; / Юг</tspan></text>
+              <text x="33" y="100" fill="#1b4f72" font-size="10.5" font-weight="700">Солнечная батарея</text>
+              <text x="33" y="115" fill="#3d3d3d" font-size="9">15 &times; 500 Вт = 7,5 кВт<tspan x="33" dy="12">35,6 м&sup2; &middot; 47&deg; / Юг</tspan></text>
 
               <rect x="430" y="195" width="130" height="70" rx="5" fill="rgba(212,136,15,0.85)" stroke="#fff" stroke-width="2.5"/>
               <text x="495" y="228" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">&#9728; Коллекторы</text>
@@ -1066,28 +1081,28 @@ tbody tr:hover td{background:rgba(45,106,79,0.06)}
         <div class="img-frame rv-s rv-d1" style="height:min(28vh,230px)">
           <img src="images/picture.jpg" alt="3D-визуализация размещения оборудования">
         </div>
-        <p class="caption" style="text-align:center;margin-top:2px">3D-визуализация размещения ФЭМ и коллекторов</p>
+        <p class="caption" style="text-align:center;margin-top:2px">3D-визуализация размещения ФЭП и коллекторов</p>
       </div>
       <div class="info">
         <div style="display:flex;flex-direction:column;gap:clamp(4px,0.5vh,8px)">
-          <div style="display:flex;align-items:center;gap:6px"><span style="display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:#1b4f72;color:#fff;font-size:11px;font-weight:700;flex-shrink:0">1</span><span style="font-size:var(--small);color:var(--text)"><b>ФЭМ массив</b> &mdash; 71&times;500W, 35,5 кВт<sub>p</sub>, 168,3 м&sup2;</span></div>
+          <div style="display:flex;align-items:center;gap:6px"><span style="display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:#1b4f72;color:#fff;font-size:11px;font-weight:700;flex-shrink:0">1</span><span style="font-size:var(--small);color:var(--text)"><b>Солнечная батарея</b> &mdash; 15&times;500W, 7,5 кВт, 35,6 м&sup2;</span></div>
           <div style="display:flex;align-items:center;gap:6px"><span style="display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:#d4880f;color:#fff;font-size:11px;font-weight:700;flex-shrink:0">2</span><span style="font-size:var(--small);color:var(--text)"><b>Коллекторы</b> &mdash; 4&times;SCH-30, 15,84 м&sup2;</span></div>
           <div style="display:flex;align-items:center;gap:6px"><span style="display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:#2d6a4f;color:#fff;font-size:11px;font-weight:700;flex-shrink:0">3</span><span style="font-size:var(--small);color:var(--text)"><b>Инвертор</b> &mdash; 7,5 кВт, двойное преобразование</span></div>
           <div style="display:flex;align-items:center;gap:6px"><span style="display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:#2d6a4f;color:#fff;font-size:11px;font-weight:700;flex-shrink:0">4</span><span style="font-size:var(--small);color:var(--text)"><b>MPPT</b> &mdash; контроллер заряда + щит</span></div>
-          <div style="display:flex;align-items:center;gap:6px"><span style="display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:#6b4c9a;color:#fff;font-size:11px;font-weight:700;flex-shrink:0">5</span><span style="font-size:var(--small);color:var(--text)"><b>АКБ</b> &mdash; LiFePO4, 23,4 кВт&middot;ч (15&ndash;25&deg;C)</span></div>
+          <div style="display:flex;align-items:center;gap:6px"><span style="display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:#6b4c9a;color:#fff;font-size:11px;font-weight:700;flex-shrink:0">5</span><span style="font-size:var(--small);color:var(--text)"><b>АКБ</b> &mdash; LiFePO4 (K=1,1, кисл. тип), 23,4 кВт&middot;ч</span></div>
           <div style="display:flex;align-items:center;gap:6px"><span style="display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:#d4880f;color:#fff;font-size:11px;font-weight:700;flex-shrink:0">6</span><span style="font-size:var(--small);color:var(--text)"><b>Бак ГВС</b> &mdash; 1&times;1 200 л, в техпомещении</span></div>
         </div>
         <div style="margin-top:var(--gap-sm);padding-top:var(--gap-sm);border-top:1px solid var(--separator)">
           <p style="font-size:var(--small);font-weight:600;color:var(--green);margin-bottom:3px">Условные обозначения</p>
           <div style="display:flex;flex-direction:column;gap:2px;font-size:clamp(0.65rem,0.9vw,0.78rem);color:var(--text2)">
-            <span><span style="display:inline-block;width:20px;border-bottom:2.5px dashed #1b4f72;margin-right:4px;vertical-align:middle"></span>Кабель DC (ФЭМ &rarr; инвертор)</span>
+            <span><span style="display:inline-block;width:20px;border-bottom:2.5px dashed #1b4f72;margin-right:4px;vertical-align:middle"></span>Кабель DC (ФЭП &rarr; инвертор)</span>
             <span><span style="display:inline-block;width:20px;border-bottom:2.5px dashed #d4880f;margin-right:4px;vertical-align:middle"></span>Трубопровод ГВС (колл. &rarr; бак)</span>
             <span><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:rgba(255,255,255,0.75);border:2px solid #2d6a4f;margin-right:4px;vertical-align:middle"></span>Техпомещение 1 эт.</span>
           </div>
         </div>
         <div style="display:flex;flex-direction:column;gap:clamp(2px,0.3vh,4px);font-size:var(--small);color:var(--text2);line-height:1.45;margin-top:var(--gap-sm)">
           <p>&bull; Наклон: 47&deg;, азимут: 180&deg; (Юг)</p>
-          <p>&bull; ФЭМ и коллекторы &mdash; южный скат крыши</p>
+          <p>&bull; ФЭП и коллекторы &mdash; южный скат крыши</p>
           <p>&bull; Всё внутр. оборудование &mdash; хоз. пом. 1 эт.</p>
           <p>&bull; Трубы ГВС: &lt;15 м до коллекторов</p>
           <p>&bull; Заземление по ПУЭ</p>
