@@ -338,6 +338,7 @@ tbody tr:hover td{background:rgba(45,106,79,0.06)}
 /* ============ TWO-COL LAYOUT (tight) ============ */
 .two-col{display:grid;grid-template-columns:1fr 1fr;gap:clamp(0.5rem,1.2vw,1rem);align-items:start}
 @media(max-width:768px){.two-col{grid-template-columns:1fr}}
+@media(max-width:768px){.placement-grid{grid-template-columns:1fr}}
 
 /* ============ RESPONSIVE ============ */
 @media(max-height:700px){:root{--pad:clamp(0.75rem,3vw,2rem);--gap:clamp(0.4rem,1.5vw,1rem);--h2:clamp(1.2rem,3vw,2rem);--body:clamp(0.82rem,1.3vw,1rem);--small:clamp(0.75rem,1.1vw,0.88rem)}}
@@ -743,11 +744,43 @@ tbody tr:hover td{background:rgba(45,106,79,0.06)}
     <p class="caption rv rv-d1">PVGIS ERA5 &middot; 51.989&deg;N, 104.674&deg;E &middot; 464 м &middot; Объект: Админ. здание</p>
     <div class="two-col rv rv-d2" style="margin-top:var(--gap);flex:1">
       <div style="display:flex;flex-direction:column;gap:var(--gap-sm)">
-        <div class="img-frame rv-s" style="height:min(32vh,260px)">
+        <div class="img-frame rv-s" style="height:min(38vh,320px)">
           <img src="images/solar-map-real-with-dot-in-irlutsk.png" alt="Карта солнечной радиации">
         </div>
-        <div class="img-frame rv-s rv-d1" style="height:min(18vh,140px)">
-          <img src="images/solar-radiation-spectrum.jpg" alt="Спектр солнечной радиации">
+        <div class="glass-strong rv rv-d3" style="padding:clamp(0.5rem,0.8vw,0.7rem);border-radius:14px">
+          <p style="font-size:clamp(0.6rem,0.85vw,0.72rem);font-weight:600;color:var(--text);margin-bottom:4px">Среднесуточная инсоляция по месяцам (кВт&middot;ч/м&sup2;/день)</p>
+          <div class="bar-chart" id="insolationChart" style="height:clamp(50px,8vh,80px)">
+            <div class="bar-col"><div class="bar-val">2.0</div><div class="bar" style="height:26%"></div><div class="bar-lbl">Янв</div></div>
+            <div class="bar-col"><div class="bar-val">3.0</div><div class="bar" style="height:39%"></div><div class="bar-lbl">Фев</div></div>
+            <div class="bar-col"><div class="bar-val">4.2</div><div class="bar" style="height:55%"></div><div class="bar-lbl">Мар</div></div>
+            <div class="bar-col"><div class="bar-val">4.8</div><div class="bar" style="height:63%"></div><div class="bar-lbl">Апр</div></div>
+            <div class="bar-col"><div class="bar-val">5.4</div><div class="bar" style="height:71%"></div><div class="bar-lbl">Май</div></div>
+            <div class="bar-col"><div class="bar-val">5.7</div><div class="bar" style="height:75%"></div><div class="bar-lbl">Июн</div></div>
+            <div class="bar-col"><div class="bar-val">5.5</div><div class="bar" style="height:72%"></div><div class="bar-lbl">Июл</div></div>
+            <div class="bar-col"><div class="bar-val">5.5</div><div class="bar" style="height:72%"></div><div class="bar-lbl">Авг</div></div>
+            <div class="bar-col"><div class="bar-val">4.0</div><div class="bar" style="height:53%"></div><div class="bar-lbl">Сен</div></div>
+            <div class="bar-col"><div class="bar-val">3.0</div><div class="bar" style="height:39%"></div><div class="bar-lbl">Окт</div></div>
+            <div class="bar-col"><div class="bar-val">2.0</div><div class="bar" style="height:26%"></div><div class="bar-lbl">Ноя</div></div>
+            <div class="bar-col"><div class="bar-val">1.6</div><div class="bar" style="height:21%"></div><div class="bar-lbl">Дек</div></div>
+          </div>
+        </div>
+        <div class="glass-strong rv rv-d4" style="padding:clamp(0.5rem,0.8vw,0.7rem);border-radius:14px">
+          <p style="font-size:clamp(0.6rem,0.85vw,0.72rem);font-weight:600;color:var(--text);margin-bottom:4px">Пик. солн. часы по месяцам (ч/день)</p>
+          <div class="bar-chart" id="peakSunChart" style="height:clamp(50px,8vh,80px)">
+            <div class="bar-col"><div class="bar-val">2.0</div><div class="bar" style="height:25%;background:linear-gradient(180deg,var(--amber),#e9c46a)"></div><div class="bar-lbl">Янв</div></div>
+            <div class="bar-col"><div class="bar-val">3.0</div><div class="bar" style="height:38%;background:linear-gradient(180deg,var(--amber),#e9c46a)"></div><div class="bar-lbl">Фев</div></div>
+            <div class="bar-col"><div class="bar-val">4.2</div><div class="bar" style="height:53%;background:linear-gradient(180deg,var(--amber),#e9c46a)"></div><div class="bar-lbl">Мар</div></div>
+            <div class="bar-col"><div class="bar-val">5.0</div><div class="bar" style="height:63%;background:linear-gradient(180deg,var(--amber),#e9c46a)"></div><div class="bar-lbl">Апр</div></div>
+            <div class="bar-col"><div class="bar-val">6.2</div><div class="bar" style="height:78%;background:linear-gradient(180deg,var(--amber),#e9c46a)"></div><div class="bar-lbl">Май</div></div>
+            <div class="bar-col"><div class="bar-val">6.8</div><div class="bar" style="height:85%;background:linear-gradient(180deg,var(--amber),#e9c46a)"></div><div class="bar-lbl">Июн</div></div>
+            <div class="bar-col"><div class="bar-val">6.5</div><div class="bar" style="height:81%;background:linear-gradient(180deg,var(--amber),#e9c46a)"></div><div class="bar-lbl">Июл</div></div>
+            <div class="bar-col"><div class="bar-val">5.8</div><div class="bar" style="height:73%;background:linear-gradient(180deg,var(--amber),#e9c46a)"></div><div class="bar-lbl">Авг</div></div>
+            <div class="bar-col"><div class="bar-val">4.5</div><div class="bar" style="height:56%;background:linear-gradient(180deg,var(--amber),#e9c46a)"></div><div class="bar-lbl">Сен</div></div>
+            <div class="bar-col"><div class="bar-val">3.2</div><div class="bar" style="height:40%;background:linear-gradient(180deg,var(--amber),#e9c46a)"></div><div class="bar-lbl">Окт</div></div>
+            <div class="bar-col"><div class="bar-val">2.0</div><div class="bar" style="height:25%;background:linear-gradient(180deg,var(--amber),#e9c46a)"></div><div class="bar-lbl">Ноя</div></div>
+            <div class="bar-col"><div class="bar-val">1.5</div><div class="bar" style="height:19%;background:linear-gradient(180deg,var(--amber),#e9c46a)"></div><div class="bar-lbl">Дек</div></div>
+          </div>
+          <p style="font-size:clamp(0.5rem,0.7vw,0.6rem);color:var(--text3);text-align:center;margin-top:2px">Среднегодовое: <b style="color:var(--amber)">4,77 ч/день</b></p>
         </div>
       </div>
       <div style="display:flex;flex-direction:column;gap:var(--gap-sm)">
@@ -977,69 +1010,63 @@ tbody tr:hover td{background:rgba(45,106,79,0.06)}
   <div class="slide-inner">
     <span class="label rv">Схема 4 / 4.1 &mdash; Размещение на админ. здании</span>
     <h2 class="title rv rv-d1">План размещения оборудования (100% покрытие)</h2>
-    <div class="plan-layout rv rv-d2" style="margin-top:var(--gap)">
-      <div class="img-frame rv-s" style="position:relative">
-        <div class="plan-overlay">
-          <img src="images/admin-build.png" alt="Админ. здание (зд. 5)">
-          <svg viewBox="0 0 1030 770" xmlns="http://www.w3.org/2000/svg">
-            <!-- ═══ ROOF: PV zone (south-west slope of building 5) ═══ -->
-            <rect x="285" y="195" width="120" height="70" rx="5" fill="rgba(27,79,114,0.82)" stroke="#fff" stroke-width="2.5"/>
-            <text x="345" y="228" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">&#9889; ФЭМ</text>
-            <text x="345" y="248" text-anchor="middle" fill="rgba(255,255,255,0.85)" font-size="10">71&times;500W</text>
-            <!-- callout line to label box -->
-            <line x1="285" y1="230" x2="60" y2="115" stroke="#1b4f72" stroke-width="2"/>
-            <rect x="5" y="80" width="178" height="55" rx="8" fill="#fff" stroke="#1b4f72" stroke-width="2" filter="url(#ds)"/>
-            <circle cx="18" cy="95" r="9" fill="#1b4f72"/><text x="18" y="99" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">1</text>
-            <text x="33" y="100" fill="#1b4f72" font-size="10.5" font-weight="700">ФЭМ массив</text>
-            <text x="33" y="115" fill="#3d3d3d" font-size="9">71 &times; 500 Вт = 35,5 кВт<tspan x="33" dy="12">168,3 м&sup2; &middot; 47&deg; / Юг</tspan></text>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:clamp(0.8rem,2vw,1.5rem);margin-top:var(--gap);flex:1;align-items:start" class="rv rv-d2 placement-grid">
+      <div style="display:flex;flex-direction:column;gap:var(--gap-sm)">
+        <div class="img-frame rv-s" style="position:relative;height:min(42vh,360px)">
+          <div class="plan-overlay">
+            <img src="images/admin-build.png" alt="Админ. здание (зд. 5)">
+            <svg viewBox="0 0 1030 770" xmlns="http://www.w3.org/2000/svg">
+              <rect x="285" y="195" width="120" height="70" rx="5" fill="rgba(27,79,114,0.82)" stroke="#fff" stroke-width="2.5"/>
+              <text x="345" y="228" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">&#9889; ФЭМ</text>
+              <text x="345" y="248" text-anchor="middle" fill="rgba(255,255,255,0.85)" font-size="10">71&times;500W</text>
+              <line x1="285" y1="230" x2="60" y2="115" stroke="#1b4f72" stroke-width="2"/>
+              <rect x="5" y="80" width="178" height="55" rx="8" fill="#fff" stroke="#1b4f72" stroke-width="2" filter="url(#ds)"/>
+              <circle cx="18" cy="95" r="9" fill="#1b4f72"/><text x="18" y="99" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">1</text>
+              <text x="33" y="100" fill="#1b4f72" font-size="10.5" font-weight="700">ФЭМ массив</text>
+              <text x="33" y="115" fill="#3d3d3d" font-size="9">71 &times; 500 Вт = 35,5 кВт<tspan x="33" dy="12">168,3 м&sup2; &middot; 47&deg; / Юг</tspan></text>
 
-            <!-- ═══ ROOF: Collectors zone (south-east slope of building 5) ═══ -->
-            <rect x="430" y="195" width="130" height="70" rx="5" fill="rgba(212,136,15,0.85)" stroke="#fff" stroke-width="2.5"/>
-            <text x="495" y="228" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">&#9728; Коллекторы</text>
-            <text x="495" y="248" text-anchor="middle" fill="rgba(255,255,255,0.85)" font-size="10">4&times;SCH-30</text>
-            <!-- callout line to label box -->
-            <line x1="560" y1="230" x2="800" y2="110" stroke="#d4880f" stroke-width="2"/>
-            <rect x="740" y="75" width="178" height="55" rx="8" fill="#fff" stroke="#d4880f" stroke-width="2" filter="url(#ds)"/>
-            <circle cx="753" cy="90" r="9" fill="#d4880f"/><text x="753" y="94" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">2</text>
-            <text x="768" y="95" fill="#b5700c" font-size="10.5" font-weight="700">Солн. коллекторы</text>
-            <text x="768" y="110" fill="#3d3d3d" font-size="9">4 &times; SCH-30 = 15,84 м&sup2;<tspan x="768" dy="12">47&deg; / Юг &middot; вакуумные</tspan></text>
+              <rect x="430" y="195" width="130" height="70" rx="5" fill="rgba(212,136,15,0.85)" stroke="#fff" stroke-width="2.5"/>
+              <text x="495" y="228" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">&#9728; Коллекторы</text>
+              <text x="495" y="248" text-anchor="middle" fill="rgba(255,255,255,0.85)" font-size="10">4&times;SCH-30</text>
+              <line x1="560" y1="230" x2="800" y2="110" stroke="#d4880f" stroke-width="2"/>
+              <rect x="740" y="75" width="178" height="55" rx="8" fill="#fff" stroke="#d4880f" stroke-width="2" filter="url(#ds)"/>
+              <circle cx="753" cy="90" r="9" fill="#d4880f"/><text x="753" y="94" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">2</text>
+              <text x="768" y="95" fill="#b5700c" font-size="10.5" font-weight="700">Солн. коллекторы</text>
+              <text x="768" y="110" fill="#3d3d3d" font-size="9">4 &times; SCH-30 = 15,84 м&sup2;<tspan x="768" dy="12">47&deg; / Юг &middot; вакуумные</tspan></text>
 
-            <!-- ═══ CABLE from PV to tech room ═══ -->
-            <line x1="345" y1="265" x2="345" y2="380" stroke="#1b4f72" stroke-width="2.5" stroke-dasharray="7,4"/>
-            <line x1="345" y1="380" x2="425" y2="440" stroke="#1b4f72" stroke-width="2.5" stroke-dasharray="7,4"/>
-            <!-- small "DC" label on cable -->
-            <rect x="310" y="370" width="28" height="14" rx="3" fill="#1b4f72"/><text x="324" y="381" text-anchor="middle" fill="#fff" font-size="8" font-weight="600">DC</text>
+              <line x1="345" y1="265" x2="345" y2="380" stroke="#1b4f72" stroke-width="2.5" stroke-dasharray="7,4"/>
+              <line x1="345" y1="380" x2="425" y2="440" stroke="#1b4f72" stroke-width="2.5" stroke-dasharray="7,4"/>
+              <rect x="310" y="370" width="28" height="14" rx="3" fill="#1b4f72"/><text x="324" y="381" text-anchor="middle" fill="#fff" font-size="8" font-weight="600">DC</text>
 
-            <!-- ═══ PIPE from collectors to tech room ═══ -->
-            <line x1="495" y1="265" x2="495" y2="380" stroke="#d4880f" stroke-width="2.5" stroke-dasharray="7,4"/>
-            <line x1="495" y1="380" x2="465" y2="440" stroke="#d4880f" stroke-width="2.5" stroke-dasharray="7,4"/>
-            <!-- small pipe label -->
-            <rect x="498" y="370" width="36" height="14" rx="3" fill="#d4880f"/><text x="516" y="381" text-anchor="middle" fill="#fff" font-size="8" font-weight="600">ГВС</text>
+              <line x1="495" y1="265" x2="495" y2="380" stroke="#d4880f" stroke-width="2.5" stroke-dasharray="7,4"/>
+              <line x1="495" y1="380" x2="465" y2="440" stroke="#d4880f" stroke-width="2.5" stroke-dasharray="7,4"/>
+              <rect x="498" y="370" width="36" height="14" rx="3" fill="#d4880f"/><text x="516" y="381" text-anchor="middle" fill="#fff" font-size="8" font-weight="600">ГВС</text>
 
-            <!-- ═══ TECHNICAL ROOM (hashed outline over 1st floor room) ═══ -->
-            <rect x="395" y="420" width="130" height="105" rx="6" fill="rgba(255,255,255,0.75)" stroke="#2d6a4f" stroke-width="2.5"/>
-            <!-- indoor equipment markers -->
-            <circle cx="425" cy="448" r="10" fill="#2d6a4f"/><text x="425" y="452" text-anchor="middle" fill="#fff" font-size="10" font-weight="700">3</text>
-            <text x="440" y="452" fill="#1a4a35" font-size="9.5" font-weight="600">Инвертор 7,5 кВт</text>
-            <circle cx="425" cy="472" r="10" fill="#2d6a4f"/><text x="425" y="476" text-anchor="middle" fill="#fff" font-size="10" font-weight="700">4</text>
-            <text x="440" y="476" fill="#1a4a35" font-size="9.5" font-weight="600">MPPT контроллер</text>
-            <circle cx="425" cy="496" r="10" fill="#6b4c9a"/><text x="425" y="500" text-anchor="middle" fill="#fff" font-size="10" font-weight="700">5</text>
-            <text x="440" y="500" fill="#4a2d73" font-size="9.5" font-weight="600">АКБ 23,4 кВт&middot;ч</text>
-            <circle cx="425" cy="516" r="10" fill="#d4880f"/><text x="425" y="520" text-anchor="middle" fill="#fff" font-size="10" font-weight="700">6</text>
-            <text x="440" y="520" fill="#8B5E00" font-size="9.5" font-weight="600">Бак 1 200 л</text>
+              <rect x="395" y="420" width="130" height="105" rx="6" fill="rgba(255,255,255,0.75)" stroke="#2d6a4f" stroke-width="2.5"/>
+              <circle cx="425" cy="448" r="10" fill="#2d6a4f"/><text x="425" y="452" text-anchor="middle" fill="#fff" font-size="10" font-weight="700">3</text>
+              <text x="440" y="452" fill="#1a4a35" font-size="9.5" font-weight="600">Инвертор 7,5 кВт</text>
+              <circle cx="425" cy="472" r="10" fill="#2d6a4f"/><text x="425" y="476" text-anchor="middle" fill="#fff" font-size="10" font-weight="700">4</text>
+              <text x="440" y="476" fill="#1a4a35" font-size="9.5" font-weight="600">MPPT контроллер</text>
+              <circle cx="425" cy="496" r="10" fill="#6b4c9a"/><text x="425" y="500" text-anchor="middle" fill="#fff" font-size="10" font-weight="700">5</text>
+              <text x="440" y="500" fill="#4a2d73" font-size="9.5" font-weight="600">АКБ 23,4 кВт&middot;ч</text>
+              <circle cx="425" cy="516" r="10" fill="#d4880f"/><text x="425" y="520" text-anchor="middle" fill="#fff" font-size="10" font-weight="700">6</text>
+              <text x="440" y="520" fill="#8B5E00" font-size="9.5" font-weight="600">Бак 1 200 л</text>
 
-            <!-- callout line from tech room to label -->
-            <line x1="525" y1="475" x2="740" y2="560" stroke="#2d6a4f" stroke-width="1.5"/>
-            <rect x="740" y="540" width="175" height="48" rx="8" fill="#fff" stroke="#2d6a4f" stroke-width="2" filter="url(#ds)"/>
-            <text x="755" y="558" fill="#2d6a4f" font-size="10" font-weight="700">Техпомещение 1 эт.</text>
-            <text x="755" y="572" fill="#3d3d3d" font-size="9">Инвертор + MPPT + АКБ</text>
-            <text x="755" y="584" fill="#3d3d3d" font-size="9">Бак-аккумулятор ГВС</text>
+              <line x1="525" y1="475" x2="740" y2="560" stroke="#2d6a4f" stroke-width="1.5"/>
+              <rect x="740" y="540" width="175" height="48" rx="8" fill="#fff" stroke="#2d6a4f" stroke-width="2" filter="url(#ds)"/>
+              <text x="755" y="558" fill="#2d6a4f" font-size="10" font-weight="700">Техпомещение 1 эт.</text>
+              <text x="755" y="572" fill="#3d3d3d" font-size="9">Инвертор + MPPT + АКБ</text>
+              <text x="755" y="584" fill="#3d3d3d" font-size="9">Бак-аккумулятор ГВС</text>
 
-            <!-- drop shadow filter -->
-            <defs><filter id="ds" x="-4%" y="-4%" width="108%" height="116%"><feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.12"/></filter></defs>
-          </svg>
-          <div class="north-arrow">N&uarr;</div>
+              <defs><filter id="ds" x="-4%" y="-4%" width="108%" height="116%"><feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.12"/></filter></defs>
+            </svg>
+            <div class="north-arrow">N&uarr;</div>
+          </div>
         </div>
+        <div class="img-frame rv-s rv-d1" style="height:min(28vh,230px)">
+          <img src="images/picture.jpg" alt="3D-визуализация размещения оборудования">
+        </div>
+        <p class="caption" style="text-align:center;margin-top:2px">3D-визуализация размещения ФЭМ и коллекторов</p>
       </div>
       <div class="info">
         <div style="display:flex;flex-direction:column;gap:clamp(4px,0.5vh,8px)">
