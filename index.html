@@ -734,7 +734,7 @@ tbody tr:hover td{background:rgba(45,106,79,0.06)}
     </div>
     <div class="glass-strong rv rv-d4" style="padding:clamp(0.6rem,1vw,1rem);border-radius:14px;margin-top:var(--gap-sm)">
       <p style="font-size:var(--small);font-weight:600;color:var(--text);margin-bottom:6px">Структура электропотребления по объектам</p>
-      <svg viewBox="0 0 520 184" width="100%" style="display:block;font-family:Inter,sans-serif">
+      <svg viewBox="0 0 520 184" width="50%" style="display:block;font-family:Inter,sans-serif">
         <g class="hbar-row">
           <text x="0" y="20" font-size="12" fill="#1d1d1f" font-weight="600">Кафе</text>
           <rect x="90" y="7" width="343" height="24" rx="6" fill="rgba(45,106,79,0.08)"/>
@@ -1005,18 +1005,27 @@ tbody tr:hover td{background:rgba(45,106,79,0.06)}
     <p class="caption rv rv-d1">Pw = 1000 &middot; N / (K &middot; E) &middot; 100% покрытие</p>
     <div class="panel-row rv rv-d2" style="margin-top:var(--gap);flex:1;align-items:start">
       <div style="display:flex;flex-direction:column;gap:var(--gap-sm)">
-        <p style="font-size:var(--body);font-weight:600;color:var(--green)">Расчёт мощности солнечной батареи</p>
+        <p style="font-size:var(--body);font-weight:600;color:var(--green)">Исходные данные</p>
         <div class="calc-chain">
           <div class="calc-step"><span class="formula">N = 7 680 кВт&middot;ч/год</span><span class="result">Годовое потр.</span></div>
-          <div class="calc-step"><span class="formula">K = 0,5 (лето) / 0,7 (зима)</span><span class="result">Коэфф. эфф. СБ</span></div>
-          <div class="calc-step"><span class="formula">K = 0,6 (среднегод.)</span><span class="result">Среднее значение</span></div>
           <div class="calc-step"><span class="formula">q = 4,77 кВт&middot;ч/(м&sup2;&middot;день)</span><span class="result">Интенсивность</span></div>
           <div class="calc-step"><span class="formula">E = q &times; 365 = 4,77 &times; 365</span><span class="result">1 741 кВт&middot;ч/год</span></div>
-          <div class="calc-step"><span class="formula">Pw = 1000 &times; 7 680 / (0,6 &times; 1 741)</span><span class="result">7 352 Вт</span></div>
-          <div class="calc-step"><span class="formula">Pw &asymp; 7,35 кВт</span><span class="result">Мощность СБ</span></div>
-          <div class="calc-step"><span class="formula">N<sub>панелей</sub> = ⌈7 350 / 500⌉</span><span class="result">15 шт</span></div>
-          <div class="calc-step"><span class="formula">Pw<sub>факт</sub> = 15 &times; 500</span><span class="result">7,5 кВт</span></div>
-          <div class="calc-step"><span class="formula">Площадь = 15 &times; 2,37</span><span class="result">35,6 м&sup2;</span></div>
+        </div>
+        <p style="font-size:var(--body);font-weight:600;color:var(--amber);margin-top:var(--gap-sm)">Летний расчёт (K = 0,5)</p>
+        <div class="calc-chain">
+          <div class="calc-step"><span class="formula">Pw<sub>лето</sub> = 1000 &times; 7 680 / (0,5 &times; 1 741)</span><span class="result">8 823 Вт</span></div>
+          <div class="calc-step"><span class="formula">Pw<sub>лето</sub> &asymp; 8,82 кВт</span><span class="result">18 панелей &times; 500 Вт = 9,0 кВт</span></div>
+        </div>
+        <p style="font-size:var(--body);font-weight:600;color:var(--blue);margin-top:var(--gap-sm)">Зимний расчёт (K = 0,7)</p>
+        <div class="calc-chain">
+          <div class="calc-step"><span class="formula">Pw<sub>зима</sub> = 1000 &times; 7 680 / (0,7 &times; 1 741)</span><span class="result">6 302 Вт</span></div>
+          <div class="calc-step"><span class="formula">Pw<sub>зима</sub> &asymp; 6,30 кВт</span><span class="result">13 панелей &times; 500 Вт = 6,5 кВт</span></div>
+        </div>
+        <p style="font-size:var(--body);font-weight:600;color:var(--green);margin-top:var(--gap-sm)">Среднегодовой расчёт (K = 0,6)</p>
+        <div class="calc-chain">
+          <div class="calc-step"><span class="formula">Pw<sub>ср</sub> = 1000 &times; 7 680 / (0,6 &times; 1 741)</span><span class="result">7 352 Вт</span></div>
+          <div class="calc-step"><span class="formula">Pw<sub>ср</sub> &asymp; 7,35 кВт</span><span class="result">15 панелей &times; 500 Вт = 7,5 кВт</span></div>
+          <div class="calc-step" style="border:2px solid var(--green)"><span class="formula" style="font-weight:600">Принято: Pw = 7,5 кВт (15 панелей, среднегод.)</span><span class="result">Площадь = 35,6 м&sup2;</span></div>
         </div>
       </div>
       <div style="display:flex;flex-direction:column;gap:var(--gap-sm)">
@@ -1024,20 +1033,20 @@ tbody tr:hover td{background:rgba(45,106,79,0.06)}
           <table>
             <thead><tr><th>Параметр</th><th>Значение</th></tr></thead>
             <tbody>
-              <tr><td>Коэфф. эффективности СБ (K)</td><td style="text-align:right">0,6</td></tr>
               <tr><td>Годовая радиация E</td><td style="text-align:right">1 741 кВт&middot;ч/год</td></tr>
-              <tr class="highlight-row"><td>Мощность солнечной батареи Pw</td><td style="text-align:right">7,5 кВт</td></tr>
+              <tr><td>Pw лето (K = 0,5)</td><td style="text-align:right;color:var(--amber)">8,82 кВт &rarr; 18 пан.</td></tr>
+              <tr><td>Pw зима (K = 0,7)</td><td style="text-align:right;color:var(--blue)">6,30 кВт &rarr; 13 пан.</td></tr>
+              <tr class="highlight-row"><td>Pw среднегод. (K = 0,6)</td><td style="text-align:right">7,35 кВт &rarr; 15 пан.</td></tr>
               <tr><td>Модель панели</td><td style="text-align:right">Delta NXT 500W</td></tr>
               <tr><td>КПД панели</td><td style="text-align:right">21,05%</td></tr>
               <tr><td>Площадь 1 панели</td><td style="text-align:right">2,37 м&sup2;</td></tr>
-              <tr class="highlight-row"><td>Кол-во панелей</td><td style="text-align:right">15 шт</td></tr>
+              <tr class="highlight-row"><td>Принято панелей</td><td style="text-align:right">15 шт (7,5 кВт)</td></tr>
               <tr class="highlight-row"><td>Площадь солнечных панелей</td><td style="text-align:right">35,6 м&sup2;</td></tr>
               <tr><td>Инвертор (Nи = Nмакс &times; 1,5)</td><td style="text-align:right">7,5 кВт</td></tr>
               <tr><td>Nмакс (макс. одноврем. нагрузка)</td><td style="text-align:right">5 кВт</td></tr>
               <tr><td>АКБ (NАБ = N &times; K, K=1,1 кисл.)</td><td style="text-align:right">23,4 кВт&middot;ч</td></tr>
               <tr><td>A = NАБ / U (48 В)</td><td style="text-align:right">488 А&middot;ч</td></tr>
               <tr><td>Контроллер заряда</td><td style="text-align:right">MPPT</td></tr>
-              <tr><td>Годовая генерация (100%)</td><td style="text-align:right">7 680 кВт&middot;ч</td></tr>
             </tbody>
           </table>
         </div>
@@ -1222,7 +1231,6 @@ tbody tr:hover td{background:rgba(45,106,79,0.06)}
           <div style="display:flex;flex-direction:column;gap:clamp(4px,0.5vh,8px);font-size:var(--body);color:var(--text2);line-height:1.5">
             <p>&bull; Наклон: 47&deg;, азимут: 180&deg; (Юг)</p>
             <p>&bull; ФЭП и коллекторы &mdash; южный скат крыши</p>
-            <p>&bull; Всё внутр. оборудование &mdash; хоз. пом. 1 эт.</p>
             <p>&bull; Трубы ГВС: &lt;15 м до коллекторов</p>
             <p>&bull; Заземление по ПУЭ</p>
           </div>
