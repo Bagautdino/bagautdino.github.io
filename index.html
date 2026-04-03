@@ -298,6 +298,15 @@ tbody tr:hover td{background:rgba(45,106,79,0.06)}
 }
 .calc-step .formula{color:var(--text);font-family:'Courier New',monospace;font-size:clamp(0.8rem,1.1vw,0.95rem)}
 .calc-step .result{font-weight:700;color:var(--green);white-space:nowrap;font-size:clamp(0.8rem,1.1vw,0.95rem)}
+.formula-ref{
+  margin-top:clamp(0.3rem,0.5vw,0.4rem);
+  padding:clamp(0.35rem,0.6vw,0.5rem) clamp(0.6rem,1vw,0.8rem);
+  border-radius:8px;border-left:3px solid var(--green);
+  background:rgba(45,106,79,0.05);
+  font-size:clamp(0.75rem,1vw,0.88rem);color:var(--text2);line-height:1.45;
+}
+.formula-ref b{color:var(--text);font-family:'Courier New',monospace}
+.formula-ref .ref-src{color:var(--green);font-weight:600;font-size:clamp(0.65rem,0.85vw,0.78rem)}
 
 /* ============ SVG OVERLAY ON GENPLAN ============ */
 .plan-overlay{position:relative;width:100%;height:100%}
@@ -876,6 +885,11 @@ tbody tr:hover td{background:rgba(45,106,79,0.06)}
           <div class="calc-step"><span class="formula">Q<sub>сут</sub> = 1 414 / 30</span><span class="result">47,1 кВт&middot;ч/сут</span></div>
           <div class="calc-step"><span class="formula">Q<sub>год</sub> = 1 414 &times; 12</span><span class="result">16 968 кВт&middot;ч/год</span></div>
         </div>
+        <div class="formula-ref">
+          <b>Q = C &middot; M &middot; ΔT</b>, где C = 4,19 кДж/(кг&middot;К), M = &rho; &times; V, ΔT = T₂ &minus; T₁<br>
+          <b>E = q &times; N</b> &mdash; годовое кол-во солнечной радиации (кВт&middot;ч/год)<br>
+          <span class="ref-src">Методичка &mdash; Занятие №6, Шаг 2</span>
+        </div>
       </div>
       <div style="display:flex;flex-direction:column;gap:var(--gap-sm)">
         <div class="tbl-wrap form-tbl">
@@ -924,6 +938,12 @@ tbody tr:hover td{background:rgba(45,106,79,0.06)}
           <div class="calc-step"><span class="formula">N = ⌈12,3 / 3,96⌉ = ⌈3,1⌉</span><span class="result">4 шт</span></div>
           <div class="calc-step"><span class="formula">F<sub>факт</sub> = 4 &times; 3,96</span><span class="result">15,84 м&sup2;</span></div>
         </div>
+        <div class="formula-ref">
+          <b>F = Q / (E &middot; η)</b> &mdash; площадь коллекторов (м&sup2;)<br>
+          <b>η = η₀ &minus; k &middot; ΔT / E</b> &mdash; КПД коллектора<br>
+          Вакуумный: η₀ = 0,80; k = 0,001 кВт/(К&middot;м&sup2;)<br>
+          <span class="ref-src">Методичка &mdash; Занятие №6, Шаги 4&ndash;5</span>
+        </div>
       </div>
       <div style="display:flex;flex-direction:column;gap:var(--gap-sm)">
         <div class="tbl-wrap form-tbl">
@@ -962,12 +982,17 @@ tbody tr:hover td{background:rgba(45,106,79,0.06)}
     <div class="panel-row rv rv-d2" style="margin-top:var(--gap);flex:1;align-items:start">
       <div style="display:flex;flex-direction:column;gap:var(--gap)">
         <div>
-          <p style="font-size:var(--body);font-weight:600;color:var(--amber)">Проверка исходных данных</p>
+          <p style="font-size:var(--body);font-weight:600;color:var(--amber)">Шаг 1 &mdash; Суммарное потребление N (кВт&middot;ч)</p>
           <div class="calc-chain" style="margin-top:var(--gap-sm)">
-            <div class="calc-step"><span class="formula">&sum; таблицы = 42,5 кВт&middot;ч/сут</span><span class="result">Сумма приборов</span></div>
-            <div class="calc-step"><span class="formula">42,5 &times; 30 = 1 275 кВт&middot;ч/мес</span><span class="result">Теоретич.</span></div>
-            <div class="calc-step"><span class="formula">Коэфф. согласования = 640 / 1 275</span><span class="result">0,502</span></div>
-            <div class="calc-step"><span class="formula">Экв. дней работы = 640 / 42,5</span><span class="result">15,1 дней/мес</span></div>
+            <div class="calc-step"><span class="formula">N<sub>табл</sub> = &sum;(P<sub>i</sub> &times; t<sub>i</sub>) = 42,5 кВт&middot;ч/сут</span><span class="result">По таблице потребителей</span></div>
+            <div class="calc-step"><span class="formula">N<sub>табл/мес</sub> = 42,5 &times; 30 = 1 275 кВт&middot;ч/мес</span><span class="result">Максимальное (все 30 дней)</span></div>
+            <div class="calc-step"><span class="formula">N<sub>факт</sub> = 640 кВт&middot;ч/мес</span><span class="result">Фактическое потребление</span></div>
+            <div class="calc-step"><span class="formula">640 / 1 275 = 0,502 (50,2%)</span><span class="result">Доля от максимального</span></div>
+          </div>
+          <div class="formula-ref">
+            <b>N = &sum;(P<sub>i</sub> &times; t<sub>i</sub>)</b> &mdash; суммарное потребление по таблице потребителей<br>
+            P<sub>i</sub> &mdash; мощность прибора (кВт), t<sub>i</sub> &mdash; время работы (ч/сут)<br>
+            <span class="ref-src">Методичка &mdash; Занятие №2, Шаг 1</span>
           </div>
         </div>
         <div>
@@ -1026,6 +1051,14 @@ tbody tr:hover td{background:rgba(45,106,79,0.06)}
           <div class="calc-step"><span class="formula">Pw<sub>ср</sub> = 1000 &times; 7 680 / (0,6 &times; 1 741)</span><span class="result">7 352 Вт</span></div>
           <div class="calc-step"><span class="formula">Pw<sub>ср</sub> &asymp; 7,35 кВт</span><span class="result">15 панелей &times; 500 Вт = 7,5 кВт</span></div>
           <div class="calc-step" style="border:2px solid var(--green)"><span class="formula" style="font-weight:600">Принято: Pw = 7,5 кВт (15 панелей, среднегод.)</span><span class="result">Площадь = 35,6 м&sup2;</span></div>
+        </div>
+        <div class="formula-ref">
+          <b>Pw = 1000 &middot; N / (K &middot; E)</b> &mdash; мощность солнечной батареи (Вт)<br>
+          N &mdash; потребление (кВт&middot;ч/год), K &mdash; коэфф. эфф. СБ (лето 0,5 / зима 0,7), E = q &times; 365<br>
+          <b>N<sub>и</sub> = N<sub>макс</sub> &times; 1,5</b> &mdash; мощность инвертора<br>
+          <b>N<sub>АБ</sub> = N &times; K</b> &mdash; ёмкость АКБ (K = 1,1 кисл. / 1,3 щел.)<br>
+          <b>A = N<sub>АБ</sub> / U</b> &mdash; ток АКБ (А&middot;ч)<br>
+          <span class="ref-src">Методичка &mdash; Занятия №2 (Pw), №3 (инвертор), №5 (АКБ)</span>
         </div>
       </div>
       <div style="display:flex;flex-direction:column;gap:var(--gap-sm)">
@@ -1122,6 +1155,12 @@ tbody tr:hover td{background:rgba(45,106,79,0.06)}
         <div class="calc-step"><span class="formula">N<sub>год</sub> = 7 680 кВт&middot;ч (электро) + 16 968 кВт&middot;ч (ГВС)</span><span class="result">24 648 кВт&middot;ч</span></div>
         <div class="calc-step"><span class="formula">З = T &times; N = 5,66 &times; 24 648</span><span class="result">139 508 руб./год</span></div>
         <div class="calc-step" style="border:2px solid var(--amber)"><span class="formula" style="font-size:clamp(0.85rem,1.2vw,1rem);font-weight:600">n = C / З = 1 190 000 / 139 508</span><span class="result" style="color:var(--amber);font-size:clamp(1rem,1.5vw,1.3rem)">&asymp; 8,5 лет</span></div>
+      </div>
+      <div class="formula-ref" style="margin-top:var(--gap-sm)">
+        <b>n = C / З</b> &mdash; срок окупаемости (лет)<br>
+        C = C<sub>обор</sub> + C<sub>монт</sub>, где C<sub>монт</sub> = 40% &times; C<sub>обор</sub><br>
+        З = T &times; N &mdash; годовые затраты на электроэнергию<br>
+        <span class="ref-src">Методичка &mdash; Занятия №2 и №6 (расчёт экономической эффективности)</span>
       </div>
       <p style="font-size:var(--small);color:var(--text3);margin-top:var(--gap-sm)">* Оборудование подобрано по методике А&ndash;В&ndash;С: 2 отечественных варианта и 1 зарубежный</p>
     </div>
