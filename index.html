@@ -1147,70 +1147,29 @@ tbody tr:hover td{background:rgba(45,106,79,0.06)}
     <div class="plan-layout rv rv-d2" style="margin-top:var(--gap)">
       <div class="img-frame rv-s" style="position:relative">
         <div class="plan-overlay">
-          <img src="images/schema_top_view.png" alt="Админ. здание (зд. 5)">
-          <svg viewBox="0 0 1030 770" xmlns="http://www.w3.org/2000/svg">
-            <rect x="285" y="195" width="120" height="70" rx="5" fill="rgba(27,79,114,0.82)" stroke="#fff" stroke-width="2.5"/>
-            <text x="345" y="228" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">&#9889; ФЭП</text>
-            <text x="345" y="248" text-anchor="middle" fill="rgba(255,255,255,0.85)" font-size="10">15&times;500W</text>
-            <line x1="285" y1="230" x2="60" y2="115" stroke="#1b4f72" stroke-width="2"/>
-            <rect x="5" y="80" width="178" height="55" rx="8" fill="#fff" stroke="#1b4f72" stroke-width="2" filter="url(#ds)"/>
-            <circle cx="18" cy="95" r="9" fill="#1b4f72"/><text x="18" y="99" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">1</text>
-            <text x="33" y="100" fill="#1b4f72" font-size="10.5" font-weight="700">Солнечная батарея</text>
-            <text x="33" y="115" fill="#3d3d3d" font-size="9">15 &times; 500 Вт = 7,5 кВт<tspan x="33" dy="12">35,6 м&sup2; &middot; 47&deg; / Юг</tspan></text>
-
-            <rect x="430" y="195" width="130" height="70" rx="5" fill="rgba(212,136,15,0.85)" stroke="#fff" stroke-width="2.5"/>
-            <text x="495" y="228" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">&#9728; Коллекторы</text>
-            <text x="495" y="248" text-anchor="middle" fill="rgba(255,255,255,0.85)" font-size="10">4&times;SCH-30</text>
-            <line x1="560" y1="230" x2="800" y2="110" stroke="#d4880f" stroke-width="2"/>
-            <rect x="740" y="75" width="178" height="55" rx="8" fill="#fff" stroke="#d4880f" stroke-width="2" filter="url(#ds)"/>
-            <circle cx="753" cy="90" r="9" fill="#d4880f"/><text x="753" y="94" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">2</text>
-            <text x="768" y="95" fill="#b5700c" font-size="10.5" font-weight="700">Солн. коллекторы</text>
-            <text x="768" y="110" fill="#3d3d3d" font-size="9">4 &times; SCH-30 = 15,84 м&sup2;<tspan x="768" dy="12">47&deg; / Юг &middot; вакуумные</tspan></text>
-
-            <line x1="345" y1="265" x2="345" y2="380" stroke="#1b4f72" stroke-width="2.5" stroke-dasharray="7,4"/>
-            <line x1="345" y1="380" x2="425" y2="440" stroke="#1b4f72" stroke-width="2.5" stroke-dasharray="7,4"/>
-            <rect x="310" y="370" width="28" height="14" rx="3" fill="#1b4f72"/><text x="324" y="381" text-anchor="middle" fill="#fff" font-size="8" font-weight="600">DC</text>
-
-            <line x1="495" y1="265" x2="495" y2="380" stroke="#d4880f" stroke-width="2.5" stroke-dasharray="7,4"/>
-            <line x1="495" y1="380" x2="465" y2="440" stroke="#d4880f" stroke-width="2.5" stroke-dasharray="7,4"/>
-            <rect x="498" y="370" width="36" height="14" rx="3" fill="#d4880f"/><text x="516" y="381" text-anchor="middle" fill="#fff" font-size="8" font-weight="600">ГВС</text>
-
-            <rect x="395" y="420" width="130" height="105" rx="6" fill="rgba(255,255,255,0.75)" stroke="#2d6a4f" stroke-width="2.5"/>
-            <circle cx="425" cy="448" r="10" fill="#2d6a4f"/><text x="425" y="452" text-anchor="middle" fill="#fff" font-size="10" font-weight="700">3</text>
-            <text x="440" y="452" fill="#1a4a35" font-size="9.5" font-weight="600">Инвертор 7,5 кВт</text>
-            <circle cx="425" cy="472" r="10" fill="#2d6a4f"/><text x="425" y="476" text-anchor="middle" fill="#fff" font-size="10" font-weight="700">4</text>
-            <text x="440" y="476" fill="#1a4a35" font-size="9.5" font-weight="600">MPPT контроллер</text>
-            <circle cx="425" cy="496" r="10" fill="#6b4c9a"/><text x="425" y="500" text-anchor="middle" fill="#fff" font-size="10" font-weight="700">5</text>
-            <text x="440" y="500" fill="#4a2d73" font-size="9.5" font-weight="600">АКБ 23,4 кВт&middot;ч</text>
-            <circle cx="425" cy="516" r="10" fill="#d4880f"/><text x="425" y="520" text-anchor="middle" fill="#fff" font-size="10" font-weight="700">6</text>
-            <text x="440" y="520" fill="#8B5E00" font-size="9.5" font-weight="600">Бак 1 200 л</text>
-
-            <line x1="525" y1="475" x2="740" y2="560" stroke="#2d6a4f" stroke-width="1.5"/>
-            <rect x="740" y="540" width="175" height="48" rx="8" fill="#fff" stroke="#2d6a4f" stroke-width="2" filter="url(#ds)"/>
-            <text x="755" y="558" fill="#2d6a4f" font-size="10" font-weight="700">Техпомещение 1 эт.</text>
-            <text x="755" y="572" fill="#3d3d3d" font-size="9">Инвертор + MPPT + АКБ</text>
-            <text x="755" y="584" fill="#3d3d3d" font-size="9">Бак-аккумулятор ГВС</text>
-
-            <defs><filter id="ds" x="-4%" y="-4%" width="108%" height="116%"><feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.12"/></filter></defs>
-          </svg>
-          <div class="north-arrow">N&uarr;</div>
+          <img src="images/schema_top_view.png" alt="Левая и правая схемы размещения оборудования">
         </div>
       </div>
       <div class="info">
-        <div style="display:flex;flex-direction:column;gap:clamp(6px,0.8vh,12px)">
-          <div style="display:flex;align-items:center;gap:6px"><span style="display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:#1b4f72;color:#fff;font-size:11px;font-weight:700;flex-shrink:0">1</span><span style="font-size:var(--small);color:var(--text)"><b>Солнечная батарея</b> &mdash; 15&times;500W, 7,5 кВт, 35,6 м&sup2;</span></div>
-          <div style="display:flex;align-items:center;gap:6px"><span style="display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:#d4880f;color:#fff;font-size:11px;font-weight:700;flex-shrink:0">2</span><span style="font-size:var(--small);color:var(--text)"><b>Коллекторы</b> &mdash; 4&times;SCH-30, 15,84 м&sup2;</span></div>
-          <div style="display:flex;align-items:center;gap:6px"><span style="display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:#2d6a4f;color:#fff;font-size:11px;font-weight:700;flex-shrink:0">3</span><span style="font-size:var(--small);color:var(--text)"><b>Инвертор</b> &mdash; 7,5 кВт, двойное преобразование</span></div>
-          <div style="display:flex;align-items:center;gap:6px"><span style="display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:#2d6a4f;color:#fff;font-size:11px;font-weight:700;flex-shrink:0">4</span><span style="font-size:var(--small);color:var(--text)"><b>MPPT</b> &mdash; контроллер заряда + щит</span></div>
-          <div style="display:flex;align-items:center;gap:6px"><span style="display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:#6b4c9a;color:#fff;font-size:11px;font-weight:700;flex-shrink:0">5</span><span style="font-size:var(--small);color:var(--text)"><b>АКБ</b> &mdash; LiFePO4 (K=1,1, кисл. тип), 23,4 кВт&middot;ч</span></div>
-          <div style="display:flex;align-items:center;gap:6px"><span style="display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:#d4880f;color:#fff;font-size:11px;font-weight:700;flex-shrink:0">6</span><span style="font-size:var(--small);color:var(--text)"><b>Бак ГВС</b> &mdash; 1&times;1 200 л, в техпомещении</span></div>
+        <div class="glass-strong" style="padding:clamp(0.8rem,1.2vw,1rem);border-radius:16px">
+          <p style="font-size:var(--body);font-weight:600;color:var(--green);margin-bottom:var(--gap-sm)">Левая схема (внутри здания)</p>
+          <div style="display:flex;flex-direction:column;gap:clamp(5px,0.7vh,9px);font-size:var(--small);color:var(--text2);line-height:1.45">
+            <p><span style="display:inline-block;width:14px;height:22px;border-radius:5px;background:#8da89d;border:1px solid rgba(0,0,0,0.12);margin-right:6px;vertical-align:-4px"></span><b style="color:var(--text)">Зеленый вертикальный блок</b> &mdash; бак горячего водоснабжения в большом хозпомещении.</p>
+            <p><span style="display:inline-block;width:14px;height:14px;border-radius:4px;background:#6f8db6;border:1px solid rgba(0,0,0,0.12);margin-right:2px;vertical-align:-2px"></span><span style="display:inline-block;width:14px;height:14px;border-radius:4px;background:#6f8db6;border:1px solid rgba(0,0,0,0.12);margin-right:6px;vertical-align:-2px"></span><b style="color:var(--text)">Два синих блока</b> &mdash; инвертор и аккумуляторный блок в малом техпомещении.</p>
+            <p><span style="display:inline-block;width:10px;height:20px;border-radius:4px;background:#d2c195;border:1px solid rgba(0,0,0,0.12);margin-right:6px;vertical-align:-5px"></span><b style="color:var(--text)">Узкий бежевый блок</b> &mdash; контроллер/MPPT и электрический щит.</p>
+            <p><span style="display:inline-block;width:22px;border-bottom:2.5px dashed #2e7fd1;margin-right:6px;vertical-align:middle"></span><b style="color:var(--text)">Синий пунктир</b> &mdash; кабельная электрическая трасса с кровли во внутренние помещения.</p>
+            <p><span style="display:inline-block;width:22px;border-bottom:2.5px dashed #d25555;margin-right:6px;vertical-align:middle"></span><b style="color:var(--text)">Красный пунктир</b> &mdash; трубная трасса от солнечных коллекторов во внутренние помещения.</p>
+            <p><span style="display:inline-flex;align-items:center;justify-content:center;width:10px;height:10px;border-radius:50%;background:#2e7fd1;margin-right:2px;vertical-align:middle"></span><span style="display:inline-flex;align-items:center;justify-content:center;width:10px;height:10px;border-radius:50%;background:#d25555;margin-right:6px;vertical-align:middle"></span><b style="color:var(--text)">Синяя и красная точки</b> &mdash; узлы ввода кабелей и труб в здание.</p>
+          </div>
         </div>
-        <div style="margin-top:var(--gap);padding-top:var(--gap-sm);border-top:1px solid var(--separator)">
-          <p style="font-size:var(--small);font-weight:600;color:var(--green);margin-bottom:4px">Условные обозначения</p>
-          <div style="display:flex;flex-direction:column;gap:3px;font-size:var(--small);color:var(--text2)">
-            <span><span style="display:inline-block;width:20px;border-bottom:2.5px dashed #1b4f72;margin-right:4px;vertical-align:middle"></span>Кабель DC (ФЭП &rarr; инвертор)</span>
-            <span><span style="display:inline-block;width:20px;border-bottom:2.5px dashed #d4880f;margin-right:4px;vertical-align:middle"></span>Трубопровод ГВС (колл. &rarr; бак)</span>
-            <span><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:rgba(255,255,255,0.75);border:2px solid #2d6a4f;margin-right:4px;vertical-align:middle"></span>Техпомещение 1 эт.</span>
+        <div class="glass-strong" style="padding:clamp(0.8rem,1.2vw,1rem);border-radius:16px">
+          <p style="font-size:var(--body);font-weight:600;color:var(--green);margin-bottom:var(--gap-sm)">Правая схема (на крыше)</p>
+          <div style="display:flex;flex-direction:column;gap:clamp(5px,0.7vh,9px);font-size:var(--small);color:var(--text2);line-height:1.45">
+            <p><span style="display:inline-block;width:14px;height:10px;border-radius:3px;background:#5f7faa;border:1px solid rgba(0,0,0,0.14);margin-right:6px;vertical-align:middle"></span><b style="color:var(--text)">15 синих прямоугольников</b> &mdash; фотоэлектрические модули на южном скате (первая кровельная группа).</p>
+            <p><span style="display:inline-block;width:14px;height:10px;border-radius:3px;background:#ccb05f;border:1px solid rgba(0,0,0,0.14);margin-right:6px;vertical-align:middle"></span><b style="color:var(--text)">4 желтых прямоугольника</b> &mdash; вакуумные солнечные коллекторы справа (вторая кровельная группа).</p>
+            <p><span style="display:inline-block;width:22px;border-bottom:2.5px dashed #2e7fd1;margin-right:6px;vertical-align:middle"></span><b style="color:var(--text)">Синий пунктир</b> &mdash; направление электрической трассы от фотоэлектрических модулей к внутреннему оборудованию.</p>
+            <p><span style="display:inline-block;width:22px;border-bottom:2.5px dashed #d25555;margin-right:6px;vertical-align:middle"></span><b style="color:var(--text)">Красный пунктир</b> &mdash; направление трубной трассы от солнечных коллекторов к баку ГВС.</p>
+            <p><span style="display:inline-block;width:22px;border-bottom:2.5px dashed #2e7fd1;margin-right:2px;vertical-align:middle"></span><span style="display:inline-block;width:22px;border-bottom:2.5px dashed #d25555;margin-right:6px;vertical-align:middle"></span><b style="color:var(--text)">Синий и красный пунктир</b> &mdash; общие направления трасс от крыши к внутренним помещениям.</p>
           </div>
         </div>
       </div>
