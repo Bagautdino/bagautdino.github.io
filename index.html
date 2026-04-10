@@ -1657,8 +1657,240 @@ tbody tr:hover td{background:rgba(45,106,79,0.06)}
   </div>
 </section>
 
-<!-- ======================== 34. MOUNTING SCHEME ======================== -->
-<section class="slide" style="background:var(--surface)" data-slide="34">
+<!-- ======================== 34. ANALYSIS — BOTTLENECKS ======================== -->
+<section class="slide" style="background:var(--surface-warm)" data-slide="34">
+  <div class="slide-inner">
+    <span class="label rv">Value Engineering &mdash; Шаг 1</span>
+    <h2 class="title rv rv-d1">Анализ текущего решения &mdash; узкие места</h2>
+    <p class="caption rv rv-d1">Исходный CAPEX: 1 974 000 руб &middot; Окупаемость: 13,3 года &middot; Цель: 3&ndash;6 лет</p>
+    <div class="two-col rv rv-d2" style="margin-top:var(--gap)">
+      <div style="display:flex;flex-direction:column;gap:var(--gap-sm)">
+        <div class="glass-strong" style="padding:clamp(0.8rem,1.2vw,1rem);border-radius:14px;border-left:4px solid #e63946">
+          <p style="font-size:var(--body);font-weight:700;color:#e63946;margin-bottom:var(--gap-sm)">&numero;1 &mdash; АКБ AGM 24 кВт&middot;ч (27% от CAPEX)</p>
+          <div style="font-size:var(--small);color:var(--text2);line-height:1.5">
+            <p>&bull; Стоимость: <b>350 000 руб</b> &mdash; крупнейшая статья расходов ФЭС</p>
+            <p>&bull; Срок службы AGM: 5&ndash;7 лет, затем полная замена</p>
+            <p>&bull; При наличии сетевого подключения автономность избыточна</p>
+            <p>&bull; Дополнительные расходы: термокейс, обслуживание, утилизация</p>
+          </div>
+        </div>
+        <div class="glass-strong" style="padding:clamp(0.8rem,1.2vw,1rem);border-radius:14px;border-left:4px solid var(--amber)">
+          <p style="font-size:var(--body);font-weight:700;color:var(--amber);margin-bottom:var(--gap-sm)">&numero;2 &mdash; Гибридный инвертор 8 кВт</p>
+          <div style="font-size:var(--small);color:var(--text2);line-height:1.5">
+            <p>&bull; Стоимость: <b>165 000 руб</b> (избыточный функционал)</p>
+            <p>&bull; Гибридный режим не нужен при сетевом подключении</p>
+            <p>&bull; Сетевой инвертор аналогичной мощности &mdash; в 2,5&times; дешевле</p>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:var(--gap-sm)">
+        <div class="glass-strong" style="padding:clamp(0.8rem,1.2vw,1rem);border-radius:14px;border-left:4px solid var(--amber)">
+          <p style="font-size:var(--body);font-weight:700;color:var(--amber);margin-bottom:var(--gap-sm)">&numero;3 &mdash; Бак ГВС 1 200 л (нерж.)</p>
+          <div style="font-size:var(--small);color:var(--text2);line-height:1.5">
+            <p>&bull; Стоимость: <b>110 000 руб</b> (нержавеющий)</p>
+            <p>&bull; Суточный расход: 750 л &rarr; бак 800 л достаточен</p>
+            <p>&bull; Эмалированный бак: &minus;48% стоимости при ресурсе 15+ лет</p>
+          </div>
+        </div>
+        <div class="glass-strong" style="padding:clamp(0.8rem,1.2vw,1rem);border-radius:14px;border-left:4px solid var(--amber)">
+          <p style="font-size:var(--body);font-weight:700;color:var(--amber);margin-bottom:var(--gap-sm)">&numero;4 &mdash; Монтаж 40% от оборудования</p>
+          <div style="font-size:var(--small);color:var(--text2);line-height:1.5">
+            <p>&bull; Суммарный монтаж: <b>564 000 руб</b> (29% от CAPEX)</p>
+            <p>&bull; Упрощённая система (без АКБ) &rarr; меньше трудоёмкость</p>
+            <p>&bull; Типовые решения &rarr; целевой коэффициент: 30%</p>
+          </div>
+        </div>
+        <div class="stats rv rv-d3">
+          <div class="stat" style="text-align:center;border:2px solid #e63946"><div class="val" style="color:#e63946;font-size:clamp(1.2rem,2.5vw,1.8rem)">1 115</div><div class="lbl">тыс руб &mdash; потенциал экономии CAPEX</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================== 35. OPTIMIZATION — VALUE ENGINEERING ======================== -->
+<section class="slide" style="background:var(--surface)" data-slide="35">
+  <div class="slide-inner">
+    <span class="label rv">Value Engineering &mdash; Шаг 2</span>
+    <h2 class="title rv rv-d1">Оптимизация CAPEX &mdash; замены оборудования</h2>
+    <p class="caption rv rv-d1">Принцип: cost-effective без потери качества и надёжности</p>
+    <div class="tbl-wrap rv rv-d2" style="margin-top:var(--gap)">
+      <table>
+        <thead><tr><th>Что заменяется</th><th>На что</th><th style="text-align:right">Было</th><th style="text-align:right">Стало</th><th style="text-align:right">Эффект</th></tr></thead>
+        <tbody>
+          <tr><td colspan="5" style="background:rgba(45,106,79,0.1);font-weight:700;color:var(--green)">ГВС (Коллекторы)</td></tr>
+          <tr><td>Коллекторы ЯSolar SCH-20</td><td>Heat Pipe HP-30 (серт. ГОСТ)</td><td style="text-align:right">300 000</td><td style="text-align:right">210 000</td><td style="text-align:right;color:var(--green);font-weight:600">&minus;90 000</td></tr>
+          <tr><td>Бак 1 200 л нерж.</td><td>Бак 800 л эмалированный</td><td style="text-align:right">110 000</td><td style="text-align:right">58 000</td><td style="text-align:right;color:var(--green);font-weight:600">&minus;52 000</td></tr>
+          <tr><td>Насосная группа базовая</td><td>Эконом-станция + TK-8A</td><td style="text-align:right">40 000</td><td style="text-align:right">28 000</td><td style="text-align:right;color:var(--green);font-weight:600">&minus;12 000</td></tr>
+          <tr><td>Монтаж ГВС (40%)</td><td>Монтаж ГВС (30%)</td><td style="text-align:right">196 000</td><td style="text-align:right">99 000</td><td style="text-align:right;color:var(--green);font-weight:600">&minus;97 000</td></tr>
+          <tr class="row-total"><td colspan="2">Итого ГВС</td><td style="text-align:right">686 000</td><td style="text-align:right">427 000</td><td style="text-align:right;color:var(--green);font-weight:700">&minus;259 000</td></tr>
+          <tr><td colspan="5" style="background:rgba(27,79,114,0.1);font-weight:700;color:var(--blue)">ФЭС (Электро)</td></tr>
+          <tr><td>Панели ТСМ-500М &times;15</td><td>JA Solar 540 Вт &times;14 (tier-1)</td><td style="text-align:right">375 000</td><td style="text-align:right">252 000</td><td style="text-align:right;color:var(--green);font-weight:600">&minus;123 000</td></tr>
+          <tr><td>Инвертор гибридный 8 кВт</td><td>Инвертор сетевой 8 кВт</td><td style="text-align:right">165 000</td><td style="text-align:right">62 000</td><td style="text-align:right;color:var(--green);font-weight:600">&minus;103 000</td></tr>
+          <tr><td>АКБ AGM 24 кВт&middot;ч</td><td>Убрано (сетевой режим)</td><td style="text-align:right">350 000</td><td style="text-align:right">0</td><td style="text-align:right;color:var(--green);font-weight:600">&minus;350 000</td></tr>
+          <tr><td>Монтаж ФЭС (40%)</td><td>Монтаж ФЭС (30%)</td><td style="text-align:right">368 000</td><td style="text-align:right">100 000</td><td style="text-align:right;color:var(--green);font-weight:600">&minus;268 000</td></tr>
+          <tr class="row-total"><td colspan="2">Итого ФЭС</td><td style="text-align:right">1 288 000</td><td style="text-align:right">432 000</td><td style="text-align:right;color:var(--green);font-weight:700">&minus;856 000</td></tr>
+          <tr class="row-total"><td colspan="2"><b>ИТОГО CAPEX</b></td><td style="text-align:right"><b>1 974 000</b></td><td style="text-align:right"><b>859 000</b></td><td style="text-align:right;color:var(--green);font-weight:700"><b>&minus;1 115 000</b></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="formula-ref rv rv-d3" style="margin-top:var(--gap)">
+      <b>Ключевые принципы оптимизации:</b><br>
+      &bull; Переход на сетевой режим (без АКБ) &mdash; крупнейший источник экономии (&minus;350 000 руб)<br>
+      &bull; Замена гибридного инвертора на сетевой &mdash; убран избыточный функционал (&minus;103 000 руб)<br>
+      &bull; Бак 800 л vs 1 200 л &mdash; суточный расход 750 л, запас достаточен; эмалированный vs нерж.<br>
+      &bull; Монтаж 30% vs 40% &mdash; упрощённая система без АКБ, типовые решения<br>
+      <span class="ref-src">Подход: Value Engineering &middot; ГОСТ Р ИСО 15686-5</span>
+    </div>
+  </div>
+</section>
+
+<!-- ======================== 36. RECALCULATION ======================== -->
+<section class="slide" style="background:var(--surface-warm)" data-slide="36">
+  <div class="slide-inner">
+    <span class="label rv">Value Engineering &mdash; Шаг 3</span>
+    <h2 class="title rv rv-d1">Пересчёт экономических показателей</h2>
+    <p class="caption rv rv-d1">CAPEX: 859 000 руб &middot; Экономия: 147 888 руб/год &middot; Тариф: 6,0 руб/кВт&middot;ч</p>
+    <div class="panel-row rv rv-d2" style="margin-top:var(--gap);align-items:start">
+      <div style="display:flex;flex-direction:column;gap:var(--gap-sm)">
+        <div class="tbl-wrap">
+          <table class="form-tbl">
+            <thead><tr><th>Показатель</th><th style="text-align:right">Было</th><th style="text-align:right">Стало</th><th style="text-align:right">&Delta;</th></tr></thead>
+            <tbody>
+              <tr><td>CAPEX ГВС</td><td style="text-align:right">686 000</td><td style="text-align:right;font-weight:700;color:var(--green)">427 000</td><td style="text-align:right">&minus;38%</td></tr>
+              <tr><td>CAPEX ФЭС</td><td style="text-align:right">1 288 000</td><td style="text-align:right;font-weight:700;color:var(--green)">432 000</td><td style="text-align:right">&minus;66%</td></tr>
+              <tr class="row-total"><td>CAPEX общий</td><td style="text-align:right">1 974 000</td><td style="text-align:right;font-weight:700;color:var(--green)">859 000</td><td style="text-align:right;font-weight:700">&minus;57%</td></tr>
+              <tr><td>Экономия ГВС/год</td><td style="text-align:right" colspan="3">101 808 руб (16 968 кВт&middot;ч &times; 6,0)</td></tr>
+              <tr><td>Экономия ФЭС/год</td><td style="text-align:right" colspan="3">46 080 руб (7 680 кВт&middot;ч &times; 6,0)</td></tr>
+              <tr class="row-total"><td>Экономия/год</td><td style="text-align:right" colspan="3">147 888 руб/год</td></tr>
+              <tr><td>Окупаемость ГВС</td><td style="text-align:right">6,7</td><td style="text-align:right;font-weight:700;color:var(--green)">4,2 года</td><td style="text-align:right">&minus;37%</td></tr>
+              <tr><td>Окупаемость ФЭС</td><td style="text-align:right">28,0</td><td style="text-align:right;font-weight:700;color:var(--green)">9,4 года</td><td style="text-align:right">&minus;66%</td></tr>
+              <tr class="highlight-row"><td><b>Окупаемость (общий)</b></td><td style="text-align:right">13,3</td><td style="text-align:right;font-weight:700;color:var(--green)">5,8 года</td><td style="text-align:right;font-weight:700">&minus;56%</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="calc-chain rv rv-d3">
+          <div class="calc-step"><span class="formula">OPEX (ТО системы/год)</span><span class="result">~18 000 руб</span></div>
+          <div class="calc-step"><span class="formula">Чистая экономия (с OPEX)</span><span class="result">129 888 руб/год</span></div>
+          <div class="calc-step"><span class="formula">Окупаемость (с OPEX)</span><span class="result">6,6 года</span></div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:var(--gap-sm)">
+        <div class="glass-strong" style="padding:clamp(0.8rem,1.2vw,1rem);border-radius:14px">
+          <p style="font-size:var(--small);font-weight:600;color:var(--text);margin-bottom:6px;text-align:center">NPV и IRR (i = 10%, n = 15 лет)</p>
+          <div class="calc-chain">
+            <div class="calc-step" style="border:2px solid var(--green)"><span class="formula">NPV</span><span class="result" style="font-size:clamp(1rem,1.5vw,1.2rem)">+266 000 руб</span></div>
+            <div class="calc-step" style="border:2px solid var(--green)"><span class="formula">IRR</span><span class="result" style="font-size:clamp(1rem,1.5vw,1.2rem)">15,1%</span></div>
+            <div class="calc-step" style="border:2px solid var(--green)"><span class="formula">Payback Period</span><span class="result" style="font-size:clamp(1rem,1.5vw,1.2rem)">5,8 лет</span></div>
+          </div>
+          <p style="font-size:clamp(0.7rem,0.9vw,0.82rem);color:var(--text2);margin-top:var(--gap-sm);line-height:1.4">NPV &gt; 0, IRR (15,1%) &gt; ставки дисконтирования (10%) &rarr; проект экономически эффективен</p>
+        </div>
+        <div class="glass-strong" style="padding:clamp(0.8rem,1.2vw,1rem);border-radius:14px">
+          <p style="font-size:var(--small);font-weight:600;color:var(--text);margin-bottom:6px;text-align:center">Сравнение сроков окупаемости</p>
+          <svg viewBox="0 0 400 130" width="100%" style="display:block;font-family:Inter,sans-serif">
+            <text x="5" y="28" font-size="11" fill="#6e6e73">Было</text>
+            <rect x="50" y="13" width="300" height="26" rx="6" fill="rgba(0,0,0,0.06)"/>
+            <rect x="50" y="13" width="266" height="26" rx="6" fill="#e63946" opacity="0.7"/>
+            <text x="320" y="31" font-size="12" fill="#e63946" font-weight="700">13,3 лет</text>
+            <text x="5" y="68" font-size="11" fill="#6e6e73">Стало</text>
+            <rect x="50" y="53" width="300" height="26" rx="6" fill="rgba(0,0,0,0.06)"/>
+            <rect x="50" y="53" width="116" height="26" rx="6" fill="#2d6a4f"/>
+            <text x="170" y="71" font-size="12" fill="#2d6a4f" font-weight="700">5,8 лет &#10003;</text>
+            <rect x="60" y="92" width="120" height="22" rx="4" fill="rgba(45,106,79,0.1)" stroke="var(--green)" stroke-width="1" stroke-dasharray="3"/>
+            <text x="120" y="107" text-anchor="middle" font-size="10" fill="var(--green)" font-weight="600">Цель: 3&ndash;6 лет</text>
+          </svg>
+        </div>
+        <div class="formula-ref">
+          <b>n = C / З</b> &mdash; срок окупаемости (лет)<br>
+          <b>NPV = &minus;C + &sum; З/(1+i)&#x1D57;</b>, i = 10%, n = 15 лет<br>
+          <b>IRR</b> &mdash; ставка, при которой NPV = 0<br>
+          <span class="ref-src">Методичка &mdash; Занятия &numero;5, &numero;6 &middot; ГОСТ Р ИСО 15686-5</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================== 37. SENSITIVITY ANALYSIS ======================== -->
+<section class="slide" style="background:var(--surface)" data-slide="37">
+  <div class="slide-inner">
+    <span class="label rv">Value Engineering &mdash; Шаг 4</span>
+    <h2 class="title rv rv-d1">Анализ чувствительности (Sensitivity Analysis)</h2>
+    <p class="caption rv rv-d1">Влияние ключевых параметров на срок окупаемости</p>
+    <div class="two-col rv rv-d2" style="margin-top:var(--gap)">
+      <div style="display:flex;flex-direction:column;gap:var(--gap-sm)">
+        <div class="tbl-wrap">
+          <table class="form-tbl">
+            <thead><tr><th>Тариф (руб/кВт&middot;ч)</th><th style="text-align:right">Экономия/год</th><th style="text-align:right">Окупаемость</th></tr></thead>
+            <tbody>
+              <tr><td>5,0 (пессимист.)</td><td style="text-align:right">123 240</td><td style="text-align:right;color:var(--amber)">7,0 лет</td></tr>
+              <tr class="highlight-row"><td><b>6,0 (базовый)</b></td><td style="text-align:right"><b>147 888</b></td><td style="text-align:right;color:var(--green)"><b>5,8 лет</b></td></tr>
+              <tr><td>7,0</td><td style="text-align:right">172 536</td><td style="text-align:right;color:var(--green)">5,0 лет</td></tr>
+              <tr><td>8,0 (оптимист.)</td><td style="text-align:right">197 184</td><td style="text-align:right;color:var(--green)">4,4 года</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="tbl-wrap">
+          <table class="form-tbl">
+            <thead><tr><th>Загрузка системы</th><th style="text-align:right">Экономия/год</th><th style="text-align:right">Окупаемость</th></tr></thead>
+            <tbody>
+              <tr><td>75% (пессимист.)</td><td style="text-align:right">110 916</td><td style="text-align:right;color:var(--amber)">7,7 лет</td></tr>
+              <tr><td>85%</td><td style="text-align:right">125 705</td><td style="text-align:right;color:var(--amber)">6,8 лет</td></tr>
+              <tr class="highlight-row"><td><b>100% (базовый)</b></td><td style="text-align:right"><b>147 888</b></td><td style="text-align:right;color:var(--green)"><b>5,8 лет</b></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="tbl-wrap">
+          <table class="form-tbl">
+            <thead><tr><th>CAPEX (сценарий)</th><th style="text-align:right">Сумма</th><th style="text-align:right">Окупаемость</th></tr></thead>
+            <tbody>
+              <tr><td>+20% (рост цен)</td><td style="text-align:right">1 031 000</td><td style="text-align:right;color:var(--amber)">7,0 лет</td></tr>
+              <tr class="highlight-row"><td><b>Базовый</b></td><td style="text-align:right"><b>859 000</b></td><td style="text-align:right;color:var(--green)"><b>5,8 лет</b></td></tr>
+              <tr><td>&minus;10% (скидки)</td><td style="text-align:right">773 000</td><td style="text-align:right;color:var(--green)">5,2 года</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:var(--gap-sm)">
+        <div class="glass-strong" style="padding:clamp(0.8rem,1.2vw,1rem);border-radius:14px">
+          <p style="font-size:var(--small);font-weight:600;color:var(--text);margin-bottom:6px;text-align:center">Торнадо-диаграмма (влияние на окупаемость)</p>
+          <svg viewBox="0 0 400 200" width="100%" style="display:block;font-family:Inter,sans-serif">
+            <line x1="200" y1="10" x2="200" y2="175" stroke="var(--green)" stroke-width="2" stroke-dasharray="4"/>
+            <text x="200" y="8" text-anchor="middle" font-size="10" fill="var(--green)" font-weight="700">5,8</text>
+            <text x="5" y="50" font-size="11" fill="var(--text)" font-weight="600">Тариф</text>
+            <rect x="140" y="35" width="60" height="24" rx="4" fill="#e63946" opacity="0.25"/>
+            <rect x="200" y="35" width="50" height="24" rx="4" fill="#2d6a4f" opacity="0.25"/>
+            <text x="118" y="51" font-size="10" fill="#e63946" font-weight="600">7,0</text>
+            <text x="254" y="51" font-size="10" fill="#2d6a4f" font-weight="600">4,4</text>
+            <text x="5" y="100" font-size="11" fill="var(--text)" font-weight="600">Загрузка</text>
+            <rect x="148" y="85" width="52" height="24" rx="4" fill="#e63946" opacity="0.25"/>
+            <text x="126" y="101" font-size="10" fill="#e63946" font-weight="600">7,7</text>
+            <text x="5" y="150" font-size="11" fill="var(--text)" font-weight="600">CAPEX</text>
+            <rect x="167" y="135" width="33" height="24" rx="4" fill="#e63946" opacity="0.25"/>
+            <rect x="200" y="135" width="20" height="24" rx="4" fill="#2d6a4f" opacity="0.25"/>
+            <text x="148" y="151" font-size="10" fill="#e63946" font-weight="600">7,0</text>
+            <text x="224" y="151" font-size="10" fill="#2d6a4f" font-weight="600">5,2</text>
+            <rect x="95" y="178" width="145" height="18" rx="4" fill="rgba(45,106,79,0.1)" stroke="var(--green)" stroke-width="1"/>
+            <text x="167" y="191" text-anchor="middle" font-size="9" fill="var(--green)" font-weight="600">Целевой диапазон: 3&ndash;6 лет</text>
+          </svg>
+        </div>
+        <div class="glass-strong" style="padding:clamp(0.8rem,1.2vw,1rem);border-radius:14px">
+          <p style="font-size:var(--body);font-weight:700;color:var(--green);margin-bottom:var(--gap-sm)">Выводы</p>
+          <div style="font-size:var(--small);color:var(--text2);line-height:1.5">
+            <p>&bull; <b>Наибольшее влияние:</b> тариф на энергию (4,4&ndash;7,0 лет)</p>
+            <p>&bull; <b>Среднее влияние:</b> загрузка системы (5,8&ndash;7,7 лет)</p>
+            <p>&bull; <b>Умеренное влияние:</b> CAPEX (5,2&ndash;7,0 лет)</p>
+            <p>&bull; <b>Базовый сценарий</b> &mdash; окупаемость <b>5,8 лет</b> (в целевом диапазоне 3&ndash;6)</p>
+            <p>&bull; Даже при пессимистичном тарифе (5 руб) окупаемость &le; 7 лет</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================== 38. MOUNTING SCHEME ======================== -->
+<section class="slide" style="background:var(--surface-warm)" data-slide="38">
   <div class="slide-inner">
     <span class="label rv">Схема монтажа по ГОСТ</span>
     <h2 class="title rv rv-d1">Требования к размещению оборудования</h2>
@@ -1704,90 +1936,94 @@ tbody tr:hover td{background:rgba(45,106,79,0.06)}
   </div>
 </section>
 
-<!-- ======================== 35. RECOMMENDATIONS ======================== -->
-<section class="slide" style="background:var(--surface-warm)" data-slide="35">
+<!-- ======================== 39. RECOMMENDATIONS (OPTIMIZED) ======================== -->
+<section class="slide" style="background:var(--surface)" data-slide="39">
   <div class="bg-mesh"><canvas data-orbs='[{"c":"#2d6a4f","r":220},{"c":"#e9c46a","r":180}]'></canvas></div>
   <div class="slide-inner" style="z-index:1;position:relative">
     <span class="label rv">Итоговые рекомендации</span>
     <h2 class="title rv rv-d1">Оптимальный выбор оборудования</h2>
     <div class="glass-strong rv rv-d2" style="padding:clamp(1.2rem,2.5vw,2rem);border-radius:20px;margin-top:var(--gap);max-width:800px;width:100%">
-      <p style="font-size:var(--h3);font-weight:700;color:var(--green);margin-bottom:var(--gap);text-align:center">🏆 ВАРИАНТ Б (РФ-2) — РЕКОМЕНДОВАН</p>
+      <p style="font-size:var(--h3);font-weight:700;color:var(--green);margin-bottom:var(--gap);text-align:center">ОПТИМИЗИРОВАННОЕ РЕШЕНИЕ (Value Engineering)</p>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--gap)">
         <div style="padding:clamp(0.8rem,1.2vw,1rem);border-radius:14px;background:rgba(45,106,79,0.08)">
-          <p style="font-size:var(--body);font-weight:700;color:var(--green);margin-bottom:var(--gap-sm)">☀️ Коллекторы ЯSolar</p>
+          <p style="font-size:var(--body);font-weight:700;color:var(--green);margin-bottom:var(--gap-sm)">&#9728;&#65039; ГВС &mdash; коллекторы Heat Pipe</p>
           <div style="font-size:var(--small);color:var(--text2);line-height:1.5">
-            <p>&bull; CAPEX: <b>686 000 руб</b></p>
-            <p>&bull; Окупаемость: <b>6,7 года</b></p>
-            <p>&bull; Площадь: 16,8 м²</p>
-            <p>&bull; Российское производство</p>
-            <p>&bull; Подходит для −40°C</p>
+            <p>&bull; CAPEX: <b>427 000 руб</b> <span style="color:var(--green)">(было 686 000)</span></p>
+            <p>&bull; Окупаемость: <b>4,2 года</b> <span style="color:var(--green)">(было 6,7)</span></p>
+            <p>&bull; Площадь: 16,8 м&sup2; &middot; 4 коллектора</p>
+            <p>&bull; Бак 800 л эмалированный</p>
+            <p>&bull; Подходит для &minus;40&deg;C</p>
           </div>
         </div>
         <div style="padding:clamp(0.8rem,1.2vw,1rem);border-radius:14px;background:rgba(27,79,114,0.08)">
-          <p style="font-size:var(--body);font-weight:700;color:var(--blue);margin-bottom:var(--gap-sm)">⚡ ФЭС Телеком-СТВ</p>
+          <p style="font-size:var(--body);font-weight:700;color:var(--blue);margin-bottom:var(--gap-sm)">&#9889; ФЭС &mdash; сетевой режим (без АКБ)</p>
           <div style="font-size:var(--small);color:var(--text2);line-height:1.5">
-            <p>&bull; CAPEX: <b>1 288 000 руб</b></p>
-            <p>&bull; Окупаемость: <b>28,0 лет</b></p>
-            <p>&bull; Мощность: 7,5 кВт</p>
-            <p>&bull; AGM с термокейсом</p>
-            <p>&bull; Надёжность на морозе</p>
+            <p>&bull; CAPEX: <b>432 000 руб</b> <span style="color:var(--green)">(было 1 288 000)</span></p>
+            <p>&bull; Окупаемость: <b>9,4 года</b> <span style="color:var(--green)">(было 28,0)</span></p>
+            <p>&bull; Мощность: 7,56 кВт (14 &times; 540 Вт)</p>
+            <p>&bull; Сетевой инвертор 8 кВт</p>
+            <p>&bull; Без АКБ &mdash; основная экономия</p>
           </div>
         </div>
       </div>
     </div>
     <div class="stats rv rv-d3" style="margin-top:var(--gap);max-width:800px;width:100%">
-      <div class="stat" style="text-align:center"><div class="val c-green" style="font-size:clamp(1.2rem,2.5vw,1.8rem)">1,97 млн</div><div class="lbl">руб. — общий CAPEX</div></div>
-      <div class="stat" style="text-align:center"><div class="val c-blue" style="font-size:clamp(1.2rem,2.5vw,1.8rem)">147,9 тыс</div><div class="lbl">руб./год — экономия</div></div>
-      <div class="stat" style="text-align:center"><div class="val c-amber" style="font-size:clamp(1.2rem,2.5vw,1.8rem)">17,4</div><div class="lbl">лет — средняя окупаемость</div></div>
+      <div class="stat" style="text-align:center"><div class="val c-green" style="font-size:clamp(1.2rem,2.5vw,1.8rem)">859 тыс</div><div class="lbl">руб. &mdash; CAPEX (&minus;57%)</div></div>
+      <div class="stat" style="text-align:center"><div class="val c-blue" style="font-size:clamp(1.2rem,2.5vw,1.8rem)">147,9 тыс</div><div class="lbl">руб./год &mdash; экономия</div></div>
+      <div class="stat" style="text-align:center"><div class="val c-green" style="font-size:clamp(1.2rem,2.5vw,1.8rem)">5,8</div><div class="lbl">лет &mdash; окупаемость (цель 3&ndash;6)</div></div>
     </div>
     <div class="glass-strong rv rv-d4" style="padding:clamp(0.8rem,1.2vw,1rem);border-radius:14px;margin-top:var(--gap);max-width:800px;width:100%">
-      <p style="font-size:var(--body);font-weight:700;color:var(--text);margin-bottom:6px">✅ Преимущества Варианта Б:</p>
+      <p style="font-size:var(--body);font-weight:700;color:var(--text);margin-bottom:6px">&#10004; Результаты оптимизации:</p>
       <div style="font-size:var(--small);color:var(--text2);line-height:1.5">
-        <p>1. <b>Минимальный срок окупаемости</b> среди всех вариантов</p>
-        <p>2. <b>Российское производство</b> — доступность запчастей, сервиса и технической поддержки</p>
-        <p>3. <b>Надёжность в климате Иркутской области</b> — проверенная работа при −40°C</p>
-        <p>4. <b>Оптимальное соотношение цена/качество</b> — экономия 771 тыс руб vs импортного варианта</p>
-        <p>5. <b>Методика А–В–С</b> — сравнение 2 отечественных и 1 зарубежного варианта</p>
+        <p>1. <b>CAPEX снижен на 57%</b> &mdash; с 1 974 000 до 859 000 руб</p>
+        <p>2. <b>Окупаемость: 5,8 лет</b> &mdash; попадает в целевой диапазон 3&ndash;6 лет</p>
+        <p>3. <b>NPV = +266 000 руб</b>, IRR = 15,1% (при i = 10%, n = 15 лет)</p>
+        <p>4. <b>Переход на сетевой режим</b> &mdash; убраны АКБ и гибридный инвертор</p>
+        <p>5. <b>Надёжность сохранена</b> &mdash; оборудование серт. ГОСТ, работа при &minus;40&deg;C</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ======================== 36. ALINA CONCLUSION ======================== -->
-<section class="slide" style="background:var(--surface)" data-slide="36">
+<!-- ======================== 40. CONCLUSION ======================== -->
+<section class="slide" style="background:var(--surface-warm)" data-slide="40">
   <div class="bg-mesh"><canvas data-orbs='[{"c":"#a8d5ba","r":200},{"c":"#d4880f","r":160}]'></canvas></div>
   <div class="slide-inner" style="align-items:center;justify-content:center;text-align:center;z-index:1;position:relative">
     <span class="label rv">Заключение &middot; Алина Костюкова</span>
     <h2 class="title rv rv-d1" style="max-width:700px">Подбор оборудования завершён</h2>
     <div class="glass-strong rv rv-d2" style="padding:clamp(1.2rem,2.5vw,2rem);border-radius:20px;margin-top:var(--gap);max-width:750px;width:100%">
       <p style="font-size:var(--body);color:var(--text);line-height:1.6;margin-bottom:var(--gap)">
-        По методике А–В–С проведён комплексный анализ 6 вариантов оборудования (3 для коллекторов + 3 для ФЭС). 
-        Выполнено технико-экономическое обоснование с учётом климатических условий Иркутской области.
+        По методике А&ndash;В&ndash;С проведён анализ 6 вариантов оборудования. Применён подход Value Engineering
+        и анализ чувствительности (Sensitivity Analysis). CAPEX оптимизирован на 57%.
       </p>
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:var(--gap-sm);margin-top:var(--gap)">
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:var(--gap-sm);margin-top:var(--gap)">
         <div style="padding:clamp(0.6rem,1vw,0.8rem);border-radius:12px;background:rgba(45,106,79,0.1)">
-          <div style="font-size:clamp(1.2rem,2vw,1.6rem);font-weight:700;color:var(--green)">6</div>
-          <div style="font-size:var(--small);color:var(--text2)">вариантов<br>оборудования</div>
+          <div style="font-size:clamp(1.2rem,2vw,1.6rem);font-weight:700;color:var(--green)">859</div>
+          <div style="font-size:var(--small);color:var(--text2)">тыс руб<br>CAPEX</div>
         </div>
         <div style="padding:clamp(0.6rem,1vw,0.8rem);border-radius:12px;background:rgba(27,79,114,0.1)">
           <div style="font-size:clamp(1.2rem,2vw,1.6rem);font-weight:700;color:var(--blue)">24,6</div>
-          <div style="font-size:var(--small);color:var(--text2)">тыс кВт·ч/год<br>выработка</div>
+          <div style="font-size:var(--small);color:var(--text2)">тыс кВт&middot;ч/год<br>выработка</div>
         </div>
         <div style="padding:clamp(0.6rem,1vw,0.8rem);border-radius:12px;background:rgba(212,136,15,0.1)">
-          <div style="font-size:clamp(1.2rem,2vw,1.6rem);font-weight:700;color:var(--amber)">17,4</div>
+          <div style="font-size:clamp(1.2rem,2vw,1.6rem);font-weight:700;color:var(--amber)">5,8</div>
           <div style="font-size:var(--small);color:var(--text2)">лет<br>окупаемость</div>
+        </div>
+        <div style="padding:clamp(0.6rem,1vw,0.8rem);border-radius:12px;background:rgba(45,106,79,0.1)">
+          <div style="font-size:clamp(1.2rem,2vw,1.6rem);font-weight:700;color:var(--green)">15,1%</div>
+          <div style="font-size:var(--small);color:var(--text2)">IRR<br>(NPV +266 тыс)</div>
         </div>
       </div>
     </div>
     <p class="caption rv rv-d3" style="margin-top:var(--gap);max-width:600px">
-      Рекомендованный Вариант Б (РФ-2) обеспечивает оптимальное сочетание экономической эффективности, 
-      надёжности и экологической ответственности для базы отдыха в Иркутской области.
+      Оптимизированное решение обеспечивает баланс цена/качество/окупаемость 
+      с сохранением технической надёжности и соответствия ГОСТ/СП для климата Иркутской области.
     </p>
   </div>
 </section>
 
-<!-- ======================== 37. WORK DISTRIBUTION ======================== -->
-<section class="slide" style="background:var(--surface-warm)" data-slide="37">
+<!-- ======================== 41. WORK DISTRIBUTION ======================== -->
+<section class="slide" style="background:var(--surface)" data-slide="41">
   <div class="slide-inner">
     <span class="label rv">09 &mdash; Организация</span>
     <h2 class="title rv rv-d1">Распределение этапов</h2>
@@ -1820,8 +2056,8 @@ tbody tr:hover td{background:rgba(45,106,79,0.06)}
   </div>
 </section>
 
-<!-- ======================== 38. 3D CONCEPT ======================== -->
-<section class="slide" style="background:var(--surface)" data-slide="38">
+<!-- ======================== 42. 3D CONCEPT ======================== -->
+<section class="slide" style="background:var(--surface-warm)" data-slide="42">
   <div class="slide-inner" style="z-index:1;position:relative">
     <span class="label rv">10 &mdash; Визуализация</span>
     <h2 class="title rv rv-d1">3D Концепт базы</h2>
