@@ -3,762 +3,1979 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Хоккейный Родитель — Отчёт ППМ</title>
+<title>База отдыха — Иркутская область</title>
+<link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%;overflow-x:hidden;font-family:'Inter',-apple-system,BlinkMacSystemFont,'SF Pro Display',system-ui,sans-serif}
+html{scroll-snap-type:y mandatory;scroll-behavior:smooth}
+body{background:#f2f2f7;color:#1d1d1f}
+
 :root{
-  --blue:#0071e3;--blue-d:#0058b0;--blue-l:#e8f2ff;
-  --green:#28a745;--green-l:#e6f9ed;
-  --amber:#d97706;--amber-l:#fef3c7;
-  --text:#1d1d1f;--text-secondary:#424245;--text-tertiary:#6e6e73;
-  --bg:#fff;--bg-alt:#f5f5f7;--border:#d2d2d7;
-  --radius:16px;--max-w:1100px;
-}
-html{scroll-behavior:smooth;font-size:16px;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
-body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','SF Pro Text','Helvetica Neue','Inter',sans-serif;color:var(--text);background:var(--bg);line-height:1.6;overflow-x:hidden;letter-spacing:-.01em}
-a{color:var(--blue);text-decoration:none}
-a:hover{text-decoration:underline}
+  --title:clamp(2rem,5.5vw,4.2rem);
+  --h2:clamp(1.5rem,4vw,2.8rem);
+  --h3:clamp(1.1rem,2.8vw,1.6rem);
+  --body:clamp(0.95rem,1.8vw,1.2rem);
+  --small:clamp(0.85rem,1.3vw,1rem);
+  --pad:clamp(1.5rem,5vw,4.5rem);
+  --gap:clamp(0.5rem,2vw,1.5rem);
+  --gap-sm:clamp(0.25rem,1vw,0.6rem);
 
-/* ── HERO ── */
-.hero{
-  background:linear-gradient(180deg,#000 0%,#1d1d1f 100%);
-  color:#fff;padding:80px 24px 72px;text-align:center;position:relative;overflow:hidden
-}
-.hero::after{
-  content:'';position:absolute;bottom:-2px;left:0;right:0;
-  height:48px;background:var(--bg);border-radius:48px 48px 0 0
-}
-.hero h1{font-size:clamp(2.2rem,5vw,3.6rem);font-weight:700;letter-spacing:-.03em;line-height:1.1}
-.hero .subtitle{font-size:1.15rem;color:#000;margin-top:16px;max-width:640px;margin-inline:auto;line-height:1.5;font-weight:400}
-.hero .badge-row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:32px}
-.hero .badge-row span{
-  background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);
-  border-radius:999px;padding:7px 20px;font-size:.82rem;font-weight:500;color:rgba(255,255,255,.9)
-}
+  --glass:rgba(255,255,255,0.72);
+  --glass-strong:rgba(255,255,255,0.88);
+  --glass-border:rgba(255,255,255,0.45);
+  --glass-shadow:0 8px 32px rgba(0,0,0,0.06),0 1px 3px rgba(0,0,0,0.04);
+  --glass-shadow-lg:0 16px 48px rgba(0,0,0,0.08),0 2px 8px rgba(0,0,0,0.04);
+  --blur:saturate(180%) blur(20px);
 
-/* ── CONTAINER ── */
-.container{max-width:var(--max-w);margin:0 auto;padding:0 24px}
-section{padding:80px 0}
-section:nth-child(even){background:var(--bg-alt)}
-.section-title{font-size:2rem;font-weight:700;text-align:center;margin-bottom:12px;color:var(--text);letter-spacing:-.02em}
-.section-sub{text-align:center;color:var(--text-tertiary);max-width:600px;margin:0 auto 48px;font-size:1.05rem}
-
-/* ── STAT CARDS ── */
-.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px;margin-bottom:56px}
-.stat-card{
-  background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);
-  padding:28px 20px;text-align:center;transition:transform .25s,box-shadow .25s
-}
-.stat-card:hover{transform:translateY(-4px);box-shadow:0 8px 30px rgba(0,0,0,.1)}
-.stat-card .num{font-size:2.6rem;font-weight:700;color:var(--text);line-height:1.1;letter-spacing:-.03em}
-.stat-card .label{font-size:.88rem;color:var(--text-tertiary);margin-top:8px;font-weight:500}
-
-/* ── FEATURE CARDS ── */
-.features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px}
-.feature-card{
-  background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:28px 24px;
-  transition:transform .25s,box-shadow .25s;position:relative;overflow:hidden
-}
-.feature-card:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(0,0,0,.1)}
-.feature-card .icon{
-  width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;
-  font-size:1.3rem;margin-bottom:14px
-}
-.feature-card h3{font-size:1.1rem;font-weight:600;margin-bottom:8px;color:var(--text)}
-.feature-card p{font-size:.92rem;color:var(--text-secondary);line-height:1.6}
-.feature-card .tag{
-  display:inline-block;margin-top:14px;font-size:.72rem;font-weight:600;text-transform:uppercase;
-  letter-spacing:.06em;padding:4px 10px;border-radius:6px
-}
-.tag-done{background:var(--green-l);color:var(--green)}
-.tag-wip{background:var(--amber-l);color:var(--amber)}
-
-/* ── TECH STACK ── */
-.stack-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
-.stack-card{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:24px}
-.stack-card h4{font-size:.95rem;font-weight:600;margin-bottom:12px;color:var(--text)}
-.stack-card .pills{display:flex;flex-wrap:wrap;gap:6px}
-.stack-card .pill{
-  background:var(--bg-alt);color:var(--text-secondary);font-size:.78rem;font-weight:500;
-  padding:5px 12px;border-radius:999px;border:1px solid var(--border)
+  --surface:#f2f2f7;
+  --surface-warm:#faf8f5;
+  --white:#ffffff;
+  --green:#2d6a4f;
+  --green-soft:rgba(45,106,79,0.08);
+  --blue:#1b4f72;
+  --blue-soft:rgba(27,79,114,0.08);
+  --amber:#d4880f;
+  --amber-soft:rgba(233,196,106,0.15);
+  --text:#1d1d1f;
+  --text2:#6e6e73;
+  --text3:#aeaeb2;
+  --separator:rgba(60,60,67,0.06);
 }
 
-/* ── ARCHITECTURE ── */
-.arch-flow{
-  display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:12px;
-  padding:32px 0;font-size:.92rem;font-weight:600;color:var(--text)
+.slide{
+  width:100vw;height:100vh;height:100dvh;
+  overflow:hidden;scroll-snap-align:start;
+  display:flex;flex-direction:column;
+  position:relative;
 }
-.arch-flow .box{
-  background:var(--bg-alt);border:1px solid var(--border);border-radius:12px;padding:14px 24px;
-  text-align:center;min-width:120px
+.slide-inner{
+  flex:1;display:flex;flex-direction:column;
+  justify-content:center;max-height:100%;
+  overflow:hidden;padding:var(--pad);
 }
-.arch-flow .arrow{color:var(--text-tertiary);font-size:1.4rem}
 
-/* ── SCREENSHOTS ── */
-.screens-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
-.screen-card{
-  background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;
-  transition:transform .25s,box-shadow .25s
-}
-.screen-card:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(0,0,0,.1)}
-.screen-card .mock{
-  height:180px;display:flex;align-items:center;justify-content:center;font-size:2.6rem;
-  position:relative;overflow:hidden
-}
-.screen-card .mock .overlay{
-  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
-  background:rgba(0,0,0,.05)
-}
-.screen-card .info{padding:16px 20px}
-.screen-card .info h4{font-size:1rem;font-weight:600;color:var(--text)}
-.screen-card .info p{font-size:.86rem;color:var(--text-secondary);margin-top:4px}
+/* ============ MESH GRADIENT BG (JS-animated) ============ */
+.bg-mesh{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.bg-mesh canvas{width:100%;height:100%}
 
-/* ── HYPOTHESES ── */
-.hypo-list{display:grid;gap:16px}
-.hypo-card{
-  background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:28px;
-  border-left:4px solid var(--blue)
+/* ============ GLASS CARD ============ */
+.glass{
+  background:var(--glass);
+  backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur);
+  border:1px solid var(--glass-border);
+  border-radius:20px;box-shadow:var(--glass-shadow);
 }
-.hypo-card h4{font-size:1.05rem;font-weight:600;margin-bottom:8px;color:var(--text)}
-.hypo-card p{font-size:.92rem;color:var(--text-secondary);line-height:1.6}
-.hypo-card .criteria{margin-top:12px;padding-left:18px;list-style-type:disc}
-.hypo-card .criteria li{font-size:.88rem;color:var(--text-secondary);margin-bottom:4px}
+.glass-strong{
+  background:var(--glass-strong);
+  backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur);
+  border:1px solid rgba(255,255,255,0.6);
+  border-radius:20px;box-shadow:var(--glass-shadow-lg);
+}
 
-/* ── TEAM ── */
-.team-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px}
-.team-card{text-align:center;padding:28px 16px;background:var(--bg);border:1px solid var(--border);border-radius:var(--radius)}
-.team-card .avatar{
-  width:72px;height:72px;border-radius:50%;margin:0 auto 14px;
+/* ============ HERO ============ */
+.slide--hero{background:var(--surface-warm)}
+.slide--hero .slide-inner{
+  align-items:center;justify-content:center;text-align:center;
+  gap:clamp(0.5rem,1.2vw,1rem);z-index:1;position:relative;
+}
+.slide--hero h1{
+  font-size:clamp(2.2rem,6vw,4.8rem);font-weight:700;
+  letter-spacing:-0.03em;line-height:1.06;color:var(--text);
+}
+.slide--hero .sub{font-size:clamp(0.9rem,1.8vw,1.3rem);color:var(--text2);max-width:600px;line-height:1.5}
+.slide--hero .badge{
+  font-size:var(--small);color:var(--green);font-weight:600;
+  letter-spacing:0.06em;text-transform:uppercase;
+}
+
+/* ============ SECTION LABEL ============ */
+.label{font-size:var(--small);font-weight:600;color:var(--green);letter-spacing:0.08em;text-transform:uppercase}
+.title{font-size:var(--h2);font-weight:700;color:var(--text);letter-spacing:-0.02em;line-height:1.15}
+.caption{font-size:var(--small);color:var(--text3)}
+
+/* ============ IMAGE FRAME — contain, not crop ============ */
+.img-frame{
+  border-radius:16px;overflow:hidden;
+  background:var(--white);
+  box-shadow:var(--glass-shadow);
   display:flex;align-items:center;justify-content:center;
-  font-size:1.6rem;font-weight:600;color:#fff
+  position:relative;
 }
-.team-card .name{font-size:.95rem;font-weight:600;color:var(--text)}
-.team-card .role{font-size:.82rem;color:var(--text-tertiary);margin-top:2px}
+.img-frame img{
+  width:100%;height:100%;
+  object-fit:contain;
+  padding:clamp(4px,0.5vw,8px);
+}
+.img-frame--cover img{object-fit:cover;padding:0}
 
-/* ── TIMELINE ── */
-.timeline{position:relative;padding-left:32px;max-width:700px;margin:0 auto}
-.timeline::before{content:'';position:absolute;left:10px;top:0;bottom:0;width:2px;background:var(--border)}
-.timeline-item{position:relative;padding-bottom:32px}
-.timeline-item::before{
-  content:'';position:absolute;left:-26px;top:4px;width:14px;height:14px;
-  border-radius:50%;background:var(--blue);border:3px solid var(--blue-l)
-}
-.timeline-item.done::before{background:var(--green)}
-.timeline-item h4{font-size:.95rem;font-weight:600;color:var(--text)}
-.timeline-item p{font-size:.88rem;color:var(--text-secondary);margin-top:2px}
+/* ============ TABLES ============ */
+.tbl-wrap{overflow:hidden;border-radius:14px;box-shadow:var(--glass-shadow);background:var(--white);flex-shrink:0}
+table{width:100%;border-collapse:collapse;font-size:clamp(0.85rem,1.2vw,1rem)}
+thead{background:var(--green)}
+th{padding:clamp(5px,0.7vh,9px) clamp(8px,1vw,14px);text-align:left;font-weight:600;color:#fff;white-space:nowrap}
+td{padding:clamp(4px,0.5vh,7px) clamp(8px,1vw,14px);color:var(--text);border-top:1px solid var(--separator)}
+tbody tr:nth-child(even){background:rgba(45,106,79,0.04)}
+tbody tr:hover td{background:rgba(45,106,79,0.06)}
+.row-total{font-weight:700;background:rgba(45,106,79,0.1)!important}
 
-/* ── INDIVIDUAL RESULTS ── */
-.results-grid{display:grid;gap:20px}
-.result-card{
-  background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:28px 24px;
-  display:grid;grid-template-columns:64px 1fr;gap:20px;align-items:start;
-  transition:transform .25s,box-shadow .25s
+/* ============ STAT CARDS ============ */
+.stats{display:flex;gap:clamp(0.4rem,1vw,0.8rem);flex-wrap:wrap}
+.stat{
+  flex:1;min-width:clamp(80px,16vw,150px);
+  padding:clamp(0.5rem,1vw,0.9rem);
+  border-radius:14px;
+  background:var(--white);
+  box-shadow:0 1px 6px rgba(0,0,0,0.04);
+  border:1px solid var(--separator);
 }
-.result-card:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(0,0,0,.1)}
-.result-card .r-avatar{
-  width:64px;height:64px;border-radius:50%;display:flex;align-items:center;justify-content:center;
-  font-size:1.3rem;font-weight:600;color:#fff;flex-shrink:0
+.stat .val{font-size:clamp(1.2rem,2.8vw,2rem);font-weight:700;letter-spacing:-0.02em}
+.stat .val.c-blue{color:var(--blue)}
+.stat .val.c-amber{color:var(--amber)}
+.stat .val.c-green{color:var(--green)}
+.stat .lbl{font-size:var(--small);color:var(--text2);margin-top:2px;line-height:1.35}
+
+/* ============ TWO-PANEL LAYOUT ============ */
+.panel-row{display:grid;grid-template-columns:1fr 1fr;gap:clamp(0.8rem,2vw,1.5rem);align-items:start}
+@media(max-width:768px){.panel-row{grid-template-columns:1fr}}
+
+/* ============ PLAN SLIDE — image centered with info panel ============ */
+.plan-layout{
+  display:grid;grid-template-columns:1.1fr 0.9fr;
+  gap:clamp(0.8rem,2vw,1.5rem);align-items:center;
+  flex:1;
 }
-.result-card .r-name{font-size:1.05rem;font-weight:600;color:var(--text)}
-.result-card .r-role{font-size:.85rem;font-weight:500;color:var(--blue);margin-top:2px}
-.result-card .r-text{font-size:.92rem;color:var(--text-secondary);line-height:1.65;margin-top:10px}
-@media(max-width:640px){
-  .result-card{grid-template-columns:1fr}
-  .result-card .r-avatar{margin:0 auto}
-  .result-card>div:last-child{text-align:center}
+@media(max-width:768px){.plan-layout{grid-template-columns:1fr;grid-template-rows:auto auto}}
+.plan-layout .img-frame{
+  width:100%;height:min(60vh,500px);
+}
+.plan-layout .info{display:flex;flex-direction:column;gap:var(--gap)}
+
+/* ============ TEAM ============ */
+.team-list{display:flex;flex-direction:column;gap:clamp(0.5rem,1vw,0.8rem);max-width:480px}
+.member{
+  display:flex;align-items:center;gap:clamp(0.5rem,1vw,0.8rem);
+  padding:clamp(0.35rem,0.7vw,0.6rem) clamp(0.6rem,1vw,0.9rem);
+  border-radius:16px;background:var(--white);
+  box-shadow:0 1px 6px rgba(0,0,0,0.04);border:1px solid var(--separator);
+  transform:translateX(-20px);opacity:0;
+  transition:transform 0.5s ease,opacity 0.5s ease;
+}
+.member.visible{transform:translateX(0);opacity:1}
+.member .ava{
+  width:clamp(44px,6vw,64px);height:clamp(44px,6vw,64px);
+  border-radius:50%;overflow:hidden;flex-shrink:0;
+  border:2.5px solid var(--green);
+  box-shadow:0 2px 8px rgba(45,106,79,0.15);
+}
+.member .ava img{width:100%;height:100%;object-fit:cover}
+.member .m-role{font-size:var(--small);color:var(--green);font-weight:500}
+.member .m-name{font-size:var(--body);font-weight:600;color:var(--text)}
+
+/* ============ GOAL CARDS ============ */
+.goals{display:flex;gap:clamp(0.5rem,1.2vw,1rem);flex-wrap:wrap}
+.goal{
+  flex:1;min-width:min(100%,200px);
+  padding:clamp(0.8rem,1.5vw,1.2rem);
+  border-radius:18px;
+  background:var(--glass-strong);
+  backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur);
+  border:1px solid rgba(255,255,255,0.5);
+  box-shadow:var(--glass-shadow-lg);
+  transform:scale(0.88);opacity:0;
+  transition:transform 0.5s cubic-bezier(0.34,1.56,0.64,1),opacity 0.5s ease;
+}
+.goal.visible{transform:scale(1);opacity:1}
+.goal .g-icon{font-size:clamp(1.4rem,2.5vw,2rem);margin-bottom:clamp(0.2rem,0.4vw,0.4rem)}
+.goal .g-text{font-size:var(--body);font-weight:600;color:var(--text);line-height:1.35}
+
+/* ============ ROOMS ============ */
+.rooms{display:flex;flex-direction:column;gap:clamp(1px,0.2vh,3px)}
+.room{display:flex;justify-content:space-between;font-size:var(--small);padding:clamp(3px,0.35vh,5px) 0;border-bottom:1px solid var(--separator)}
+.room .rn{color:var(--text);font-weight:500}
+.room .ra{color:var(--text);font-weight:600;white-space:nowrap}
+
+/* ============ BUILDING LIST ============ */
+.bldgs{display:flex;flex-direction:column;gap:clamp(2px,0.3vh,5px)}
+.bldg{
+  display:flex;justify-content:space-between;align-items:center;
+  font-size:var(--small);
+  padding:clamp(3px,0.5vw,6px) clamp(6px,0.8vw,10px);
+  border-radius:8px;background:var(--white);
+  border:1px solid var(--separator);
+}
+.bldg .bn{color:var(--text);font-weight:500}
+.bldg .ba{color:var(--green);font-weight:600;white-space:nowrap}
+
+/* ============ TIMELINE ============ */
+.timeline{display:flex;flex-direction:column;gap:clamp(0.5rem,1vw,0.8rem)}
+.tl-item{display:grid;grid-template-columns:auto 1fr;gap:clamp(0.5rem,1vw,0.8rem);align-items:start}
+.tl-dot{
+  width:clamp(32px,4.5vw,44px);height:clamp(32px,4.5vw,44px);
+  border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-weight:700;font-size:var(--small);color:#fff;flex-shrink:0;
+}
+.tl-dot.d-g{background:var(--green)}
+.tl-dot.d-b{background:var(--blue)}
+.tl-dot.d-a{background:var(--amber)}
+.tl-body{
+  padding:clamp(0.4rem,0.8vw,0.7rem);
+  border-radius:12px;background:var(--white);
+  box-shadow:0 1px 6px rgba(0,0,0,0.04);border:1px solid var(--separator);
+}
+.tl-body .tl-role{font-size:var(--small);color:var(--green)}
+.tl-body .tl-name{font-size:var(--body);font-weight:600;color:var(--text)}
+.tl-body .tl-desc{font-size:var(--small);color:var(--text2);line-height:1.4}
+
+/* ============ PLACEHOLDER ============ */
+.ph{
+  border:2px dashed rgba(45,106,79,0.3);border-radius:16px;
+  background:rgba(45,106,79,0.04);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--green);font-size:var(--small);font-weight:500;
+  min-height:100px;
 }
 
-/* ── DEPLOY BANNER ── */
-.deploy-banner{
-  background:linear-gradient(180deg,#1d1d1f 0%,#000 100%);
-  color:#fff;padding:56px 24px;text-align:center;position:relative;overflow:hidden
+/* ============ NAV ============ */
+.nav-dots{
+  position:fixed;right:clamp(8px,1.2vw,16px);top:50%;
+  transform:translateY(-50%);z-index:100;
+  display:flex;flex-direction:column;gap:6px;
 }
-.deploy-banner h2{font-size:1.8rem;font-weight:700;margin-bottom:10px;letter-spacing:-.02em;color:#000}
-.deploy-banner p{font-size:1.05rem;color:#000;max-width:700px;margin:0 auto}
-.deploy-banner .deploy-link{
-  display:inline-block;margin-top:24px;padding:14px 36px;
-  background:var(--blue);color:#fff;font-weight:600;font-size:1rem;
-  border-radius:999px;transition:transform .25s,box-shadow .25s
+.nav-dot{
+  width:7px;height:7px;border-radius:50%;
+  background:rgba(0,0,0,0.12);cursor:pointer;
+  transition:all 0.3s ease;border:none;padding:0;
 }
-.deploy-banner .deploy-link:hover{
-  transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,113,227,.35);text-decoration:none;
-  background:var(--blue-d)
+.nav-dot.active{background:var(--green);transform:scale(1.5)}
+.nav-dot:hover{background:rgba(0,0,0,0.25)}
+
+.slide-counter{
+  position:fixed;bottom:clamp(8px,1.2vw,16px);right:clamp(8px,1.2vw,16px);
+  font-size:var(--small);color:var(--text3);z-index:100;
+  font-variant-numeric:tabular-nums;
+  background:var(--glass);backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur);
+  padding:3px 10px;border-radius:20px;border:1px solid var(--glass-border);
 }
-.deploy-services{
-  display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:20px
+.progress-bar{position:fixed;top:0;left:0;height:2px;background:var(--green);z-index:200;transition:width 0.3s ease;width:0}
+
+/* ============ REVEAL ============ */
+.rv{opacity:0;transform:translateY(16px);transition:opacity 0.6s ease,transform 0.6s ease}
+.rv.visible{opacity:1;transform:translateY(0)}
+.rv-d1{transition-delay:0.1s}
+.rv-d2{transition-delay:0.2s}
+.rv-d3{transition-delay:0.3s}
+.rv-d4{transition-delay:0.4s}
+
+.rv-s{opacity:0;transform:scale(0.96);transition:opacity 0.5s ease,transform 0.5s ease}
+.rv-s.visible{opacity:1;transform:scale(1)}
+
+@keyframes kenBurns{0%{transform:scale(1)}100%{transform:scale(1.06)}}
+.kb img{animation:kenBurns 8s ease-in-out infinite alternate}
+
+/* ============ CHART ANIMATIONS ============ */
+@keyframes barGrow{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+@keyframes barGrowX{from{width:0}to{width:var(--bar-w)}}
+@keyframes donutDraw{from{stroke-dashoffset:var(--circ)}to{stroke-dashoffset:var(--dash-end)}}
+
+.svg-chart-bar{transform-origin:bottom;transform:scaleY(0)}
+.visible .svg-chart-bar{animation:barGrow 0.7s cubic-bezier(0.22,1,0.36,1) forwards;animation-delay:var(--d,0s)}
+
+.hbar-row{overflow:hidden}
+.hbar-row .hbar-fill{width:0}
+.visible .hbar-fill{animation:barGrowX 0.6s cubic-bezier(0.22,1,0.36,1) forwards;animation-delay:var(--d,0s)}
+
+.donut-arc{stroke-dashoffset:var(--circ)}
+.visible .donut-arc{animation:donutDraw 1s cubic-bezier(0.22,1,0.36,1) 0.2s forwards}
+
+/* ============ CALC STEPS ============ */
+.calc-chain{display:flex;flex-direction:column;gap:clamp(0.35rem,0.7vw,0.55rem)}
+.calc-step{
+  display:grid;grid-template-columns:1fr auto;gap:clamp(0.4rem,0.8vw,0.6rem);align-items:center;
+  padding:clamp(0.4rem,0.6vw,0.6rem) clamp(0.6rem,1vw,0.9rem);
+  border-radius:10px;background:var(--white);
+  border:1px solid var(--separator);font-size:var(--small);
 }
-.deploy-services span{
-  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);
-  border-radius:999px;padding:5px 14px;font-size:.8rem;font-weight:500;color:rgba(255,255,255,.8)
+.calc-step .formula{color:var(--text);font-family:'Courier New',monospace;font-size:clamp(0.8rem,1.1vw,0.95rem)}
+.calc-step .result{font-weight:700;color:var(--green);white-space:nowrap;font-size:clamp(0.8rem,1.1vw,0.95rem)}
+.formula-ref{
+  margin-top:clamp(0.3rem,0.5vw,0.4rem);
+  padding:clamp(0.35rem,0.6vw,0.5rem) clamp(0.6rem,1vw,0.8rem);
+  border-radius:8px;border-left:3px solid var(--green);
+  background:rgba(45,106,79,0.05);
+  font-size:clamp(0.75rem,1vw,0.88rem);color:var(--text2);line-height:1.45;
+}
+.formula-ref b{color:var(--text);font-family:'Courier New',monospace}
+.formula-ref .ref-src{color:var(--green);font-weight:600;font-size:clamp(0.65rem,0.85vw,0.78rem)}
+
+/* ============ SVG OVERLAY ON GENPLAN ============ */
+.plan-overlay{position:relative;width:100%;height:100%}
+.plan-overlay img{width:100%;height:100%;object-fit:contain;padding:clamp(4px,0.5vw,8px)}
+.plan-overlay svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.plan-overlay .legend{
+  position:absolute;bottom:clamp(4px,0.5vw,8px);right:clamp(4px,0.5vw,8px);
+  background:rgba(255,255,255,0.92);backdrop-filter:blur(8px);
+  border-radius:10px;padding:clamp(4px,0.4vw,8px) clamp(6px,0.6vw,10px);
+  font-size:clamp(0.6rem,0.9vw,0.75rem);display:flex;flex-direction:column;gap:2px;
+  border:1px solid var(--separator);box-shadow:0 2px 8px rgba(0,0,0,0.06);
+}
+.plan-overlay .legend-item{display:flex;align-items:center;gap:4px}
+.plan-overlay .legend-swatch{width:12px;height:12px;border-radius:3px;flex-shrink:0}
+.plan-overlay .north-arrow{
+  position:absolute;top:clamp(4px,0.5vw,8px);right:clamp(4px,0.5vw,8px);
+  font-size:clamp(0.7rem,1vw,0.85rem);font-weight:700;color:var(--text);
+  background:rgba(255,255,255,0.9);border-radius:50%;width:28px;height:28px;
+  display:flex;align-items:center;justify-content:center;
+  border:1px solid var(--separator);
 }
 
-/* ── FOOTER ── */
-footer{background:#000;color:rgba(255,255,255,.56);text-align:center;padding:40px 24px}
-footer .logo{font-size:1.3rem;font-weight:700;color:#fff;margin-bottom:8px}
-footer p{font-size:.84rem}
-footer a{color:rgba(255,255,255,.7)}
-footer a:hover{color:#fff}
-
-/* ── NAV ── */
-.topnav{
-  position:fixed;top:0;left:0;right:0;z-index:50;
-  background:rgba(255,255,255,.82);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);
-  border-bottom:1px solid rgba(0,0,0,.08);padding:0 24px;
-  display:flex;align-items:center;justify-content:space-between;height:48px;
-  transition:box-shadow .3s
+/* ============ BAR CHART ============ */
+.bar-chart{display:flex;align-items:stretch;gap:clamp(3px,0.5vw,6px);height:clamp(80px,14vh,140px)}
+.bar-col{display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:3px;flex:1}
+.bar-col .bar{
+  width:100%;border-radius:5px 5px 0 0;
+  background:linear-gradient(180deg,var(--green),#52b788);
+  transition:height 0.6s ease;min-width:12px;flex-shrink:0;
 }
-.topnav.scrolled{box-shadow:0 1px 8px rgba(0,0,0,.08)}
-.topnav .brand{font-weight:700;font-size:.92rem;color:var(--text)}
-.topnav nav{display:flex;gap:24px}
-.topnav nav a{font-size:.82rem;font-weight:400;color:var(--text-secondary)}
-.topnav nav a:hover{color:var(--text);text-decoration:none}
+.bar-col .bar-lbl{font-size:clamp(0.65rem,0.9vw,0.8rem);color:var(--text2);white-space:nowrap;font-weight:500}
+.bar-col .bar-val{font-size:clamp(0.65rem,0.9vw,0.8rem);color:var(--text);font-weight:700}
 
-/* ── RESPONSIVE ── */
-@media(max-width:640px){
-  .hero{padding:100px 20px 56px}
-  section{padding:48px 0}
-  .topnav nav{display:none}
-  .arch-flow{flex-direction:column}
-  .arch-flow .arrow{transform:rotate(90deg)}
+/* ============ COMPACT TABLE (for forms) ============ */
+.form-tbl td:last-child,.form-tbl th:last-child{text-align:right}
+.form-tbl .highlight-row td{background:rgba(45,106,79,0.08);font-weight:600}
+
+/* ============ TWO-COL LAYOUT (tight) ============ */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:clamp(0.5rem,1.2vw,1rem);align-items:start}
+@media(max-width:768px){.two-col{grid-template-columns:1fr}}
+
+/* ============ RESPONSIVE ============ */
+@media(max-height:700px){:root{--pad:clamp(0.75rem,3vw,2rem);--gap:clamp(0.4rem,1.5vw,1rem);--h2:clamp(1.3rem,3vw,2rem);--body:clamp(0.85rem,1.4vw,1.05rem);--small:clamp(0.8rem,1.15vw,0.92rem)}}
+@media(max-height:600px){:root{--pad:clamp(0.5rem,2.5vw,1.5rem);--gap:clamp(0.3rem,1vw,0.75rem);--body:clamp(0.82rem,1.3vw,1rem)}.nav-dots{display:none}}
+@media(max-height:500px){:root{--pad:clamp(0.4rem,2vw,1rem);--h2:clamp(1.1rem,2.5vw,1.6rem);--body:clamp(0.78rem,1.1vw,0.92rem)}}
+@media(max-width:600px){:root{--title:clamp(1.25rem,7vw,2.5rem)}.stats,.goals{flex-direction:column}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:0.01ms!important;transition-duration:0.2s!important}html{scroll-behavior:auto}}
+
+/* ============ IMAGE SLIDER ============ */
+.img-slider{position:relative;width:100%;flex:1;min-height:0;overflow:hidden;border-radius:16px;box-shadow:var(--glass-shadow-lg)}
+.img-slider-track{display:flex;transition:transform 0.5s cubic-bezier(0.4,0,0.2,1);height:100%}
+.img-slider-item{min-width:100%;height:100%;position:relative}
+.img-slider-item img{width:100%;height:100%;object-fit:cover}
+.img-slider-caption{
+  position:absolute;bottom:0;left:0;right:0;
+  padding:clamp(0.5rem,1vw,1rem) clamp(0.8rem,1.5vw,1.2rem);
+  background:linear-gradient(transparent,rgba(0,0,0,0.6));
+  color:#fff;font-size:var(--body);font-weight:600;
 }
+.img-slider-btn{
+  position:absolute;top:50%;transform:translateY(-50%);
+  width:clamp(36px,4vw,48px);height:clamp(36px,4vw,48px);
+  border-radius:50%;border:none;cursor:pointer;
+  background:rgba(255,255,255,0.85);backdrop-filter:blur(8px);
+  box-shadow:0 2px 12px rgba(0,0,0,0.15);
+  display:flex;align-items:center;justify-content:center;
+  font-size:clamp(1rem,1.5vw,1.3rem);color:var(--text);
+  transition:background 0.2s,transform 0.2s;z-index:2;
+}
+.img-slider-btn:hover{background:#fff;transform:translateY(-50%) scale(1.08)}
+.img-slider-btn--prev{left:clamp(8px,1vw,16px)}
+.img-slider-btn--next{right:clamp(8px,1vw,16px)}
+.img-slider-dots{
+  display:flex;gap:8px;justify-content:center;
+  margin-top:clamp(0.4rem,0.8vw,0.6rem);
+}
+.img-slider-dot{
+  width:10px;height:10px;border-radius:50%;
+  background:var(--text3);border:none;cursor:pointer;
+  transition:background 0.3s,transform 0.3s;padding:0;
+}
+.img-slider-dot.active{background:var(--green);transform:scale(1.3)}
 </style>
 </head>
 <body>
 
-<!-- NAV -->
-<header class="topnav" id="topnav">
-  <span class="brand">🏒 Хоккейный Родитель</span>
-  <nav>
-    <a href="#features">Результаты</a>
-    <a href="#screens">Экраны</a>
-    <a href="#tech">Стек</a>
-    <a href="#hypotheses">Гипотезы</a>
-    <a href="#individual">Участники</a>
-    <a href="#team">Команда</a>
-  </nav>
-</header>
+<div class="progress-bar" id="progressBar"></div>
+<nav class="nav-dots" id="navDots"></nav>
+<div class="slide-counter" id="slideCounter"></div>
 
-<!-- HERO -->
-<section class="hero" style="padding-top:120px">
-  <h1>Хоккейный Родитель</h1>
-  <p class="subtitle">Цифровая платформа объективной оценки и отслеживания развития юных хоккеистов (5–18 лет). Отчёт по итогам работы в рамках Проектно-продуктовой мастерской.</p>
-  <div class="badge-row">
-    <span>ППМ 2024–2026</span>
-    <span>React + FastAPI + PostgreSQL</span>
-    <span>Развёрнуто на vetrychok.ru</span>
+<!-- ======================== 1. TITLE ======================== -->
+<section class="slide slide--hero" data-slide="0">
+  <div class="bg-mesh"><canvas data-orbs='[{"c":"#a8d5ba","r":280},{"c":"#a3c4d9","r":240},{"c":"#e9c46a","r":140}]'></canvas></div>
+  <div class="slide-inner">
+    <div class="badge rv">Университет ИТМО &middot; Команда 4</div>
+    <h1 class="rv rv-d1">База отдыха<br>в Иркутской области</h1>
+    <p class="sub rv rv-d2">Исследование альтернативных источников энергии<br>Ролевая игра &laquo;Солнечный дом&raquo;</p>
+    <p class="caption rv rv-d3" style="margin-top:clamp(0.3rem,0.4vw,0.4rem)">25 мест &middot; 51.988624 N, 104.674372 E</p>
   </div>
 </section>
 
-<!-- STATS -->
-<section>
-  <div class="container">
-    <h2 class="section-title">Ключевые метрики проекта</h2>
-    <p class="section-sub">Что мы сделали за время работы</p>
-    <div class="stats">
-      <div class="stat-card"><div class="num">6</div><div class="label">Экранов UI</div></div>
-      <div class="stat-card"><div class="num">63</div><div class="label">Тестов (Vitest + pytest)</div></div>
-      <div class="stat-card"><div class="num">20</div><div class="label">Игроков в БД</div></div>
-      <div class="stat-card"><div class="num">80</div><div class="label">Тестовых сессий</div></div>
-      <div class="stat-card"><div class="num">7</div><div class="label">Docker-сервисов</div></div>
-      <div class="stat-card"><div class="num">1</div><div class="label">Рабочий домен</div></div>
-    </div>
-  </div>
-</section>
-
-<!-- FEATURES -->
-<section id="features">
-  <div class="container">
-    <h2 class="section-title">Что реализовано</h2>
-    <p class="section-sub">Полный перечень выполненных задач и текущий статус</p>
-    <div class="features-grid">
-
-      <div class="feature-card">
-        <div class="icon" style="background:var(--blue-l);color:var(--blue)">📋</div>
-        <h3>Профиль игрока</h3>
-        <p>Пошаговая форма создания: ФИО, дата рождения, позиция, хват, команда, номер, город/регион. Валидация через Zod на каждом шаге.</p>
-        <span class="tag tag-done">Готово</span>
+<!-- ======================== 2. TEAM ======================== -->
+<section class="slide" style="background:var(--surface-warm)" data-slide="1">
+  <div class="bg-mesh"><canvas data-orbs='[{"c":"#a8d5ba","r":200},{"c":"#e9c46a","r":150}]'></canvas></div>
+  <div class="slide-inner" style="align-items:center;z-index:1;position:relative">
+    <span class="label rv">Команда проекта</span>
+    <h2 class="title rv rv-d1" style="text-align:center">Наша команда</h2>
+    <div class="team-list rv-d2" style="margin-top:var(--gap)" id="teamList">
+      <div class="member" data-delay="0">
+        <div class="ava"><img src="images/tamir_avatar.jpg" alt=""></div>
+        <div><div class="m-role">Генеральный директор</div><div class="m-name">Тамир Будариев</div></div>
       </div>
-
-      <div class="feature-card">
-        <div class="icon" style="background:var(--green-l);color:var(--green)">📏</div>
-        <h3>Антропометрия</h3>
-        <p>9 параметров: рост, вес, размах рук, ширина плеч, длина ноги, туловище, высота сидя, размер обуви, % жира. Перцентильные бейджи по возрастным нормам.</p>
-        <span class="tag tag-done">Готово</span>
+      <div class="member" data-delay="150">
+        <div class="ava"><img src="images/aivaz_avatar.jpg" alt=""></div>
+        <div><div class="m-role">Проектировщик 1</div><div class="m-name">Айваз Багаутдинов</div></div>
       </div>
-
-      <div class="feature-card">
-        <div class="icon" style="background:var(--amber-l);color:var(--amber)">⚡</div>
-        <h3>Физические тесты</h3>
-        <p>11 показателей в 4 группах: скорость (бег 20м/60м), взрывная сила (прыжки), координация (ловкость, гибкость, баланс), силовая выносливость (отжимания, подтягивания, планка).</p>
-        <span class="tag tag-done">Готово</span>
+      <div class="member" data-delay="300">
+        <div class="ava"><img src="images/andrey_avatar.jpg" alt=""></div>
+        <div><div class="m-role">Проектировщик 2</div><div class="m-name">Андрей Михайлов</div></div>
       </div>
-
-      <div class="feature-card">
-        <div class="icon" style="background:var(--blue-l);color:var(--blue)">📊</div>
-        <h3>Dashboard родителя</h3>
-        <p>Приветствие, 3 стат-карточки (рейтинг с дельтой, позиция в регионе, дата обновления), график прогресса, радар навыков, таблица последних тестов, FAB-кнопка.</p>
-        <span class="tag tag-done">Готово</span>
+      <div class="member" data-delay="450">
+        <div class="ava"><img src="images/alina_avatar.jpg" alt=""></div>
+        <div><div class="m-role">Монтажник 1</div><div class="m-name">Алина Костюкова</div></div>
       </div>
-
-      <div class="feature-card">
-        <div class="icon" style="background:var(--green-l);color:var(--green)">🔍</div>
-        <h3>Каталог игроков</h3>
-        <p>Поиск по имени, фильтрация по региону и позиции. Карточки игроков с аватаром, рейтингом и переходом в профиль.</p>
-        <span class="tag tag-done">Готово</span>
-      </div>
-
-      <div class="feature-card">
-        <div class="icon" style="background:var(--amber-l);color:var(--amber)">🎥</div>
-        <h3>Видео-галерея</h3>
-        <p>Превью карточки видео, клик открывает модальное окно (Dialog) с заглушкой плеера. Данные из mock-файла.</p>
-        <span class="tag tag-done">Готово</span>
-      </div>
-
-      <div class="feature-card">
-        <div class="icon" style="background:var(--blue-l);color:var(--blue)">🛡️</div>
-        <h3>Авторизация (UI)</h3>
-        <p>Выбор роли (Родитель / Скаут), форма входа с валидацией email + пароль. Мок-навигация в dashboard.</p>
-        <span class="tag tag-done">Готово</span>
-      </div>
-
-      <div class="feature-card">
-        <div class="icon" style="background:var(--amber-l);color:var(--amber)">🧪</div>
-        <h3>Тестирование</h3>
-        <p>63 теста: 27 frontend (Vitest + RTL) — страницы, компоненты, графики. 36 backend (pytest + httpx) — авторизация, CRUD игроков, рейтинги, seed-данные.</p>
-        <span class="tag tag-done">Готово</span>
-      </div>
-
-      <div class="feature-card">
-        <div class="icon" style="background:var(--green-l);color:var(--green)">🖥️</div>
-        <h3>Backend API</h3>
-        <p>FastAPI + PostgreSQL + MinIO. JWT-авторизация (регистрация, логин, refresh). CRUD игроков с антропометрией. Физические тесты, региональные рейтинги. 20 демо-игроков с seed-скриптом.</p>
-        <span class="tag tag-done">Готово</span>
-      </div>
-
-      <div class="feature-card">
-        <div class="icon" style="background:var(--blue-l);color:var(--blue)">🚀</div>
-        <h3>Продакшен-деплой</h3>
-        <p>Docker Compose (7 сервисов), Nginx reverse proxy, VPS. Приложение доступно на vetrychok.ru. Автоматический seed данных, health-checks, idempotent deploy-скрипт.</p>
-        <span class="tag tag-done">Готово</span>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- SCREENS -->
-<section id="screens" style="background:var(--bg-alt)">
-  <div class="container">
-    <h2 class="section-title">Экраны приложения</h2>
-    <p class="section-sub">Основные пользовательские сценарии</p>
-    <div class="screens-grid">
-
-      <div class="screen-card">
-        <div class="mock" style="background:linear-gradient(135deg,#1d4ed8,#3b82f6)">
-          <div class="overlay" style="color:rgba(255,255,255,.9);font-size:1rem;font-weight:600;flex-direction:column;gap:4px">
-            <span style="font-size:2rem">🏠</span>Лендинг
-          </div>
-        </div>
-        <div class="info"><h4>Главная страница</h4><p>Маркетинговый лендинг с CTA, описание фичей, переход на вход</p></div>
-      </div>
-
-      <div class="screen-card">
-        <div class="mock" style="background:linear-gradient(135deg,#059669,#34d399)">
-          <div class="overlay" style="color:rgba(255,255,255,.9);font-size:1rem;font-weight:600;flex-direction:column;gap:4px">
-            <span style="font-size:2rem">🔑</span>Логин
-          </div>
-        </div>
-        <div class="info"><h4>Вход в систему</h4><p>Выбор роли, email + пароль, Zod-валидация</p></div>
-      </div>
-
-      <div class="screen-card">
-        <div class="mock" style="background:linear-gradient(135deg,#1d4ed8,#6366f1)">
-          <div class="overlay" style="color:rgba(255,255,255,.9);font-size:1rem;font-weight:600;flex-direction:column;gap:4px">
-            <span style="font-size:2rem">📊</span>Dashboard
-          </div>
-        </div>
-        <div class="info"><h4>Личный кабинет</h4><p>Рейтинг, прогресс, радар навыков, последние тесты, FAB</p></div>
-      </div>
-
-      <div class="screen-card">
-        <div class="mock" style="background:linear-gradient(135deg,#d97706,#f59e0b)">
-          <div class="overlay" style="color:rgba(255,255,255,.9);font-size:1rem;font-weight:600;flex-direction:column;gap:4px">
-            <span style="font-size:2rem">👤</span>Профиль
-          </div>
-        </div>
-        <div class="info"><h4>Профиль игрока</h4><p>4 вкладки: био, антропометрия с перцентилями, физтесты, видео</p></div>
-      </div>
-
-      <div class="screen-card">
-        <div class="mock" style="background:linear-gradient(135deg,#7c3aed,#a78bfa)">
-          <div class="overlay" style="color:rgba(255,255,255,.9);font-size:1rem;font-weight:600;flex-direction:column;gap:4px">
-            <span style="font-size:2rem">📝</span>Анкета
-          </div>
-        </div>
-        <div class="info"><h4>Создание игрока</h4><p>4-шаговый wizard: данные → антропометрия → тесты → подтверждение</p></div>
-      </div>
-
-      <div class="screen-card">
-        <div class="mock" style="background:linear-gradient(135deg,#dc2626,#f87171)">
-          <div class="overlay" style="color:rgba(255,255,255,.9);font-size:1rem;font-weight:600;flex-direction:column;gap:4px">
-            <span style="font-size:2rem">🔍</span>Каталог
-          </div>
-        </div>
-        <div class="info"><h4>Список игроков</h4><p>Поиск, фильтры (регион, позиция), карточки с рейтингом</p></div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- TECH -->
-<section id="tech">
-  <div class="container">
-    <h2 class="section-title">Технологический стек</h2>
-    <p class="section-sub">Современный стек для масштабируемого решения</p>
-
-    <div class="stack-grid">
-      <div class="stack-card">
-        <h4>Frontend (реализован)</h4>
-        <div class="pills">
-          <span class="pill">React 18</span>
-          <span class="pill">TypeScript</span>
-          <span class="pill">Tailwind CSS</span>
-          <span class="pill">shadcn/ui</span>
-          <span class="pill">React Query</span>
-          <span class="pill">react-hook-form</span>
-          <span class="pill">Zod</span>
-          <span class="pill">Recharts</span>
-          <span class="pill">Vite</span>
-        </div>
-      </div>
-      <div class="stack-card">
-        <h4>Backend (реализован)</h4>
-        <div class="pills">
-          <span class="pill">Python 3.12</span>
-          <span class="pill">FastAPI</span>
-          <span class="pill">SQLAlchemy 2.0</span>
-          <span class="pill">PostgreSQL 16</span>
-          <span class="pill">Alembic</span>
-          <span class="pill">MinIO (S3)</span>
-          <span class="pill">Pydantic v2</span>
-        </div>
-      </div>
-      <div class="stack-card">
-        <h4>Тестирование (63 теста)</h4>
-        <div class="pills">
-          <span class="pill">Vitest</span>
-          <span class="pill">RTL</span>
-          <span class="pill">pytest</span>
-          <span class="pill">httpx</span>
-          <span class="pill">aiosqlite</span>
-          <span class="pill">27 frontend</span>
-          <span class="pill">36 backend</span>
-        </div>
-      </div>
-      <div class="stack-card">
-        <h4>Инфраструктура (развёрнута)</h4>
-        <div class="pills">
-          <span class="pill">Docker Compose</span>
-          <span class="pill">Nginx</span>
-          <span class="pill">JWT auth</span>
-          <span class="pill">VPS</span>
-          <span class="pill">vetrychok.ru</span>
-          <span class="pill">Let's Encrypt</span>
-        </div>
-      </div>
-    </div>
-
-    <div style="margin-top:48px">
-      <h3 style="text-align:center;font-size:1.1rem;font-weight:600;margin-bottom:20px;color:var(--text)">Архитектура (продакшен на vetrychok.ru)</h3>
-      <div class="arch-flow">
-        <div class="box">Nginx<br><small style="font-weight:400;font-size:.78rem">SSL + статика + прокси</small></div>
-        <span class="arrow">→</span>
-        <div class="box">React SPA<br><small style="font-weight:400;font-size:.78rem">UI + React Query</small></div>
-        <span class="arrow">→</span>
-        <div class="box">FastAPI<br><small style="font-weight:400;font-size:.78rem">REST API + JWT</small></div>
-        <span class="arrow">→</span>
-        <div class="box">PostgreSQL<br><small style="font-weight:400;font-size:.78rem">20 игроков, 80 сессий</small></div>
-        <span class="arrow">→</span>
-        <div class="box">MinIO / S3<br><small style="font-weight:400;font-size:.78rem">Видео + медиа</small></div>
+      <div class="member" data-delay="600">
+        <div class="ava"><img src="images/polina_avatar.jpg" alt=""></div>
+        <div><div class="m-role">Монтажник 2</div><div class="m-name">Полина Синицына</div></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- HYPOTHESES -->
-<section id="hypotheses" style="background:var(--bg-alt)">
-  <div class="container">
-    <h2 class="section-title">Гипотезы проекта</h2>
-    <p class="section-sub">Ключевые предположения для валидации продукта</p>
-
-    <div class="hypo-list">
-      <div class="hypo-card">
-        <h4>Гипотеза 1: Родители готовы загружать данные ради объективной обратной связи</h4>
-        <p>Родители испытывают потребность в объективных критериях оценки прогресса ребёнка и готовы вносить антропометрию, загружать видео и проходить тесты, если платформа даёт прозрачные метрики и рекомендации.</p>
-        <ul class="criteria">
-          <li>Заполнение профилей >70% в первую неделю</li>
-          <li>Повторные загрузки видео раз в 2–3 месяца</li>
-          <li>Положительные отзывы о сравнительных данных</li>
-        </ul>
+<!-- ======================== 3. GOALS ======================== -->
+<section class="slide" style="background:var(--surface)" data-slide="2">
+  <div class="bg-mesh"><canvas data-orbs='[{"c":"#a3c4d9","r":240},{"c":"#a8d5ba","r":200}]'></canvas></div>
+  <div class="slide-inner" style="align-items:center;text-align:center;z-index:1;position:relative">
+    <span class="label rv">Цели и задачи</span>
+    <h2 class="title rv rv-d1">Цель проекта</h2>
+    <div class="goals rv-d2" style="margin-top:var(--gap);max-width:850px" id="goalsGrid">
+      <div class="goal" data-delay="0">
+        <div class="g-icon">&#9728;&#65039;</div>
+        <div class="g-text">Расчёт солнечной системы ГВС и электроснабжения базы отдыха</div>
       </div>
-      <div class="hypo-card">
-        <h4>Гипотеза 2: Академии заинтересованы в платформе как инструменте поиска талантов</h4>
-        <p>Селекционные службы испытывают дефицит объективной информации об игроках из отдалённых регионов. Ключевой стимул — фильтрация по объективным параметрам с подтверждением видеофрагментами.</p>
-        <ul class="criteria">
-          <li>Интерес минимум 1–3 академий на этапе прототипа</li>
-          <li>Готовность платить за расширенный доступ (B2B)</li>
-        </ul>
+      <div class="goal" data-delay="200">
+        <div class="g-icon">&#128202;</div>
+        <div class="g-text">Подбор оборудования по методике А&ndash;В&ndash;С анализа</div>
       </div>
-      <div class="hypo-card">
-        <h4>Гипотеза 3: Интеграция с турнирами — эффективный канал привлечения</h4>
-        <p>Турниры собирают родителей из разных регионов, создавая эффект воронки: потребность в объективной оценке возникает при виде конкурентов. Офлайн-активности дают более высокую конверсию, чем онлайн-реклама.</p>
-        <ul class="criteria">
-          <li>Конверсия в регистрацию на турнире >15%</li>
-          <li>Рост загрузок видео после турнира</li>
-          <li>Положительный NPS среди участников пилота</li>
-        </ul>
+      <div class="goal" data-delay="400">
+        <div class="g-icon">&#128176;</div>
+        <div class="g-text">Технико-экономическое обоснование и расчёт срока окупаемости</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- TARGET AUDIENCE -->
-<section>
-  <div class="container">
-    <h2 class="section-title">Целевая аудитория</h2>
-    <p class="section-sub">Три ключевых сегмента пользователей платформы</p>
-    <div class="features-grid">
-      <div class="feature-card">
-        <div class="icon" style="background:var(--blue-l);color:var(--blue)">👨‍👩‍👦</div>
-        <h3>Родители юных хоккеистов</h3>
-        <p>Дети 5–12 лет. Желание объективно оценить перспективы, получить признание прогресса, быть замеченным скаутами. Боль: нет прозрачных критериев, невозможно сравнить ребёнка со сверстниками из других городов.</p>
+<!-- ======================== 4. LOCATION ======================== -->
+<section class="slide" style="background:var(--surface-warm)" data-slide="3">
+  <div class="slide-inner">
+    <span class="label rv">01 &mdash; Местоположение</span>
+    <h2 class="title rv rv-d1">Расположение базы отдыха</h2>
+    <div class="panel-row rv rv-d2" style="margin-top:var(--gap);flex:1;align-items:center">
+      <div class="img-frame rv-s" style="height:min(55vh,440px)">
+        <img src="images/map_expanded.png" alt="Карта">
       </div>
-      <div class="feature-card">
-        <div class="icon" style="background:var(--green-l);color:var(--green)">🏟️</div>
-        <h3>Тренеры и академии</h3>
-        <p>Главные тренеры, селекционеры, спортивные директора. Поиск талантов, мониторинг прогресса, стандартизация отбора, снижение субъективизма при селекции.</p>
-      </div>
-      <div class="feature-card">
-        <div class="icon" style="background:var(--amber-l);color:var(--amber)">🤝</div>
-        <h3>Партнёры</h3>
-        <p>Турниры (повышение привлекательности), хоккейные школы (инструмент контроля), инфопартнёры (KidsHockey.ru) — уникальный контент, рейтинги, аналитика.</p>
+      <div style="display:flex;flex-direction:column;gap:var(--gap-sm)">
+        <div class="stat"><div class="val c-blue">51.99&deg; N</div><div class="lbl">Широта</div></div>
+        <div class="stat"><div class="val c-blue">104.67&deg; E</div><div class="lbl">Долгота</div></div>
+        <div class="stat"><div class="val c-green" style="font-size:var(--body)">Иркутская область</div><div class="lbl">Побережье озера Байкал</div></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ROADMAP -->
-<section style="background:var(--bg-alt)">
-  <div class="container">
-    <h2 class="section-title">Roadmap</h2>
-    <p class="section-sub">Что сделано и что впереди</p>
-    <div class="timeline">
-      <div class="timeline-item done">
-        <h4>Неделя 1–2: MVP Frontend</h4>
-        <p>Лендинг, логин, Dashboard, профиль игрока, каталог, создание игрока, 27 тестов</p>
+<!-- ======================== 5. MASTERPLAN ======================== -->
+<section class="slide" style="background:var(--surface)" data-slide="4">
+  <div class="slide-inner">
+    <span class="label rv">02 &mdash; Генеральный план</span>
+    <h2 class="title rv rv-d1">Проект базы отдыха</h2>
+    <div class="plan-layout rv rv-d2" style="margin-top:var(--gap)">
+      <div class="img-frame rv-s">
+        <img src="images/genplan.png" alt="Генплан">
       </div>
-      <div class="timeline-item done">
-        <h4>Исследование: Гипотезы и ЦА</h4>
-        <p>3 гипотезы, 3 сегмента ЦА, методы валидации, критерии успеха</p>
-      </div>
-      <div class="timeline-item done">
-        <h4>Неделя 3–4: Backend API</h4>
-        <p>FastAPI + PostgreSQL + MinIO, JWT-авторизация, CRUD-операции, 36 pytest-тестов, seed-данные (20 игроков, 80 тестовых сессий)</p>
-      </div>
-      <div class="timeline-item done">
-        <h4>Деплой на продакшен</h4>
-        <p>Docker Compose (7 сервисов), Nginx reverse proxy, развёрнуто на VPS: <strong>vetrychok.ru</strong> — приложение работает и доступно</p>
-      </div>
-      <div class="timeline-item">
-        <h4>Следующий этап: Видео и аналитика</h4>
-        <p>Загрузка видео в MinIO, генерация превью, скоринговая модель, рейтинги</p>
-      </div>
-      <div class="timeline-item">
-        <h4>Пилотный запуск</h4>
-        <p>Пилот на турнире, сбор обратной связи, валидация гипотез</p>
+      <div class="info">
+        <div class="bldgs">
+          <div class="bldg"><span class="bn">Кафе с террасой (105 мест)</span><span class="ba">256,6 м&sup2;</span></div>
+          <div class="bldg"><span class="bn">Админ. здание</span><span class="ba">117,8 м&sup2;</span></div>
+          <div class="bldg"><span class="bn">Гостиница (8 ном.)</span><span class="ba">142,3 м&sup2;</span></div>
+          <div class="bldg"><span class="bn">КПП</span><span class="ba">12,0 м&sup2;</span></div>
+          <div class="bldg"><span class="bn">Баня</span><span class="ba">108,6 м&sup2;</span></div>
+          <div class="bldg"><span class="bn">Модульный дом &times;10</span><span class="ba">45,4 м&sup2;</span></div>
+          <div class="bldg"><span class="bn">Дом-сфера &times;5</span><span class="ba">40,7 м&sup2;</span></div>
+          <div class="bldg"><span class="bn">Беседки</span><span class="ba">5 шт</span></div>
+          <div class="bldg"><span class="bn">Парковки</span><span class="ba">35 м/м</span></div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- DEPLOY BANNER -->
-<section class="deploy-banner">
-  <h2>Приложение развёрнуто и работает</h2>
-  <p>Полный стек (frontend + backend + база данных + объектное хранилище) развёрнут на VPS и доступен по адресу vetrychok.ru. 20 игроков, 80 тестовых сессий, авторизация, API — всё работает в продакшене.</p>
-  <div class="deploy-services">
-    <span>PostgreSQL 16</span>
-    <span>FastAPI</span>
-    <span>React SPA</span>
-    <span>Nginx</span>
-    <span>MinIO</span>
-    <span>Docker Compose</span>
-    <span>7 сервисов</span>
-  </div>
-  <a href="http://vetrychok.ru" target="_blank" class="deploy-link">Открыть vetrychok.ru</a>
-</section>
-
-<!-- INDIVIDUAL RESULTS -->
-<section id="individual">
-  <div class="container">
-    <h2 class="section-title">Индивидуальные результаты участников</h2>
-    <p class="section-sub">Вклад каждого участника проекта «Хоккейный родитель»</p>
-
-    <div class="results-grid">
-
-      <div class="result-card">
-        <div class="r-avatar" style="background:linear-gradient(135deg,#d97706,#f59e0b)">А</div>
+<!-- ======================== 6. ADMIN BUILDING ======================== -->
+<section class="slide" style="background:var(--surface-warm)" data-slide="5">
+  <div class="slide-inner">
+    <span class="label rv">03 &mdash; Здания</span>
+    <h2 class="title rv rv-d1">Админ.&ndash;хозяйственное здание</h2>
+    <p class="caption rv rv-d1">Общая площадь 117,8 м&sup2;</p>
+    <div class="plan-layout rv rv-d2" style="margin-top:var(--gap)">
+      <div class="img-frame rv-s">
+        <img src="images/admin_plan.png" alt="План этажей">
+      </div>
+      <div class="info">
         <div>
-          <div class="r-name">Селянина Анастасия</div>
-          <div class="r-role">UX/UI дизайнер</div>
-          <div class="r-text">Провела исследование пользовательских сценариев целевой аудитории — родителей юных хоккеистов и тренерского штаба академий. Выявила ключевые боли пользователей: отсутствие прозрачных критериев оценки прогресса ребёнка, невозможность сравнения с ровесниками из других регионов, сложность навигации в существующих решениях. На основе исследования разработала user flow для основных сценариев: регистрация игрока, загрузка видео, просмотр метрик и рекомендаций. Создала wireframes прототипа платформы, обеспечив интуитивно понятный интерфейс для пользователей без технической подготовки. Проработала визуальную концепцию интерфейса с учётом специфики спортивной аналитики и необходимости удобного хранения и просмотра видеофрагментов.</div>
+          <p style="font-size:var(--small);font-weight:600;color:var(--green);margin-bottom:3px">1-й этаж</p>
+          <div class="rooms">
+            <div class="room"><span class="rn">Ресепшн</span><span class="ra">29,26 м&sup2;</span></div>
+            <div class="room"><span class="rn">Хоз. помещение</span><span class="ra">22,49 м&sup2;</span></div>
+            <div class="room"><span class="rn">Хоз. помещение</span><span class="ra">7,69 м&sup2;</span></div>
+            <div class="room"><span class="rn">Коридор</span><span class="ra">4,64 м&sup2;</span></div>
+            <div class="room"><span class="rn">С/у</span><span class="ra">2,89 м&sup2;</span></div>
+          </div>
         </div>
-      </div>
-
-      <div class="result-card">
-        <div class="r-avatar" style="background:linear-gradient(135deg,#059669,#34d399)">К</div>
         <div>
-          <div class="r-name">Адрианов Константин</div>
-          <div class="r-role">Product Manager</div>
-          <div class="r-text">Провёл анализ российского рынка цифровых решений в сфере детско-юношеского спорта. Выявил и систематизировал существующие аналоги, определил их сильные и слабые стороны. На основе конкурентного анализа сформировал продуктовую концепцию платформы «Хоккейный родитель» и конкурентную отстройку. Определил ключевой функционал продукта: профили игроков, система объективных метрик, видеоанализ, сравнительные рейтинги, рекомендации по развитию. Участвовал в формировании технического задания, описании функциональных и специальных требований к результату. Определил ценность продукта для каждой из трёх сегментов целевой аудитории и приоритизировал функции для MVP.</div>
+          <p style="font-size:var(--small);font-weight:600;color:var(--green);margin-bottom:3px">2-й этаж</p>
+          <div class="rooms">
+            <div class="room"><span class="rn">Помещения сотр. &times;3</span><span class="ra">12,25&ndash;12,53 м&sup2;</span></div>
+            <div class="room"><span class="rn">Прачечная</span><span class="ra">6,93 м&sup2;</span></div>
+            <div class="room"><span class="rn">Зона приёма пищи</span><span class="ra">16,49 м&sup2;</span></div>
+            <div class="room"><span class="rn">С/у + душ</span><span class="ra">4,15 м&sup2;</span></div>
+          </div>
         </div>
-      </div>
-
-      <div class="result-card">
-        <div class="r-avatar" style="background:linear-gradient(135deg,#1d4ed8,#3b82f6)">А</div>
-        <div>
-          <div class="r-name">Багаутдинов Айваз</div>
-          <div class="r-role">Инженер / Программист (Backend)</div>
-          <div class="r-text">Обеспечил техническую реализацию платформы: разработал архитектуру backend-части на Python (FastAPI + SQLAlchemy + PostgreSQL), реализовал структуру хранения и обработки данных игроков. Работал над логикой видеоанализа — ключевой технологической особенностью проекта, обеспечивающей объективную оценку техники юных хоккеистов. Развернул и настроил репозиторий исходного кода проекта, организовал структуру проекта для командной работы. Развернул полный продакшен-стек на VPS (Docker Compose: PostgreSQL, FastAPI, Nginx, MinIO, React SPA) по адресу vetrychok.ru. Написал 36 backend-тестов (pytest) и seed-скрипт для наполнения базы демо-данными (20 игроков, 80 тестовых сессий). Определил технические требования к системе, включая хранение видео, обработку данных и интеграцию с frontend-прототипом.</div>
-        </div>
-      </div>
-
-      <div class="result-card">
-        <div class="r-avatar" style="background:linear-gradient(135deg,#6366f1,#8b5cf6)">Е</div>
-        <div>
-          <div class="r-name">Цыбенко Екатерина</div>
-          <div class="r-role">Project Manager</div>
-          <div class="r-text">Организовала работу команды: провела знакомство с контекстом деятельности заказчика (Хоккейная академия, Левкин А.В., Завгородний С.И.), обеспечила коммуникацию между командой и заказчиком. Координировала распределение задач по ролям и контроль сроков выполнения в соответствии с графиком ППМ-2 2026. Провела итоговый созвон команды по обсуждению проекта и сбору артефактов. Подготовила Team Canvas проекта, зафиксировала цели, принципы работы, риски и ограничения. Осуществляла сбор и организацию всех материалов проекта для сдачи, контролировала полноту и качество артефактов каждого участника.</div>
-        </div>
-      </div>
-
-      <div class="result-card">
-        <div class="r-avatar" style="background:linear-gradient(135deg,#dc2626,#f87171)">М</div>
-        <div>
-          <div class="r-name">Марченко Мария</div>
-          <div class="r-role">Маркетолог</div>
-          <div class="r-text">Разработала три ключевые гипотезы проекта с детальным описанием содержания и критериями подтверждения: готовность родителей загружать данные при наличии объективной обратной связи; заинтересованность академий в использовании платформы как инструмента поиска талантов; эффективность интеграции с крупными детскими турнирами как канала привлечения. Провела анализ целевой аудитории по трём сегментам: родители юных хоккеистов, тренерский штаб и менеджмент академий, партнёры (турниры, школы, инфопартнёры). Для каждого сегмента определила мотивацию, боли и задачи. Разработала методы и инструменты валидации: количественный опрос родителей, A/B-тестирование прототипа, экспертные интервью с тренерами. Определила каналы продвижения через хоккейные сообщества и турниры.</div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- TEAM -->
-<section id="team">
-  <div class="container">
-    <h2 class="section-title">Команда проекта</h2>
-    <p class="section-sub">Проектно-продуктовая мастерская</p>
-    <div class="team-grid">
-      <div class="team-card">
-        <div class="avatar" style="background:linear-gradient(135deg,#6366f1,#8b5cf6)">Е</div>
-        <div class="name">Цыбенко Екатерина</div>
-        <div class="role">Project Manager</div>
-      </div>
-      <div class="team-card">
-        <div class="avatar" style="background:linear-gradient(135deg,#059669,#34d399)">К</div>
-        <div class="name">Адрианов Константин</div>
-        <div class="role">Product Manager</div>
-      </div>
-      <div class="team-card">
-        <div class="avatar" style="background:linear-gradient(135deg,#d97706,#f59e0b)">А</div>
-        <div class="name">Селянина Анастасия</div>
-        <div class="role">UX/UI дизайнер</div>
-      </div>
-      <div class="team-card">
-        <div class="avatar" style="background:linear-gradient(135deg,#dc2626,#f87171)">М</div>
-        <div class="name">Марченко Мария</div>
-        <div class="role">Маркетолог</div>
-      </div>
-      <div class="team-card">
-        <div class="avatar" style="background:linear-gradient(135deg,#1d4ed8,#3b82f6)">А</div>
-        <div class="name">Багаутдинов Айваз</div>
-        <div class="role">Инженер / Программист</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
-<footer>
-  <div class="logo">🏒 Хоккейный Родитель</div>
-  <p>Проектно-продуктовая мастерская · 2024–2026</p>
-  <p style="margin-top:8px;font-size:.78rem">Объективная оценка. Прозрачный прогресс. Путь к профессиональному хоккею.</p>
-  <p style="margin-top:12px;font-size:.85rem"><a href="http://vetrychok.ru" target="_blank">vetrychok.ru</a> — приложение работает в продакшене</p>
-</footer>
+<!-- ======================== 7. ADMIN ENERGY ======================== -->
+<section class="slide" style="background:var(--surface)" data-slide="6">
+  <div class="slide-inner">
+    <span class="label rv">03 &mdash; Энергопотребление</span>
+    <h2 class="title rv rv-d1">Админ. здание &mdash; расход ресурсов</h2>
+    <div class="stats rv rv-d2" style="margin-top:var(--gap)">
+      <div class="stat"><div class="val c-blue">640</div><div class="lbl">кВт&middot;ч/мес &mdash; электро</div></div>
+      <div class="stat"><div class="val c-amber">2 808</div><div class="lbl">кВт&middot;ч/мес &mdash; отопление</div></div>
+      <div class="stat"><div class="val c-green">22,5</div><div class="lbl">м&sup3;/мес &mdash; ГВС</div></div>
+    </div>
+    <div class="tbl-wrap rv rv-d3" style="margin-top:var(--gap)">
+      <table>
+        <thead><tr><th>Прибор</th><th>Мощность</th><th>ч/сутки</th><th>кВт&middot;ч/сут</th></tr></thead>
+        <tbody>
+          <tr><td>Освещение LED</td><td>1 170 Вт</td><td>10</td><td>11,7</td></tr>
+          <tr><td>Компьютеры (3 шт)</td><td>300 Вт</td><td>8</td><td>2,4</td></tr>
+          <tr><td>Оргтехника</td><td>500 Вт</td><td>4</td><td>2,0</td></tr>
+          <tr><td>Стиральная машина</td><td>2 000 Вт</td><td>2</td><td>4,0</td></tr>
+          <tr><td>Сушильная машина</td><td>2 500 Вт</td><td>2</td><td>5,0</td></tr>
+          <tr><td>Холодильник</td><td>150 Вт</td><td>24&times;0,4</td><td>1,4</td></tr>
+          <tr><td>Электроплита</td><td>2 000 Вт</td><td>2</td><td>4,0</td></tr>
+          <tr><td>Кондиционеры (2)</td><td>2 000 Вт</td><td>6</td><td>12,0</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ======================== 8. CAFE PLAN ======================== -->
+<section class="slide" style="background:var(--surface-warm)" data-slide="7">
+  <div class="slide-inner">
+    <span class="label rv">04 &mdash; Кафе</span>
+    <h2 class="title rv rv-d1">Кафе на 105 мест</h2>
+    <p class="caption rv rv-d1">Площадь застройки 256,6 м&sup2;</p>
+    <div class="plan-layout rv rv-d2" style="margin-top:var(--gap)">
+      <div class="img-frame rv-s">
+        <img src="images/cafe_plan.png" alt="План кафе">
+      </div>
+      <div class="info">
+        <div class="rooms">
+          <div class="room"><span class="rn">Зал на 57 мест</span><span class="ra">82,05 м&sup2;</span></div>
+          <div class="room"><span class="rn">Терраса на 48 мест</span><span class="ra">60,57 м&sup2;</span></div>
+          <div class="room"><span class="rn">Стойка хостес + гардероб</span><span class="ra">&mdash;</span></div>
+          <div class="room"><span class="rn">Бар</span><span class="ra">&mdash;</span></div>
+          <div class="room"><span class="rn">Кухня (гор./хол. цех)</span><span class="ra">&mdash;</span></div>
+          <div class="room"><span class="rn">Моечная</span><span class="ra">&mdash;</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================== 9. CAFE ENERGY ======================== -->
+<section class="slide" style="background:var(--surface)" data-slide="8">
+  <div class="slide-inner">
+    <span class="label rv">04 &mdash; Энергопотребление</span>
+    <h2 class="title rv rv-d1">Кафе &mdash; расход ресурсов</h2>
+    <div class="stats rv rv-d2" style="margin-top:var(--gap)">
+      <div class="stat"><div class="val c-blue">5 040</div><div class="lbl">кВт&middot;ч/мес &mdash; электро</div></div>
+      <div class="stat"><div class="val c-amber">6 912</div><div class="lbl">кВт&middot;ч/мес &mdash; отопление</div></div>
+      <div class="stat"><div class="val c-green">45</div><div class="lbl">м&sup3;/мес &mdash; ГВС</div></div>
+    </div>
+    <div class="tbl-wrap rv rv-d3" style="margin-top:var(--gap)">
+      <table>
+        <thead><tr><th>Прибор</th><th>Мощность</th><th>ч/сутки</th><th>кВт&middot;ч/сут</th></tr></thead>
+        <tbody>
+          <tr><td>Освещение</td><td>2 560 Вт</td><td>12</td><td>30,7</td></tr>
+          <tr><td>Электроплиты (4)</td><td>10 000 Вт</td><td>6</td><td>60,0</td></tr>
+          <tr><td>Фритюр (2)</td><td>6 000 Вт</td><td>5</td><td>30,0</td></tr>
+          <tr><td>Холодильники (3)</td><td>2 000 Вт</td><td>24&times;0,5</td><td>24,0</td></tr>
+          <tr><td>Посудомойка</td><td>3 500 Вт</td><td>4</td><td>14,0</td></tr>
+          <tr><td>Вентиляция</td><td>5 000 Вт</td><td>12</td><td>60,0</td></tr>
+          <tr><td>Кондиционеры</td><td>8 000 Вт</td><td>8</td><td>64,0</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ======================== 10. GUEST MODULE 1 ======================== -->
+<section class="slide" style="background:var(--surface-warm)" data-slide="9">
+  <div class="slide-inner">
+    <span class="label rv">05 &mdash; Гостевые модули</span>
+    <h2 class="title rv rv-d1">Гостевой модуль 1</h2>
+    <p class="caption rv rv-d1">40 м&sup2; &middot; 5 чел &middot; 10 шт</p>
+    <div class="plan-layout rv rv-d2" style="margin-top:var(--gap)">
+      <div class="img-frame rv-s">
+        <img src="images/guest1_plan.png" alt="План модуля 1">
+      </div>
+      <div class="info">
+        <div class="stats" style="gap:var(--gap-sm)">
+          <div class="stat"><div class="val c-blue" style="font-size:clamp(1rem,2vw,1.4rem)">350</div><div class="lbl">кВт&middot;ч/мес электро</div></div>
+          <div class="stat"><div class="val c-amber" style="font-size:clamp(1rem,2vw,1.4rem)">960</div><div class="lbl">кВт&middot;ч/мес отопл.</div></div>
+          <div class="stat"><div class="val c-green" style="font-size:clamp(1rem,2vw,1.4rem)">22,5</div><div class="lbl">м&sup3;/мес ГВС</div></div>
+        </div>
+        <div class="tbl-wrap">
+          <table>
+            <thead><tr><th>Прибор</th><th>Мощность</th><th>кВт&middot;ч/сут</th></tr></thead>
+            <tbody>
+              <tr><td>Освещение</td><td>400 Вт</td><td>2,4</td></tr>
+              <tr><td>Холодильник</td><td>150 Вт</td><td>1,4</td></tr>
+              <tr><td>Плита</td><td>2 000 Вт</td><td>4,0</td></tr>
+              <tr><td>ТВ</td><td>100 Вт</td><td>0,5</td></tr>
+              <tr><td>Водонагреватель</td><td>2 000 Вт</td><td>6,0</td></tr>
+              <tr><td>Кондиционер</td><td>1 500 Вт</td><td>9,0</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================== 11. GUEST MODULE 2 ======================== -->
+<section class="slide" style="background:var(--surface)" data-slide="10">
+  <div class="slide-inner">
+    <span class="label rv">05 &mdash; Гостевые модули</span>
+    <h2 class="title rv rv-d1">Гостевой модуль 2</h2>
+    <p class="caption rv rv-d1">40 м&sup2; &middot; 3 чел &middot; 5 шт</p>
+    <div class="plan-layout rv rv-d2" style="margin-top:var(--gap)">
+      <div class="img-frame rv-s">
+        <img src="images/guest2_plan.png" alt="План модуля 2">
+      </div>
+      <div class="info">
+        <div class="stats" style="gap:var(--gap-sm)">
+          <div class="stat"><div class="val c-blue" style="font-size:clamp(1rem,2vw,1.4rem)">275</div><div class="lbl">кВт&middot;ч/мес электро</div></div>
+          <div class="stat"><div class="val c-amber" style="font-size:clamp(1rem,2vw,1.4rem)">960</div><div class="lbl">кВт&middot;ч/мес отопл.</div></div>
+          <div class="stat"><div class="val c-green" style="font-size:clamp(1rem,2vw,1.4rem)">13,5</div><div class="lbl">м&sup3;/мес ГВС</div></div>
+        </div>
+        <div class="tbl-wrap">
+          <table>
+            <thead><tr><th>Прибор</th><th>Мощность</th><th>кВт&middot;ч/сут</th></tr></thead>
+            <tbody>
+              <tr><td>Освещение</td><td>400 Вт</td><td>2,4</td></tr>
+              <tr><td>Холодильник</td><td>150 Вт</td><td>1,4</td></tr>
+              <tr><td>Плита</td><td>2 000 Вт</td><td>3,0</td></tr>
+              <tr><td>ТВ</td><td>100 Вт</td><td>0,4</td></tr>
+              <tr><td>Водонагреватель</td><td>2 000 Вт</td><td>4,0</td></tr>
+              <tr><td>Кондиционер</td><td>1 500 Вт</td><td>7,5</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================== 12. HOTEL ======================== -->
+<section class="slide" style="background:var(--surface-warm)" data-slide="11">
+  <div class="slide-inner">
+    <span class="label rv">06 &mdash; Гостиница</span>
+    <h2 class="title rv rv-d1">Гостиничный блок на 8 номеров</h2>
+    <p class="caption rv rv-d1">142,3 м&sup2; &middot; 16 гостей</p>
+    <div class="panel-row rv rv-d2" style="margin-top:var(--gap);align-items:center">
+      <div style="display:flex;flex-direction:column;gap:var(--gap-sm)">
+        <div class="stats" style="flex-direction:column;gap:var(--gap-sm)">
+          <div class="stat"><div class="val c-blue" style="font-size:clamp(1rem,2vw,1.4rem)">1 340 кВт&middot;ч</div><div class="lbl">Электроэнергия / мес</div></div>
+          <div class="stat"><div class="val c-amber" style="font-size:clamp(1rem,2vw,1.4rem)">3 456 кВт&middot;ч</div><div class="lbl">Отопление / мес</div></div>
+          <div class="stat"><div class="val c-green" style="font-size:clamp(1rem,2vw,1.4rem)">72 м&sup3;</div><div class="lbl">ГВС / мес</div></div>
+        </div>
+      </div>
+      <div class="tbl-wrap rv rv-d3">
+        <table>
+          <thead><tr><th>Прибор</th><th>кВт&middot;ч/сут</th></tr></thead>
+          <tbody>
+            <tr><td>Освещение</td><td>11,5</td></tr>
+            <tr><td>ТВ (8 шт)</td><td>4,0</td></tr>
+            <tr><td>Холодильники (8)</td><td>7,7</td></tr>
+            <tr><td>Кондиционеры</td><td>48,0</td></tr>
+            <tr><td>Вентиляция</td><td>18,0</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================== 13. SUMMARY ======================== -->
+<section class="slide" style="background:var(--surface)" data-slide="12">
+  <div class="slide-inner">
+    <span class="label rv">07 &mdash; Итоги</span>
+    <h2 class="title rv rv-d1">Сводное потребление по базе</h2>
+    <div class="stats rv rv-d2" style="margin-top:var(--gap)">
+      <div class="stat"><div class="val c-blue">7 645</div><div class="lbl">кВт&middot;ч/мес &mdash; Электроэнергия</div></div>
+      <div class="stat"><div class="val c-amber">15 096</div><div class="lbl">кВт&middot;ч/мес &mdash; Отопление</div></div>
+      <div class="stat"><div class="val c-green">175,5</div><div class="lbl">м&sup3;/мес &mdash; ГВС</div></div>
+    </div>
+    <div class="tbl-wrap rv rv-d3" style="margin-top:var(--gap)">
+      <table>
+        <thead><tr><th>Объект</th><th style="text-align:right">Электро, кВт&middot;ч</th><th style="text-align:right">Отопл., кВт&middot;ч</th><th style="text-align:right">ГВС, м&sup3;</th></tr></thead>
+        <tbody>
+          <tr><td>Админ. здание</td><td style="text-align:right">640</td><td style="text-align:right">2 808</td><td style="text-align:right">22,5</td></tr>
+          <tr><td>Домик 1 (&times;10)</td><td style="text-align:right">350</td><td style="text-align:right">960</td><td style="text-align:right">22,5</td></tr>
+          <tr><td>Домик 2 (&times;5)</td><td style="text-align:right">275</td><td style="text-align:right">960</td><td style="text-align:right">13,5</td></tr>
+          <tr><td>Гостиница</td><td style="text-align:right">1 340</td><td style="text-align:right">3 456</td><td style="text-align:right">72,0</td></tr>
+          <tr><td>Кафе</td><td style="text-align:right">5 040</td><td style="text-align:right">6 912</td><td style="text-align:right">45,0</td></tr>
+          <tr class="row-total"><td>Итого</td><td style="text-align:right">7 645</td><td style="text-align:right">15 096</td><td style="text-align:right">175,5</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="glass-strong rv rv-d4" style="padding:clamp(0.6rem,1vw,1rem);border-radius:14px;margin-top:var(--gap-sm)">
+      <p style="font-size:var(--small);font-weight:600;color:var(--text);margin-bottom:6px">Структура электропотребления по объектам</p>
+      <svg viewBox="0 0 520 184" width="50%" style="display:block;font-family:Inter,sans-serif">
+        <g class="hbar-row">
+          <text x="0" y="20" font-size="12" fill="#1d1d1f" font-weight="600">Кафе</text>
+          <rect x="90" y="7" width="343" height="24" rx="6" fill="rgba(45,106,79,0.08)"/>
+          <rect class="hbar-fill" x="90" y="7" height="24" rx="6" fill="#2d6a4f" style="--bar-w:343px;--d:0.1s"/>
+          <text x="270" y="24" font-size="11" fill="#fff" font-weight="700">5 040 кВт·ч (66%)</text>
+        </g>
+        <g class="hbar-row">
+          <text x="0" y="56" font-size="12" fill="#1d1d1f" font-weight="600">Гостиница</text>
+          <rect x="90" y="43" width="343" height="24" rx="6" fill="rgba(45,106,79,0.08)"/>
+          <rect class="hbar-fill" x="90" y="43" height="24" rx="6" fill="#40916c" style="--bar-w:91px;--d:0.2s"/>
+          <text x="186" y="60" font-size="11" fill="#1d1d1f" font-weight="600">1 340 (17,5%)</text>
+        </g>
+        <g class="hbar-row">
+          <text x="0" y="92" font-size="12" fill="#1d1d1f" font-weight="600">Админ</text>
+          <rect x="90" y="79" width="343" height="24" rx="6" fill="rgba(45,106,79,0.08)"/>
+          <rect class="hbar-fill" x="90" y="79" height="24" rx="6" fill="#52b788" style="--bar-w:44px;--d:0.3s"/>
+          <text x="140" y="96" font-size="11" fill="#1d1d1f" font-weight="600">640 (8,4%)</text>
+        </g>
+        <g class="hbar-row">
+          <text x="0" y="128" font-size="12" fill="#1d1d1f" font-weight="600">Домик 1 &times;10</text>
+          <rect x="90" y="115" width="343" height="24" rx="6" fill="rgba(45,106,79,0.08)"/>
+          <rect class="hbar-fill" x="90" y="115" height="24" rx="6" fill="#74c69d" style="--bar-w:24px;--d:0.4s"/>
+          <text x="120" y="132" font-size="11" fill="#1d1d1f" font-weight="600">350 (4,6%)</text>
+        </g>
+        <g class="hbar-row">
+          <text x="0" y="164" font-size="12" fill="#1d1d1f" font-weight="600">Домик 2 &times;5</text>
+          <rect x="90" y="151" width="343" height="24" rx="6" fill="rgba(45,106,79,0.08)"/>
+          <rect class="hbar-fill" x="90" y="151" height="24" rx="6" fill="#95d5b2" style="--bar-w:19px;--d:0.5s"/>
+          <text x="115" y="168" font-size="11" fill="#1d1d1f" font-weight="600">275 (3,6%)</text>
+        </g>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ======================== 14. SOLAR MAP — FORM 1 (Step 4) ======================== -->
+<section class="slide" style="background:var(--surface-warm)" data-slide="13">
+  <div class="slide-inner">
+    <span class="label rv">Форма 1 &mdash; Шаг 4</span>
+    <h2 class="title rv rv-d1">Карта солнечной активности</h2>
+    <p class="caption rv rv-d1">PVGIS ERA5 &middot; 51.989&deg;N, 104.674&deg;E &middot; 464 м &middot; Объект: Админ. здание</p>
+    <div class="panel-row rv rv-d2" style="margin-top:var(--gap);flex:1;align-items:center">
+      <div class="img-frame rv-s" style="height:min(55vh,460px)">
+        <img src="images/solar-map-real-with-dot-in-irlutsk.png" alt="Карта солнечной радиации">
+      </div>
+      <div style="display:flex;flex-direction:column;gap:var(--gap-sm)">
+        <div class="tbl-wrap form-tbl">
+          <table>
+            <thead><tr><th>Параметр</th><th>Значение</th></tr></thead>
+            <tbody>
+              <tr><td>Год. суммарная радиация (гориз.)</td><td style="text-align:right">1 330 кВт&middot;ч/м&sup2;</td></tr>
+              <tr><td>Радиация при опт. наклоне</td><td style="text-align:right">1 742 кВт&middot;ч/м&sup2;</td></tr>
+              <tr><td>Ср.сут. летняя (июн&ndash;авг)</td><td style="text-align:right">5,56 кВт&middot;ч/м&sup2;</td></tr>
+              <tr><td>Ср.сут. зимняя (ноя&ndash;янв)</td><td style="text-align:right">2,26 кВт&middot;ч/м&sup2;</td></tr>
+              <tr><td>Пик. солн. часы (ср.год.)</td><td style="text-align:right">4,77 ч/день</td></tr>
+              <tr class="highlight-row"><td>Опт. наклон (круглогод.)</td><td style="text-align:right">47&deg;</td></tr>
+              <tr><td>Ориентация (азимут)</td><td style="text-align:right">180&deg; (Юг)</td></tr>
+              <tr><td>Выход 1 кВт (пиковая) / год</td><td style="text-align:right">1 444 кВт&middot;ч</td></tr>
+              <tr><td>Солн. часов/год</td><td style="text-align:right">~2 000</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="font-size:clamp(0.7rem,1vw,0.85rem);color:var(--text2);line-height:1.5">Иркутская область&nbsp;&mdash; один из наиболее инсолированных регионов Сибири: ~2&nbsp;000 солн. часов/год. Соотношение лето/зима = 2,5:1. При наклоне 47&deg; годовая инсоляция +31% vs горизонталь. Источник: PVGIS ERA5 (2005&ndash;2023).</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================== 14b. INSOLATION CHARTS ======================== -->
+<section class="slide" style="background:var(--surface)" data-slide="14">
+  <div class="slide-inner">
+    <span class="label rv">Форма 1 &mdash; Шаг 4 (продолжение)</span>
+    <h2 class="title rv rv-d1">Инсоляция и пиковые солнечные часы</h2>
+    <p class="caption rv rv-d1">Помесячные данные &middot; Иркутская область &middot; 51.989&deg;N, 104.674&deg;E</p>
+    <div class="two-col rv rv-d2" style="margin-top:var(--gap);flex:1">
+      <div class="glass-strong" style="padding:clamp(0.8rem,1.5vw,1.2rem);border-radius:18px">
+        <p style="font-size:var(--body);font-weight:700;color:var(--text);margin-bottom:var(--gap-sm)">Среднесуточная инсоляция по месяцам (кВт&middot;ч/м&sup2;/день)</p>
+        <div class="bar-chart" id="insolationChart" style="height:clamp(120px,22vh,200px)">
+          <div class="bar-col"><div class="bar-val">2.0</div><div class="bar" style="height:26%"></div><div class="bar-lbl">Янв</div></div>
+          <div class="bar-col"><div class="bar-val">3.0</div><div class="bar" style="height:39%"></div><div class="bar-lbl">Фев</div></div>
+          <div class="bar-col"><div class="bar-val">4.2</div><div class="bar" style="height:55%"></div><div class="bar-lbl">Мар</div></div>
+          <div class="bar-col"><div class="bar-val">4.8</div><div class="bar" style="height:63%"></div><div class="bar-lbl">Апр</div></div>
+          <div class="bar-col"><div class="bar-val">5.4</div><div class="bar" style="height:71%"></div><div class="bar-lbl">Май</div></div>
+          <div class="bar-col"><div class="bar-val">5.7</div><div class="bar" style="height:75%"></div><div class="bar-lbl">Июн</div></div>
+          <div class="bar-col"><div class="bar-val">5.5</div><div class="bar" style="height:72%"></div><div class="bar-lbl">Июл</div></div>
+          <div class="bar-col"><div class="bar-val">5.5</div><div class="bar" style="height:72%"></div><div class="bar-lbl">Авг</div></div>
+          <div class="bar-col"><div class="bar-val">4.0</div><div class="bar" style="height:53%"></div><div class="bar-lbl">Сен</div></div>
+          <div class="bar-col"><div class="bar-val">3.0</div><div class="bar" style="height:39%"></div><div class="bar-lbl">Окт</div></div>
+          <div class="bar-col"><div class="bar-val">2.0</div><div class="bar" style="height:26%"></div><div class="bar-lbl">Ноя</div></div>
+          <div class="bar-col"><div class="bar-val">1.6</div><div class="bar" style="height:21%"></div><div class="bar-lbl">Дек</div></div>
+        </div>
+      </div>
+      <div class="glass-strong" style="padding:clamp(0.8rem,1.5vw,1.2rem);border-radius:18px">
+        <p style="font-size:var(--body);font-weight:700;color:var(--text);margin-bottom:var(--gap-sm)">Пиковые солнечные часы по месяцам (ч/день)</p>
+        <div class="bar-chart" id="peakSunChart" style="height:clamp(120px,22vh,200px)">
+          <div class="bar-col"><div class="bar-val">2.0</div><div class="bar" style="height:25%;background:linear-gradient(180deg,var(--amber),#e9c46a)"></div><div class="bar-lbl">Янв</div></div>
+          <div class="bar-col"><div class="bar-val">3.0</div><div class="bar" style="height:38%;background:linear-gradient(180deg,var(--amber),#e9c46a)"></div><div class="bar-lbl">Фев</div></div>
+          <div class="bar-col"><div class="bar-val">4.2</div><div class="bar" style="height:53%;background:linear-gradient(180deg,var(--amber),#e9c46a)"></div><div class="bar-lbl">Мар</div></div>
+          <div class="bar-col"><div class="bar-val">5.0</div><div class="bar" style="height:63%;background:linear-gradient(180deg,var(--amber),#e9c46a)"></div><div class="bar-lbl">Апр</div></div>
+          <div class="bar-col"><div class="bar-val">6.2</div><div class="bar" style="height:78%;background:linear-gradient(180deg,var(--amber),#e9c46a)"></div><div class="bar-lbl">Май</div></div>
+          <div class="bar-col"><div class="bar-val">6.8</div><div class="bar" style="height:85%;background:linear-gradient(180deg,var(--amber),#e9c46a)"></div><div class="bar-lbl">Июн</div></div>
+          <div class="bar-col"><div class="bar-val">6.5</div><div class="bar" style="height:81%;background:linear-gradient(180deg,var(--amber),#e9c46a)"></div><div class="bar-lbl">Июл</div></div>
+          <div class="bar-col"><div class="bar-val">5.8</div><div class="bar" style="height:73%;background:linear-gradient(180deg,var(--amber),#e9c46a)"></div><div class="bar-lbl">Авг</div></div>
+          <div class="bar-col"><div class="bar-val">4.5</div><div class="bar" style="height:56%;background:linear-gradient(180deg,var(--amber),#e9c46a)"></div><div class="bar-lbl">Сен</div></div>
+          <div class="bar-col"><div class="bar-val">3.2</div><div class="bar" style="height:40%;background:linear-gradient(180deg,var(--amber),#e9c46a)"></div><div class="bar-lbl">Окт</div></div>
+          <div class="bar-col"><div class="bar-val">2.0</div><div class="bar" style="height:25%;background:linear-gradient(180deg,var(--amber),#e9c46a)"></div><div class="bar-lbl">Ноя</div></div>
+          <div class="bar-col"><div class="bar-val">1.5</div><div class="bar" style="height:19%;background:linear-gradient(180deg,var(--amber),#e9c46a)"></div><div class="bar-lbl">Дек</div></div>
+        </div>
+        <p style="font-size:var(--body);color:var(--text2);text-align:center;margin-top:var(--gap-sm)">Среднегодовое: <b style="color:var(--amber);font-size:clamp(1rem,1.5vw,1.2rem)">4,77 ч/день</b></p>
+      </div>
+    </div>
+    <div class="stats rv rv-d3" style="margin-top:var(--gap)">
+      <div class="stat"><div class="val c-amber">4,77</div><div class="lbl">ч/день &mdash; пик. солн. часы (среднегод.)</div></div>
+      <div class="stat"><div class="val c-green">5,56</div><div class="lbl">кВт&middot;ч/м&sup2; &mdash; ср.сут. летняя</div></div>
+      <div class="stat"><div class="val c-blue">2,26</div><div class="lbl">кВт&middot;ч/м&sup2; &mdash; ср.сут. зимняя</div></div>
+      <div class="stat"><div class="val c-green">~2 000</div><div class="lbl">солн. часов/год</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================== 15. GVS — Q CALC ======================== -->
+<section class="slide" style="background:var(--surface-warm)" data-slide="15">
+  <div class="slide-inner">
+    <span class="label rv">Форма 3 &mdash; Шаг 5А &middot; Ответственный: Андрей Михайлов</span>
+    <h2 class="title rv rv-d1">ГВС &mdash; Теплопотребность (Q = C &middot; M &middot; ΔT)</h2>
+    <p class="caption rv rv-d1">Админ. здание &middot; 22,5 м&sup3;/мес &middot; 100% покрытие солнцем</p>
+    <div class="panel-row rv rv-d2" style="margin-top:var(--gap);flex:1;align-items:start">
+      <div style="display:flex;flex-direction:column;gap:var(--gap-sm)">
+        <p style="font-size:var(--body);font-weight:600;color:var(--green)">Расчёт теплопотребности</p>
+        <div class="calc-chain">
+          <div class="calc-step"><span class="formula">V = 22,5 м&sup3;/мес</span><span class="result">Исходные данные</span></div>
+          <div class="calc-step"><span class="formula">P = 1000 кг/м&sup3;</span><span class="result">Плотность воды</span></div>
+          <div class="calc-step"><span class="formula">M = 22,5 &times; 1000 = 22 500 кг/мес</span><span class="result">Масса воды</span></div>
+          <div class="calc-step"><span class="formula">T1 = 6&deg;C, T2 = 60&deg;C</span><span class="result">Температуры</span></div>
+          <div class="calc-step"><span class="formula">ΔT = 60 &minus; 6 = 54&deg;C</span><span class="result">Разность темп.</span></div>
+          <div class="calc-step"><span class="formula">C = 4,19 кДж/(кг&middot;К)</span><span class="result">Теплоёмкость</span></div>
+          <div class="calc-step"><span class="formula">Q = 4,19 &times; 22 500 &times; 54</span><span class="result">5 090 550 кДж/мес</span></div>
+          <div class="calc-step"><span class="formula">Q = 5 090 550 / 3600</span><span class="result">1 414 кВт&middot;ч/мес</span></div>
+          <div class="calc-step"><span class="formula">Q<sub>сут</sub> = 1 414 / 30</span><span class="result">47,1 кВт&middot;ч/сут</span></div>
+          <div class="calc-step"><span class="formula">Q<sub>год</sub> = 1 414 &times; 12</span><span class="result">16 968 кВт&middot;ч/год</span></div>
+        </div>
+        <div class="formula-ref">
+          <b>Q = C &middot; M &middot; ΔT</b>, где C = 4,19 кДж/(кг&middot;К), M = &rho; &times; V, ΔT = T₂ &minus; T₁<br>
+          <b>E = q &times; N</b> &mdash; годовое кол-во солнечной радиации (кВт&middot;ч/год)<br>
+          <span class="ref-src">Методичка &mdash; Занятие №6, Шаг 2</span>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:var(--gap-sm)">
+        <div class="tbl-wrap form-tbl">
+          <table>
+            <thead><tr><th>Параметр (админ. здание)</th><th>Значение</th></tr></thead>
+            <tbody>
+              <tr><td>Объём ГВС</td><td style="text-align:right">22,5 м&sup3;/мес</td></tr>
+              <tr><td>Теплопотребность (день)</td><td style="text-align:right">47,1 кВт&middot;ч</td></tr>
+              <tr><td>Теплопотребность (месяц)</td><td style="text-align:right">1 414 кВт&middot;ч</td></tr>
+              <tr><td>Теплопотребность (год)</td><td style="text-align:right">16 968 кВт&middot;ч</td></tr>
+              <tr><td>Годовая инсоляция E</td><td style="text-align:right">1 741 кВт&middot;ч/м&sup2;</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="glass-strong rv rv-d3" style="padding:clamp(0.8rem,1.2vw,1rem);border-radius:14px">
+          <p style="font-size:var(--small);font-weight:600;color:var(--text);margin-bottom:6px;text-align:center">Покрытие потребности ГВС: 100%</p>
+          <svg viewBox="0 0 160 160" width="140" height="140" style="display:block;font-family:Inter,sans-serif;margin:0 auto">
+            <circle cx="80" cy="80" r="54" fill="none" stroke="#e5e5ea" stroke-width="20"/>
+            <circle class="donut-arc" cx="80" cy="80" r="54" fill="none" stroke="#2d6a4f" stroke-width="20" stroke-linecap="round" transform="rotate(-90 80 80)" stroke-dasharray="339.29" style="--circ:339.29;--dash-end:0"/>
+            <text x="80" y="76" text-anchor="middle" font-size="20" font-weight="700" fill="#2d6a4f">100%</text>
+            <text x="80" y="93" text-anchor="middle" font-size="9" fill="#6e6e73">солнце</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================== 16. GVS — COLLECTOR F CALC ======================== -->
+<section class="slide" style="background:var(--surface)" data-slide="16">
+  <div class="slide-inner">
+    <span class="label rv">Форма 3 &mdash; Шаг 5А (продолжение)</span>
+    <h2 class="title rv rv-d1">ГВС &mdash; Площадь коллекторов (F = Q / (E &middot; η))</h2>
+    <p class="caption rv rv-d1">Вакуумные коллекторы SCH-30 &middot; η₀ = 0,80 &middot; k = 0,001</p>
+    <div class="panel-row rv rv-d2" style="margin-top:var(--gap);flex:1;align-items:start">
+      <div style="display:flex;flex-direction:column;gap:var(--gap-sm)">
+        <p style="font-size:var(--body);font-weight:600;color:var(--green)">Расчёт площади</p>
+        <div class="calc-chain">
+          <div class="calc-step"><span class="formula">q = 4,77 кВт&middot;ч/(м&sup2;&middot;день)</span><span class="result">Инсоляция</span></div>
+          <div class="calc-step"><span class="formula">E = q &times; 365 = 4,77 &times; 365</span><span class="result">1 741 кВт&middot;ч/(м&sup2;&middot;год)</span></div>
+          <div class="calc-step"><span class="formula">η0 = 0,8 (вакуумный)</span><span class="result">КПД коллектора</span></div>
+          <div class="calc-step"><span class="formula">k = 0,001 кВт/(К&middot;м&sup2;)</span><span class="result">Коэфф. потерь</span></div>
+          <div class="calc-step"><span class="formula">η = η₀ &minus; k &middot; ΔT / E<sub>сут</sub> = 0,8 &minus; 0,001 &times; 54 / 4,77</span><span class="result">η ≈ 0,79</span></div>
+          <div class="calc-step"><span class="formula">F = 16 968 / (1 741 &times; 0,79)</span><span class="result">12,3 м&sup2;</span></div>
+          <div class="calc-step"><span class="formula">Площадь 1 коллектора = 3,96 м&sup2;</span><span class="result">SCH-30</span></div>
+          <div class="calc-step"><span class="formula">N = ⌈12,3 / 3,96⌉ = ⌈3,1⌉</span><span class="result">4 шт</span></div>
+          <div class="calc-step"><span class="formula">F<sub>факт</sub> = 4 &times; 3,96</span><span class="result">15,84 м&sup2;</span></div>
+        </div>
+        <div class="formula-ref">
+          <b>F = Q / (E &middot; η)</b> &mdash; площадь коллекторов (м&sup2;)<br>
+          <b>η = η₀ &minus; k &middot; ΔT / E</b> &mdash; КПД коллектора<br>
+          Вакуумный: η₀ = 0,80; k = 0,001 кВт/(К&middot;м&sup2;)<br>
+          <span class="ref-src">Методичка &mdash; Занятие №6, Шаги 4&ndash;5</span>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:var(--gap-sm)">
+        <div class="tbl-wrap form-tbl">
+          <table>
+            <thead><tr><th>Параметр</th><th>Значение</th></tr></thead>
+            <tbody>
+              <tr><td>Тип коллектора</td><td style="text-align:right">Вакуумный SCH-30</td></tr>
+              <tr><td>η0 (вакуумный)</td><td style="text-align:right">0,8</td></tr>
+              <tr><td>k (вакуумный)</td><td style="text-align:right">0,001 кВт/(К&middot;м&sup2;)</td></tr>
+              <tr><td>η (расчётный)</td><td style="text-align:right">0,79</td></tr>
+              <tr><td>Площадь 1 коллектора</td><td style="text-align:right">3,96 м&sup2;</td></tr>
+              <tr class="highlight-row"><td>Количество коллекторов</td><td style="text-align:right">4 шт</td></tr>
+              <tr class="highlight-row"><td>Общая площадь F</td><td style="text-align:right">15,84 м&sup2;</td></tr>
+              <tr><td>Объём бака (65 л/м&sup2;)</td><td style="text-align:right">1 030 л &rarr; 1 200 л</td></tr>
+              <tr><td>Резервное отопление</td><td style="text-align:right">Электрокотёл</td></tr>
+              <tr><td>Отопление 2 808 кВт&middot;ч/мес</td><td style="text-align:right;color:var(--amber)">[отд. система]</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="stats rv rv-d3" style="gap:var(--gap-sm)">
+          <div class="stat" style="text-align:center"><div class="val c-green" style="font-size:clamp(1.2rem,2.5vw,1.8rem)">4</div><div class="lbl">коллектора</div></div>
+          <div class="stat" style="text-align:center"><div class="val c-blue" style="font-size:clamp(1.2rem,2.5vw,1.8rem)">15,84 м&sup2;</div><div class="lbl">площадь</div></div>
+          <div class="stat" style="text-align:center"><div class="val c-amber" style="font-size:clamp(1.2rem,2.5vw,1.8rem)">1 200 л</div><div class="lbl">бак</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================== 17. SES — VERIFY + CONSUMPTION ======================== -->
+<section class="slide" style="background:var(--surface-warm)" data-slide="17">
+  <div class="slide-inner">
+    <span class="label rv">Форма 3.1 &mdash; Шаг 5Б &middot; Ответственный: Айваз Багаутдинов</span>
+    <h2 class="title rv rv-d1">СЭС &mdash; Исходные данные (640 кВт&middot;ч/мес)</h2>
+    <p class="caption rv rv-d1">Админ. здание &middot; Проверка и расчёт годового потребления</p>
+    <div class="panel-row rv rv-d2" style="margin-top:var(--gap);flex:1;align-items:start">
+      <div style="display:flex;flex-direction:column;gap:var(--gap)">
+        <div>
+          <p style="font-size:var(--body);font-weight:600;color:var(--amber)">Шаг 1 &mdash; Суммарное потребление N (кВт&middot;ч)</p>
+          <div class="calc-chain" style="margin-top:var(--gap-sm)">
+            <div class="calc-step"><span class="formula">N<sub>табл</sub> = &sum;(P<sub>i</sub> &times; t<sub>i</sub>) = 42,5 кВт&middot;ч/сут</span><span class="result">По таблице потребителей</span></div>
+            <div class="calc-step"><span class="formula">N<sub>табл/мес</sub> = 42,5 &times; 30 = 1 275 кВт&middot;ч/мес</span><span class="result">Максимальное (все 30 дней)</span></div>
+            <div class="calc-step"><span class="formula">N<sub>факт</sub> = 640 кВт&middot;ч/мес</span><span class="result">Фактическое потребление</span></div>
+            <div class="calc-step"><span class="formula">640 / 1 275 = 0,502 (50,2%)</span><span class="result">Доля от максимального</span></div>
+          </div>
+          <div class="formula-ref">
+            <b>N = &sum;(P<sub>i</sub> &times; t<sub>i</sub>)</b> &mdash; суммарное потребление по таблице потребителей<br>
+            P<sub>i</sub> &mdash; мощность прибора (кВт), t<sub>i</sub> &mdash; время работы (ч/сут)<br>
+            <span class="ref-src">Методичка &mdash; Занятие №2, Шаг 1</span>
+          </div>
+        </div>
+        <div>
+          <p style="font-size:var(--body);font-weight:600;color:var(--green)">Расчёт потребления админ. здания</p>
+          <div class="calc-chain" style="margin-top:var(--gap-sm)">
+            <div class="calc-step"><span class="formula">N<sub>мес</sub> = 640 кВт&middot;ч</span><span class="result">Исходные данные</span></div>
+            <div class="calc-step"><span class="formula">N<sub>сут</sub> = 640 / 30</span><span class="result">21,3 кВт&middot;ч/день</span></div>
+            <div class="calc-step"><span class="formula">N<sub>год</sub> = 640 &times; 12</span><span class="result">7 680 кВт&middot;ч/год</span></div>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:var(--gap-sm)">
+        <div class="tbl-wrap form-tbl">
+          <table>
+            <thead><tr><th>Параметр (админ. здание)</th><th>Значение</th></tr></thead>
+            <tbody>
+              <tr><td>Электропотребление (день)</td><td style="text-align:right">21,3 кВт&middot;ч</td></tr>
+              <tr><td>Электропотребление (месяц)</td><td style="text-align:right">640 кВт&middot;ч</td></tr>
+              <tr><td>Электропотребление (год)</td><td style="text-align:right">7 680 кВт&middot;ч</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="font-size:var(--small);color:var(--text2);line-height:1.5">Расхождение обусловлено сезонностью: кондиционеры и часть оборудования работают не каждый день. Для расчёта используется фактическое потребление 640 кВт&middot;ч/мес.</p>
+        <p style="font-size:var(--small);color:var(--text2);line-height:1.5">Оборудование подобрано по методике А&ndash;В&ndash;С (2 отечественных + 1 зарубежный вариант).</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================== 18. SES — Pw FORMULA ======================== -->
+<section class="slide" style="background:var(--surface)" data-slide="18">
+  <div class="slide-inner">
+    <span class="label rv">Форма 3.1 &mdash; Шаг 5Б (продолжение)</span>
+    <h2 class="title rv rv-d1">СЭС &mdash; Мощность солнечной батареи (Pw)</h2>
+    <p class="caption rv rv-d1">Pw = 1000 &middot; N / (K &middot; E) &middot; 100% покрытие</p>
+    <div class="panel-row rv rv-d2" style="margin-top:var(--gap);flex:1;align-items:start">
+      <div style="display:flex;flex-direction:column;gap:var(--gap-sm)">
+        <p style="font-size:var(--body);font-weight:600;color:var(--green)">Исходные данные</p>
+        <div class="calc-chain">
+          <div class="calc-step"><span class="formula">N = 7 680 кВт&middot;ч/год</span><span class="result">Годовое потр.</span></div>
+          <div class="calc-step"><span class="formula">q = 4,77 кВт&middot;ч/(м&sup2;&middot;день)</span><span class="result">Интенсивность</span></div>
+          <div class="calc-step"><span class="formula">E = q &times; 365 = 4,77 &times; 365</span><span class="result">1 741 кВт&middot;ч/год</span></div>
+        </div>
+        <p style="font-size:var(--body);font-weight:600;color:var(--amber);margin-top:var(--gap-sm)">Летний расчёт (K = 0,5)</p>
+        <div class="calc-chain">
+          <div class="calc-step"><span class="formula">Pw<sub>лето</sub> = 1000 &times; 7 680 / (0,5 &times; 1 741)</span><span class="result">8 823 Вт</span></div>
+          <div class="calc-step"><span class="formula">Pw<sub>лето</sub> &asymp; 8,82 кВт</span><span class="result">18 панелей &times; 500 Вт = 9,0 кВт</span></div>
+        </div>
+        <p style="font-size:var(--body);font-weight:600;color:var(--blue);margin-top:var(--gap-sm)">Зимний расчёт (K = 0,7)</p>
+        <div class="calc-chain">
+          <div class="calc-step"><span class="formula">Pw<sub>зима</sub> = 1000 &times; 7 680 / (0,7 &times; 1 741)</span><span class="result">6 302 Вт</span></div>
+          <div class="calc-step"><span class="formula">Pw<sub>зима</sub> &asymp; 6,30 кВт</span><span class="result">13 панелей &times; 500 Вт = 6,5 кВт</span></div>
+        </div>
+        <p style="font-size:var(--body);font-weight:600;color:var(--green);margin-top:var(--gap-sm)">Среднегодовой расчёт (K = 0,6)</p>
+        <div class="calc-chain">
+          <div class="calc-step"><span class="formula">Pw<sub>ср</sub> = 1000 &times; 7 680 / (0,6 &times; 1 741)</span><span class="result">7 352 Вт</span></div>
+          <div class="calc-step"><span class="formula">Pw<sub>ср</sub> &asymp; 7,35 кВт</span><span class="result">15 панелей &times; 500 Вт = 7,5 кВт</span></div>
+          <div class="calc-step" style="border:2px solid var(--green)"><span class="formula" style="font-weight:600">Принято: Pw = 7,5 кВт (15 панелей, среднегод.)</span><span class="result">Площадь = 35,6 м&sup2;</span></div>
+        </div>
+        <div class="formula-ref">
+          <b>Pw = 1000 &middot; N / (K &middot; E)</b> &mdash; мощность солнечной батареи (Вт)<br>
+          N &mdash; потребление (кВт&middot;ч/год), K &mdash; коэфф. эфф. СБ (лето 0,5 / зима 0,7), E = q &times; 365<br>
+          <b>N<sub>и</sub> = N<sub>макс</sub> &times; 1,5</b> &mdash; мощность инвертора<br>
+          <b>N<sub>АБ</sub> = N &times; K</b> &mdash; ёмкость АКБ (K = 1,1 кисл. / 1,3 щел.)<br>
+          <b>A = N<sub>АБ</sub> / U</b> &mdash; ток АКБ (А&middot;ч)<br>
+          <span class="ref-src">Методичка &mdash; Занятия №2 (Pw), №3 (инвертор), №5 (АКБ)</span>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:var(--gap-sm)">
+        <div class="tbl-wrap form-tbl">
+          <table>
+            <thead><tr><th>Параметр</th><th>Значение</th></tr></thead>
+            <tbody>
+              <tr><td>Годовая радиация E</td><td style="text-align:right">1 741 кВт&middot;ч/год</td></tr>
+              <tr><td>Pw лето (K = 0,5)</td><td style="text-align:right;color:var(--amber)">8,82 кВт &rarr; 18 пан.</td></tr>
+              <tr><td>Pw зима (K = 0,7)</td><td style="text-align:right;color:var(--blue)">6,30 кВт &rarr; 13 пан.</td></tr>
+              <tr class="highlight-row"><td>Pw среднегод. (K = 0,6)</td><td style="text-align:right">7,35 кВт &rarr; 15 пан.</td></tr>
+              <tr><td>Модель панели</td><td style="text-align:right">Delta NXT 500W</td></tr>
+              <tr><td>КПД панели</td><td style="text-align:right">21,05%</td></tr>
+              <tr><td>Площадь 1 панели</td><td style="text-align:right">2,37 м&sup2;</td></tr>
+              <tr class="highlight-row"><td>Принято панелей</td><td style="text-align:right">15 шт (7,5 кВт)</td></tr>
+              <tr class="highlight-row"><td>Площадь солнечных панелей</td><td style="text-align:right">35,6 м&sup2;</td></tr>
+              <tr><td>Инвертор (Nи = Nмакс &times; 1,5)</td><td style="text-align:right">7,5 кВт</td></tr>
+              <tr><td>Nмакс (макс. одноврем. нагрузка)</td><td style="text-align:right">5 кВт</td></tr>
+              <tr><td>АКБ (NАБ = N &times; K, K=1,1 кисл.)</td><td style="text-align:right">23,4 кВт&middot;ч</td></tr>
+              <tr><td>A = NАБ / U (48 В)</td><td style="text-align:right">488 А&middot;ч</td></tr>
+              <tr><td>Контроллер заряда</td><td style="text-align:right">MPPT</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="stats rv rv-d3" style="gap:var(--gap-sm)">
+          <div class="stat" style="text-align:center"><div class="val c-green" style="font-size:clamp(1.2rem,2.5vw,1.8rem)">15</div><div class="lbl">панелей &times; 500 Вт</div></div>
+          <div class="stat" style="text-align:center"><div class="val c-blue" style="font-size:clamp(1.2rem,2.5vw,1.8rem)">7,5 кВт</div><div class="lbl">мощность СБ</div></div>
+          <div class="stat" style="text-align:center"><div class="val c-amber" style="font-size:clamp(1.2rem,2.5vw,1.8rem)">23,4 кВт&middot;ч</div><div class="lbl">АКБ</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================== 19. EQUIPMENT SUMMARY ======================== -->
+<section class="slide" style="background:var(--surface-warm)" data-slide="19">
+  <div class="bg-mesh"><canvas data-orbs='[{"c":"#a8d5ba","r":200},{"c":"#a3c4d9","r":160},{"c":"#e9c46a","r":120}]'></canvas></div>
+  <div class="slide-inner" style="z-index:1;position:relative">
+    <span class="label rv">Сводка &mdash; Админ. здание</span>
+    <h2 class="title rv rv-d1">Итоговая спецификация (117,8 м&sup2;)</h2>
+    <div class="two-col rv rv-d2" style="margin-top:var(--gap)">
+      <div class="glass-strong" style="padding:clamp(0.8rem,1.5vw,1.2rem);border-radius:18px">
+        <p style="font-size:var(--body);font-weight:700;color:var(--green);margin-bottom:var(--gap-sm)">&#9728;&#65039; ГВС (Андрей) &mdash; 100% покрытие</p>
+        <div style="display:flex;flex-direction:column;gap:clamp(4px,0.5vh,8px)">
+          <div class="bldg"><span class="bn">Коллекторы SCH-30</span><span class="ba">4 шт</span></div>
+          <div class="bldg"><span class="bn">Площадь абсорбции</span><span class="ba">15,84 м&sup2;</span></div>
+          <div class="bldg"><span class="bn">Бак-аккумулятор</span><span class="ba">1 &times; 1 200 л</span></div>
+          <div class="bldg"><span class="bn">Циркул. насос</span><span class="ba">1 шт</span></div>
+          <div class="bldg"><span class="bn">Электрокотёл (резерв)</span><span class="ba">6 кВт</span></div>
+          <div class="bldg"><span class="bn">Отопление</span><span class="ba" style="color:var(--amber)">2 808 кВт&middot;ч [отд.]</span></div>
+        </div>
+      </div>
+      <div class="glass-strong" style="padding:clamp(0.8rem,1.5vw,1.2rem);border-radius:18px">
+        <p style="font-size:var(--body);font-weight:700;color:var(--blue);margin-bottom:var(--gap-sm)">&#9889; СЭС (Айваз) &mdash; 100% покрытие</p>
+        <div style="display:flex;flex-direction:column;gap:clamp(4px,0.5vh,8px)">
+          <div class="bldg"><span class="bn">Панели Delta NXT 500W</span><span class="ba">15 шт</span></div>
+          <div class="bldg"><span class="bn">Мощность солнечной батареи</span><span class="ba">7,5 кВт</span></div>
+          <div class="bldg"><span class="bn">Площадь солнечных панелей</span><span class="ba">35,6 м&sup2;</span></div>
+          <div class="bldg"><span class="bn">Инвертор</span><span class="ba">7,5 кВт</span></div>
+          <div class="bldg"><span class="bn">АКБ LiFePO4 (K=1,1, кисл. тип)</span><span class="ba">23,4 кВт&middot;ч</span></div>
+          <div class="bldg"><span class="bn">Годовая генерация</span><span class="ba">7 680 кВт&middot;ч</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="tbl-wrap rv rv-d3" style="margin-top:var(--gap)">
+      <table class="form-tbl">
+        <thead><tr><th>Параметр</th><th style="text-align:right">Было (вся база)</th><th style="text-align:right">Стало (админ. 100%)</th></tr></thead>
+        <tbody>
+          <tr><td>Панели ФЭП</td><td style="text-align:right">42 шт / 20,8 кВт</td><td style="text-align:right;font-weight:700;color:var(--green)">15 шт / 7,5 кВт</td></tr>
+          <tr><td>Площадь ФЭП</td><td style="text-align:right">100 м&sup2;</td><td style="text-align:right;font-weight:700;color:var(--green)">35,6 м&sup2;</td></tr>
+          <tr><td>Инвертор (N<sub>и</sub> = N<sub>макс</sub> &times; 1,5)</td><td style="text-align:right">25 кВт</td><td style="text-align:right;font-weight:700;color:var(--green)">7,5 кВт</td></tr>
+          <tr><td>АКБ (K=1,1, кисл. тип)</td><td style="text-align:right">191 кВт&middot;ч</td><td style="text-align:right;font-weight:700;color:var(--green)">23,4 кВт&middot;ч</td></tr>
+          <tr><td>Коллекторы</td><td style="text-align:right">35 шт / 139 м&sup2;</td><td style="text-align:right;font-weight:700;color:var(--green)">4 шт / 15,84 м&sup2;</td></tr>
+          <tr><td>Бак ГВС</td><td style="text-align:right">2&times;5 000 л</td><td style="text-align:right;font-weight:700;color:var(--green)">1&times;1 200 л</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ======================== 20. PLACEMENT — SVG SCHEMATIC ======================== -->
+<section class="slide" style="background:var(--surface-warm)" data-slide="20">
+  <div class="slide-inner">
+    <span class="label rv">Схема 4 / 4.1 &mdash; Размещение на админ. здании</span>
+    <h2 class="title rv rv-d1">План размещения оборудования</h2>
+    <div class="plan-layout rv rv-d2" style="margin-top:var(--gap)">
+      <div class="img-frame rv-s" style="position:relative">
+        <div class="plan-overlay">
+          <img src="images/schema_top_view.png" alt="Левая и правая схемы размещения оборудования">
+        </div>
+      </div>
+      <div class="info">
+        <div class="glass-strong" style="padding:clamp(0.8rem,1.2vw,1rem);border-radius:16px">
+          <p style="font-size:var(--body);font-weight:600;color:var(--green);margin-bottom:var(--gap-sm)">Левая схема (внутри здания)</p>
+          <div style="display:flex;flex-direction:column;gap:clamp(5px,0.7vh,9px);font-size:var(--small);color:var(--text2);line-height:1.45">
+            <p><span style="display:inline-block;width:14px;height:22px;border-radius:5px;background:#8da89d;border:1px solid rgba(0,0,0,0.12);margin-right:6px;vertical-align:-4px"></span><b style="color:var(--text)">Зеленый вертикальный блок</b> &mdash; бак горячего водоснабжения в большом хозпомещении.</p>
+            <p><span style="display:inline-block;width:14px;height:14px;border-radius:4px;background:#6f8db6;border:1px solid rgba(0,0,0,0.12);margin-right:2px;vertical-align:-2px"></span><span style="display:inline-block;width:14px;height:14px;border-radius:4px;background:#6f8db6;border:1px solid rgba(0,0,0,0.12);margin-right:6px;vertical-align:-2px"></span><b style="color:var(--text)">Два синих блока</b> &mdash; инвертор и аккумуляторный блок в малом техпомещении.</p>
+            <p><span style="display:inline-block;width:10px;height:20px;border-radius:4px;background:#d2c195;border:1px solid rgba(0,0,0,0.12);margin-right:6px;vertical-align:-5px"></span><b style="color:var(--text)">Узкий бежевый блок</b> &mdash; контроллер/MPPT и электрический щит.</p>
+            <p><span style="display:inline-block;width:22px;border-bottom:2.5px dashed #2e7fd1;margin-right:6px;vertical-align:middle"></span><b style="color:var(--text)">Синий пунктир</b> &mdash; кабельная электрическая трасса с кровли во внутренние помещения.</p>
+            <p><span style="display:inline-block;width:22px;border-bottom:2.5px dashed #d25555;margin-right:6px;vertical-align:middle"></span><b style="color:var(--text)">Красный пунктир</b> &mdash; трубная трасса от солнечных коллекторов во внутренние помещения.</p>
+            <p><span style="display:inline-flex;align-items:center;justify-content:center;width:10px;height:10px;border-radius:50%;background:#2e7fd1;margin-right:2px;vertical-align:middle"></span><span style="display:inline-flex;align-items:center;justify-content:center;width:10px;height:10px;border-radius:50%;background:#d25555;margin-right:6px;vertical-align:middle"></span><b style="color:var(--text)">Синяя и красная точки</b> &mdash; узлы ввода кабелей и труб в здание.</p>
+          </div>
+        </div>
+        <div class="glass-strong" style="padding:clamp(0.8rem,1.2vw,1rem);border-radius:16px">
+          <p style="font-size:var(--body);font-weight:600;color:var(--green);margin-bottom:var(--gap-sm)">Правая схема (на крыше)</p>
+          <div style="display:flex;flex-direction:column;gap:clamp(5px,0.7vh,9px);font-size:var(--small);color:var(--text2);line-height:1.45">
+            <p><span style="display:inline-block;width:14px;height:10px;border-radius:3px;background:#5f7faa;border:1px solid rgba(0,0,0,0.14);margin-right:6px;vertical-align:middle"></span><b style="color:var(--text)">15 синих прямоугольников</b> &mdash; фотоэлектрические модули на южном скате (первая кровельная группа).</p>
+            <p><span style="display:inline-block;width:14px;height:10px;border-radius:3px;background:#ccb05f;border:1px solid rgba(0,0,0,0.14);margin-right:6px;vertical-align:middle"></span><b style="color:var(--text)">4 желтых прямоугольника</b> &mdash; вакуумные солнечные коллекторы справа (вторая кровельная группа).</p>
+            <p><span style="display:inline-block;width:22px;border-bottom:2.5px dashed #2e7fd1;margin-right:6px;vertical-align:middle"></span><b style="color:var(--text)">Синий пунктир</b> &mdash; направление электрической трассы от фотоэлектрических модулей к внутреннему оборудованию.</p>
+            <p><span style="display:inline-block;width:22px;border-bottom:2.5px dashed #d25555;margin-right:6px;vertical-align:middle"></span><b style="color:var(--text)">Красный пунктир</b> &mdash; направление трубной трассы от солнечных коллекторов к баку ГВС.</p>
+            <p><span style="display:inline-block;width:22px;border-bottom:2.5px dashed #2e7fd1;margin-right:2px;vertical-align:middle"></span><span style="display:inline-block;width:22px;border-bottom:2.5px dashed #d25555;margin-right:6px;vertical-align:middle"></span><b style="color:var(--text)">Синий и красный пунктир</b> &mdash; общие направления трасс от крыши к внутренним помещениям.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================== 21. 3D VISUALIZATION ======================== -->
+<section class="slide" style="background:var(--surface)" data-slide="21">
+  <div class="slide-inner">
+    <span class="label rv">Схема 4 / 4.1 (продолжение)</span>
+    <h2 class="title rv rv-d1">3D-визуализация размещения</h2>
+    <p class="caption rv rv-d1">ФЭП и солнечные коллекторы на южном скате крыши</p>
+    <div class="panel-row rv rv-d2" style="margin-top:var(--gap);flex:1;align-items:center">
+      <div style="display:flex;flex-direction:column;gap:var(--gap-sm)">
+        <div class="img-frame rv-s" style="height:min(55vh,460px)">
+          <img src="images/3d_vizual.png" alt="3D-визуализация размещения оборудования">
+        </div>
+        <p class="caption" style="text-align:center">3D-визуализация размещения ФЭП и коллекторов</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:var(--gap)">
+        <div class="glass-strong" style="padding:clamp(0.8rem,1.5vw,1.2rem);border-radius:18px">
+          <p style="font-size:var(--body);font-weight:600;color:var(--green);margin-bottom:var(--gap-sm)">Параметры монтажа</p>
+          <div style="display:flex;flex-direction:column;gap:clamp(4px,0.5vh,8px);font-size:var(--body);color:var(--text2);line-height:1.5">
+            <p>&bull; Наклон: 47&deg;, азимут: 180&deg; (Юг)</p>
+            <p>&bull; ФЭП и коллекторы &mdash; южный скат крыши</p>
+            <p>&bull; Трубы ГВС: &lt;15 м до коллекторов</p>
+            <p>&bull; Заземление по ПУЭ</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================== 22. ALINA TITLE ======================== -->
+<section class="slide slide--hero" style="background:var(--surface-warm)" data-slide="22">
+  <div class="bg-mesh"><canvas data-orbs='[{"c":"#d4880f","r":200},{"c":"#a8d5ba","r":160}]'></canvas></div>
+  <div class="slide-inner" style="align-items:center;justify-content:center;text-align:center;gap:clamp(0.5rem,1.2vw,1rem);z-index:1;position:relative">
+    <div class="badge rv">Этапы 6, 7, 8 &middot; Монтажник 1</div>
+    <h1 class="rv rv-d1" style="font-size:clamp(2rem,5vw,3.8rem)">Подбор оборудования<br>по методике А–В–С</h1>
+    <p class="sub rv rv-d2">Алина Костюкова &middot; Солнечные коллекторы и ФЭС<br>3 варианта: 2 отечественных + 1 импортный</p>
+  </div>
+</section>
+
+<!-- ======================== 23. ABC METHODOLOGY ======================== -->
+<section class="slide" style="background:var(--surface)" data-slide="23">
+  <div class="slide-inner">
+    <span class="label rv">Методика А–В–С</span>
+    <h2 class="title rv rv-d1">Методология подбора оборудования</h2>
+    <div class="two-col rv rv-d2" style="margin-top:var(--gap)">
+      <div class="glass-strong" style="padding:clamp(0.8rem,1.5vw,1.2rem);border-radius:18px">
+        <p style="font-size:var(--body);font-weight:700;color:var(--green);margin-bottom:var(--gap-sm)">А — Анализ нагрузки</p>
+        <div style="display:flex;flex-direction:column;gap:clamp(4px,0.5vh,8px);font-size:var(--small);color:var(--text2)">
+          <p>&bull; ГВС: 22,5 м³/мес = 16 968 кВт·ч/год</p>
+          <p>&bull; Электро: 640 кВт·ч/мес = 7 680 кВт·ч/год</p>
+          <p>&bull; Климат: −40°C зимой, высокая инсоляция летом</p>
+        </div>
+      </div>
+      <div class="glass-strong" style="padding:clamp(0.8rem,1.5vw,1.2rem);border-radius:18px">
+        <p style="font-size:var(--body);font-weight:700;color:var(--blue);margin-bottom:var(--gap-sm)">В — Выбор типа оборудования</p>
+        <div style="display:flex;flex-direction:column;gap:clamp(4px,0.5vh,8px);font-size:var(--small);color:var(--text2)">
+          <p>&bull; Коллекторы: вакуумные (для −40°C)</p>
+          <p>&bull; Панели: монокристалл, КПД >20%</p>
+          <p>&bull; АКБ: LiFePO4 с подогревом или AGM</p>
+        </div>
+      </div>
+    </div>
+    <div class="glass-strong rv rv-d3" style="padding:clamp(0.8rem,1.5vw,1.2rem);border-radius:18px;margin-top:var(--gap)">
+      <p style="font-size:var(--body);font-weight:700;color:var(--amber);margin-bottom:var(--gap-sm)">С — Сравнение 3 вариантов</p>
+      <div style="display:flex;flex-direction:column;gap:clamp(4px,0.5vh,8px);font-size:var(--small);color:var(--text2)">
+        <p>&bull; Вариант А (РФ-1): Отечественный производитель №1</p>
+        <p>&bull; Вариант Б (РФ-2): Отечественный производитель №2</p>
+        <p>&bull; Вариант В (Импорт): Зарубежный производитель (Европа/Китай премиум)</p>
+        <p>&bull; Критерии: CAPEX, срок окупаемости, надёжность в климате Иркутской области</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================== 24. COLLECTORS VARIANT A ======================== -->
+<section class="slide" style="background:var(--surface-warm)" data-slide="24">
+  <div class="slide-inner">
+    <span class="label rv">Солнечные коллекторы &middot; Вариант А (РФ-1)</span>
+    <h2 class="title rv rv-d1">Вакуумные коллекторы СВК-Т30</h2>
+    <p class="caption rv rv-d1">Российский производитель &middot; Для климата до −45°C</p>
+    <div class="tbl-wrap rv rv-d2" style="margin-top:var(--gap)">
+      <table>
+        <thead><tr><th>Компонент</th><th>Характеристики</th><th>Цена (руб)</th></tr></thead>
+        <tbody>
+          <tr><td>Коллектор СВК-Т30</td><td>3,96 м² × 4 шт = 15,84 м²<br>η₀ = 0,78 | k = 0,8 Вт/(м²·К)<br>−45°C...+200°C</td><td>340 000</td></tr>
+          <tr><td>Бак-аккумулятор</td><td>1 200 л, эмалированный<br>с теплообменником</td><td>120 000</td></tr>
+          <tr><td>Насосная группа</td><td>Станция с контроллером SR868C9<br>Расширительный бак 50 л</td><td>45 000</td></tr>
+          <tr><td>Антифриз</td><td>Пропиленгликоль −45°C, 100 л</td><td>15 000</td></tr>
+          <tr><td>Монтажные материалы</td><td>Трубы, фитинги, крепёж, изоляция</td><td>30 000</td></tr>
+          <tr class="row-total"><td>Оборудование</td><td></td><td>550 000</td></tr>
+          <tr><td>Монтаж (40%)</td><td></td><td>220 000</td></tr>
+          <tr class="row-total"><td><b>CAPEX</b></td><td></td><td><b>770 000</b></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="stats rv rv-d3" style="margin-top:var(--gap)">
+      <div class="stat"><div class="val c-green">15,84 м²</div><div class="lbl">площадь коллекторов</div></div>
+      <div class="stat"><div class="val c-blue">1 200 л</div><div class="lbl">бак-аккумулятор</div></div>
+      <div class="stat"><div class="val c-amber">770 тыс</div><div class="lbl">руб. — CAPEX</div></div>
+    </div>
+    <div class="formula-ref rv rv-d4" style="margin-top:var(--gap)">
+      <b>Формулы из методички (Занятие №6):</b><br>
+      • <b>Q = C × M × ΔT</b> — теплопотребность, C = 4,19 кДж/(кг·°C)<br>
+      • <b>F = Q / (E × η)</b> — площадь коллекторов (м²)<br>
+      • <b>η = η₀ − (k × ΔT) / E</b> — КПД коллектора<br>
+      • <b>n = C / З</b> — срок окупаемости (лет)<br>
+      <span class="ref-src">Методичка — Занятие №6, Шаги 2–5 · Расчёт экономической эффективности СК</span>
+    </div>
+  </div>
+</section>
+
+<!-- ======================== 25. COLLECTORS VARIANT B ======================== -->
+<section class="slide" style="background:var(--surface)" data-slide="25">
+  <div class="slide-inner">
+    <span class="label rv">Солнечные коллекторы &middot; Вариант Б (РФ-2)</span>
+    <h2 class="title rv rv-d1">Вакуумные коллекторы ЯSolar SCH-20</h2>
+    <p class="caption rv rv-d1">Российский производитель &middot; Оптимальное соотношение цена/качество</p>
+    <div class="tbl-wrap rv rv-d2" style="margin-top:var(--gap)">
+      <table>
+        <thead><tr><th>Компонент</th><th>Характеристики</th><th>Цена (руб)</th></tr></thead>
+        <tbody>
+          <tr><td>Коллектор ЯSolar SCH-20</td><td>4,2 м² × 4 шт = 16,8 м²<br>η₀ = 0,76 | k = 1,2 Вт/(м²·К)<br>−40°C...+180°C</td><td>300 000</td></tr>
+          <tr><td>Бак-аккумулятор</td><td>1 200 л, нержавеющий</td><td>110 000</td></tr>
+          <tr><td>Насосная группа</td><td>Станция базовая<br>Контроллер отечественный</td><td>40 000</td></tr>
+          <tr><td>Антифриз</td><td>Теплоноситель −40°C, 100 л</td><td>12 000</td></tr>
+          <tr><td>Монтажные материалы</td><td>Трубы, фитинги, крепёж, изоляция</td><td>28 000</td></tr>
+          <tr class="row-total"><td>Оборудование</td><td></td><td>490 000</td></tr>
+          <tr><td>Монтаж (40%)</td><td></td><td>196 000</td></tr>
+          <tr class="row-total"><td><b>CAPEX</b></td><td></td><td><b>686 000</b></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="stats rv rv-d3" style="margin-top:var(--gap)">
+      <div class="stat"><div class="val c-green">16,8 м²</div><div class="lbl">площадь коллекторов</div></div>
+      <div class="stat"><div class="val c-blue">1 200 л</div><div class="lbl">бак-аккумулятор</div></div>
+      <div class="stat"><div class="val c-amber">686 тыс</div><div class="lbl">руб. — CAPEX</div></div>
+    </div>
+    <div class="formula-ref rv rv-d4" style="margin-top:var(--gap)">
+      <b>Формулы из методички (Занятие №6):</b><br>
+      • <b>Q = C × M × ΔT</b> — теплопотребность, C = 4,19 кДж/(кг·°C)<br>
+      • <b>E = q × N</b> — годовая радиация (кВт·ч/год)<br>
+      • <b>F = Q / (E × η)</b> — площадь коллекторов (м²)<br>
+      • <b>η = η₀ − (k × ΔT) / E</b> — КПД коллектора<br>
+      • <b>C_монтажа = 40% × C_ВУ</b> — стоимость монтажа<br>
+      <span class="ref-src">Методичка — Занятие №6, Шаги 2–5 · Расчёт экономической эффективности СК</span>
+    </div>
+  </div>
+</section>
+
+<!-- ======================== 26. COLLECTORS VARIANT C ======================== -->
+<section class="slide" style="background:var(--surface-warm)" data-slide="26">
+  <div class="slide-inner">
+    <span class="label rv">Солнечные коллекторы &middot; Вариант В (Импорт)</span>
+    <h2 class="title rv rv-d1">Вакуумные коллекторы Apricus AP-30</h2>
+    <p class="caption rv rv-d1">Китай премиум &middot; Максимальный КПД и надёжность</p>
+    <div class="tbl-wrap rv rv-d2" style="margin-top:var(--gap)">
+      <table>
+        <thead><tr><th>Компонент</th><th>Характеристики</th><th>Цена (руб)</th></tr></thead>
+        <tbody>
+          <tr><td>Коллектор Apricus AP-30</td><td>3,92 м² × 4 шт = 15,68 м²<br>η₀ = 0,82 | k = 0,6 Вт/(м²·К)<br>−50°C...+250°C</td><td>440 000</td></tr>
+          <tr><td>Бак-аккумулятор</td><td>1 200 л, эмалированный премиум<br>с двумя теплообменниками</td><td>145 000</td></tr>
+          <tr><td>Насосная группа</td><td>Grundfos + Resol DeltaSol BS Plus</td><td>65 000</td></tr>
+          <tr><td>Антифриз</td><td>Tyfocor LS −50°C, 100 л</td><td>22 000</td></tr>
+          <tr><td>Монтажные материалы</td><td>Трубы, фитинги, крепёж, изоляция</td><td>35 000</td></tr>
+          <tr class="row-total"><td>Оборудование</td><td></td><td>707 000</td></tr>
+          <tr><td>Монтаж (40%)</td><td></td><td>283 000</td></tr>
+          <tr class="row-total"><td><b>CAPEX</b></td><td></td><td><b>990 000</b></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="stats rv rv-d3" style="margin-top:var(--gap)">
+      <div class="stat"><div class="val c-green">15,68 м²</div><div class="lbl">площадь коллекторов</div></div>
+      <div class="stat"><div class="val c-blue">1 200 л</div><div class="lbl">бак-аккумулятор</div></div>
+      <div class="stat"><div class="val c-amber">990 тыс</div><div class="lbl">руб. — CAPEX</div></div>
+    </div>
+    <div class="formula-ref rv rv-d4" style="margin-top:var(--gap)">
+      <b>Формулы из методички (Занятие №6):</b><br>
+      • <b>Q = C × M × ΔT</b> — теплопотребность<br>
+      • <b>F = Q / (E × η)</b> — площадь коллекторов (м²)<br>
+      • <b>η = η₀ − (k × ΔT) / E</b> — КПД коллектора<br>
+      • <b>C = C_коллектора + C_бака + C_монтажа</b>, C_монтажа = 40% × C_ВУ<br>
+      <span class="ref-src">Методичка — Занятие №6, Шаги 2–5</span>
+    </div>
+  </div>
+</section>
+
+<!-- ======================== 27. COLLECTORS COMPARISON ======================== -->
+<section class="slide" style="background:var(--surface)" data-slide="27">
+  <div class="slide-inner">
+    <span class="label rv">Солнечные коллекторы &middot; Сравнение</span>
+    <h2 class="title rv rv-d1">Сравнение 3 вариантов коллекторов</h2>
+    <div class="tbl-wrap rv rv-d2" style="margin-top:var(--gap)">
+      <table>
+        <thead><tr><th>Параметр</th><th>Вариант А (РФ-1)</th><th>Вариант Б (РФ-2)</th><th>Вариант В (Импорт)</th></tr></thead>
+        <tbody>
+          <tr><td>Модель</td><td>СВК-Т30</td><td>ЯSolar SCH-20</td><td>Apricus AP-30</td></tr>
+          <tr><td>Площадь</td><td>15,84 м²</td><td>16,8 м²</td><td>15,68 м²</td></tr>
+          <tr><td>КПД (η₀)</td><td>0,78</td><td>0,76</td><td style="color:var(--green);font-weight:700">0,82</td></tr>
+          <tr><td>Потери (k)</td><td>0,8 Вт/(м²·К)</td><td>1,2 Вт/(м²·К)</td><td style="color:var(--green);font-weight:700">0,6 Вт/(м²·К)</td></tr>
+          <tr><td>Диапазон</td><td>−45...+200°C</td><td>−40...+180°C</td><td style="color:var(--green);font-weight:700">−50...+250°C</td></tr>
+          <tr><td>Бак</td><td>1 200 л эмалир.</td><td>1 200 л нерж.</td><td>1 200 л премиум</td></tr>
+          <tr class="row-total"><td><b>CAPEX</b></td><td>770 000 руб</td><td style="color:var(--green);font-weight:700">686 000 руб</td><td>990 000 руб</td></tr>
+          <tr><td>Производство</td><td>Россия</td><td>Россия</td><td>Китай</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="glass-strong rv rv-d3" style="padding:clamp(0.8rem,1.5vw,1.2rem);border-radius:18px;margin-top:var(--gap)">
+      <p style="font-size:var(--body);font-weight:700;color:var(--green);margin-bottom:var(--gap-sm)">🏆 Предварительная рекомендация: Вариант Б (РФ-2)</p>
+      <div style="font-size:var(--small);color:var(--text2);line-height:1.5">
+        <p>&bull; Минимальный CAPEX: 686 000 руб (на 11% дешевле варианта А, на 31% дешевле варианта В)</p>
+        <p>&bull; Российское производство — доступность запчастей и сервиса</p>
+        <p>&bull; Подходит для климата Иркутской области (−40°C)</p>
+        <p>&bull; Окончательное решение — после расчёта ТЭО</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================== 28. PV VARIANT A ======================== -->
+<section class="slide" style="background:var(--surface-warm)" data-slide="28">
+  <div class="slide-inner">
+    <span class="label rv">Солнечные батареи (ФЭС) &middot; Вариант А (РФ-1)</span>
+    <h2 class="title rv rv-d1">Хевел + МикроАрт</h2>
+    <p class="caption rv rv-d1">Российское производство &middot; Гетероструктурные панели</p>
+    <div class="tbl-wrap rv rv-d2" style="margin-top:var(--gap)">
+      <table>
+        <thead><tr><th>Компонент</th><th>Характеристики</th><th>Цена (руб)</th></tr></thead>
+        <tbody>
+          <tr><td>Панели Хевел HVL-500M</td><td>500 Вт × 15 шт = 7,5 кВт<br>КПД 22,8% | 2,38 м²<br>−40...+85°C</td><td>420 000</td></tr>
+          <tr><td>Инвертор МикроАрт Hybrid</td><td>7,5 кВт гибридный<br>48 В, MPPT встроен</td><td>185 000</td></tr>
+          <tr><td>АКБ LiFePO4</td><td>48V 500Ah (24 кВт·ч)<br>Телеком-СТВ с подогревом</td><td>420 000</td></tr>
+          <tr><td>Защита и кабели</td><td>DC-разъединители, предохранители<br>Кабель 6 мм²</td><td>35 000</td></tr>
+          <tr class="row-total"><td>Оборудование</td><td></td><td>1 060 000</td></tr>
+          <tr><td>Монтаж (40%)</td><td></td><td>424 000</td></tr>
+          <tr class="row-total"><td><b>CAPEX</b></td><td></td><td><b>1 484 000</b></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="stats rv rv-d3" style="margin-top:var(--gap)">
+      <div class="stat"><div class="val c-green">7,5 кВт</div><div class="lbl">мощность СБ</div></div>
+      <div class="stat"><div class="val c-blue">24 кВт·ч</div><div class="lbl">ёмкость АКБ</div></div>
+      <div class="stat"><div class="val c-amber">1,48 млн</div><div class="lbl">руб. — CAPEX</div></div>
+    </div>
+    <div class="formula-ref rv rv-d4" style="margin-top:var(--gap)">
+      <b>Формулы из методички:</b><br>
+      • <b>Pw = 1000 × N / (K × E)</b> — мощность СБ (Вт), K=0,5 (лето) / 0,7 (зима) [Занятие №2, Шаг 3]<br>
+      • <b>N_и = N_макс × 1,5</b> — мощность инвертора [Занятие №3]<br>
+      • <b>N_АБ = N × K</b> — ёмкость АКБ, K=1,1 (кисл.) / 1,3 (щел.) [Занятие №5, Шаг 2]<br>
+      • <b>A = N_АБ / U</b> — ток АКБ (А·ч) [Занятие №5, Шаг 4]<br>
+      <span class="ref-src">Методичка — Занятия №2, №3, №5</span>
+    </div>
+  </div>
+</section>
+
+<!-- ======================== 29. PV VARIANT B ======================== -->
+<section class="slide" style="background:var(--surface)" data-slide="29">
+  <div class="slide-inner">
+    <span class="label rv">Солнечные батареи (ФЭС) &middot; Вариант Б (РФ-2)</span>
+    <h2 class="title rv rv-d1">Телеком-СТВ + Энергия</h2>
+    <p class="caption rv rv-d1">Российское производство &middot; AGM с термокейсом</p>
+    <div class="tbl-wrap rv rv-d2" style="margin-top:var(--gap)">
+      <table>
+        <thead><tr><th>Компонент</th><th>Характеристики</th><th>Цена (руб)</th></tr></thead>
+        <tbody>
+          <tr><td>Панели Телеком-СТВ ТСМ-500М</td><td>500 Вт × 15 шт = 7,5 кВт<br>КПД 21,2% | 2,42 м²<br>−40...+85°C</td><td>375 000</td></tr>
+          <tr><td>Инвертор Энергия Hybrid Pro</td><td>8 кВт гибридный<br>48 В, MPPT встроен</td><td>165 000</td></tr>
+          <tr><td>АКБ AGM</td><td>48V 500Ah (24 кВт·ч)<br>Delta Battery с термокейсом</td><td>350 000</td></tr>
+          <tr><td>Защита и кабели</td><td>DC-разъединители, предохранители<br>Кабель 6 мм²</td><td>30 000</td></tr>
+          <tr class="row-total"><td>Оборудование</td><td></td><td>920 000</td></tr>
+          <tr><td>Монтаж (40%)</td><td></td><td>368 000</td></tr>
+          <tr class="row-total"><td><b>CAPEX</b></td><td></td><td><b>1 288 000</b></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="stats rv rv-d3" style="margin-top:var(--gap)">
+      <div class="stat"><div class="val c-green">7,5 кВт</div><div class="lbl">мощность СБ</div></div>
+      <div class="stat"><div class="val c-blue">24 кВт·ч</div><div class="lbl">ёмкость АКБ</div></div>
+      <div class="stat"><div class="val c-amber">1,29 млн</div><div class="lbl">руб. — CAPEX</div></div>
+    </div>
+    <div class="formula-ref rv rv-d4" style="margin-top:var(--gap)">
+      <b>Формулы из методички:</b><br>
+      • <b>Pw = 1000 × N / (K × E)</b> — мощность СБ (Вт) [Занятие №2, Шаг 3]<br>
+      • <b>N_и = N_макс × 1,5</b> — мощность инвертора [Занятие №3]<br>
+      • <b>N_АБ = N × K</b> — ёмкость АКБ [Занятие №5, Шаг 2]<br>
+      • <b>A = N_АБ / U</b> — ток АКБ (А·ч) [Занятие №5, Шаг 4]<br>
+      <span class="ref-src">Методичка — Занятия №2, №3, №5</span>
+    </div>
+  </div>
+</section>
+
+<!-- ======================== 30. PV VARIANT C ======================== -->
+<section class="slide" style="background:var(--surface-warm)" data-slide="30">
+  <div class="slide-inner">
+    <span class="label rv">Солнечные батареи (ФЭС) &middot; Вариант В (Импорт)</span>
+    <h2 class="title rv rv-d1">Longi + Huawei</h2>
+    <p class="caption rv rv-d1">Китай премиум &middot; Максимальная эффективность</p>
+    <div class="tbl-wrap rv rv-d2" style="margin-top:var(--gap)">
+      <table>
+        <thead><tr><th>Компонент</th><th>Характеристики</th><th>Цена (руб)</th></tr></thead>
+        <tbody>
+          <tr><td>Панели Longi Hi-MO 6</td><td>550 Вт × 14 шт = 7,7 кВт<br>КПД 22,5% | 2,44 м²<br>−40...+85°C</td><td>448 000</td></tr>
+          <tr><td>Инвертор Huawei SUN2000</td><td>8 кВт гибридный<br>48 В, 2× MPPT</td><td>220 000</td></tr>
+          <tr><td>АКБ Huawei LUNA2000</td><td>5 кВт·ч × 5 модулей = 25 кВт·ч<br>С термоконтролем</td><td>550 000</td></tr>
+          <tr><td>Защита и кабели</td><td>DC-разъединители, предохранители<br>Кабель 6 мм²</td><td>40 000</td></tr>
+          <tr class="row-total"><td>Оборудование</td><td></td><td>1 258 000</td></tr>
+          <tr><td>Монтаж (40%)</td><td></td><td>503 000</td></tr>
+          <tr class="row-total"><td><b>CAPEX</b></td><td></td><td><b>1 761 000</b></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="stats rv rv-d3" style="margin-top:var(--gap)">
+      <div class="stat"><div class="val c-green">7,7 кВт</div><div class="lbl">мощность СБ</div></div>
+      <div class="stat"><div class="val c-blue">25 кВт·ч</div><div class="lbl">ёмкость АКБ</div></div>
+      <div class="stat"><div class="val c-amber">1,76 млн</div><div class="lbl">руб. — CAPEX</div></div>
+    </div>
+    <div class="formula-ref rv rv-d4" style="margin-top:var(--gap)">
+      <b>Формулы из методички:</b><br>
+      • <b>Pw = 1000 × N / (K × E)</b> — мощность СБ (Вт) [Занятие №2, Шаг 3]<br>
+      • <b>N_и = N_макс × 1,5</b> — мощность инвертора [Занятие №3]<br>
+      • <b>N_АБ = N × K</b> — ёмкость АКБ [Занятие №5, Шаг 2]<br>
+      • <b>A = N_АБ / U</b> — ток АКБ (А·ч) [Занятие №5, Шаг 4]<br>
+      <span class="ref-src">Методичка — Занятия №2, №3, №5</span>
+    </div>
+  </div>
+</section>
+
+<!-- ======================== 31. PV COMPARISON ======================== -->
+<section class="slide" style="background:var(--surface)" data-slide="31">
+  <div class="slide-inner">
+    <span class="label rv">Солнечные батареи (ФЭС) &middot; Сравнение</span>
+    <h2 class="title rv rv-d1">Сравнение 3 вариантов ФЭС</h2>
+    <div class="tbl-wrap rv rv-d2" style="margin-top:var(--gap)">
+      <table>
+        <thead><tr><th>Параметр</th><th>Вариант А (РФ-1)</th><th>Вариант Б (РФ-2)</th><th>Вариант В (Импорт)</th></tr></thead>
+        <tbody>
+          <tr><td>Панели</td><td>Хевел HVL-500M</td><td>Телеком-СТВ ТСМ-500М</td><td>Longi Hi-MO 6</td></tr>
+          <tr><td>Мощность СБ</td><td>7,5 кВт</td><td>7,5 кВт</td><td>7,7 кВт</td></tr>
+          <tr><td>КПД панелей</td><td style="color:var(--green);font-weight:700">22,8%</td><td>21,2%</td><td>22,5%</td></tr>
+          <tr><td>Инвертор</td><td>МикроАрт 7,5 кВт</td><td>Энергия 8 кВт</td><td>Huawei 8 кВт</td></tr>
+          <tr><td>АКБ</td><td>LiFePO4 24 кВт·ч</td><td>AGM 24 кВт·ч</td><td>Huawei 25 кВт·ч</td></tr>
+          <tr><td>Работа на морозе</td><td>Подогрев</td><td>Термокейс</td><td>Термоконтроль</td></tr>
+          <tr class="row-total"><td><b>CAPEX</b></td><td>1 484 000 руб</td><td style="color:var(--green);font-weight:700">1 288 000 руб</td><td>1 761 000 руб</td></tr>
+          <tr><td>Производство</td><td>Россия</td><td>Россия</td><td>Китай</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="glass-strong rv rv-d3" style="padding:clamp(0.8rem,1.5vw,1.2rem);border-radius:18px;margin-top:var(--gap)">
+      <p style="font-size:var(--body);font-weight:700;color:var(--green);margin-bottom:var(--gap-sm)">🏆 Предварительная рекомендация: Вариант Б (РФ-2)</p>
+      <div style="font-size:var(--small);color:var(--text2);line-height:1.5">
+        <p>&bull; Минимальный CAPEX: 1 288 000 руб (на 13% дешевле варианта А, на 27% дешевле варианта В)</p>
+        <p>&bull; Российское производство — поддержка и сервис</p>
+        <p>&bull; AGM с термокейсом — надёжность на морозе до −40°C</p>
+        <p>&bull; Окончательное решение — после расчёта ТЭО и эколого-экономического эффекта</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================== 32. TEO COLLECTORS ======================== -->
+<section class="slide" style="background:var(--surface-warm)" data-slide="32">
+  <div class="slide-inner">
+    <span class="label rv">ТЭО &middot; Солнечные коллекторы</span>
+    <h2 class="title rv rv-d1">Технико-экономическое обоснование (ГВС)</h2>
+    <p class="caption rv rv-d1">Годовая выработка: 16 968 кВт·ч &middot; Тариф: 6,0 руб/кВт·ч</p>
+    <div class="panel-row rv rv-d2" style="margin-top:var(--gap);align-items:start">
+      <div style="display:flex;flex-direction:column;gap:var(--gap-sm)">
+        <div class="glass-strong" style="padding:clamp(0.8rem,1.2vw,1rem);border-radius:14px">
+          <p style="font-size:var(--small);font-weight:600;color:var(--text);margin-bottom:6px">Исходные данные</p>
+          <div class="calc-chain">
+            <div class="calc-step"><span class="formula">Выработка тепла</span><span class="result">16 968 кВт·ч/год</span></div>
+            <div class="calc-step"><span class="formula">Тариф (электрокотёл)</span><span class="result">6,0 руб/кВт·ч</span></div>
+            <div class="calc-step"><span class="formula">Годовая экономия</span><span class="result">101 808 руб/год</span></div>
+          </div>
+        </div>
+        <div class="tbl-wrap">
+          <table class="form-tbl">
+            <thead><tr><th>Вариант</th><th style="text-align:right">CAPEX (руб)</th><th style="text-align:right">Окупаемость</th></tr></thead>
+            <tbody>
+              <tr><td>А (РФ-1) СВК-Т30</td><td style="text-align:right">770 000</td><td style="text-align:right">7,6 лет</td></tr>
+              <tr class="highlight-row"><td>Б (РФ-2) ЯSolar</td><td style="text-align:right">686 000</td><td style="text-align:right;color:var(--green);font-weight:700">6,7 года</td></tr>
+              <tr><td>В (Импорт) Apricus</td><td style="text-align:right">990 000</td><td style="text-align:right">9,7 лет</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:var(--gap-sm)">
+        <div class="glass-strong" style="padding:clamp(0.8rem,1.2vw,1rem);border-radius:14px">
+          <p style="font-size:var(--small);font-weight:600;color:var(--text);margin-bottom:6px;text-align:center">Срок окупаемости по вариантам</p>
+          <svg viewBox="0 0 400 200" width="100%" style="display:block;font-family:Inter,sans-serif">
+            <rect x="50" y="30" width="280" height="30" rx="6" fill="rgba(45,106,79,0.1)"/>
+            <rect x="50" y="30" width="213" height="30" rx="6" fill="#52b788"/>
+            <text x="267" y="50" font-size="13" fill="#1d1d1f" font-weight="700">А: 7,6 лет</text>
+            
+            <rect x="50" y="80" width="280" height="30" rx="6" fill="rgba(45,106,79,0.1)"/>
+            <rect x="50" y="80" width="188" height="30" rx="6" fill="#2d6a4f"/>
+            <text x="242" y="100" font-size="13" fill="#fff" font-weight="700">Б: 6,7 года ✓</text>
+            
+            <rect x="50" y="130" width="280" height="30" rx="6" fill="rgba(45,106,79,0.1)"/>
+            <rect x="50" y="130" width="272" height="30" rx="6" fill="#74c69d"/>
+            <text x="326" y="150" font-size="13" fill="#1d1d1f" font-weight="700">В: 9,7 лет</text>
+            
+            <text x="50" y="185" font-size="11" fill="#6e6e73">0</text>
+            <text x="165" y="185" font-size="11" fill="#6e6e73">5 лет</text>
+            <text x="280" y="185" font-size="11" fill="#6e6e73">10 лет</text>
+          </svg>
+        </div>
+        <p style="font-size:var(--small);color:var(--text2);line-height:1.5">Формула: <b>n = CAPEX / Годовая экономия</b><br>Вариант Б имеет минимальный срок окупаемости благодаря оптимальному соотношению цена/качество.</p>
+        <div class="formula-ref" style="margin-top:var(--gap-sm)">
+          <b>Расчёт окупаемости (Занятие №6):</b><br>
+          • <b>n = C / З</b> — срок окупаемости (лет)<br>
+          • <b>C = C_коллектора + C_бака + C_монтажа</b><br>
+          • <b>C_монтажа = 40% × C_ВУ</b><br>
+          • <b>З = T × N</b> — годовые затраты на энергию<br>
+          <span class="ref-src">Методичка — Занятие №6, Расчёт экономической эффективности СК</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================== 33. TEO PV ======================== -->
+<section class="slide" style="background:var(--surface)" data-slide="33">
+  <div class="slide-inner">
+    <span class="label rv">ТЭО &middot; Солнечные батареи (ФЭС)</span>
+    <h2 class="title rv rv-d1">Технико-экономическое обоснование (Электро)</h2>
+    <p class="caption rv rv-d1">Годовая выработка: 7 680 кВт·ч &middot; Тариф: 6,0 руб/кВт·ч</p>
+    <div class="panel-row rv rv-d2" style="margin-top:var(--gap);align-items:start">
+      <div style="display:flex;flex-direction:column;gap:var(--gap-sm)">
+        <div class="glass-strong" style="padding:clamp(0.8rem,1.2vw,1rem);border-radius:14px">
+          <p style="font-size:var(--small);font-weight:600;color:var(--text);margin-bottom:6px">Исходные данные</p>
+          <div class="calc-chain">
+            <div class="calc-step"><span class="formula">Выработка электро</span><span class="result">7 680 кВт·ч/год</span></div>
+            <div class="calc-step"><span class="formula">Тариф</span><span class="result">6,0 руб/кВт·ч</span></div>
+            <div class="calc-step"><span class="formula">Годовая экономия</span><span class="result">46 080 руб/год</span></div>
+          </div>
+        </div>
+        <div class="tbl-wrap">
+          <table class="form-tbl">
+            <thead><tr><th>Вариант</th><th style="text-align:right">CAPEX (руб)</th><th style="text-align:right">Окупаемость</th></tr></thead>
+            <tbody>
+              <tr><td>А (РФ-1) Хевел</td><td style="text-align:right">1 484 000</td><td style="text-align:right">32,2 года</td></tr>
+              <tr class="highlight-row"><td>Б (РФ-2) Телеком-СТВ</td><td style="text-align:right">1 288 000</td><td style="text-align:right;color:var(--green);font-weight:700">28,0 лет</td></tr>
+              <tr><td>В (Импорт) Longi</td><td style="text-align:right">1 761 000</td><td style="text-align:right">38,2 года</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="glass-strong" style="padding:clamp(0.6rem,1vw,0.8rem);border-radius:12px;background:rgba(212,136,15,0.1);border:1px solid var(--amber)">
+          <p style="font-size:var(--small);color:var(--text);line-height:1.5"><b>⚠️ Примечание:</b> Длительный срок окупаемости ФЭС обусловлен высокой стоимостью АКБ (35-45% от CAPEX). Для улучшения показателей рекомендуется рассмотреть сетевую систему без АКБ или гибридную с частичным резервированием.</p>
+        </div>
+        <div class="formula-ref" style="margin-top:var(--gap-sm)">
+          <b>Расчёт окупаемости (Занятие №5):</b><br>
+          • <b>n = C / З</b> — срок окупаемости (лет)<br>
+          • <b>C = C_батареи + C_инвертора + C_контроллера + C_аккумулятора + C_монтажа</b><br>
+          • <b>C_монтажа = 40% × C_батареи</b><br>
+          • <b>З = T × N</b> — годовые затраты на электроэнергию<br>
+          <span class="ref-src">Методичка — Занятие №5, Расчёт экономической эффективности СЭС</span>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:var(--gap-sm)">
+        <div class="glass-strong" style="padding:clamp(0.8rem,1.2vw,1rem);border-radius:14px">
+          <p style="font-size:var(--small);font-weight:600;color:var(--text);margin-bottom:6px;text-align:center">Структура CAPEX (Вариант Б)</p>
+          <svg viewBox="0 0 200 200" width="180" height="180" style="display:block;margin:0 auto">
+            <circle cx="100" cy="100" r="70" fill="none" stroke="#e5e5ea" stroke-width="28"/>
+            <circle class="donut-arc" cx="100" cy="100" r="70" fill="none" stroke="#2d6a4f" stroke-width="28" stroke-linecap="round" transform="rotate(-90 100 100)" stroke-dasharray="439.8" style="--circ:439.8;--dash-end:263.9"/>
+            <circle class="donut-arc" cx="100" cy="100" r="70" fill="none" stroke="#1b4f72" stroke-width="28" stroke-linecap="round" transform="rotate(30 100 100)" stroke-dasharray="439.8" style="--circ:439.8;--dash-end:366.8"/>
+            <circle class="donut-arc" cx="100" cy="100" r="70" fill="none" stroke="#d4880f" stroke-width="28" stroke-linecap="round" transform="rotate(120 100 100)" stroke-dasharray="439.8" style="--circ:439.8;--dash-end:403.8"/>
+            <text x="100" y="95" text-anchor="middle" font-size="16" font-weight="700" fill="#2d6a4f">1,29</text>
+            <text x="100" y="110" text-anchor="middle" font-size="10" fill="#6e6e73">млн руб</text>
+          </svg>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:4px;font-size:var(--small)">
+          <div style="display:flex;align-items:center;gap:6px"><span style="width:14px;height:14px;border-radius:3px;background:#2d6a4f;flex-shrink:0"></span><span>Панели: 375 тыс (29%)</span></div>
+          <div style="display:flex;align-items:center;gap:6px"><span style="width:14px;height:14px;border-radius:3px;background:#1b4f72;flex-shrink:0"></span><span>Инвертор: 165 тыс (13%)</span></div>
+          <div style="display:flex;align-items:center;gap:6px"><span style="width:14px;height:14px;border-radius:3px;background:#d4880f;flex-shrink:0"></span><span>АКБ: 350 тыс (27%)</span></div>
+          <div style="display:flex;align-items:center;gap:6px"><span style="width:14px;height:14px;border-radius:3px;background:#95d5b2;flex-shrink:0"></span><span>Прочее + монтаж: 398 тыс (31%)</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================== 34. MOUNTING SCHEME ======================== -->
+<section class="slide" style="background:var(--surface)" data-slide="34">
+  <div class="slide-inner">
+    <span class="label rv">Схема монтажа по ГОСТ</span>
+    <h2 class="title rv rv-d1">Требования к размещению оборудования</h2>
+    <p class="caption rv rv-d1">ГОСТ Р 21.1101-2023 &middot; ПУЭ 7-е изд. &middot; СП 31-106-2002</p>
+    <div class="two-col rv rv-d2" style="margin-top:var(--gap)">
+      <div class="glass-strong" style="padding:clamp(0.8rem,1.5vw,1.2rem);border-radius:18px">
+        <p style="font-size:var(--body);font-weight:700;color:var(--green);margin-bottom:var(--gap-sm)">📐 Ориентация и наклон</p>
+        <div style="display:flex;flex-direction:column;gap:clamp(4px,0.5vh,8px);font-size:var(--small);color:var(--text2);line-height:1.5">
+          <p>&bull; <b>Азимут:</b> 180° (строго на Юг)</p>
+          <p>&bull; <b>Угол наклона:</b> оптимальный для широты 52°N (определяется расчётом по инсоляции)</p>
+          <p>&bull; <b>Отклонение от Юга:</b> не более ±15°</p>
+          <p>&bull; <b>Расстояние между рядами:</b> 2,5 × высота конструкции (мин. 4 м) — для исключения затенения зимой</p>
+        </div>
+      </div>
+      <div class="glass-strong" style="padding:clamp(0.8rem,1.5vw,1.2rem);border-radius:18px">
+        <p style="font-size:var(--body);font-weight:700;color:var(--blue);margin-bottom:var(--gap-sm)">🏗️ Крепление и нагрузки</p>
+        <div style="display:flex;flex-direction:column;gap:clamp(4px,0.5vh,8px);font-size:var(--small);color:var(--text2);line-height:1.5">
+          <p>&bull; <b>Ветровая нагрузка:</b> до 40 м/с</p>
+          <p>&bull; <b>Снеговая нагрузка:</b> 240 кг/м² (IV снеговой район)</p>
+          <p>&bull; <b>Высота снега:</b> до 1,5 м (учёт при проектировании)</p>
+          <p>&bull; <b>Крепления:</b> усиленные, оцинковка + порошковая покраска</p>
+        </div>
+      </div>
+    </div>
+    <div class="glass-strong rv rv-d3" style="padding:clamp(0.8rem,1.5vw,1.2rem);border-radius:18px;margin-top:var(--gap)">
+      <p style="font-size:var(--body);font-weight:700;color:var(--amber);margin-bottom:var(--gap-sm)">🔌 Размещение оборудования</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--gap);font-size:var(--small);color:var(--text2);line-height:1.5">
+        <div>
+          <p style="font-weight:600;color:var(--text);margin-bottom:4px">На крыше:</p>
+          <p>&bull; Коллекторы и панели — южный скат крыши админ. здания</p>
+          <p>&bull; Трубы ГВС: изоляция PIR 50 мм (для −40°C)</p>
+          <p>&bull; Кабель DC: сечение 6 мм², UV-стойкий</p>
+        </div>
+        <div>
+          <p style="font-weight:600;color:var(--text);margin-bottom:4px">В помещении:</p>
+          <p>&bull; Бак ГВС — техпомещение 1 этаж (отапливаемое)</p>
+          <p>&bull; Инвертор + АКБ — техпомещение (+5...+25°C)</p>
+          <p>&bull; Контроллер — щитовая, защита IP54</p>
+          <p>&bull; Заземление: R < 4 Ом (ПУЭ 1.7)</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================== 35. RECOMMENDATIONS ======================== -->
+<section class="slide" style="background:var(--surface-warm)" data-slide="35">
+  <div class="bg-mesh"><canvas data-orbs='[{"c":"#2d6a4f","r":220},{"c":"#e9c46a","r":180}]'></canvas></div>
+  <div class="slide-inner" style="z-index:1;position:relative">
+    <span class="label rv">Итоговые рекомендации</span>
+    <h2 class="title rv rv-d1">Оптимальный выбор оборудования</h2>
+    <div class="glass-strong rv rv-d2" style="padding:clamp(1.2rem,2.5vw,2rem);border-radius:20px;margin-top:var(--gap);max-width:800px;width:100%">
+      <p style="font-size:var(--h3);font-weight:700;color:var(--green);margin-bottom:var(--gap);text-align:center">🏆 ВАРИАНТ Б (РФ-2) — РЕКОМЕНДОВАН</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--gap)">
+        <div style="padding:clamp(0.8rem,1.2vw,1rem);border-radius:14px;background:rgba(45,106,79,0.08)">
+          <p style="font-size:var(--body);font-weight:700;color:var(--green);margin-bottom:var(--gap-sm)">☀️ Коллекторы ЯSolar</p>
+          <div style="font-size:var(--small);color:var(--text2);line-height:1.5">
+            <p>&bull; CAPEX: <b>686 000 руб</b></p>
+            <p>&bull; Окупаемость: <b>6,7 года</b></p>
+            <p>&bull; Площадь: 16,8 м²</p>
+            <p>&bull; Российское производство</p>
+            <p>&bull; Подходит для −40°C</p>
+          </div>
+        </div>
+        <div style="padding:clamp(0.8rem,1.2vw,1rem);border-radius:14px;background:rgba(27,79,114,0.08)">
+          <p style="font-size:var(--body);font-weight:700;color:var(--blue);margin-bottom:var(--gap-sm)">⚡ ФЭС Телеком-СТВ</p>
+          <div style="font-size:var(--small);color:var(--text2);line-height:1.5">
+            <p>&bull; CAPEX: <b>1 288 000 руб</b></p>
+            <p>&bull; Окупаемость: <b>28,0 лет</b></p>
+            <p>&bull; Мощность: 7,5 кВт</p>
+            <p>&bull; AGM с термокейсом</p>
+            <p>&bull; Надёжность на морозе</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="stats rv rv-d3" style="margin-top:var(--gap);max-width:800px;width:100%">
+      <div class="stat" style="text-align:center"><div class="val c-green" style="font-size:clamp(1.2rem,2.5vw,1.8rem)">1,97 млн</div><div class="lbl">руб. — общий CAPEX</div></div>
+      <div class="stat" style="text-align:center"><div class="val c-blue" style="font-size:clamp(1.2rem,2.5vw,1.8rem)">147,9 тыс</div><div class="lbl">руб./год — экономия</div></div>
+      <div class="stat" style="text-align:center"><div class="val c-amber" style="font-size:clamp(1.2rem,2.5vw,1.8rem)">17,4</div><div class="lbl">лет — средняя окупаемость</div></div>
+    </div>
+    <div class="glass-strong rv rv-d4" style="padding:clamp(0.8rem,1.2vw,1rem);border-radius:14px;margin-top:var(--gap);max-width:800px;width:100%">
+      <p style="font-size:var(--body);font-weight:700;color:var(--text);margin-bottom:6px">✅ Преимущества Варианта Б:</p>
+      <div style="font-size:var(--small);color:var(--text2);line-height:1.5">
+        <p>1. <b>Минимальный срок окупаемости</b> среди всех вариантов</p>
+        <p>2. <b>Российское производство</b> — доступность запчастей, сервиса и технической поддержки</p>
+        <p>3. <b>Надёжность в климате Иркутской области</b> — проверенная работа при −40°C</p>
+        <p>4. <b>Оптимальное соотношение цена/качество</b> — экономия 771 тыс руб vs импортного варианта</p>
+        <p>5. <b>Методика А–В–С</b> — сравнение 2 отечественных и 1 зарубежного варианта</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================== 36. ALINA CONCLUSION ======================== -->
+<section class="slide" style="background:var(--surface)" data-slide="36">
+  <div class="bg-mesh"><canvas data-orbs='[{"c":"#a8d5ba","r":200},{"c":"#d4880f","r":160}]'></canvas></div>
+  <div class="slide-inner" style="align-items:center;justify-content:center;text-align:center;z-index:1;position:relative">
+    <span class="label rv">Заключение &middot; Алина Костюкова</span>
+    <h2 class="title rv rv-d1" style="max-width:700px">Подбор оборудования завершён</h2>
+    <div class="glass-strong rv rv-d2" style="padding:clamp(1.2rem,2.5vw,2rem);border-radius:20px;margin-top:var(--gap);max-width:750px;width:100%">
+      <p style="font-size:var(--body);color:var(--text);line-height:1.6;margin-bottom:var(--gap)">
+        По методике А–В–С проведён комплексный анализ 6 вариантов оборудования (3 для коллекторов + 3 для ФЭС). 
+        Выполнено технико-экономическое обоснование с учётом климатических условий Иркутской области.
+      </p>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:var(--gap-sm);margin-top:var(--gap)">
+        <div style="padding:clamp(0.6rem,1vw,0.8rem);border-radius:12px;background:rgba(45,106,79,0.1)">
+          <div style="font-size:clamp(1.2rem,2vw,1.6rem);font-weight:700;color:var(--green)">6</div>
+          <div style="font-size:var(--small);color:var(--text2)">вариантов<br>оборудования</div>
+        </div>
+        <div style="padding:clamp(0.6rem,1vw,0.8rem);border-radius:12px;background:rgba(27,79,114,0.1)">
+          <div style="font-size:clamp(1.2rem,2vw,1.6rem);font-weight:700;color:var(--blue)">24,6</div>
+          <div style="font-size:var(--small);color:var(--text2)">тыс кВт·ч/год<br>выработка</div>
+        </div>
+        <div style="padding:clamp(0.6rem,1vw,0.8rem);border-radius:12px;background:rgba(212,136,15,0.1)">
+          <div style="font-size:clamp(1.2rem,2vw,1.6rem);font-weight:700;color:var(--amber)">17,4</div>
+          <div style="font-size:var(--small);color:var(--text2)">лет<br>окупаемость</div>
+        </div>
+      </div>
+    </div>
+    <p class="caption rv rv-d3" style="margin-top:var(--gap);max-width:600px">
+      Рекомендованный Вариант Б (РФ-2) обеспечивает оптимальное сочетание экономической эффективности, 
+      надёжности и экологической ответственности для базы отдыха в Иркутской области.
+    </p>
+  </div>
+</section>
+
+<!-- ======================== 37. WORK DISTRIBUTION ======================== -->
+<section class="slide" style="background:var(--surface-warm)" data-slide="37">
+  <div class="slide-inner">
+    <span class="label rv">09 &mdash; Организация</span>
+    <h2 class="title rv rv-d1">Распределение этапов</h2>
+    <div class="timeline rv rv-d2" style="margin-top:var(--gap);max-width:650px">
+      <div class="tl-item">
+        <div class="tl-dot d-g">1</div>
+        <div class="tl-body">
+          <div class="tl-role">Генеральный директор</div>
+          <div class="tl-name">Тамир Будариев</div>
+          <div class="tl-desc">Этапы 1, 2, 3 &mdash; Исходные данные, карта расположения, расчёт ресурсов</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot d-b">2</div>
+        <div class="tl-body">
+          <div class="tl-role">Проектировщики</div>
+          <div class="tl-name">Айваз Багаутдинов + Андрей Михайлов</div>
+          <div class="tl-desc">Этапы 4, 5, 9 &mdash; Карта солнечной активности, расчёт коллектора/батареи, размещение</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot d-a">3</div>
+        <div class="tl-body">
+          <div class="tl-role">Монтажники</div>
+          <div class="tl-name">Алина Костюкова + Полина Синицына</div>
+          <div class="tl-desc">Этапы 6, 7, 8, 9, 10 &mdash; Обзор/выбор оборудования, схемы монтажа, ТЭО</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================== 38. 3D CONCEPT ======================== -->
+<section class="slide" style="background:var(--surface)" data-slide="38">
+  <div class="slide-inner" style="z-index:1;position:relative">
+    <span class="label rv">10 &mdash; Визуализация</span>
+    <h2 class="title rv rv-d1">3D Концепт базы</h2>
+    <div class="rv rv-d2" style="margin-top:var(--gap);flex:1;display:flex;flex-direction:column;min-height:0">
+      <div class="img-slider" id="conceptSlider">
+        <div class="img-slider-track">
+          <div class="img-slider-item"><img src="images/baza_otdyha_vid_sverhu_1_3d_concept.png" alt="Вид сверху"><div class="img-slider-caption">Вид сверху на базу отдыха</div></div>
+          <div class="img-slider-item"><img src="images/kafe_vid1_3d_concept.png" alt="Кафе"><div class="img-slider-caption">Здание кафе</div></div>
+          <div class="img-slider-item"><img src="images/gostinichnyj_i_administrativnyj_blok_vid3_3d_concept.png" alt="Гостиница"><div class="img-slider-caption">Гостиничный и административный блок</div></div>
+          <div class="img-slider-item"><img src="images/proekt_bazy_otdyha_vid_sverhu_3d_concept.png" alt="Проект сверху"><div class="img-slider-caption">Проект базы &mdash; вид сверху</div></div>
+        </div>
+        <button class="img-slider-btn img-slider-btn--prev" aria-label="Назад">&#8249;</button>
+        <button class="img-slider-btn img-slider-btn--next" aria-label="Вперёд">&#8250;</button>
+      </div>
+      <div class="img-slider-dots" id="conceptDots"></div>
+    </div>
+  </div>
+</section>
 
 <script>
-// Sticky nav shadow
-const nav = document.getElementById('topnav');
-window.addEventListener('scroll', () => {
-  nav.classList.toggle('scrolled', window.scrollY > 20);
-});
+(function(){
+  /* ======= Animated gradient orbs via Canvas ======= */
+  document.querySelectorAll('canvas[data-orbs]').forEach(cvs=>{
+    const cfg=JSON.parse(cvs.dataset.orbs);
+    const ctx=cvs.getContext('2d');
+    const orbs=cfg.map(o=>{
+      const a=Math.random()*Math.PI*2;
+      return{
+        x:Math.random(),y:Math.random(),
+        vx:Math.cos(a)*0.0003,vy:Math.sin(a)*0.0003,
+        r:o.r,color:o.c
+      };
+    });
+    function resize(){
+      const rect=cvs.parentElement.getBoundingClientRect();
+      cvs.width=rect.width*devicePixelRatio;
+      cvs.height=rect.height*devicePixelRatio;
+      ctx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0);
+    }
+    resize();
+    let resizeTimer;
+    new ResizeObserver(()=>{clearTimeout(resizeTimer);resizeTimer=setTimeout(resize,100)}).observe(cvs.parentElement);
 
-// Animate stat numbers on scroll
-const statNums = document.querySelectorAll('.stat-card .num');
-const animated = new Set();
+    function draw(){
+      const w=cvs.width/devicePixelRatio,h=cvs.height/devicePixelRatio;
+      ctx.clearRect(0,0,w,h);
+      orbs.forEach(o=>{
+        o.x+=o.vx;o.y+=o.vy;
+        if(o.x<-0.2||o.x>1.2)o.vx*=-1;
+        if(o.y<-0.2||o.y>1.2)o.vy*=-1;
+        const grd=ctx.createRadialGradient(o.x*w,o.y*h,0,o.x*w,o.y*h,o.r);
+        grd.addColorStop(0,o.color+'66');
+        grd.addColorStop(1,o.color+'00');
+        ctx.fillStyle=grd;
+        ctx.beginPath();
+        ctx.arc(o.x*w,o.y*h,o.r,0,Math.PI*2);
+        ctx.fill();
+      });
+      requestAnimationFrame(draw);
+    }
+    draw();
+  });
 
-function animateCount(el) {
-  const target = parseInt(el.textContent, 10);
-  if (isNaN(target)) return;
-  const duration = 1200;
-  const start = performance.now();
-  el.textContent = '0';
+  /* ======= Slide navigation ======= */
+  const slides=document.querySelectorAll('.slide');
+  const total=slides.length;
+  const navDots=document.getElementById('navDots');
+  const counter=document.getElementById('slideCounter');
+  const progress=document.getElementById('progressBar');
 
-  function tick(now) {
-    const elapsed = now - start;
-    const progress = Math.min(elapsed / duration, 1);
-    const eased = 1 - Math.pow(1 - progress, 3);
-    el.textContent = Math.round(eased * target);
-    if (progress < 1) requestAnimationFrame(tick);
+  slides.forEach((_,i)=>{
+    const d=document.createElement('button');
+    d.className='nav-dot';
+    d.setAttribute('aria-label','Slide '+(i+1));
+    d.addEventListener('click',()=>slides[i].scrollIntoView({behavior:'smooth'}));
+    navDots.appendChild(d);
+  });
+  const dots=navDots.querySelectorAll('.nav-dot');
+
+  function activate(idx){
+    dots.forEach((d,i)=>d.classList.toggle('active',i===idx));
+    counter.textContent=(idx+1)+' / '+total;
+    progress.style.width=((idx+1)/total*100)+'%';
   }
-  requestAnimationFrame(tick);
-}
 
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach((entry) => {
-    if (entry.isIntersecting && !animated.has(entry.target)) {
-      animated.add(entry.target);
-      animateCount(entry.target);
-    }
+  const io=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        activate(parseInt(e.target.dataset.slide));
+        e.target.querySelectorAll('.rv,.rv-s').forEach(el=>el.classList.add('visible'));
+        e.target.querySelectorAll('.member').forEach(m=>{
+          setTimeout(()=>m.classList.add('visible'),parseInt(m.dataset.delay)||0);
+        });
+        e.target.querySelectorAll('.goal').forEach(c=>{
+          setTimeout(()=>c.classList.add('visible'),parseInt(c.dataset.delay)||0);
+        });
+      }
+    });
+  },{threshold:0.4});
+
+  slides.forEach(s=>io.observe(s));
+
+  document.addEventListener('keydown',e=>{
+    const c=[...dots].findIndex(d=>d.classList.contains('active'));
+    if(e.key==='ArrowDown'||e.key==='ArrowRight'||e.key===' '){e.preventDefault();if(c<total-1)slides[c+1].scrollIntoView({behavior:'smooth'})}
+    else if(e.key==='ArrowUp'||e.key==='ArrowLeft'){e.preventDefault();if(c>0)slides[c-1].scrollIntoView({behavior:'smooth'})}
   });
-}, { threshold: 0.5 });
 
-statNums.forEach((el) => observer.observe(el));
+  let ty=0;
+  document.addEventListener('touchstart',e=>{ty=e.touches[0].clientY},{passive:true});
+  document.addEventListener('touchend',e=>{
+    const d=ty-e.changedTouches[0].clientY;
+    const c=[...dots].findIndex(x=>x.classList.contains('active'));
+    if(Math.abs(d)>50){if(d>0&&c<total-1)slides[c+1].scrollIntoView({behavior:'smooth'});else if(d<0&&c>0)slides[c-1].scrollIntoView({behavior:'smooth'})}
+  },{passive:true});
 
-// Fade-in on scroll
-const fadeEls = document.querySelectorAll('.feature-card, .screen-card, .stack-card, .hypo-card, .team-card, .timeline-item, .result-card');
-fadeEls.forEach((el) => {
-  el.style.opacity = '0';
-  el.style.transform = 'translateY(24px)';
-  el.style.transition = 'opacity .5s ease, transform .5s ease';
-});
+  activate(0);
+  slides[0].querySelectorAll('.rv,.rv-s').forEach(el=>el.classList.add('visible'));
 
-const fadeObserver = new IntersectionObserver((entries) => {
-  entries.forEach((entry, i) => {
-    if (entry.isIntersecting) {
-      setTimeout(() => {
-        entry.target.style.opacity = '1';
-        entry.target.style.transform = 'translateY(0)';
-      }, i * 60);
-      fadeObserver.unobserve(entry.target);
+  /* ======= Image Slider ======= */
+  document.querySelectorAll('.img-slider').forEach(slider=>{
+    const track=slider.querySelector('.img-slider-track');
+    const items=track.querySelectorAll('.img-slider-item');
+    const n=items.length;
+    const dotsWrap=slider.parentElement.querySelector('.img-slider-dots');
+    let cur=0;
+
+    items.forEach((_,i)=>{
+      const dot=document.createElement('button');
+      dot.className='img-slider-dot'+(i===0?' active':'');
+      dot.addEventListener('click',()=>go(i));
+      dotsWrap.appendChild(dot);
+    });
+    const sdots=dotsWrap.querySelectorAll('.img-slider-dot');
+
+    function go(idx){
+      cur=((idx%n)+n)%n;
+      track.style.transform='translateX(-'+cur*100+'%)';
+      sdots.forEach((d,i)=>d.classList.toggle('active',i===cur));
     }
-  });
-}, { threshold: 0.15 });
 
-fadeEls.forEach((el) => fadeObserver.observe(el));
+    slider.querySelector('.img-slider-btn--prev').addEventListener('click',()=>go(cur-1));
+    slider.querySelector('.img-slider-btn--next').addEventListener('click',()=>go(cur+1));
+
+    let sx=0;
+    slider.addEventListener('touchstart',e=>{sx=e.touches[0].clientX},{passive:true});
+    slider.addEventListener('touchend',e=>{
+      const dx=sx-e.changedTouches[0].clientX;
+      if(Math.abs(dx)>40){go(dx>0?cur+1:cur-1)}
+    },{passive:true});
+
+    setInterval(()=>go(cur+1),6000);
+  });
+})();
 </script>
-
 </body>
 </html>
