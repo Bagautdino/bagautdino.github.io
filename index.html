@@ -550,6 +550,229 @@ html, body {
   .slide { width: 96vw; height: auto; }
 }
 
+/* ─── Inline abbr (hover-tooltip) ─────────────────────────────────── */
+abbr[title] {
+  border-bottom: 1.5px dotted var(--itmo-red);
+  text-decoration: none;
+  cursor: help;
+  font-weight: inherit;
+}
+sup.ref {
+  font-family: var(--font-mono);
+  font-size: 0.55em;
+  color: var(--itmo-red);
+  font-weight: 700;
+  cursor: help;
+  padding: 0 .15em;
+  border-bottom: 1.5px dotted var(--itmo-red);
+  vertical-align: super;
+}
+sup.ref::before { content: '['; }
+sup.ref::after  { content: ']'; }
+
+/* ─── Glossary table (slide 2) ───────────────────────────────────── */
+.glossary {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.4cqh 2.4cqw;
+  flex: 1;
+  min-height: 0;
+  align-content: start;
+}
+.glossary .row {
+  display: grid;
+  grid-template-columns: 5.5cqw 1fr;
+  gap: 0.8cqw;
+  padding: 0.65cqh 0;
+  border-bottom: 1px solid var(--grey-2);
+  font-size: 1.05cqw;
+  align-items: baseline;
+}
+.glossary .row .term {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  color: var(--itmo-red);
+  letter-spacing: .04em;
+  white-space: nowrap;
+}
+.glossary .row .def { color: var(--grey-7); line-height: 1.35; }
+.glossary .section-head {
+  grid-column: 1 / -1;
+  font-family: var(--font-mono);
+  font-size: 0.95cqw;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--itmo-red);
+  font-weight: 700;
+  margin: 0.6cqh 0 0.3cqh;
+}
+.glossary .section-head:first-child { margin-top: 0; }
+
+/* ─── References list ─────────────────────────────────────────────── */
+.refs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5cqh 2.4cqw;
+  flex: 1;
+  min-height: 0;
+  align-content: start;
+  counter-reset: ref;
+}
+.refs .ref {
+  display: grid;
+  grid-template-columns: 2.6cqw 1fr;
+  gap: 0.8cqw;
+  padding: 0.6cqh 0;
+  border-bottom: 1px solid var(--grey-2);
+  font-size: 0.95cqw;
+  line-height: 1.35;
+  align-items: baseline;
+}
+.refs .ref .n {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  color: var(--itmo-red);
+}
+.refs .ref .src { color: var(--grey-7); }
+.refs .ref .src .src-type {
+  font-family: var(--font-mono);
+  font-size: .85em;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  color: var(--grey-5);
+  margin-right: .3em;
+}
+
+/* ─── Animations ─────────────────────────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(.94); }
+  to   { opacity: 1; transform: scale(1); }
+}
+@keyframes pulse-dot {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(.88); }
+}
+@keyframes shimmer-arrow {
+  0%   { color: var(--itmo-red); transform: translateX(0); }
+  50%  { color: var(--itmo-red-d); transform: translateX(2px); }
+  100% { color: var(--itmo-red); transform: translateX(0); }
+}
+
+/* Cascade-reveal bullets, KPIs, cards on slide activation */
+.slide.active .bullets li,
+.slide.active .kpi,
+.slide.active .bigfacts .fact,
+.slide.active .pipeline > *,
+.slide.active .cost-card,
+.slide.active .image-card,
+.slide.active .glossary .row,
+.slide.active .refs .ref,
+.slide.active .footer-note {
+  animation: fadeUp .55s cubic-bezier(.2,.7,.3,1) backwards;
+}
+.slide.active .slide-title,
+.slide.active .kicker,
+.slide.active .subhead {
+  animation: fadeUp .5s ease backwards;
+  animation-delay: .05s;
+}
+
+/* Staggered delays */
+.slide.active .bullets li:nth-child(1)  { animation-delay: .12s }
+.slide.active .bullets li:nth-child(2)  { animation-delay: .19s }
+.slide.active .bullets li:nth-child(3)  { animation-delay: .26s }
+.slide.active .bullets li:nth-child(4)  { animation-delay: .33s }
+.slide.active .bullets li:nth-child(5)  { animation-delay: .40s }
+.slide.active .bullets li:nth-child(6)  { animation-delay: .47s }
+.slide.active .bullets li:nth-child(7)  { animation-delay: .54s }
+.slide.active .bullets li:nth-child(8)  { animation-delay: .61s }
+
+.slide.active .kpi-grid .kpi:nth-child(1) { animation-delay: .15s }
+.slide.active .kpi-grid .kpi:nth-child(2) { animation-delay: .25s }
+.slide.active .kpi-grid .kpi:nth-child(3) { animation-delay: .35s }
+.slide.active .kpi-grid .kpi:nth-child(4) { animation-delay: .45s }
+.slide.active .kpi-grid .kpi:nth-child(5) { animation-delay: .55s }
+
+.slide.active .bigfacts .fact:nth-child(1) { animation-delay: .18s }
+.slide.active .bigfacts .fact:nth-child(2) { animation-delay: .30s }
+.slide.active .bigfacts .fact:nth-child(3) { animation-delay: .42s }
+
+.slide.active .pipeline > *:nth-child(1)  { animation-delay: .14s }
+.slide.active .pipeline > *:nth-child(2)  { animation-delay: .20s }
+.slide.active .pipeline > *:nth-child(3)  { animation-delay: .26s }
+.slide.active .pipeline > *:nth-child(4)  { animation-delay: .32s }
+.slide.active .pipeline > *:nth-child(5)  { animation-delay: .38s }
+.slide.active .pipeline > *:nth-child(6)  { animation-delay: .44s }
+.slide.active .pipeline > *:nth-child(7)  { animation-delay: .50s }
+.slide.active .pipeline > *:nth-child(8)  { animation-delay: .56s }
+.slide.active .pipeline > *:nth-child(9)  { animation-delay: .62s }
+.slide.active .pipeline > *:nth-child(10) { animation-delay: .68s }
+.slide.active .pipeline > *:nth-child(11) { animation-delay: .74s }
+
+.slide.active .image-card { animation: scaleIn .6s cubic-bezier(.2,.7,.3,1) backwards; animation-delay: .1s; }
+
+/* Subtle endless pulse on the browser-window dots */
+.slide.active .image-card::before { animation: pulse-dot 3.2s ease-in-out infinite; }
+.slide.active .image-card::after  { animation: pulse-dot 3.2s ease-in-out infinite .4s; }
+
+/* Pipeline arrows shimmer */
+.slide.active .pipeline em { animation: shimmer-arrow 2.4s ease-in-out infinite; }
+.slide.active .pipeline em:nth-of-type(1) { animation-delay: 0s }
+.slide.active .pipeline em:nth-of-type(2) { animation-delay: .2s }
+.slide.active .pipeline em:nth-of-type(3) { animation-delay: .4s }
+.slide.active .pipeline em:nth-of-type(4) { animation-delay: .6s }
+.slide.active .pipeline em:nth-of-type(5) { animation-delay: .8s }
+
+/* Glossary cascade */
+.slide.active .glossary .row:nth-child(1)  { animation-delay: .10s }
+.slide.active .glossary .row:nth-child(2)  { animation-delay: .14s }
+.slide.active .glossary .row:nth-child(3)  { animation-delay: .18s }
+.slide.active .glossary .row:nth-child(4)  { animation-delay: .22s }
+.slide.active .glossary .row:nth-child(5)  { animation-delay: .26s }
+.slide.active .glossary .row:nth-child(6)  { animation-delay: .30s }
+.slide.active .glossary .row:nth-child(7)  { animation-delay: .34s }
+.slide.active .glossary .row:nth-child(8)  { animation-delay: .38s }
+.slide.active .glossary .row:nth-child(9)  { animation-delay: .42s }
+.slide.active .glossary .row:nth-child(10) { animation-delay: .46s }
+.slide.active .glossary .row:nth-child(n+11) { animation-delay: .50s }
+
+.slide.active .refs .ref:nth-child(1) { animation-delay: .10s }
+.slide.active .refs .ref:nth-child(2) { animation-delay: .15s }
+.slide.active .refs .ref:nth-child(3) { animation-delay: .20s }
+.slide.active .refs .ref:nth-child(4) { animation-delay: .25s }
+.slide.active .refs .ref:nth-child(5) { animation-delay: .30s }
+.slide.active .refs .ref:nth-child(6) { animation-delay: .35s }
+.slide.active .refs .ref:nth-child(7) { animation-delay: .40s }
+.slide.active .refs .ref:nth-child(8) { animation-delay: .45s }
+.slide.active .refs .ref:nth-child(n+9) { animation-delay: .50s }
+
+/* Title-slide intro */
+@keyframes badge-slide-in { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
+@keyframes h1-rise        { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+.slide.active.title-slide .badge { animation: badge-slide-in .55s ease backwards; animation-delay: .15s; }
+.slide.active.title-slide h1     { animation: h1-rise .7s cubic-bezier(.2,.7,.3,1) backwards; animation-delay: .25s; }
+.slide.active.title-slide .lead  { animation: fadeUp .55s ease backwards; animation-delay: .45s; }
+.slide.active.title-slide .meta .item:nth-child(1) { animation: fadeUp .5s ease backwards; animation-delay: .60s; }
+.slide.active.title-slide .meta .item:nth-child(2) { animation: fadeUp .5s ease backwards; animation-delay: .70s; }
+.slide.active.title-slide .meta .item:nth-child(3) { animation: fadeUp .5s ease backwards; animation-delay: .80s; }
+
+/* Final-slide intro */
+.slide.active.final-slide h1 { animation: h1-rise .7s cubic-bezier(.2,.7,.3,1) backwards; animation-delay: .15s; }
+.slide.active.final-slide .sub { animation: fadeUp .55s ease backwards; animation-delay: .35s; }
+.slide.active.final-slide .contact-grid > * { animation: fadeUp .5s ease backwards; }
+.slide.active.final-slide .contact-grid > *:nth-child(1) { animation-delay: .50s; }
+.slide.active.final-slide .contact-grid > *:nth-child(2) { animation-delay: .60s; }
+.slide.active.final-slide .contact-grid > *:nth-child(3) { animation-delay: .70s; }
+.slide.active.final-slide .contact-grid > *:nth-child(4) { animation-delay: .80s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .slide.active * { animation: none !important; }
+}
+
 /* ─── Print (PDF) ─────────────────────────────────────────────────── */
 @media print {
   html, body { overflow: visible; background: #fff; height: auto; }
@@ -601,38 +824,80 @@ html, body {
     </div>
   </section>
 
-  <!-- ────────────────── Slide 2: Актуальность ────────────────── -->
+  <!-- ────────────────── Slide 2: Список сокращений ────────────────── -->
   <section class="slide bg-light" data-n="2">
     <div class="slide-inner">
       <div class="slide-header">
         <div class="title-block">
-          <span class="kicker">Введение · 01</span>
+          <span class="kicker">Справочно · 01</span>
+          <h2 class="slide-title">Список сокращений и обозначений</h2>
+        </div>
+      </div>
+      <div class="slide-body">
+        <div class="glossary">
+          <div class="section-head">Технические и экологические</div>
+          <div class="row"><span class="term">АО</span><span class="def">акционерное общество</span></div>
+          <div class="row"><span class="term">ЛОС</span><span class="def">локальные очистные сооружения</span></div>
+          <div class="row"><span class="term">ВВ</span><span class="def">взвешенные вещества</span></div>
+          <div class="row"><span class="term">ПДК</span><span class="def">предельно допустимая концентрация</span></div>
+          <div class="row"><span class="term">НВОС</span><span class="def">негативное воздействие на окружающую среду</span></div>
+          <div class="row"><span class="term">КЭР</span><span class="def">комплексное экологическое разрешение</span></div>
+          <div class="row"><span class="term">НДТ</span><span class="def">наилучшие доступные технологии</span></div>
+          <div class="row"><span class="term">ИТС</span><span class="def">информационно-технический справочник</span></div>
+          <div class="row"><span class="term">МАУ-2А</span><span class="def">марочный активированный уголь сорбционного класса</span></div>
+          <div class="row"><span class="term">ОЗК-4</span><span class="def">мешочная установка обезвоживания осадка</span></div>
+          <div class="row"><span class="term">МПЦ</span><span class="def">Мальцовский портландцемент</span></div>
+          <div class="row"><span class="term">ЦФО</span><span class="def">Центральный федеральный округ</span></div>
+
+          <div class="section-head">Экономические и финансовые</div>
+          <div class="row"><span class="term">CAPEX</span><span class="def">инвестиционные (капитальные) затраты, I₀</span></div>
+          <div class="row"><span class="term">OPEX</span><span class="def">эксплуатационные затраты в год</span></div>
+          <div class="row"><span class="term">B</span><span class="def">чистая годовая экономия проекта</span></div>
+          <div class="row"><span class="term">PB</span><span class="def">простой период окупаемости (Payback Period)</span></div>
+          <div class="row"><span class="term">ROI</span><span class="def">рентабельность инвестиций (Return on Investment)</span></div>
+          <div class="row"><span class="term">NPV</span><span class="def">чистый дисконтированный доход (Net Present Value)</span></div>
+          <div class="row"><span class="term">IRR</span><span class="def">внутренняя норма доходности (Internal Rate of Return)</span></div>
+          <div class="row"><span class="term">PI</span><span class="def">индекс доходности (Profitability Index)</span></div>
+          <div class="row"><span class="term">r</span><span class="def">ставка дисконтирования, %</span></div>
+          <div class="row"><span class="term">n</span><span class="def">экономический срок службы проекта, лет</span></div>
+        </div>
+      </div>
+      <div class="slide-num"><span>02</span> / 16</div>
+    </div>
+  </section>
+
+  <!-- ────────────────── Slide 3: Актуальность ────────────────── -->
+  <section class="slide bg-light" data-n="3">
+    <div class="slide-inner">
+      <div class="slide-header">
+        <div class="title-block">
+          <span class="kicker">Введение · 02</span>
           <h2 class="slide-title">Актуальность проекта</h2>
         </div>
       </div>
       <div class="slide-body">
         <ul class="bullets large">
-          <li>Цементная отрасль РФ — спад: <b>64,9 → 58,6 млн т</b> (2024 → 2025), прогноз падения <b>до 20 %</b>.</li>
-          <li><i>АО «Мальцовский портландцемент»</i> — крупнейший производитель ЦФО, входит в холдинг <b>ЦЕМРОС</b> (≈ 33 % рынка).</li>
-          <li><b>Мокрый способ</b> производства цемента — повышенное водопотребление: <b>150–350 л</b> на тонну клинкера.</li>
-          <li>Сброс <b>взвешенных веществ</b> в ручей <u>Болдыж</u> с превышением ПДК в десятки раз — нарушение водного законодательства.</li>
-          <li>Судебное дело <i>№ А09-5918/2023</i> — административные санкции к предприятию.</li>
+          <li>Цементная отрасль РФ — спад: <b>64,9 → 58,6 млн т</b> (2024 → 2025), прогноз падения <b>до 20 %</b><sup class="ref" title="[1] jcement.ru — обзор отрасли 2024; [2] Интерфакс, прогноз 2026">1,2</sup>.</li>
+          <li><i>АО «Мальцовский портландцемент»</i> — крупнейший производитель ЦФО, входит в холдинг <b>ЦЕМРОС</b> (≈ 33 % рынка)<sup class="ref" title="[3] market.cemros.ru — о компании ЦЕМРОС; [6] cemros.ru — Мальцовский ПЦ">3,6</sup>.</li>
+          <li><b>Мокрый способ</b> производства цемента — повышенное водопотребление: <b>150–350 л</b> на тонну клинкера<sup class="ref" title="[15] ИТС 6-2024. Производство цемента — НДТ">15</sup>.</li>
+          <li>Сброс <b><abbr title="ВВ — взвешенные вещества">ВВ</abbr></b> в ручей <u>Болдыж</u> с превышением <abbr title="ПДК — предельно допустимая концентрация">ПДК</abbr> в десятки раз — нарушение водного законодательства<sup class="ref" title="[14] ФЗ «Об охране окружающей среды» 7-ФЗ от 10.01.2002">14</sup>.</li>
+          <li>Судебное дело <i>№ А09-5918/2023</i> — административные санкции к предприятию<sup class="ref" title="[21] Решение Арбитражного суда Брянской области от 23.10.2023">21</sup>.</li>
         </ul>
         <div class="footer-note">
           <span class="kicker">Вывод</span>
-          <div><b>Нужны локальные очистные сооружения (ЛОС)</b> как элемент <i>чистого производства</i>.</div>
+          <div><b>Нужны локальные очистные сооружения (<abbr title="ЛОС — локальные очистные сооружения">ЛОС</abbr>)</b> как элемент <i>чистого производства</i>.</div>
         </div>
       </div>
-      <div class="slide-num"><span>02</span> / 13</div>
+      <div class="slide-num"><span>03</span> / 16</div>
     </div>
   </section>
 
-  <!-- ────────────────── Slide 3: Предприятие ────────────────── -->
-  <section class="slide bg-light" data-n="3">
+  <!-- ────────────────── Slide 4: Предприятие ────────────────── -->
+  <section class="slide bg-light" data-n="4">
     <div class="slide-inner">
       <div class="slide-header">
         <div class="title-block">
-          <span class="kicker">Характеристика · 02</span>
+          <span class="kicker">Характеристика · 03</span>
           <h2 class="slide-title">АО «Мальцовский&nbsp;портландцемент»</h2>
         </div>
       </div>
@@ -651,22 +916,22 @@ html, body {
               <div class="kpi accent"><div class="l">Произведено</div><div class="v">180<small>&nbsp;млн&nbsp;т</small></div><div class="f">за всю историю</div></div>
             </div>
             <ul class="bullets tight" style="margin-top:1.4cqh;">
-              <li><i>КЭР получено в 2025 г.</i></li>
-              <li>Модернизация до 2030 г. — <b>&gt; 2,7 млрд руб.</b></li>
+              <li><i><abbr title="КЭР — комплексное экологическое разрешение">КЭР</abbr> получено в 2025 г.</i><sup class="ref" title="[12] cemros.ru — Мальцовский ПЦ получил КЭР, 25.09.2025">12</sup></li>
+              <li>Модернизация до 2030 г. — <b>&gt; 2,7 млрд руб.</b><sup class="ref" title="[18] cemros.ru — инвестиции в качество, 13.12.2025">18</sup></li>
             </ul>
           </div>
         </div>
       </div>
-      <div class="slide-num"><span>03</span> / 13</div>
+      <div class="slide-num"><span>04</span> / 16</div>
     </div>
   </section>
 
-  <!-- ────────────────── Slide 4: Техпроцесс ────────────────── -->
-  <section class="slide bg-light" data-n="4">
+  <!-- ────────────────── Slide 5: Техпроцесс ────────────────── -->
+  <section class="slide bg-light" data-n="5">
     <div class="slide-inner">
       <div class="slide-header">
         <div class="title-block">
-          <span class="kicker">Технология · 03</span>
+          <span class="kicker">Технология · 04</span>
           <h2 class="slide-title">Технологический процесс</h2>
         </div>
       </div>
@@ -686,19 +951,19 @@ html, body {
         </div>
         <ul class="bullets tight">
           <li>Собственные карьеры мела и глины — <i>низкие транспортные затраты</i> на сырьё.</li>
-          <li>Высокое технологическое <b>водопотребление: 150–350 л / т</b> клинкера — главный экологический вызов.</li>
+          <li>Высокое технологическое <b>водопотребление: 150–350 л / т</b> клинкера — главный экологический вызов<sup class="ref" title="[15] ИТС 6-2024. Производство цемента — справочник по НДТ">15</sup>.</li>
         </ul>
       </div>
-      <div class="slide-num"><span>04</span> / 13</div>
+      <div class="slide-num"><span>05</span> / 16</div>
     </div>
   </section>
 
-  <!-- ────────────────── Slide 5: Экологическая проблема ────────────────── -->
-  <section class="slide bg-light" data-n="5">
+  <!-- ────────────────── Slide 6: Экологическая проблема ────────────────── -->
+  <section class="slide bg-light" data-n="6">
     <div class="slide-inner">
       <div class="slide-header">
         <div class="title-block">
-          <span class="kicker">Проблема · 04</span>
+          <span class="kicker">Проблема · 05</span>
           <h2 class="slide-title">Экологическая проблема</h2>
         </div>
       </div>
@@ -726,16 +991,56 @@ html, body {
           </figure>
         </div>
       </div>
-      <div class="slide-num"><span>05</span> / 13</div>
+      <div class="slide-num"><span>06</span> / 16</div>
     </div>
   </section>
 
-  <!-- ────────────────── Slide 6: Водный баланс ────────────────── -->
-  <section class="slide bg-light" data-n="6">
+  <!-- ────────────────── Slide 7: Материальный баланс ────────────────── -->
+  <section class="slide bg-light" data-n="7">
     <div class="slide-inner">
       <div class="slide-header">
         <div class="title-block">
-          <span class="kicker">НВОС · 05</span>
+          <span class="kicker">Технология · 06</span>
+          <h2 class="slide-title">Материальный баланс предприятия</h2>
+        </div>
+      </div>
+      <div class="slide-body">
+        <div class="body-grid cols-12-7">
+          <figure class="image-card">
+            <span class="ctrls"><svg viewBox="0 0 12 2" fill="currentColor"><rect width="12" height="2" rx="1"/></svg><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 2 L10 10 M10 2 L2 10"/></svg></span>
+            <img src="kursovaia_media/image4.png" alt="Материальный баланс сырья, воды и продукции">
+            <figcaption>Рис. 4.2 — Укрупнённый материальный баланс сырья, воды и продукции</figcaption>
+          </figure>
+          <div>
+            <div class="subhead">Сырьё</div>
+            <ul class="bullets tighter">
+              <li><b>Мел и глина</b> из собственных карьеров.</li>
+              <li>Добавки: <i>гипс, активные минеральные</i> компоненты.</li>
+              <li><b>Топливо:</b> природный газ для печей и сушки.</li>
+            </ul>
+            <div class="subhead" style="margin-top:1.2cqh;">Вода</div>
+            <ul class="bullets tighter">
+              <li><b>Технологическая</b> вода для приготовления шлама.</li>
+              <li><b>Карьерные и ливневые</b> воды — отвод через пруды.</li>
+            </ul>
+            <div class="subhead" style="margin-top:1.2cqh;">Продукция</div>
+            <ul class="bullets tighter">
+              <li><b>Цемент:</b> 2,348 млн т / год.</li>
+              <li><i>Отходы:</i> пыль, шлам, побочные потоки.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="slide-num"><span>07</span> / 16</div>
+    </div>
+  </section>
+
+  <!-- ────────────────── Slide 8: Водный баланс ────────────────── -->
+  <section class="slide bg-light" data-n="8">
+    <div class="slide-inner">
+      <div class="slide-header">
+        <div class="title-block">
+          <span class="kicker">НВОС · 07</span>
           <h2 class="slide-title">Водный баланс предприятия</h2>
         </div>
       </div>
@@ -759,16 +1064,16 @@ html, body {
           </div>
         </div>
       </div>
-      <div class="slide-num"><span>06</span> / 13</div>
+      <div class="slide-num"><span>08</span> / 16</div>
     </div>
   </section>
 
-  <!-- ────────────────── Slide 7: Решение ────────────────── -->
-  <section class="slide bg-light" data-n="7">
+  <!-- ────────────────── Slide 9: Решение ────────────────── -->
+  <section class="slide bg-light" data-n="9">
     <div class="slide-inner">
       <div class="slide-header">
         <div class="title-block">
-          <span class="kicker">Решение · 06</span>
+          <span class="kicker">Решение · 08</span>
           <h2 class="slide-title">Предлагаемое техническое решение</h2>
         </div>
       </div>
@@ -795,21 +1100,21 @@ html, body {
               <li>насосная группа + станция дозирования реагентов;</li>
               <li>обезвоживание осадка — <i>ОЗК-4</i>;</li>
               <li>резервуар очищенной воды <b>50 м³</b>;</li>
-              <li><u>не требует</u> остановки печного оборудования.</li>
+              <li><u>не требует</u> остановки печного оборудования<sup class="ref" title="[5,6] septic-profi.ru, enrost.ru — ЛОС 60 л/с РЕЙН; [15] ИТС 6-2024">5,6,15</sup>.</li>
             </ul>
           </div>
         </div>
       </div>
-      <div class="slide-num"><span>07</span> / 13</div>
+      <div class="slide-num"><span>09</span> / 16</div>
     </div>
   </section>
 
-  <!-- ────────────────── Slide 8: Детали ────────────────── -->
-  <section class="slide bg-light" data-n="8">
+  <!-- ────────────────── Slide 10: Детали ────────────────── -->
+  <section class="slide bg-light" data-n="10">
     <div class="slide-inner">
       <div class="slide-header">
         <div class="title-block">
-          <span class="kicker">Решение · 07</span>
+          <span class="kicker">Решение · 09</span>
           <h2 class="slide-title">Детали решения: очистка и обращение со шламом</h2>
         </div>
       </div>
@@ -827,21 +1132,21 @@ html, body {
           </figure>
         </div>
         <ul class="bullets tight">
-          <li><b>Ступени очистки:</b> отстаивание → фильтрация → сорбция (<i>МАУ-2А</i>).</li>
-          <li><b>Шлам 2 500 т/год</b> → внутренние насыпи как <u>техногенный грунт</u>.</li>
-          <li><b>Возврат 168 тыс. м³/год</b> очищенной воды в техоборот; отработанный сорбент → внешняя регенерация.</li>
+          <li><b>Ступени очистки:</b> отстаивание → фильтрация → сорбция (<i>МАУ-2А</i>)<sup class="ref" title="[24] ecotime.tech/mau-2a — активированный уголь">24</sup>.</li>
+          <li><b>Шлам 2 500 т/год</b> → внутренние насыпи как <u>техногенный грунт</u><sup class="ref" title="[27,28] roadline.ru, tehnosfera-group.ru — фильтровальные мешки для обезвоживания осадка">27,28</sup>.</li>
+          <li><b>Возврат 168 тыс. м³/год</b> очищенной воды в техоборот; отработанный сорбент → внешняя регенерация<sup class="ref" title="[26] promvest.info — регенерация активированных углей">26</sup>.</li>
         </ul>
       </div>
-      <div class="slide-num"><span>08</span> / 13</div>
+      <div class="slide-num"><span>10</span> / 16</div>
     </div>
   </section>
 
-  <!-- ────────────────── Slide 9: Затраты ────────────────── -->
-  <section class="slide bg-light" data-n="9">
+  <!-- ────────────────── Slide 11: Затраты ────────────────── -->
+  <section class="slide bg-light" data-n="11">
     <div class="slide-inner">
       <div class="slide-header">
         <div class="title-block">
-          <span class="kicker">Экономика · 08</span>
+          <span class="kicker">Экономика · 10</span>
           <h2 class="slide-title">Затраты на реализацию проекта</h2>
         </div>
       </div>
@@ -867,20 +1172,20 @@ html, body {
               <tr class="total"><td>Итого OPEX</td><td>651 тыс. руб./г</td></tr>
               <tr><td><i>Удельные OPEX</i></td><td>2,32 руб./м³</td></tr>
             </table>
-            <p class="footnote">CAPEX и OPEX по проектным сметам и средневзвешенным ценам 2025 г.</p>
+            <p class="footnote">CAPEX и OPEX по проектным сметам и средневзвешенным ценам 2025 г.<sup class="ref" title="[7-12] поставщики оборудования; [17] Брянскстат — зарплата; [18] Газпром энергосбыт — э/э">7–18</sup></p>
           </div>
         </div>
       </div>
-      <div class="slide-num"><span>09</span> / 13</div>
+      <div class="slide-num"><span>11</span> / 16</div>
     </div>
   </section>
 
-  <!-- ────────────────── Slide 10: Экологический результат ────────────────── -->
-  <section class="slide bg-light" data-n="10">
+  <!-- ────────────────── Slide 12: Экологический результат ────────────────── -->
+  <section class="slide bg-light" data-n="12">
     <div class="slide-inner">
       <div class="slide-header">
         <div class="title-block">
-          <span class="kicker">Результат · 09</span>
+          <span class="kicker">Результат · 11</span>
           <h2 class="slide-title">Экологический результат проекта</h2>
         </div>
       </div>
@@ -916,19 +1221,19 @@ html, body {
         </div>
         <div class="footer-note">
           <span class="kicker">Эффект</span>
-          <div>Устранение нарушений водного законодательства, переход к <i>замкнутому водопотреблению</i>.</div>
+          <div>Устранение нарушений водного законодательства, переход к <i>замкнутому водопотреблению</i><sup class="ref" title="[25,26] ПП РФ № 881 от 31.05.2023; распоряжение № 2409-р — ставки за НВОС 2026-2030">25,26</sup>.</div>
         </div>
       </div>
-      <div class="slide-num"><span>10</span> / 13</div>
+      <div class="slide-num"><span>12</span> / 16</div>
     </div>
   </section>
 
-  <!-- ────────────────── Slide 11: Экономика ────────────────── -->
-  <section class="slide bg-light" data-n="11">
+  <!-- ────────────────── Slide 13: Экономика ────────────────── -->
+  <section class="slide bg-light" data-n="13">
     <div class="slide-inner">
       <div class="slide-header">
         <div class="title-block">
-          <span class="kicker">Эффективность · 10</span>
+          <span class="kicker">Эффективность · 12</span>
           <h2 class="slide-title">Экономическая эффективность</h2>
         </div>
       </div>
@@ -948,22 +1253,22 @@ html, body {
               <div class="kpi solid" style="grid-column:1 / span 2;">
                 <div class="l">IRR &gt; r</div>
                 <div class="v"><b>15,78 %</b> &nbsp;&gt;&nbsp; <u>14,6 %</u></div>
-                <div class="f">PI = 0,046 &gt; 0 — проект эффективен</div>
+                <div class="f">PI = 0,046 &gt; 0 — проект эффективен<sup class="ref" title="[3] ЦБ РФ — ставки по кредитным операциям, февраль 2026 (r = 14,6 %)">3</sup></div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="slide-num"><span>11</span> / 13</div>
+      <div class="slide-num"><span>13</span> / 16</div>
     </div>
   </section>
 
-  <!-- ────────────────── Slide 12: Заключение ────────────────── -->
-  <section class="slide bg-light" data-n="12">
+  <!-- ────────────────── Slide 14: Заключение ────────────────── -->
+  <section class="slide bg-light" data-n="14">
     <div class="slide-inner">
       <div class="slide-header">
         <div class="title-block">
-          <span class="kicker">Заключение · 11</span>
+          <span class="kicker">Заключение · 13</span>
           <h2 class="slide-title">Итоговые выводы</h2>
         </div>
       </div>
@@ -985,12 +1290,45 @@ html, body {
           <div><b>ЛОС</b> — целевое решение для АО «МПЦ» и <i>шаблон для отрасли</i>.</div>
         </div>
       </div>
-      <div class="slide-num"><span>12</span> / 13</div>
+      <div class="slide-num"><span>14</span> / 16</div>
     </div>
   </section>
 
-  <!-- ────────────────── Slide 13: Финал ────────────────── -->
-  <section class="slide bg-red final-slide" data-n="13">
+  <!-- ────────────────── Slide 15: Источники ────────────────── -->
+  <section class="slide bg-light" data-n="15">
+    <div class="slide-inner">
+      <div class="slide-header">
+        <div class="title-block">
+          <span class="kicker">Список литературы · 14</span>
+          <h2 class="slide-title">Источники</h2>
+        </div>
+      </div>
+      <div class="slide-body">
+        <div class="refs">
+          <div class="ref"><span class="n">1</span><span class="src"><span class="src-type">Отрасль</span>Гузь В.А. и&nbsp;др. Российская цементная промышленность в&nbsp;2024 году. <i>jcement.ru/magazine/vypusk-1-2025</i></span></div>
+          <div class="ref"><span class="n">2</span><span class="src"><span class="src-type">Прогноз</span>Потребление цемента в&nbsp;РФ может снизиться на&nbsp;20&nbsp;% в&nbsp;2026 году — прогноз. <i>Интерфакс Россия, 27.02.2026</i></span></div>
+          <div class="ref"><span class="n">3</span><span class="src"><span class="src-type">Холдинг</span>О компании ЦЕМРОС. <i>market.cemros.ru/about</i></span></div>
+          <div class="ref"><span class="n">6</span><span class="src"><span class="src-type">Завод</span>Мальцовский портландцемент — география активов ЦЕМРОС. <i>cemros.ru/about/geography/factories</i></span></div>
+          <div class="ref"><span class="n">12</span><span class="src"><span class="src-type">КЭР</span>Мальцовский портландцемент получил КЭР. <i>cemros.ru/media-center/news, 25.09.2025</i></span></div>
+          <div class="ref"><span class="n">14</span><span class="src"><span class="src-type">Закон</span>ФЗ «Об охране окружающей среды» 7-ФЗ от&nbsp;10.01.2002 (ред. 28.12.2025). <i>consultant.ru</i></span></div>
+          <div class="ref"><span class="n">15</span><span class="src"><span class="src-type">НДТ</span>ИТС 6-2024. Производство цемента — справочник по&nbsp;наилучшим доступным технологиям. <i>base.garant.ru/410724456</i></span></div>
+          <div class="ref"><span class="n">18</span><span class="src"><span class="src-type">Инвест.</span>Инвестиции в&nbsp;качество — Мальцовский портландцемент. <i>cemros.ru, 13.12.2025</i></span></div>
+          <div class="ref"><span class="n">21</span><span class="src"><span class="src-type">Суд</span>Решение Арбитражного суда Брянской обл. от&nbsp;23.10.2023 по&nbsp;делу № А09-5918/2023. <i>sudact.ru</i></span></div>
+          <div class="ref"><span class="n">24</span><span class="src"><span class="src-type">Сорбент</span>МАУ-2А — активированный уголь для сорбционной очистки. <i>ecotime.tech/mau-2a-aktivirovannyi-ugol</i></span></div>
+          <div class="ref"><span class="n">25</span><span class="src"><span class="src-type">ПП РФ</span>Постановление Правительства РФ № 881 от&nbsp;31.05.2023 — плата за&nbsp;НВОС. <i>consultant.ru</i></span></div>
+          <div class="ref"><span class="n">26</span><span class="src"><span class="src-type">Ставки</span>Распоряжение Правительства РФ № 2409-р — ставки за&nbsp;НВОС 2026–2030. <i>consultant.ru</i></span></div>
+          <div class="ref"><span class="n">3*</span><span class="src"><span class="src-type">ЦБ&nbsp;РФ</span>Процентные ставки по&nbsp;кредитным операциям в&nbsp;рублях, февраль 2026. <i>cbr.ru/statistics/bank_sector/int_rat</i></span></div>
+          <div class="ref"><span class="n">5,6</span><span class="src"><span class="src-type">ЛОС&nbsp;60</span>ЛОС 60 л/с — РЕЙН 60. <i>septic-profi.ru, enrost.ru</i></span></div>
+          <div class="ref"><span class="n">7–12</span><span class="src"><span class="src-type">Оборуд.</span>Поставщики: насосы CNP, станция дозирования HC151, обезвоживание ОЗК, ёмкость 50&nbsp;м³, коагулянт «АкваАурат», H₂SO₄</span></div>
+          <div class="ref"><span class="n">17,18</span><span class="src"><span class="src-type">Цены</span>Брянскстат — зарплата 12.2025; ООО «Газпром энергосбыт Брянск» — тариф э/э</span></div>
+        </div>
+      </div>
+      <div class="slide-num"><span>15</span> / 16</div>
+    </div>
+  </section>
+
+  <!-- ────────────────── Slide 16: Финал ────────────────── -->
+  <section class="slide bg-red final-slide" data-n="16">
     <div class="slide-inner">
       <h1>Спасибо <span class="accent">за&nbsp;внимание!</span></h1>
       <p class="sub">Готовы ответить на вопросы</p>
