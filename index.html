@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>ЛОС на АО «Мальцовский портландцемент» · ИТМО · U4125</title>
+<title>Хоккейный родитель · Pitch Deck · ППМ-2 · ИТМО · 2026</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;600;700;800;900&family=Golos+Text:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -102,7 +102,6 @@ html, body {
   color: var(--grey-5);
 }
 
-/* Section title - mimics ALS Gorizont Bold Expanded */
 .slide-title {
   font-family: var(--font-display);
   font-weight: 800;
@@ -116,7 +115,6 @@ html, body {
   overflow-wrap: break-word;
 }
 
-/* Inline emphasis */
 .em-b, b, strong { font-weight: 700; color: var(--black); }
 .em-i, i, em    { font-style: italic; color: var(--grey-7); font-weight: 500; }
 .em-u, u {
@@ -130,13 +128,13 @@ html, body {
 /* ─── Page chrome on content slides (white bg) ────────────────────── */
 .bg-light .slide-inner {
   position: absolute; inset: 0;
-  padding: 5.0cqh 4cqw 5.0cqh;        /* leave room for ITMO logo top-right + slide number bottom */
+  padding: 5.0cqh 4cqw 5.0cqh;
   display: flex; flex-direction: column;
 }
 .bg-light .slide-header {
   display: flex; align-items: flex-end; justify-content: space-between;
   gap: 2cqw;
-  padding-right: 12cqw;                /* keep title off the logo */
+  padding-right: 12cqw;
   padding-bottom: 1.4cqh;
   border-bottom: 2px solid var(--itmo-red);
   margin-bottom: 2.2cqh;
@@ -150,7 +148,6 @@ html, body {
 }
 .bg-light .slide-body { flex: 1; min-height: 0; display: flex; flex-direction: column; gap: 1.4cqh; }
 
-/* slide number bottom-right on content slides */
 .slide-num {
   position: absolute;
   right: 4cqw; bottom: 1.8cqh;
@@ -171,8 +168,8 @@ html, body {
 .body-grid.cols-7-12 { grid-template-columns: minmax(0, 7fr) minmax(0, 12fr); }
 .body-grid.cols-1   { grid-template-columns: 1fr; }
 .body-grid.cols-2   { grid-template-columns: 1fr 1fr; }
+.body-grid.cols-3   { grid-template-columns: 1fr 1fr 1fr; }
 
-/* Bullets — ITMO red dash + body in Golos Text */
 .bullets { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 1.2cqh; }
 .bullets li {
   font-size: 1.55cqw; line-height: 1.45;
@@ -189,7 +186,6 @@ html, body {
 .bullets.tighter li { font-size: 1.15cqw; gap: .7cqh; }
 .bullets.large li { font-size: 1.75cqw; }
 
-/* Subhead */
 .subhead {
   font-family: var(--font-mono);
   font-size: 1.0cqw; letter-spacing: .14em;
@@ -197,54 +193,6 @@ html, body {
   color: var(--itmo-red); font-weight: 600;
   margin: 0 0 .4cqh;
 }
-
-/* Image card — ITMO browser-window styling: rounded, red-bordered, with — × icons */
-.image-card {
-  position: relative;
-  background: var(--white);
-  border: 2px solid var(--itmo-red);
-  border-radius: var(--radius-lg);
-  padding: 4.0cqh 1.6cqw 1.4cqh;
-  display: flex; flex-direction: column;
-  gap: 0.8cqh;
-  min-height: 0;
-  box-shadow: 0 8px 22px -14px rgba(236,11,67,.30);
-}
-.image-card::before, .image-card::after {
-  content: '';
-  position: absolute; top: 1.5cqh;
-  width: 1.6cqw; height: 1.6cqw;
-  border-radius: 50%;
-  background: var(--itmo-red);
-}
-.image-card::before { right: 4.0cqw; }
-.image-card::after  { right: 1.4cqw; }
-/* white "minus" and "x" glyphs */
-.image-card .ctrls {
-  position: absolute; top: 1.5cqh; right: 1.4cqw;
-  width: 4.2cqw; height: 1.6cqw;
-  display: flex; gap: 1cqw; align-items: center; justify-content: flex-end;
-  pointer-events: none;
-}
-.image-card .ctrls svg { width: 0.9cqw; height: 0.9cqw; color: #fff; }
-.image-card img {
-  width: 100%; height: 100%;
-  object-fit: contain; object-position: center;
-  display: block;
-  flex: 1; min-height: 0;
-}
-.image-card figcaption {
-  font-family: var(--font-mono);
-  font-size: 0.92cqw; color: var(--grey-6);
-  text-align: center; letter-spacing: .04em;
-}
-.image-card.solid {
-  background: var(--itmo-red);
-  border-color: var(--itmo-red);
-  color: #fff;
-}
-.image-card.solid::before, .image-card.solid::after { background: #fff; }
-.image-card.solid .ctrls svg { color: var(--itmo-red); }
 
 /* KPI tiles */
 .kpi-grid { display: grid; gap: 1.4cqw; }
@@ -322,57 +270,84 @@ html, body {
   font-family: var(--font-display);
 }
 
-/* Cost cards */
-.cost-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2cqw; min-height: 0; flex: 1; }
-.cost-card {
+/* Cards */
+.cards-grid {
+  display: grid;
+  gap: 1.4cqw;
+  min-height: 0;
+  flex: 1;
+}
+.cards-grid.cols-2 { grid-template-columns: 1fr 1fr; }
+.cards-grid.cols-3 { grid-template-columns: 1fr 1fr 1fr; }
+.cards-grid.cols-4 { grid-template-columns: 1fr 1fr 1fr 1fr; }
+
+.card {
   background: #fff;
-  border: 2px solid var(--ink);
+  border: 2px solid var(--grey-2);
   border-radius: var(--radius-md);
-  padding: 2.2cqh 1.8cqw;
-  display: flex; flex-direction: column;
+  padding: 1.6cqh 1.4cqw;
+  display: flex;
+  flex-direction: column;
+  gap: .8cqh;
   min-height: 0;
 }
-.cost-card table { width: 100%; }
-.cost-card .footnote { margin-top: auto; padding-top: 1.4cqh; font-size: 1.0cqw; color: var(--grey-6); font-style: italic; }
-.cost-card h4 {
+.card.accent { border-color: var(--itmo-red); }
+.card.solid {
+  background: var(--itmo-red);
+  border-color: var(--itmo-red);
+  color: #fff;
+}
+.card .card-l {
+  font-family: var(--font-mono);
+  font-size: 0.85cqw;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--itmo-red);
+  font-weight: 700;
+}
+.card.solid .card-l { color: rgba(255,255,255,.92); }
+.card .card-h {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: 1.35cqw;
-  letter-spacing: .04em; text-transform: uppercase;
-  color: var(--itmo-red);
-  margin: 0 0 1.4cqh;
-  display: flex; align-items: center; gap: .8cqw;
+  font-size: 1.45cqw;
+  line-height: 1.15;
+  color: var(--black);
+  margin: 0;
 }
-.cost-card h4::before {
-  content: ''; width: .55cqw; height: 1.4cqw;
-  background: var(--itmo-red); border-radius: 2px;
+.card.solid .card-h { color: #fff; }
+.card .card-p {
+  font-size: 1.05cqw;
+  line-height: 1.4;
+  color: var(--grey-7);
 }
-.cost-card table {
-  width: 100%; border-collapse: collapse;
-  font-size: 1.2cqw;
+.card.solid .card-p { color: rgba(255,255,255,.92); }
+.card .card-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: .5cqh;
 }
-.cost-card td {
-  padding: .55cqh 0;
-  vertical-align: baseline;
+.card .card-list li {
+  position: relative;
+  padding-left: 1.4cqw;
+  font-size: 1.0cqw;
+  line-height: 1.35;
   color: var(--ink);
 }
-.cost-card td:last-child {
-  font-family: var(--font-mono);
-  font-weight: 600;
-  text-align: right;
-  white-space: nowrap;
-  color: var(--black);
+.card .card-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: .58em;
+  width: 0.7cqw;
+  height: 0.18cqw;
+  background: var(--itmo-red);
+  border-radius: 2px;
 }
-.cost-card tr.total td {
-  padding-top: 1.0cqh;
-  border-top: 1.5px dashed var(--ink);
-  font-weight: 700;
-}
-.cost-card tr.total td:last-child {
-  color: var(--itmo-red);
-  font-size: 1.55cqw;
-  font-family: var(--font-display);
-}
+.card.solid .card-list li { color: rgba(255,255,255,.95); }
+.card.solid .card-list li::before { background: #fff; }
 
 /* Big facts */
 .bigfacts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.6cqw; }
@@ -516,6 +491,316 @@ html, body {
   color: var(--ink);
 }
 
+/* ─── Competitor matrix table ─────────────────────────────────────── */
+.matrix {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.98cqw;
+  background: #fff;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 2px solid var(--grey-2);
+}
+.matrix th, .matrix td {
+  padding: 0.7cqh 0.7cqw;
+  text-align: left;
+  border-bottom: 1px solid var(--grey-2);
+  vertical-align: middle;
+}
+.matrix th {
+  background: var(--grey-1);
+  font-family: var(--font-mono);
+  font-size: 0.88cqw;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--grey-7);
+  font-weight: 700;
+}
+.matrix th.ours {
+  background: var(--itmo-red);
+  color: #fff;
+}
+.matrix td.ours {
+  background: #FFF6F8;
+  font-weight: 700;
+  color: var(--itmo-red);
+}
+.matrix td.feat {
+  font-weight: 600;
+  color: var(--ink);
+}
+.matrix .yes { color: #16A34A; font-weight: 700; }
+.matrix .no  { color: var(--grey-4); font-weight: 600; }
+.matrix .partial { color: #D97706; font-weight: 700; }
+.matrix tr:last-child td { border-bottom: none; }
+
+/* SWOT grid */
+.swot {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.2cqw;
+  flex: 1;
+  min-height: 0;
+}
+.swot-cell {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border-radius: var(--radius-md);
+  border: 2px solid var(--grey-2);
+  padding: 1.2cqh 1.1cqw;
+  gap: .6cqh;
+  min-height: 0;
+  overflow: hidden;
+}
+.swot-cell .swot-l {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.3cqw;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--itmo-red);
+  display: flex;
+  align-items: center;
+  gap: .6cqw;
+}
+.swot-cell .swot-l::before {
+  content: '';
+  display: inline-block;
+  width: .55cqw;
+  height: 1.3cqw;
+  background: var(--itmo-red);
+  border-radius: 2px;
+}
+.swot-cell.s { border-color: var(--itmo-red); }
+.swot-cell.s .swot-l { color: var(--itmo-red); }
+.swot-cell.w .swot-l { color: var(--grey-7); }
+.swot-cell.w .swot-l::before { background: var(--grey-7); }
+.swot-cell.o .swot-l { color: #16A34A; }
+.swot-cell.o .swot-l::before { background: #16A34A; }
+.swot-cell.t .swot-l { color: #D97706; }
+.swot-cell.t .swot-l::before { background: #D97706; }
+.swot-cell ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: .35cqh;
+}
+.swot-cell li {
+  font-size: 0.9cqw;
+  line-height: 1.32;
+  color: var(--ink);
+  padding-left: 1.0cqw;
+  position: relative;
+}
+.swot-cell li::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0.58em;
+  width: 0.55cqw;
+  height: 0.15cqw;
+  background: var(--grey-4);
+  border-radius: 2px;
+}
+
+/* Roadmap timeline */
+.timeline {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0.6cqw;
+  min-height: 0;
+}
+.timeline .step {
+  background: #fff;
+  border: 2px solid var(--grey-2);
+  border-top: 5px solid var(--itmo-red);
+  border-radius: var(--radius-md);
+  padding: 1.2cqh 0.7cqw;
+  display: flex;
+  flex-direction: column;
+  gap: .35cqh;
+}
+.timeline .step .n {
+  font-family: var(--font-mono);
+  font-size: 0.8cqw;
+  letter-spacing: .12em;
+  color: var(--itmo-red);
+  font-weight: 700;
+}
+.timeline .step .d {
+  font-family: var(--font-mono);
+  font-size: 0.78cqw;
+  color: var(--grey-6);
+}
+.timeline .step .h {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.95cqw;
+  line-height: 1.2;
+  color: var(--black);
+}
+.timeline .step .p {
+  font-size: 0.78cqw;
+  color: var(--grey-7);
+  line-height: 1.3;
+}
+
+/* Personas grid */
+.personas {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1.4cqw;
+  min-height: 0;
+  flex: 1;
+}
+.persona {
+  background: #fff;
+  border: 2px solid var(--grey-2);
+  border-radius: var(--radius-md);
+  padding: 1.6cqh 1.3cqw;
+  display: flex;
+  flex-direction: column;
+  gap: .6cqh;
+}
+.persona .p-tag {
+  font-family: var(--font-mono);
+  font-size: 0.78cqw;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: #fff;
+  background: var(--itmo-red);
+  padding: .25cqh .6cqw;
+  border-radius: 999px;
+  align-self: flex-start;
+}
+.persona.b2c .p-tag { background: var(--itmo-red); }
+.persona.b2b .p-tag { background: var(--ink); }
+.persona.partner .p-tag { background: #D97706; }
+.persona .p-h {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.3cqw;
+  line-height: 1.15;
+  color: var(--black);
+  margin: 0;
+}
+.persona .p-meta {
+  font-family: var(--font-mono);
+  font-size: 0.78cqw;
+  letter-spacing: .04em;
+  color: var(--grey-5);
+}
+.persona .p-block {
+  display: flex;
+  flex-direction: column;
+  gap: .25cqh;
+}
+.persona .p-block .p-bl {
+  font-family: var(--font-mono);
+  font-size: 0.75cqw;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--itmo-red);
+  font-weight: 700;
+}
+.persona .p-block .p-bd {
+  font-size: 0.95cqw;
+  line-height: 1.35;
+  color: var(--ink);
+}
+
+/* Pricing tiers */
+.tiers {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.0cqw;
+  min-height: 0;
+  flex: 1;
+}
+.tier {
+  background: #fff;
+  border: 2px solid var(--grey-2);
+  border-radius: var(--radius-md);
+  padding: 1.6cqh 1.0cqw;
+  display: flex;
+  flex-direction: column;
+  gap: .6cqh;
+}
+.tier.accent { border-color: var(--itmo-red); }
+.tier.solid {
+  background: var(--itmo-red);
+  border-color: var(--itmo-red);
+  color: #fff;
+}
+.tier .t-tag {
+  font-family: var(--font-mono);
+  font-size: 0.78cqw;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--grey-5);
+  font-weight: 700;
+}
+.tier.accent .t-tag, .tier.solid .t-tag { color: var(--itmo-red); }
+.tier.solid .t-tag { color: rgba(255,255,255,.92); }
+.tier .t-h {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.5cqw;
+  line-height: 1.0;
+  color: var(--black);
+  margin: 0;
+}
+.tier.solid .t-h { color: #fff; }
+.tier .t-price {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.6cqw;
+  color: var(--itmo-red);
+  line-height: 1.0;
+}
+.tier.solid .t-price { color: #fff; }
+.tier .t-price small {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 0.85cqw;
+  color: var(--grey-6);
+}
+.tier.solid .t-price small { color: rgba(255,255,255,.85); }
+.tier .t-aud {
+  font-size: 0.85cqw;
+  color: var(--grey-7);
+  font-style: italic;
+}
+.tier.solid .t-aud { color: rgba(255,255,255,.92); }
+.tier ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: .35cqh;
+}
+.tier li {
+  font-size: 0.82cqw;
+  line-height: 1.3;
+  color: var(--ink);
+  padding-left: 0.9cqw;
+  position: relative;
+}
+.tier li::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0.55em;
+  width: 0.5cqw;
+  height: 0.14cqw;
+  background: var(--itmo-red);
+  border-radius: 2px;
+}
+.tier.solid li { color: rgba(255,255,255,.95); }
+.tier.solid li::before { background: #fff; }
+
 /* ─── Navigation HUD ──────────────────────────────────────────────── */
 #hud {
   position: fixed; bottom: 14px; left: 50%; transform: translateX(-50%);
@@ -570,79 +855,6 @@ sup.ref {
 sup.ref::before { content: '['; }
 sup.ref::after  { content: ']'; }
 
-/* ─── Glossary table (slide 2) ───────────────────────────────────── */
-.glossary {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0.4cqh 2.4cqw;
-  flex: 1;
-  min-height: 0;
-  align-content: start;
-}
-.glossary .row {
-  display: grid;
-  grid-template-columns: 5.5cqw 1fr;
-  gap: 0.8cqw;
-  padding: 0.65cqh 0;
-  border-bottom: 1px solid var(--grey-2);
-  font-size: 1.05cqw;
-  align-items: baseline;
-}
-.glossary .row .term {
-  font-family: var(--font-mono);
-  font-weight: 700;
-  color: var(--itmo-red);
-  letter-spacing: .04em;
-  white-space: nowrap;
-}
-.glossary .row .def { color: var(--grey-7); line-height: 1.35; }
-.glossary .section-head {
-  grid-column: 1 / -1;
-  font-family: var(--font-mono);
-  font-size: 0.95cqw;
-  letter-spacing: .14em;
-  text-transform: uppercase;
-  color: var(--itmo-red);
-  font-weight: 700;
-  margin: 0.6cqh 0 0.3cqh;
-}
-.glossary .section-head:first-child { margin-top: 0; }
-
-/* ─── References list ─────────────────────────────────────────────── */
-.refs {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0.5cqh 2.4cqw;
-  flex: 1;
-  min-height: 0;
-  align-content: start;
-  counter-reset: ref;
-}
-.refs .ref {
-  display: grid;
-  grid-template-columns: 2.6cqw 1fr;
-  gap: 0.8cqw;
-  padding: 0.6cqh 0;
-  border-bottom: 1px solid var(--grey-2);
-  font-size: 0.95cqw;
-  line-height: 1.35;
-  align-items: baseline;
-}
-.refs .ref .n {
-  font-family: var(--font-mono);
-  font-weight: 700;
-  color: var(--itmo-red);
-}
-.refs .ref .src { color: var(--grey-7); }
-.refs .ref .src .src-type {
-  font-family: var(--font-mono);
-  font-size: .85em;
-  text-transform: uppercase;
-  letter-spacing: .1em;
-  color: var(--grey-5);
-  margin-right: .3em;
-}
-
 /* ─── Animations ─────────────────────────────────────────────────── */
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(8px); }
@@ -652,25 +864,21 @@ sup.ref::after  { content: ']'; }
   from { opacity: 0; transform: scale(.94); }
   to   { opacity: 1; transform: scale(1); }
 }
-@keyframes pulse-dot {
-  0%, 100% { transform: scale(1); }
-  50%      { transform: scale(.88); }
-}
 @keyframes shimmer-arrow {
   0%   { color: var(--itmo-red); transform: translateX(0); }
   50%  { color: var(--itmo-red-d); transform: translateX(2px); }
   100% { color: var(--itmo-red); transform: translateX(0); }
 }
 
-/* Cascade-reveal bullets, KPIs, cards on slide activation */
 .slide.active .bullets li,
 .slide.active .kpi,
 .slide.active .bigfacts .fact,
 .slide.active .pipeline > *,
-.slide.active .cost-card,
-.slide.active .image-card,
-.slide.active .glossary .row,
-.slide.active .refs .ref,
+.slide.active .card,
+.slide.active .persona,
+.slide.active .tier,
+.slide.active .swot-cell,
+.slide.active .timeline .step,
 .slide.active .footer-note {
   animation: fadeUp .55s cubic-bezier(.2,.7,.3,1) backwards;
 }
@@ -681,7 +889,6 @@ sup.ref::after  { content: ']'; }
   animation-delay: .05s;
 }
 
-/* Staggered delays */
 .slide.active .bullets li:nth-child(1)  { animation-delay: .12s }
 .slide.active .bullets li:nth-child(2)  { animation-delay: .19s }
 .slide.active .bullets li:nth-child(3)  { animation-delay: .26s }
@@ -689,13 +896,35 @@ sup.ref::after  { content: ']'; }
 .slide.active .bullets li:nth-child(5)  { animation-delay: .40s }
 .slide.active .bullets li:nth-child(6)  { animation-delay: .47s }
 .slide.active .bullets li:nth-child(7)  { animation-delay: .54s }
-.slide.active .bullets li:nth-child(8)  { animation-delay: .61s }
 
-.slide.active .kpi-grid .kpi:nth-child(1) { animation-delay: .15s }
-.slide.active .kpi-grid .kpi:nth-child(2) { animation-delay: .25s }
-.slide.active .kpi-grid .kpi:nth-child(3) { animation-delay: .35s }
-.slide.active .kpi-grid .kpi:nth-child(4) { animation-delay: .45s }
-.slide.active .kpi-grid .kpi:nth-child(5) { animation-delay: .55s }
+.slide.active .persona:nth-child(1) { animation-delay: .15s }
+.slide.active .persona:nth-child(2) { animation-delay: .25s }
+.slide.active .persona:nth-child(3) { animation-delay: .35s }
+
+.slide.active .card:nth-child(1) { animation-delay: .12s }
+.slide.active .card:nth-child(2) { animation-delay: .20s }
+.slide.active .card:nth-child(3) { animation-delay: .28s }
+.slide.active .card:nth-child(4) { animation-delay: .36s }
+.slide.active .card:nth-child(5) { animation-delay: .44s }
+.slide.active .card:nth-child(6) { animation-delay: .52s }
+
+.slide.active .tier:nth-child(1) { animation-delay: .15s }
+.slide.active .tier:nth-child(2) { animation-delay: .25s }
+.slide.active .tier:nth-child(3) { animation-delay: .35s }
+.slide.active .tier:nth-child(4) { animation-delay: .45s }
+
+.slide.active .swot-cell:nth-child(1) { animation-delay: .15s }
+.slide.active .swot-cell:nth-child(2) { animation-delay: .25s }
+.slide.active .swot-cell:nth-child(3) { animation-delay: .35s }
+.slide.active .swot-cell:nth-child(4) { animation-delay: .45s }
+
+.slide.active .timeline .step:nth-child(1) { animation-delay: .12s }
+.slide.active .timeline .step:nth-child(2) { animation-delay: .18s }
+.slide.active .timeline .step:nth-child(3) { animation-delay: .24s }
+.slide.active .timeline .step:nth-child(4) { animation-delay: .30s }
+.slide.active .timeline .step:nth-child(5) { animation-delay: .36s }
+.slide.active .timeline .step:nth-child(6) { animation-delay: .42s }
+.slide.active .timeline .step:nth-child(7) { animation-delay: .48s }
 
 .slide.active .bigfacts .fact:nth-child(1) { animation-delay: .18s }
 .slide.active .bigfacts .fact:nth-child(2) { animation-delay: .30s }
@@ -713,42 +942,7 @@ sup.ref::after  { content: ']'; }
 .slide.active .pipeline > *:nth-child(10) { animation-delay: .68s }
 .slide.active .pipeline > *:nth-child(11) { animation-delay: .74s }
 
-.slide.active .image-card { animation: scaleIn .6s cubic-bezier(.2,.7,.3,1) backwards; animation-delay: .1s; }
-
-/* Subtle endless pulse on the browser-window dots */
-.slide.active .image-card::before { animation: pulse-dot 3.2s ease-in-out infinite; }
-.slide.active .image-card::after  { animation: pulse-dot 3.2s ease-in-out infinite .4s; }
-
-/* Pipeline arrows shimmer */
 .slide.active .pipeline em { animation: shimmer-arrow 2.4s ease-in-out infinite; }
-.slide.active .pipeline em:nth-of-type(1) { animation-delay: 0s }
-.slide.active .pipeline em:nth-of-type(2) { animation-delay: .2s }
-.slide.active .pipeline em:nth-of-type(3) { animation-delay: .4s }
-.slide.active .pipeline em:nth-of-type(4) { animation-delay: .6s }
-.slide.active .pipeline em:nth-of-type(5) { animation-delay: .8s }
-
-/* Glossary cascade */
-.slide.active .glossary .row:nth-child(1)  { animation-delay: .10s }
-.slide.active .glossary .row:nth-child(2)  { animation-delay: .14s }
-.slide.active .glossary .row:nth-child(3)  { animation-delay: .18s }
-.slide.active .glossary .row:nth-child(4)  { animation-delay: .22s }
-.slide.active .glossary .row:nth-child(5)  { animation-delay: .26s }
-.slide.active .glossary .row:nth-child(6)  { animation-delay: .30s }
-.slide.active .glossary .row:nth-child(7)  { animation-delay: .34s }
-.slide.active .glossary .row:nth-child(8)  { animation-delay: .38s }
-.slide.active .glossary .row:nth-child(9)  { animation-delay: .42s }
-.slide.active .glossary .row:nth-child(10) { animation-delay: .46s }
-.slide.active .glossary .row:nth-child(n+11) { animation-delay: .50s }
-
-.slide.active .refs .ref:nth-child(1) { animation-delay: .10s }
-.slide.active .refs .ref:nth-child(2) { animation-delay: .15s }
-.slide.active .refs .ref:nth-child(3) { animation-delay: .20s }
-.slide.active .refs .ref:nth-child(4) { animation-delay: .25s }
-.slide.active .refs .ref:nth-child(5) { animation-delay: .30s }
-.slide.active .refs .ref:nth-child(6) { animation-delay: .35s }
-.slide.active .refs .ref:nth-child(7) { animation-delay: .40s }
-.slide.active .refs .ref:nth-child(8) { animation-delay: .45s }
-.slide.active .refs .ref:nth-child(n+9) { animation-delay: .50s }
 
 /* Title-slide intro */
 @keyframes badge-slide-in { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
@@ -760,7 +954,6 @@ sup.ref::after  { content: ']'; }
 .slide.active.title-slide .meta .item:nth-child(2) { animation: fadeUp .5s ease backwards; animation-delay: .70s; }
 .slide.active.title-slide .meta .item:nth-child(3) { animation: fadeUp .5s ease backwards; animation-delay: .80s; }
 
-/* Final-slide intro */
 .slide.active.final-slide h1 { animation: h1-rise .7s cubic-bezier(.2,.7,.3,1) backwards; animation-delay: .15s; }
 .slide.active.final-slide .sub { animation: fadeUp .55s ease backwards; animation-delay: .35s; }
 .slide.active.final-slide .contact-grid > * { animation: fadeUp .5s ease backwards; }
@@ -775,24 +968,47 @@ sup.ref::after  { content: ']'; }
 
 /* ─── Print (PDF) ─────────────────────────────────────────────────── */
 @media print {
-  html, body { overflow: visible; background: #fff; height: auto; }
+  html, body {
+    overflow: visible;
+    background: #fff;
+    height: auto;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+  }
+  body::before { display: none !important; }
   #hud { display: none !important; }
-  #deck { display: block; width: 100%; height: auto; }
+  #deck { display: block; width: auto; height: auto; place-items: initial; }
+  .slide, .slide * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+  }
   .slide {
     position: relative !important;
-    width: 100% !important;
-    aspect-ratio: 16/9 !important;
-    max-width: none;
-    margin: 0;
-    border-radius: 0;
-    box-shadow: none;
+    display: block !important;
+    width: 297mm !important;
+    height: 167mm !important;
+    aspect-ratio: auto !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
     opacity: 1 !important;
     pointer-events: auto !important;
     transform: none !important;
     page-break-after: always;
     break-after: page;
+    page-break-inside: avoid;
+    break-inside: avoid;
+    background-size: 100% 100% !important;
+    background-repeat: no-repeat !important;
+    overflow: hidden !important;
   }
-  .slide:last-child { page-break-after: auto; }
+  .slide:last-child { page-break-after: auto; break-after: auto; }
+  .slide:not(.active) { opacity: 1 !important; transform: none !important; }
+  .slide *, .slide.active * { animation: none !important; transition: none !important; }
   @page { size: 297mm 167mm; margin: 0; }
 }
 </style>
@@ -804,120 +1020,154 @@ sup.ref::after  { content: ']'; }
   <!-- ────────────────── Slide 1: TITLE ────────────────── -->
   <section class="slide bg-red title-slide active" data-n="1">
     <div class="slide-inner">
-      <span class="badge">Группа U4125 · 2026</span>
-      <h1>Эколого-экономическое обоснование внедрения&nbsp;<span class="accent">ЛОС</span> на&nbsp;АО «Мальцовский&nbsp;портландцемент»</h1>
-      <p class="lead">Курсовая работа по дисциплине «Инновационные подходы к&nbsp;созданию чистых производств»</p>
+      <span class="badge">Pitch Deck · ППМ-2 · 2026</span>
+      <h1>«Хоккейный <span class="accent">родитель</span>»&nbsp;— платформа объективной оценки и поиска юных хоккеистов</h1>
+      <p class="lead">Стандартизированные видео-тесты, рейтинги, прогресс — для родителей; фильтруемая база с видеоподтверждением — для скаутов и академий</p>
       <div class="meta">
         <div class="item">
-          <div class="l">Студенты группы U4125</div>
-          <div class="v">Михайлов А.А. · Синицина П.Д.<br>Костюкова А.К. · Багаутдинов А.Л.</div>
+          <div class="l">Команда проекта</div>
+          <div class="v">Студенты ИТМО, ФТМИ<br>группа U4125</div>
         </div>
         <div class="item">
-          <div class="l">Преподаватель</div>
-          <div class="v"><strong>Сергиенко О.И.</strong></div>
+          <div class="l">Заказчик</div>
+          <div class="v"><strong>Хоккейная академия</strong><br>Левкин А.В. · Завгородний С.И.</div>
         </div>
         <div class="item">
-          <div class="l">Факультет / направление</div>
-          <div class="v">ФТМИ · 27.04.05 «Инноватика»</div>
+          <div class="l">Дисциплина / сроки</div>
+          <div class="v">Продуктовая проектная мастерская<br>2 марта – 29 мая 2026</div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ────────────────── Slide 2: Список сокращений ────────────────── -->
+  <!-- ────────────────── Slide 2: ПРОБЛЕМА ────────────────── -->
   <section class="slide bg-light" data-n="2">
     <div class="slide-inner">
       <div class="slide-header">
         <div class="title-block">
-          <span class="kicker">Справочно · 01</span>
-          <h2 class="slide-title">Список сокращений и обозначений</h2>
+          <span class="kicker">Проблема · 01</span>
+          <h2 class="slide-title">Невидимые таланты и оценка «на глаз»</h2>
         </div>
       </div>
       <div class="slide-body">
-        <div class="glossary">
-          <div class="section-head">Технические и экологические</div>
-          <div class="row"><span class="term">АО</span><span class="def">акционерное общество</span></div>
-          <div class="row"><span class="term">ЛОС</span><span class="def">локальные очистные сооружения</span></div>
-          <div class="row"><span class="term">ВВ</span><span class="def">взвешенные вещества</span></div>
-          <div class="row"><span class="term">ПДК</span><span class="def">предельно допустимая концентрация</span></div>
-          <div class="row"><span class="term">НВОС</span><span class="def">негативное воздействие на окружающую среду</span></div>
-          <div class="row"><span class="term">КЭР</span><span class="def">комплексное экологическое разрешение</span></div>
-          <div class="row"><span class="term">НДТ</span><span class="def">наилучшие доступные технологии</span></div>
-          <div class="row"><span class="term">ИТС</span><span class="def">информационно-технический справочник</span></div>
-          <div class="row"><span class="term">МАУ-2А</span><span class="def">марочный активированный уголь сорбционного класса</span></div>
-          <div class="row"><span class="term">ОЗК-4</span><span class="def">мешочная установка обезвоживания осадка</span></div>
-          <div class="row"><span class="term">МПЦ</span><span class="def">Мальцовский портландцемент</span></div>
-          <div class="row"><span class="term">ЦФО</span><span class="def">Центральный федеральный округ</span></div>
-
-          <div class="section-head">Экономические и финансовые</div>
-          <div class="row"><span class="term">CAPEX</span><span class="def">инвестиционные (капитальные) затраты, I₀</span></div>
-          <div class="row"><span class="term">OPEX</span><span class="def">эксплуатационные затраты в год</span></div>
-          <div class="row"><span class="term">B</span><span class="def">чистая годовая экономия проекта</span></div>
-          <div class="row"><span class="term">PB</span><span class="def">простой период окупаемости (Payback Period)</span></div>
-          <div class="row"><span class="term">ROI</span><span class="def">рентабельность инвестиций (Return on Investment)</span></div>
-          <div class="row"><span class="term">NPV</span><span class="def">чистый дисконтированный доход (Net Present Value)</span></div>
-          <div class="row"><span class="term">IRR</span><span class="def">внутренняя норма доходности (Internal Rate of Return)</span></div>
-          <div class="row"><span class="term">PI</span><span class="def">индекс доходности (Profitability Index)</span></div>
-          <div class="row"><span class="term">r</span><span class="def">ставка дисконтирования, %</span></div>
-          <div class="row"><span class="term">n</span><span class="def">экономический срок службы проекта, лет</span></div>
+        <ul class="bullets large">
+          <li>Юных хоккеистов оценивают по <b>локальной статистике, мнению тренера и точечным просмотрам</b> — сравнение между регионами и школами невозможно.</li>
+          <li>Родители не понимают <i>реального уровня ребёнка</i> и тратят деньги на сборы и экипировку без понимания потенциала.</li>
+          <li>Скаутам не хватает единой базы: данные разрознены, видео разного качества, поиск «руками» через таблицы.</li>
+          <li>Игрок может быть лидером в регионе, но <u>не соответствовать уровню сильной академии</u> — это вскрывается только при переходе.</li>
+        </ul>
+        <div class="footer-note">
+          <span class="kicker">Вывод</span>
+          <div><b>Нет единой системы сравнения</b> игроков из разных регионов — это <i>главное узкое место</i> рынка.</div>
         </div>
       </div>
       <div class="slide-num"><span>02</span> / 16</div>
     </div>
   </section>
 
-  <!-- ────────────────── Slide 3: Актуальность ────────────────── -->
+  <!-- ────────────────── Slide 3: ЦА ────────────────── -->
   <section class="slide bg-light" data-n="3">
     <div class="slide-inner">
       <div class="slide-header">
         <div class="title-block">
-          <span class="kicker">Введение · 02</span>
-          <h2 class="slide-title">Актуальность проекта</h2>
+          <span class="kicker">Целевая аудитория · 02</span>
+          <h2 class="slide-title">Три сегмента, две стороны рынка</h2>
         </div>
       </div>
       <div class="slide-body">
-        <ul class="bullets large">
-          <li>Цементная отрасль РФ — спад: <b>64,9 → 58,6 млн т</b> (2024 → 2025), прогноз падения <b>до 20 %</b><sup class="ref" title="[1] jcement.ru — обзор отрасли 2024; [2] Интерфакс, прогноз 2026">1,2</sup>.</li>
-          <li><i>АО «Мальцовский портландцемент»</i> — крупнейший производитель ЦФО, входит в холдинг <b>ЦЕМРОС</b> (≈ 33 % рынка)<sup class="ref" title="[3] market.cemros.ru — о компании ЦЕМРОС; [6] cemros.ru — Мальцовский ПЦ">3,6</sup>.</li>
-          <li><b>Мокрый способ</b> производства цемента — повышенное водопотребление: <b>150–350 л</b> на тонну клинкера<sup class="ref" title="[15] ИТС 6-2024. Производство цемента — НДТ">15</sup>.</li>
-          <li>Сброс <b><abbr title="ВВ — взвешенные вещества">ВВ</abbr></b> в ручей <u>Болдыж</u> с превышением <abbr title="ПДК — предельно допустимая концентрация">ПДК</abbr> в десятки раз — нарушение водного законодательства<sup class="ref" title="[14] ФЗ «Об охране окружающей среды» 7-ФЗ от 10.01.2002">14</sup>.</li>
-          <li>Судебное дело <i>№ А09-5918/2023</i> — административные санкции к предприятию<sup class="ref" title="[21] Решение Арбитражного суда Брянской области от 23.10.2023">21</sup>.</li>
-        </ul>
-        <div class="footer-note">
-          <span class="kicker">Вывод</span>
-          <div><b>Нужны локальные очистные сооружения (<abbr title="ЛОС — локальные очистные сооружения">ЛОС</abbr>)</b> как элемент <i>чистого производства</i>.</div>
+        <div class="personas">
+          <div class="persona b2c">
+            <span class="p-tag">B2C · Драйвер контента</span>
+            <h3 class="p-h">Родители юных хоккеистов</h3>
+            <div class="p-meta">Дети 5–12 лет · Омская, Ленинградская обл. → РФ</div>
+            <div class="p-block">
+              <div class="p-bl">Мотивация</div>
+              <div class="p-bd">Объективная оценка, сравнение, заметность для скаутов, снижение тревожности «правильно ли мы занимаемся».</div>
+            </div>
+            <div class="p-block">
+              <div class="p-bl">Боли</div>
+              <div class="p-bd">Нет прозрачных критериев; траты без понимания потенциала; нельзя сравнить с ровесниками из других городов.</div>
+            </div>
+          </div>
+          <div class="persona b2b">
+            <span class="p-tag">B2B · Источник выручки</span>
+            <h3 class="p-h">Скауты, тренеры, академии</h3>
+            <div class="p-meta">Главные тренеры, селекционеры, спортивные директора</div>
+            <div class="p-block">
+              <div class="p-bl">Задачи</div>
+              <div class="p-bd">Поиск талантов из регионов, мониторинг прогресса, стандартизация отбора, снижение субъективизма.</div>
+            </div>
+            <div class="p-block">
+              <div class="p-bl">Боли</div>
+              <div class="p-bd">Разрозненность данных, поздние обновления, ручной сбор по сайтам и таблицам, «сарафанное радио».</div>
+            </div>
+          </div>
+          <div class="persona partner">
+            <span class="p-tag">Партнёры · Каналы</span>
+            <h3 class="p-h">Турниры, школы, инфоресурсы</h3>
+            <div class="p-meta">«Сибириус», KidsHockey.ru, AirHockey, ФХР</div>
+            <div class="p-block">
+              <div class="p-bl">Что дают</div>
+              <div class="p-bd">Доступ к концентрированной аудитории родителей и игроков, эталонные нормативы, инфоповоды.</div>
+            </div>
+            <div class="p-block">
+              <div class="p-bl">Что хотят</div>
+              <div class="p-bd">Цифровые сервисы для участников, уникальный контент (рейтинги, аналитика), повышение вовлечённости.</div>
+            </div>
+          </div>
         </div>
       </div>
       <div class="slide-num"><span>03</span> / 16</div>
     </div>
   </section>
 
-  <!-- ────────────────── Slide 4: Предприятие ────────────────── -->
+  <!-- ────────────────── Slide 4: РЕШЕНИЕ ────────────────── -->
   <section class="slide bg-light" data-n="4">
     <div class="slide-inner">
       <div class="slide-header">
         <div class="title-block">
-          <span class="kicker">Характеристика · 03</span>
-          <h2 class="slide-title">АО «Мальцовский&nbsp;портландцемент»</h2>
+          <span class="kicker">Решение · 03</span>
+          <h2 class="slide-title">Платформа «Хоккейный родитель»</h2>
         </div>
       </div>
       <div class="slide-body">
-        <div class="body-grid cols-12-7">
-          <figure class="image-card">
-            <span class="ctrls"><svg viewBox="0 0 12 2" fill="currentColor"><rect width="12" height="2" rx="1"/></svg><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 2 L10 10 M10 2 L2 10"/></svg></span>
-            <img src="kursovaia_media/image1.png" alt="Карта-схема расположения АО «МПЦ»">
-            <figcaption>Рис. 2.1 — Карта-схема расположения АО «МПЦ»</figcaption>
-          </figure>
-          <div>
-            <div class="kpi-grid" style="grid-template-columns: 1fr 1fr;">
-              <div class="kpi"><div class="l">Основано</div><div class="v">1899</div><div class="f">г. Фокино, Брянская обл.</div></div>
-              <div class="kpi"><div class="l">Мощность</div><div class="v">2,348<small>&nbsp;млн&nbsp;т/г</small></div><div class="f">цемента</div></div>
-              <div class="kpi"><div class="l">Печи</div><div class="v">4</div><div class="f">на природном газе</div></div>
-              <div class="kpi accent"><div class="l">Произведено</div><div class="v">180<small>&nbsp;млн&nbsp;т</small></div><div class="f">за всю историю</div></div>
-            </div>
-            <ul class="bullets tight" style="margin-top:1.4cqh;">
-              <li><i><abbr title="КЭР — комплексное экологическое разрешение">КЭР</abbr> получено в 2025 г.</i><sup class="ref" title="[12] cemros.ru — Мальцовский ПЦ получил КЭР, 25.09.2025">12</sup></li>
-              <li>Модернизация до 2030 г. — <b>&gt; 2,7 млрд руб.</b><sup class="ref" title="[18] cemros.ru — инвестиции в качество, 13.12.2025">18</sup></li>
+        <p style="font-size:1.55cqw; line-height:1.4; color:var(--ink); margin:0 0 1.2cqh; text-align:justify;">
+          Цифровой сервис, который превращает <b>разрозненные и субъективные данные</b> в <u>структурированную систему оценки и поиска</u>. Родители загружают стандартизированные видео и тесты — платформа формирует профиль, рейтинг и прогресс — скауты находят талантов по объективным параметрам с видеоподтверждением.
+        </p>
+        <div class="pipeline">
+          <span>родители</span><em>→</em>
+          <span class="accent">стандартизированные видео</span><em>→</em>
+          <span>профиль игрока</span><em>→</em>
+          <span class="accent">рейтинг и прогресс</span><em>→</em>
+          <span>фильтры и поиск</span><em>→</em>
+          <span>скауты и академии</span>
+        </div>
+        <div class="cards-grid cols-3" style="margin-top:.6cqh;">
+          <div class="card accent">
+            <span class="card-l">Для родителей</span>
+            <h4 class="card-h">Объективная оценка и развитие ребёнка</h4>
+            <ul class="card-list">
+              <li>прогресс и динамика по тестам;</li>
+              <li>сравнение с ровесниками по региону и РФ;</li>
+              <li>обучающий раздел и рекомендации.</li>
+            </ul>
+          </div>
+          <div class="card accent">
+            <span class="card-l">Для скаутов</span>
+            <h4 class="card-h">Быстрый поиск перспективных игроков</h4>
+            <ul class="card-list">
+              <li>фильтрация по антропометрии и тестам;</li>
+              <li>видео стандартных упражнений;</li>
+              <li>шорт-лист и сравнение профилей.</li>
+            </ul>
+          </div>
+          <div class="card solid">
+            <span class="card-l">Ключевая ценность</span>
+            <h4 class="card-h">Единая база с видео-подтверждением навыков</h4>
+            <ul class="card-list">
+              <li>стандартизированные форматы;</li>
+              <li>прозрачные критерии оценки;</li>
+              <li>двусторонняя ценность B2C и B2B.</li>
             </ul>
           </div>
         </div>
@@ -926,141 +1176,181 @@ sup.ref::after  { content: ']'; }
     </div>
   </section>
 
-  <!-- ────────────────── Slide 5: Техпроцесс ────────────────── -->
+  <!-- ────────────────── Slide 5: Сценарий родителя ────────────────── -->
   <section class="slide bg-light" data-n="5">
     <div class="slide-inner">
       <div class="slide-header">
         <div class="title-block">
-          <span class="kicker">Технология · 04</span>
-          <h2 class="slide-title">Технологический процесс</h2>
+          <span class="kicker">Как это работает · 04</span>
+          <h2 class="slide-title">Сценарий родителя — основной</h2>
         </div>
       </div>
       <div class="slide-body">
-        <figure class="image-card" style="flex:1 1 auto;">
-          <span class="ctrls"><svg viewBox="0 0 12 2" fill="currentColor"><rect width="12" height="2" rx="1"/></svg><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 2 L10 10 M10 2 L2 10"/></svg></span>
-          <img src="kursovaia_media/image2.png" alt="Технологическая схема мокрого способа">
-          <figcaption>Рис. 2.2 — Технологическая схема мокрого способа производства цемента</figcaption>
-        </figure>
         <div class="pipeline">
-          <span>мел + глина</span><em>→</em>
-          <span>шлам (35–40 % воды)</span><em>→</em>
-          <span class="accent">обжиг 1450 °C</span><em>→</em>
-          <span>клинкер</span><em>→</em>
-          <span>помол</span><em>→</em>
-          <span>цемент</span>
+          <span class="accent">регистрация</span><em>→</em>
+          <span>профиль ребёнка</span><em>→</em>
+          <span>инструкция по съёмке</span><em>→</em>
+          <span class="accent">загрузка видео-тестов</span><em>→</em>
+          <span>анализ платформы</span><em>→</em>
+          <span class="accent">рейтинг + прогресс</span><em>→</em>
+          <span>повторные загрузки</span>
         </div>
-        <ul class="bullets tight">
-          <li>Собственные карьеры мела и глины — <i>низкие транспортные затраты</i> на сырьё.</li>
-          <li>Высокое технологическое <b>водопотребление: 150–350 л / т</b> клинкера — главный экологический вызов<sup class="ref" title="[15] ИТС 6-2024. Производство цемента — справочник по НДТ">15</sup>.</li>
+        <ul class="bullets tight" style="margin-top:.6cqh;">
+          <li>Родитель регистрируется и заполняет профиль: возраст, позиция, антропометрия (рост, вес), регион, школа.</li>
+          <li>Платформа объясняет <b>как правильно снимать</b>: ракурс, длительность, освещение — чтобы все видео были сопоставимы.</li>
+          <li>Загружаются стандартизированные тесты — <i>скорость, техника катания, бросок</i>, нормативное упражнение.</li>
+          <li>Родитель видит <u>понятные метрики, рейтинг по региону</u> и графики прогресса; возвращается раз в <b>3–4 месяца</b> за новой динамикой.</li>
         </ul>
+        <div class="footer-note">
+          <span class="kicker">UX-правило</span>
+          <div>Не более <b>3 кликов до загрузки видео</b> после регистрации · «2 клика до видео и ключевых метрик».</div>
+        </div>
       </div>
       <div class="slide-num"><span>05</span> / 16</div>
     </div>
   </section>
 
-  <!-- ────────────────── Slide 6: Экологическая проблема ────────────────── -->
+  <!-- ────────────────── Slide 6: Сценарий скаута ────────────────── -->
   <section class="slide bg-light" data-n="6">
     <div class="slide-inner">
       <div class="slide-header">
         <div class="title-block">
-          <span class="kicker">Проблема · 05</span>
-          <h2 class="slide-title">Экологическая проблема</h2>
+          <span class="kicker">Как это работает · 05</span>
+          <h2 class="slide-title">Сценарий скаута — вторичный</h2>
         </div>
       </div>
       <div class="slide-body">
-        <div class="body-grid cols-7-12">
+        <div class="pipeline">
+          <span>вход скаута</span><em>→</em>
+          <span class="accent">фильтры</span><em>→</em>
+          <span>список карточек</span><em>→</em>
+          <span class="accent">профиль игрока</span><em>→</em>
+          <span>видео-тесты</span><em>→</em>
+          <span class="accent">шорт-лист</span><em>→</em>
+          <span>передача в клуб</span>
+        </div>
+        <div class="body-grid cols-2" style="margin-top:.6cqh;">
           <div>
-            <div class="subhead">Два водных контура</div>
-            <ul class="bullets tight">
-              <li>производственный (шлам);</li>
-              <li>карьерно-площадочный (сброс).</li>
+            <div class="subhead">Что нужно скауту (интервью)</div>
+            <ul class="bullets tighter">
+              <li>широкая фильтрация: возраст, позиция, регион, антропометрия, статистика, тесты;</li>
+              <li>видео стандартных упражнений + игровые нарезки;</li>
+              <li>сохранение, сравнение, выгрузка профилей;</li>
+              <li>информация о тренере, клубе, семейной антропометрии;</li>
+              <li>удобство «1–2 клика и вся нужная информация перед глазами».</li>
             </ul>
-            <div class="subhead" style="margin-top:1.4cqh;">Путь стока</div>
-            <p style="font-size:1.2cqw; line-height:1.45; color:var(--grey-7); margin:.2cqh 0 0; text-align:justify;">Карьерные, поверхностные и дренажно-дождевые воды → отстойник → пруды → <u>ручей Болдыж</u>.</p>
-            <div class="kpi solid" style="margin-top:1.6cqh;">
-              <div class="l">ВВ в сбросе</div>
-              <div class="v">до 400<small>&nbsp;мг/м³</small></div>
-              <div class="f">при ПДК 10–15 мг/м³ — превышение <b>в 25–40 раз</b></div>
-            </div>
-            <p style="font-size:1.05cqw; color:var(--grey-6); margin-top:1cqh; font-style:italic;">Болдыж — водоём рыбохозяйственного значения.</p>
           </div>
-          <figure class="image-card">
-            <span class="ctrls"><svg viewBox="0 0 12 2" fill="currentColor"><rect width="12" height="2" rx="1"/></svg><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 2 L10 10 M10 2 L2 10"/></svg></span>
-            <img src="kursovaia_media/image3.png" alt="Схема формирования водных потоков">
-            <figcaption>Рис. 4.1 — Формирование водных потоков и сбросов</figcaption>
-          </figure>
+          <div>
+            <div class="subhead">Приоритеты при отборе</div>
+            <ul class="bullets tighter">
+              <li><b>1.</b> Игровое мышление и принятие решений;</li>
+              <li><b>2.</b> Техника катания;</li>
+              <li><b>3.</b> Физические способности;</li>
+              <li><b>4.</b> Техника владения клюшкой;</li>
+              <li>+ личностные качества: целеустремлённость, трудоспособность.</li>
+            </ul>
+          </div>
         </div>
       </div>
       <div class="slide-num"><span>06</span> / 16</div>
     </div>
   </section>
 
-  <!-- ────────────────── Slide 7: Материальный баланс ────────────────── -->
+  <!-- ────────────────── Slide 7: Ядро продукта — видео-форматы ────────────────── -->
   <section class="slide bg-light" data-n="7">
     <div class="slide-inner">
       <div class="slide-header">
         <div class="title-block">
-          <span class="kicker">Технология · 06</span>
-          <h2 class="slide-title">Материальный баланс предприятия</h2>
+          <span class="kicker">Ядро продукта · 06</span>
+          <h2 class="slide-title">6 стандартизированных видео-форматов</h2>
         </div>
       </div>
       <div class="slide-body">
-        <div class="body-grid cols-12-7">
-          <figure class="image-card">
-            <span class="ctrls"><svg viewBox="0 0 12 2" fill="currentColor"><rect width="12" height="2" rx="1"/></svg><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 2 L10 10 M10 2 L2 10"/></svg></span>
-            <img src="kursovaia_media/image4.png" alt="Материальный баланс сырья, воды и продукции">
-            <figcaption>Рис. 4.2 — Укрупнённый материальный баланс сырья, воды и продукции</figcaption>
-          </figure>
-          <div>
-            <div class="subhead">Сырьё</div>
-            <ul class="bullets tighter">
-              <li><b>Мел и глина</b> из собственных карьеров.</li>
-              <li>Добавки: <i>гипс, активные минеральные</i> компоненты.</li>
-              <li><b>Топливо:</b> природный газ для печей и сушки.</li>
-            </ul>
-            <div class="subhead" style="margin-top:1.2cqh;">Вода</div>
-            <ul class="bullets tighter">
-              <li><b>Технологическая</b> вода для приготовления шлама.</li>
-              <li><b>Карьерные и ливневые</b> воды — отвод через пруды.</li>
-            </ul>
-            <div class="subhead" style="margin-top:1.2cqh;">Продукция</div>
-            <ul class="bullets tighter">
-              <li><b>Цемент:</b> 2,348 млн т / год.</li>
-              <li><i>Отходы:</i> пыль, шлам, побочные потоки.</li>
-            </ul>
+        <div class="cards-grid cols-3">
+          <div class="card accent">
+            <span class="card-l">Базовые тесты</span>
+            <h4 class="card-h">Скоростно-силовой</h4>
+            <div class="card-p">Дистанция 20&nbsp;м · <i>раз в 2–3 мес.</i> Объективная метрика, сравнение со сверстниками.</div>
           </div>
+          <div class="card accent">
+            <span class="card-l">Базовые тесты</span>
+            <h4 class="card-h">Техника катания</h4>
+            <div class="card-p">Повороты, торможение · <i>раз в месяц</i>. CV-сравнение с эталоном, рекомендации.</div>
+          </div>
+          <div class="card accent">
+            <span class="card-l">Базовые тесты</span>
+            <h4 class="card-h">Бросок</h4>
+            <div class="card-p">Кистевой / щелчок · <i>раз в 1–2 мес.</i> Сила и точность — ключевой критерий скаутов.</div>
+          </div>
+          <div class="card">
+            <span class="card-l">Прогресс</span>
+            <h4 class="card-h">Нормативное упражнение</h4>
+            <div class="card-p">Слалом по конусам · <i>по запросу</i> для участия в региональном рейтинге.</div>
+          </div>
+          <div class="card">
+            <span class="card-l">Доп. материалы</span>
+            <h4 class="card-h">Игровой момент</h4>
+            <div class="card-p">1–2 мин нарезка матча · <i>после турниров</i>. Хоккейное IQ, поведение на льду.</div>
+          </div>
+          <div class="card solid">
+            <span class="card-l">Удержание</span>
+            <h4 class="card-h">Коллаж «было / стало»</h4>
+            <div class="card-p">Автогенерация платформой. Эмоциональный якорь и стимул повторных загрузок.</div>
+          </div>
+        </div>
+        <div class="footer-note">
+          <span class="kicker">Принцип</span>
+          <div><b>Результат не может существовать без видеоподтверждения</b> · единые требования к ракурсу, длительности, разрешению (≥&nbsp;720p).</div>
         </div>
       </div>
       <div class="slide-num"><span>07</span> / 16</div>
     </div>
   </section>
 
-  <!-- ────────────────── Slide 8: Водный баланс ────────────────── -->
+  <!-- ────────────────── Slide 8: Достоверность данных ────────────────── -->
   <section class="slide bg-light" data-n="8">
     <div class="slide-inner">
       <div class="slide-header">
         <div class="title-block">
-          <span class="kicker">НВОС · 07</span>
-          <h2 class="slide-title">Водный баланс предприятия</h2>
+          <span class="kicker">Доверие · 07</span>
+          <h2 class="slide-title">Достоверность данных и антифрод</h2>
         </div>
       </div>
       <div class="slide-body">
-        <div class="body-grid cols-12-7">
-          <figure class="image-card">
-            <span class="ctrls"><svg viewBox="0 0 12 2" fill="currentColor"><rect width="12" height="2" rx="1"/></svg><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 2 L10 10 M10 2 L2 10"/></svg></span>
-            <img src="kursovaia_media/image5.png" alt="Материальный баланс воды">
-            <figcaption>Рис. 5.1 — Материальный баланс воды</figcaption>
-          </figure>
+        <div class="body-grid cols-2">
           <div>
-            <div class="subhead">Входящие потоки</div>
-            <p style="font-size:1.2cqw; color:var(--grey-7); margin:.2cqh 0 1.2cqh;">Технологическая вода, осадки, дренажные стоки.</p>
-            <div class="subhead">Выходящие потоки</div>
-            <p style="font-size:1.2cqw; color:var(--grey-7); margin:.2cqh 0 1.4cqh;">Испарение в печах, <i>сброс в Болдыж</i>, испарение с прудов.</p>
-            <div class="kpi-grid" style="grid-template-columns:1fr 1fr;">
-              <div class="kpi solid"><div class="l">Сброс</div><div class="v">0,28<small>&nbsp;млн&nbsp;м³/г</small></div></div>
-              <div class="kpi solid"><div class="l">Масса ВВ</div><div class="v">560<small>&nbsp;т/год</small></div></div>
-            </div>
-            <p style="font-size:1.15cqw; margin-top:1cqh; color:var(--ink);"><u>Главный источник</u> — карьерно-площадочный контур.</p>
+            <div class="subhead">Риски недостоверности</div>
+            <ul class="bullets tighter">
+              <li>ускоренное видео, монтаж и склейки;</li>
+              <li>загрузка старого / чужого видео;</li>
+              <li>ручная подмена результатов;</li>
+              <li>съёмка не по правилам, плохой ракурс;</li>
+              <li>обрезка начала или конца упражнения.</li>
+            </ul>
+          </div>
+          <div>
+            <div class="subhead">Многоуровневая защита</div>
+            <ul class="bullets tighter">
+              <li><b>1.</b> Стандартизированные требования к видео;</li>
+              <li><b>2.</b> Чёткие инструкции перед загрузкой;</li>
+              <li><b>3.</b> Автопроверка файла (длительность, fps, метаданные);</li>
+              <li><b>4.</b> Антифрод: монтаж, ускорение, тайминги;</li>
+              <li><b>5.</b> Флаги, ручная модерация, санкции (предупреждение → блок).</li>
+            </ul>
+          </div>
+        </div>
+        <div class="kpi-grid" style="grid-template-columns: 1fr 1fr 1fr; margin-top:.6cqh;">
+          <div class="kpi accent">
+            <div class="l">Статусы профилей</div>
+            <div class="v" style="font-size:1.3cqw; white-space:normal;">базовый → подтверждённый → проверен&nbsp;тренером</div>
+          </div>
+          <div class="kpi accent">
+            <div class="l">Видеоподтверждение</div>
+            <div class="v" style="font-size:1.3cqw; white-space:normal;">любая метрика — только с приложенным видео</div>
+          </div>
+          <div class="kpi solid">
+            <div class="l">Эффект</div>
+            <div class="v" style="font-size:1.3cqw; white-space:normal;">объективность рейтингов и доверие скаутов</div>
           </div>
         </div>
       </div>
@@ -1068,259 +1358,398 @@ sup.ref::after  { content: ']'; }
     </div>
   </section>
 
-  <!-- ────────────────── Slide 9: Решение ────────────────── -->
+  <!-- ────────────────── Slide 9: Конкуренты + УТП ────────────────── -->
   <section class="slide bg-light" data-n="9">
     <div class="slide-inner">
       <div class="slide-header">
         <div class="title-block">
-          <span class="kicker">Решение · 08</span>
-          <h2 class="slide-title">Предлагаемое техническое решение</h2>
+          <span class="kicker">Конкуренты · 08</span>
+          <h2 class="slide-title">Конкурентная матрица — пустая ниша</h2>
         </div>
       </div>
       <div class="slide-body">
-        <div class="body-grid cols-12-7">
-          <figure class="image-card">
-            <span class="ctrls"><svg viewBox="0 0 12 2" fill="currentColor"><rect width="12" height="2" rx="1"/></svg><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 2 L10 10 M10 2 L2 10"/></svg></span>
-            <img src="kursovaia_media/image6.png" alt="Схема ЛОС">
-            <figcaption>Рис. 6.1 — Технологическая схема ЛОС</figcaption>
-          </figure>
-          <div>
-            <div class="kpi accent">
-              <div class="l">Производительность</div>
-              <div class="v">60<small>&nbsp;л/с</small></div>
-              <div class="f">блок ЛОС карьерно-площадочного стока</div>
-            </div>
-            <div class="subhead" style="margin-top:1.4cqh;">Ступени очистки</div>
-            <ul class="bullets tight">
-              <li>механическая: отстаивание + фильтрация;</li>
-              <li>сорбционная — <i>МАУ-2А</i>.</li>
-            </ul>
-            <div class="subhead" style="margin-top:1cqh;">Состав установки</div>
-            <ul class="bullets tighter">
-              <li>насосная группа + станция дозирования реагентов;</li>
-              <li>обезвоживание осадка — <i>ОЗК-4</i>;</li>
-              <li>резервуар очищенной воды <b>50 м³</b>;</li>
-              <li><u>не требует</u> остановки печного оборудования<sup class="ref" title="[5,6] septic-profi.ru, enrost.ru — ЛОС 60 л/с РЕЙН; [15] ИТС 6-2024">5,6,15</sup>.</li>
-            </ul>
-          </div>
+        <table class="matrix">
+          <thead>
+            <tr>
+              <th>Параметр</th>
+              <th>Юнистат</th>
+              <th>HockeyTech</th>
+              <th>InStat Hockey</th>
+              <th>SkillShark</th>
+              <th class="ours">Хоккейный родитель</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="feat">Родитель — основной пользователь</td>
+              <td class="no">нет</td><td class="no">нет</td><td class="no">нет</td><td class="no">нет</td>
+              <td class="ours">ДА</td>
+            </tr>
+            <tr>
+              <td class="feat">Загрузка стандартизированного видео</td>
+              <td class="no">нет</td><td class="partial">матчи</td><td class="yes">да</td><td class="no">нет</td>
+              <td class="ours">ДА</td>
+            </tr>
+            <tr>
+              <td class="feat">Открытый рейтинг по региону / возрасту</td>
+              <td class="no">нет</td><td class="no">нет</td><td class="no">нет</td><td class="no">нет</td>
+              <td class="ours">ДА</td>
+            </tr>
+            <tr>
+              <td class="feat">B2B-фильтрация для скаутов</td>
+              <td class="partial">частично</td><td class="yes">да</td><td class="yes">да</td><td class="no">нет</td>
+              <td class="ours">ДА</td>
+            </tr>
+            <tr>
+              <td class="feat">Бесплатно для родителей на старте</td>
+              <td class="no">нет</td><td class="no">нет</td><td class="no">нет</td><td class="no">нет</td>
+              <td class="ours">ДА</td>
+            </tr>
+            <tr>
+              <td class="feat">Русский язык и регионы РФ</td>
+              <td class="yes">да</td><td class="no">нет</td><td class="no">нет</td><td class="no">нет</td>
+              <td class="ours">ДА</td>
+            </tr>
+            <tr>
+              <td class="feat">Интеграция с детскими турнирами</td>
+              <td class="partial">футбол</td><td class="no">нет</td><td class="no">нет</td><td class="no">нет</td>
+              <td class="ours">ДА</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="footer-note">
+          <span class="kicker">УТП</span>
+          <div>Первая в РФ открытая платформа, где <b>родитель — главный пользователь</b>, видео обязательно, а скаут получает <i>фильтруемый поиск с видеоподтверждением</i>.</div>
         </div>
       </div>
       <div class="slide-num"><span>09</span> / 16</div>
     </div>
   </section>
 
-  <!-- ────────────────── Slide 10: Детали ────────────────── -->
+  <!-- ────────────────── Slide 10: Рынок TAM/SAM/SOM ────────────────── -->
   <section class="slide bg-light" data-n="10">
     <div class="slide-inner">
       <div class="slide-header">
         <div class="title-block">
-          <span class="kicker">Решение · 09</span>
-          <h2 class="slide-title">Детали решения: очистка и обращение со шламом</h2>
+          <span class="kicker">Рынок · 09</span>
+          <h2 class="slide-title">TAM / SAM / SOM — Россия, 2025</h2>
         </div>
       </div>
       <div class="slide-body">
-        <div class="body-grid cols-2" style="flex:1 1 auto;">
-          <figure class="image-card">
-            <span class="ctrls"><svg viewBox="0 0 12 2" fill="currentColor"><rect width="12" height="2" rx="1"/></svg><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 2 L10 10 M10 2 L2 10"/></svg></span>
-            <img src="kursovaia_media/image7.png" alt="Ливневые ОС и шлам">
-            <figcaption>Рис. 6.2 — Ливневые ОС и обращение со шламом</figcaption>
-          </figure>
-          <figure class="image-card">
-            <span class="ctrls"><svg viewBox="0 0 12 2" fill="currentColor"><rect width="12" height="2" rx="1"/></svg><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 2 L10 10 M10 2 L2 10"/></svg></span>
-            <img src="kursovaia_media/image8.png" alt="Баланс воды после внедрения">
-            <figcaption>Рис. 6.3 — Баланс воды после внедрения ЛОС</figcaption>
-          </figure>
+        <div class="bigfacts">
+          <div class="fact"><div class="v">150 млн ₽</div><div class="l">TAM · весь рынок РФ</div></div>
+          <div class="fact"><div class="v">35 млн ₽</div><div class="l">SAM · ключевые регионы</div></div>
+          <div class="fact"><div class="v">11 млн ₽</div><div class="l">SOM · горизонт 1–2 года</div></div>
         </div>
-        <ul class="bullets tight">
-          <li><b>Ступени очистки:</b> отстаивание → фильтрация → сорбция (<i>МАУ-2А</i>)<sup class="ref" title="[24] ecotime.tech/mau-2a — активированный уголь">24</sup>.</li>
-          <li><b>Шлам 2 500 т/год</b> → внутренние насыпи как <u>техногенный грунт</u><sup class="ref" title="[27,28] roadline.ru, tehnosfera-group.ru — фильтровальные мешки для обезвоживания осадка">27,28</sup>.</li>
-          <li><b>Возврат 168 тыс. м³/год</b> очищенной воды в техоборот; отработанный сорбент → внешняя регенерация<sup class="ref" title="[26] promvest.info — регенерация активированных углей">26</sup>.</li>
-        </ul>
+        <div class="body-grid cols-2" style="margin-top:.6cqh;">
+          <div>
+            <div class="subhead">Базовые цифры рынка</div>
+            <ul class="bullets tighter">
+              <li><b>600 000</b> человек занимаются хоккеем в РФ <i>(Минспорт, 2025)</i>.</li>
+              <li><b>35 000</b> детей участвуют в офиц. соревнованиях ФХР.</li>
+              <li><b>765</b> хоккейных организаций · <b>~180</b> с активным скаутингом.</li>
+              <li>МХЛ&nbsp;39 + НМХЛ&nbsp;40 + ЮХЛ&nbsp;~100 школ.</li>
+            </ul>
+          </div>
+          <div>
+            <div class="subhead">Структура SOM (B2C + B2B)</div>
+            <ul class="bullets tighter">
+              <li><b>B2B · 2,7 млн ₽:</b> 45 клубов × 60 000 ₽/год (25% SAM).</li>
+              <li><b>B2C · 8,4 млн ₽:</b> 3 800 профилей × 2 200 ₽/год.</li>
+              <li>Каналы: аутрич + партнёрство с 2–3 региональными ФХР.</li>
+              <li>Семьи тратят <b>~10,9 млн ₽</b> за карьеру ребёнка <i>(Forbes Sport, 2024)</i>.</li>
+            </ul>
+          </div>
+        </div>
       </div>
       <div class="slide-num"><span>10</span> / 16</div>
     </div>
   </section>
 
-  <!-- ────────────────── Slide 11: Затраты ────────────────── -->
+  <!-- ────────────────── Slide 11: Бизнес-модель ────────────────── -->
   <section class="slide bg-light" data-n="11">
     <div class="slide-inner">
       <div class="slide-header">
         <div class="title-block">
-          <span class="kicker">Экономика · 10</span>
-          <h2 class="slide-title">Затраты на реализацию проекта</h2>
+          <span class="kicker">Бизнес-модель · 10</span>
+          <h2 class="slide-title">Freemium → подписки B2C и B2B</h2>
         </div>
       </div>
       <div class="slide-body">
-        <div class="cost-grid">
-          <div class="cost-card">
-            <h4>Инвестиции&nbsp;·&nbsp;CAPEX</h4>
-            <table>
-              <tr><td>Ливневые ОС 60 л/с</td><td>2 896 тыс. руб.</td></tr>
-              <tr><td>Насосная группа</td><td>796 тыс. руб.</td></tr>
-              <tr><td>Резервуар 50 м³</td><td>1 049 тыс. руб.</td></tr>
-              <tr><td>Станция дозирования + ОЗК-4</td><td>153 тыс. руб.</td></tr>
-              <tr><td><i>Монтаж, ПНР, ПИР, резерв</i></td><td>≈ 2 251 тыс. руб.</td></tr>
-              <tr class="total"><td>Итого I₀</td><td>7 144 тыс. руб.</td></tr>
-            </table>
+        <div class="tiers">
+          <div class="tier">
+            <span class="t-tag">B2C · Start</span>
+            <h4 class="t-h">Бесплатно</h4>
+            <div class="t-price">0&nbsp;₽<small>&nbsp;/&nbsp;мес</small></div>
+            <div class="t-aud">Знакомство, наполнение базы</div>
+            <ul>
+              <li>профиль ребёнка;</li>
+              <li>ограниченная загрузка видео;</li>
+              <li>базовые тесты ОФП;</li>
+              <li>один отчёт; участие в рейтинге.</li>
+            </ul>
           </div>
-          <div class="cost-card">
-            <h4>Эксплуатация&nbsp;·&nbsp;OPEX</h4>
-            <table>
-              <tr><td>Реагенты, электроэнергия</td><td>—</td></tr>
-              <tr><td>Заработная плата</td><td>—</td></tr>
-              <tr><td>Обслуживание и амортизация</td><td>—</td></tr>
-              <tr class="total"><td>Итого OPEX</td><td>651 тыс. руб./г</td></tr>
-              <tr><td><i>Удельные OPEX</i></td><td>2,32 руб./м³</td></tr>
-            </table>
-            <p class="footnote">CAPEX и OPEX по проектным сметам и средневзвешенным ценам 2025 г.<sup class="ref" title="[7-12] поставщики оборудования; [17] Брянскстат — зарплата; [18] Газпром энергосбыт — э/э">7–18</sup></p>
+          <div class="tier accent">
+            <span class="t-tag">B2C · Progress</span>
+            <h4 class="t-h">Прогресс</h4>
+            <div class="t-price">299–499<small>&nbsp;₽&nbsp;/&nbsp;мес</small></div>
+            <div class="t-aud">Регулярный мониторинг</div>
+            <ul>
+              <li>расширенная статистика;</li>
+              <li>история и сравнение по возрасту;</li>
+              <li>рекомендации, образовательный раздел;</li>
+              <li>напоминания об обновлении.</li>
+            </ul>
           </div>
+          <div class="tier accent">
+            <span class="t-tag">B2C · Premium</span>
+            <h4 class="t-h">Максимум</h4>
+            <div class="t-price">799–1490<small>&nbsp;₽&nbsp;/&nbsp;мес</small></div>
+            <div class="t-aud">Глубокое сопровождение</div>
+            <ul>
+              <li>расширенный видеоанализ;</li>
+              <li>приоритет в выдаче скаутам;</li>
+              <li>уведомления о просмотрах;</li>
+              <li>ранний доступ к новым функциям.</li>
+            </ul>
+          </div>
+          <div class="tier solid">
+            <span class="t-tag">B2B · Scout / Academy</span>
+            <h4 class="t-h">Скаут&nbsp;/&nbsp;Академия</h4>
+            <div class="t-price">5–15&nbsp;тыс.<small>&nbsp;₽&nbsp;/&nbsp;мес</small></div>
+            <div class="t-aud">Поиск перспективных игроков</div>
+            <ul>
+              <li>доступ к базе и фильтрам;</li>
+              <li>видео и аналитика игроков;</li>
+              <li>шорт-листы и сравнение;</li>
+              <li>расширенные отчёты.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-note">
+          <span class="kicker">Логика</span>
+          <div>Сначала <b>наполнение базы родителями</b> (порог &gt;&nbsp;<b>1000 профилей на возраст</b>) → потом подключение платных функций. Драйвер выручки — <i>B2B-подписка</i>.</div>
         </div>
       </div>
       <div class="slide-num"><span>11</span> / 16</div>
     </div>
   </section>
 
-  <!-- ────────────────── Slide 12: Экологический результат ────────────────── -->
+  <!-- ────────────────── Slide 12: Гипотезы и валидация ────────────────── -->
   <section class="slide bg-light" data-n="12">
     <div class="slide-inner">
       <div class="slide-header">
         <div class="title-block">
-          <span class="kicker">Результат · 11</span>
-          <h2 class="slide-title">Экологический результат проекта</h2>
+          <span class="kicker">Валидация · 11</span>
+          <h2 class="slide-title">Три ключевые гипотезы — критерии успеха</h2>
         </div>
       </div>
       <div class="slide-body">
-        <div class="kpi-grid" style="grid-template-columns: 1.4fr 1fr 1fr; flex:1; min-height:0;">
-          <div class="kpi solid" style="justify-content:center;">
-            <div class="l">Сброс ВВ</div>
-            <div class="v">−99,94 %</div>
-            <div class="f">560,0 → <b>0,336 т/год</b></div>
+        <div class="cards-grid cols-3">
+          <div class="card accent">
+            <span class="card-l">Гипотеза 1 · B2C</span>
+            <h4 class="card-h">Родители готовы систематически загружать видео</h4>
+            <div class="card-p">если видят <i>объективную обратную связь</i> и сравнение с другими игроками.</div>
+            <ul class="card-list">
+              <li>JTBD-интервью с 10–15 родителями;</li>
+              <li>MVP-тест: лендинг + загрузка + таргет;</li>
+              <li>анализ воронки в прототипе.</li>
+            </ul>
+            <div class="card-p" style="margin-top:auto; color:var(--itmo-red); font-weight:700;">Критерий: профиль ≥&nbsp;60%, видео ≥&nbsp;40%</div>
           </div>
-          <div class="kpi accent" style="justify-content:center;">
-            <div class="l">Объём сброса</div>
-            <div class="v">−60 %</div>
-            <div class="f">0,28 → 0,112 млн&nbsp;м³/год</div>
+          <div class="card accent">
+            <span class="card-l">Гипотеза 2 · B2B</span>
+            <h4 class="card-h">Академии готовы платить за поиск с фильтрацией</h4>
+            <div class="card-p">когда в базе накоплена <i>критическая масса</i> качественных данных.</div>
+            <ul class="card-list">
+              <li>глубинные интервью 5–7 академий;</li>
+              <li>демо-вебинар прототипа;</li>
+              <li>пилотные соглашения на тест.</li>
+            </ul>
+            <div class="card-p" style="margin-top:auto; color:var(--itmo-red); font-weight:700;">Критерий: ≥&nbsp;3 академии в пилоте</div>
           </div>
-          <div class="kpi accent" style="justify-content:center;">
-            <div class="l">Возврат воды</div>
-            <div class="v">168<small>&nbsp;тыс.&nbsp;м³</small></div>
-            <div class="f">в техоборот, ежегодно</div>
+          <div class="card solid">
+            <span class="card-l">Гипотеза 3 · Каналы</span>
+            <h4 class="card-h">Турниры — самый эффективный канал привлечения</h4>
+            <div class="card-p">офлайн-промо + цифровой онбординг дают <i>выше конверсию</i>, чем онлайн.</div>
+            <ul class="card-list">
+              <li>промо-стенд на турнире «Сибириус»;</li>
+              <li>бесплатные замеры + QR-код;</li>
+              <li>сравнение с онлайн-кампанией.</li>
+            </ul>
+            <div class="card-p" style="margin-top:auto; color:#fff; font-weight:700;">Критерий: конверсия выше на 30–50%</div>
           </div>
-        </div>
-        <div class="kpi-grid" style="grid-template-columns: 1fr 1.4fr; flex:1; min-height:0;">
-          <div class="kpi" style="justify-content:center;">
-            <div class="l">Шлам</div>
-            <div class="v">2 500<small>&nbsp;т/год</small></div>
-            <div class="f">→ <i>техногенный грунт</i> для насыпей</div>
-          </div>
-          <div class="kpi solid" style="justify-content:center;">
-            <div class="l">Экологические сбережения</div>
-            <div class="v">863<small>&nbsp;тыс.&nbsp;руб./год</small></div>
-            <div class="f">снижение платы за НВОС и рисков штрафов</div>
-          </div>
-        </div>
-        <div class="footer-note">
-          <span class="kicker">Эффект</span>
-          <div>Устранение нарушений водного законодательства, переход к <i>замкнутому водопотреблению</i><sup class="ref" title="[25,26] ПП РФ № 881 от 31.05.2023; распоряжение № 2409-р — ставки за НВОС 2026-2030">25,26</sup>.</div>
         </div>
       </div>
       <div class="slide-num"><span>12</span> / 16</div>
     </div>
   </section>
 
-  <!-- ────────────────── Slide 13: Экономика ────────────────── -->
+  <!-- ────────────────── Slide 13: Go-to-market ────────────────── -->
   <section class="slide bg-light" data-n="13">
     <div class="slide-inner">
       <div class="slide-header">
         <div class="title-block">
-          <span class="kicker">Эффективность · 12</span>
-          <h2 class="slide-title">Экономическая эффективность</h2>
+          <span class="kicker">Go-to-market · 12</span>
+          <h2 class="slide-title">Стратегия запуска и продвижения</h2>
         </div>
       </div>
       <div class="slide-body">
-        <div class="body-grid cols-12-7">
-          <figure class="image-card">
-            <span class="ctrls"><svg viewBox="0 0 12 2" fill="currentColor"><rect width="12" height="2" rx="1"/></svg><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 2 L10 10 M10 2 L2 10"/></svg></span>
-            <img src="kursovaia_media/image9.png" alt="Графический способ оценки IRR">
-            <figcaption>Рис. 8.1 — Графический способ оценки IRR</figcaption>
-          </figure>
+        <div class="body-grid cols-2">
           <div>
-            <div class="kpi-grid" style="grid-template-columns:1fr 1fr;">
-              <div class="kpi"><div class="l">B · экономия</div><div class="v">1 466<small>&nbsp;тыс./г</small></div></div>
-              <div class="kpi"><div class="l">PB · окупаемость</div><div class="v">4,87<small>&nbsp;лет</small></div></div>
-              <div class="kpi"><div class="l">ROI</div><div class="v">+105,17 %</div></div>
-              <div class="kpi accent"><div class="l">NPV (r = 14,6 %)</div><div class="v">+326<small>&nbsp;тыс.</small></div></div>
-              <div class="kpi solid" style="grid-column:1 / span 2;">
-                <div class="l">IRR &gt; r</div>
-                <div class="v"><b>15,78 %</b> &nbsp;&gt;&nbsp; <u>14,6 %</u></div>
-                <div class="f">PI = 0,046 &gt; 0 — проект эффективен<sup class="ref" title="[3] ЦБ РФ — ставки по кредитным операциям, февраль 2026 (r = 14,6 %)">3</sup></div>
-              </div>
-            </div>
+            <div class="subhead">Этап 1 — наполнение базы</div>
+            <ul class="bullets tighter">
+              <li><b>Социальные сети:</b> разборы техники, советы родителям, истории игроков, «было / стало».</li>
+              <li><b>Школы и академии:</b> платформа как инструмент демонстрации прогресса.</li>
+              <li><b>Турниры («Сибириус»):</b> стенды, бесплатные замеры, QR-онбординг.</li>
+              <li><b>Рекомендации:</b> тренеры, родители, локальные спортивные медиа.</li>
+              <li><b>Цель:</b> <u>&gt;&nbsp;1000 профилей на один возраст</u>.</li>
+            </ul>
           </div>
+          <div>
+            <div class="subhead">Этап 2 — подключение монетизации</div>
+            <ul class="bullets tighter">
+              <li>запуск Premium-функций для родителей;</li>
+              <li>B2B-подписка для скаутов, агентов, клубов;</li>
+              <li>развитие образовательного раздела и аналитики;</li>
+              <li>интеграции: ФХР, KidsHockey.ru, AirHockey;</li>
+              <li>рекламные форматы внутри платформы (как доп. модель).</li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-note">
+          <span class="kicker">Принцип</span>
+          <div>Чем больше профилей и видео — тем выше ценность для скаутов; именно <b>родители — драйвер контента</b> на старте.</div>
         </div>
       </div>
       <div class="slide-num"><span>13</span> / 16</div>
     </div>
   </section>
 
-  <!-- ────────────────── Slide 14: Заключение ────────────────── -->
+  <!-- ────────────────── Slide 14: SWOT ────────────────── -->
   <section class="slide bg-light" data-n="14">
     <div class="slide-inner">
       <div class="slide-header">
         <div class="title-block">
-          <span class="kicker">Заключение · 13</span>
-          <h2 class="slide-title">Итоговые выводы</h2>
+          <span class="kicker">Риски · 13</span>
+          <h2 class="slide-title">SWOT-анализ продукта</h2>
         </div>
       </div>
       <div class="slide-body">
-        <div class="bigfacts">
-          <div class="fact"><div class="v">−99,94 %</div><div class="l">снижение сброса ВВ</div></div>
-          <div class="fact"><div class="v">168 тыс. м³</div><div class="l">возврат воды в год</div></div>
-          <div class="fact"><div class="v">&lt; 5 лет</div><div class="l">срок окупаемости</div></div>
-        </div>
-        <ul class="bullets">
-          <li>Проект <b>обоснован</b> технически, экологически и экономически.</li>
-          <li>Снижение сброса ВВ устраняет нарушения <i>водного законодательства</i>.</li>
-          <li>Возврат очищенной воды реализует <b>принцип чистого производства</b>.</li>
-          <li>Использование шлама замыкает контур обращения с отходами.</li>
-          <li>Реализуется <u>без остановки</u> основного производства.</li>
-        </ul>
-        <div class="footer-note">
-          <span class="kicker">Итог</span>
-          <div><b>ЛОС</b> — целевое решение для АО «МПЦ» и <i>шаблон для отрасли</i>.</div>
+        <div class="swot">
+          <div class="swot-cell s">
+            <div class="swot-l">Strengths · Сильные стороны</div>
+            <ul>
+              <li>решает реальную и понятную проблему отсутствия объективной оценки;</li>
+              <li>уникальный подход — стандартизированные тесты вместо хаотичных видео;</li>
+              <li>две аудитории в одном продукте создают ценность с двух сторон;</li>
+              <li>видео как подтверждение результатов повышает доверие;</li>
+              <li>масштабирование на турниры, академии и другие виды спорта.</li>
+            </ul>
+          </div>
+          <div class="swot-cell w">
+            <div class="swot-l">Weaknesses · Слабые стороны</div>
+            <ul>
+              <li>сложность объяснения продукта на старте — неочевидная ценность;</li>
+              <li>зависимость от качества съёмки видео родителями;</li>
+              <li>строгая стандартизация снижает гибкость контента;</li>
+              <li>сложный «холодный старт» — нужно привлекать обе аудитории;</li>
+              <li>необходимо доказать объективность системы оценки.</li>
+            </ul>
+          </div>
+          <div class="swot-cell o">
+            <div class="swot-l">Opportunities · Возможности</div>
+            <ul>
+              <li>партнёрство с хоккейными школами, академиями и ФХР;</li>
+              <li>интеграция с турнирами и соревнованиями;</li>
+              <li>развитие AI-анализа техники (компьютерное зрение);</li>
+              <li>расширение на другие виды спорта;</li>
+              <li>создание базы талантов на уровне страны и регионов.</li>
+            </ul>
+          </div>
+          <div class="swot-cell t">
+            <div class="swot-l">Threats · Угрозы</div>
+            <ul>
+              <li>недоверие к автоматической оценке со стороны тренеров;</li>
+              <li>конкуренция с академиями и существующими базами;</li>
+              <li>риск подделки данных и неправильной съёмки;</li>
+              <li>низкая вовлечённость без быстрого результата;</li>
+              <li>возможное сопротивление традиционной системы.</li>
+            </ul>
+          </div>
         </div>
       </div>
       <div class="slide-num"><span>14</span> / 16</div>
     </div>
   </section>
 
-  <!-- ────────────────── Slide 15: Источники ────────────────── -->
+  <!-- ────────────────── Slide 15: Roadmap ────────────────── -->
   <section class="slide bg-light" data-n="15">
     <div class="slide-inner">
       <div class="slide-header">
         <div class="title-block">
-          <span class="kicker">Список литературы · 14</span>
-          <h2 class="slide-title">Источники</h2>
+          <span class="kicker">Дорожная карта · 14</span>
+          <h2 class="slide-title">Этапы ППМ-2 · 2 марта&nbsp;– 29 мая 2026</h2>
         </div>
       </div>
       <div class="slide-body">
-        <div class="refs">
-          <div class="ref"><span class="n">1</span><span class="src"><span class="src-type">Отрасль</span>Гузь В.А. и&nbsp;др. Российская цементная промышленность в&nbsp;2024 году. <i>jcement.ru/magazine/vypusk-1-2025</i></span></div>
-          <div class="ref"><span class="n">2</span><span class="src"><span class="src-type">Прогноз</span>Потребление цемента в&nbsp;РФ может снизиться на&nbsp;20&nbsp;% в&nbsp;2026 году — прогноз. <i>Интерфакс Россия, 27.02.2026</i></span></div>
-          <div class="ref"><span class="n">3</span><span class="src"><span class="src-type">Холдинг</span>О компании ЦЕМРОС. <i>market.cemros.ru/about</i></span></div>
-          <div class="ref"><span class="n">6</span><span class="src"><span class="src-type">Завод</span>Мальцовский портландцемент — география активов ЦЕМРОС. <i>cemros.ru/about/geography/factories</i></span></div>
-          <div class="ref"><span class="n">12</span><span class="src"><span class="src-type">КЭР</span>Мальцовский портландцемент получил КЭР. <i>cemros.ru/media-center/news, 25.09.2025</i></span></div>
-          <div class="ref"><span class="n">14</span><span class="src"><span class="src-type">Закон</span>ФЗ «Об охране окружающей среды» 7-ФЗ от&nbsp;10.01.2002 (ред. 28.12.2025). <i>consultant.ru</i></span></div>
-          <div class="ref"><span class="n">15</span><span class="src"><span class="src-type">НДТ</span>ИТС 6-2024. Производство цемента — справочник по&nbsp;наилучшим доступным технологиям. <i>base.garant.ru/410724456</i></span></div>
-          <div class="ref"><span class="n">18</span><span class="src"><span class="src-type">Инвест.</span>Инвестиции в&nbsp;качество — Мальцовский портландцемент. <i>cemros.ru, 13.12.2025</i></span></div>
-          <div class="ref"><span class="n">21</span><span class="src"><span class="src-type">Суд</span>Решение Арбитражного суда Брянской обл. от&nbsp;23.10.2023 по&nbsp;делу № А09-5918/2023. <i>sudact.ru</i></span></div>
-          <div class="ref"><span class="n">24</span><span class="src"><span class="src-type">Сорбент</span>МАУ-2А — активированный уголь для сорбционной очистки. <i>ecotime.tech/mau-2a-aktivirovannyi-ugol</i></span></div>
-          <div class="ref"><span class="n">25</span><span class="src"><span class="src-type">ПП РФ</span>Постановление Правительства РФ № 881 от&nbsp;31.05.2023 — плата за&nbsp;НВОС. <i>consultant.ru</i></span></div>
-          <div class="ref"><span class="n">26</span><span class="src"><span class="src-type">Ставки</span>Распоряжение Правительства РФ № 2409-р — ставки за&nbsp;НВОС 2026–2030. <i>consultant.ru</i></span></div>
-          <div class="ref"><span class="n">3*</span><span class="src"><span class="src-type">ЦБ&nbsp;РФ</span>Процентные ставки по&nbsp;кредитным операциям в&nbsp;рублях, февраль 2026. <i>cbr.ru/statistics/bank_sector/int_rat</i></span></div>
-          <div class="ref"><span class="n">5,6</span><span class="src"><span class="src-type">ЛОС&nbsp;60</span>ЛОС 60 л/с — РЕЙН 60. <i>septic-profi.ru, enrost.ru</i></span></div>
-          <div class="ref"><span class="n">7–12</span><span class="src"><span class="src-type">Оборуд.</span>Поставщики: насосы CNP, станция дозирования HC151, обезвоживание ОЗК, ёмкость 50&nbsp;м³, коагулянт «АкваАурат», H₂SO₄</span></div>
-          <div class="ref"><span class="n">17,18</span><span class="src"><span class="src-type">Цены</span>Брянскстат — зарплата 12.2025; ООО «Газпром энергосбыт Брянск» — тариф э/э</span></div>
+        <div class="timeline">
+          <div class="step">
+            <span class="n">01</span>
+            <span class="d">2–6 марта</span>
+            <span class="h">Контекст</span>
+            <span class="p">Знакомство с заказчиком, уточнение требований, бриф.</span>
+          </div>
+          <div class="step">
+            <span class="n">02</span>
+            <span class="d">7–20 марта</span>
+            <span class="h">Анализ&nbsp;рынка</span>
+            <span class="p">Аналоги «Юнистат», HockeyTech, SkillShark. Отчёт.</span>
+          </div>
+          <div class="step">
+            <span class="n">03</span>
+            <span class="d">21–31 марта</span>
+            <span class="h">Конкуренты</span>
+            <span class="p">Сильные/слабые стороны, отстройка, матрица.</span>
+          </div>
+          <div class="step">
+            <span class="n">04</span>
+            <span class="d">1–10 апреля</span>
+            <span class="h">Концепция&nbsp;УТП</span>
+            <span class="p">Формирование УТП и сценариев двух ролей.</span>
+          </div>
+          <div class="step">
+            <span class="n">05</span>
+            <span class="d">11.04 – 15.05</span>
+            <span class="h">Прототип</span>
+            <span class="p">UI+UX в Figma, ≥&nbsp;15 экранов, адаптив.</span>
+          </div>
+          <div class="step">
+            <span class="n">06</span>
+            <span class="d">16–22 мая</span>
+            <span class="h">Тестирование</span>
+            <span class="p">JTBD на 5–7 родителях, замечания.</span>
+          </div>
+          <div class="step">
+            <span class="n">07</span>
+            <span class="d">23–29 мая</span>
+            <span class="h">Защита</span>
+            <span class="p">Презентация, отчёт, передача заказчику.</span>
+          </div>
+        </div>
+        <div class="kpi-grid" style="grid-template-columns: 1fr 1fr 1fr; margin-top:1cqh;">
+          <div class="kpi accent">
+            <div class="l">Результат ППМ-2</div>
+            <div class="v" style="font-size:1.25cqw; white-space:normal;">Прототип UI+UX (Figma) и аналитический отчёт</div>
+          </div>
+          <div class="kpi accent">
+            <div class="l">Следующий шаг</div>
+            <div class="v" style="font-size:1.25cqw; white-space:normal;">MVP: backend (Python), хранение видео, CV-демо</div>
+          </div>
+          <div class="kpi solid">
+            <div class="l">Долгосрочно</div>
+            <div class="v" style="font-size:1.25cqw; white-space:normal;">Мобильное приложение, AI-видеоанализ, выход в РФ</div>
+          </div>
         </div>
       </div>
       <div class="slide-num"><span>15</span> / 16</div>
@@ -1331,23 +1760,23 @@ sup.ref::after  { content: ']'; }
   <section class="slide bg-red final-slide" data-n="16">
     <div class="slide-inner">
       <h1>Спасибо <span class="accent">за&nbsp;внимание!</span></h1>
-      <p class="sub">Готовы ответить на вопросы</p>
+      <p class="sub">Готовы ответить на вопросы и обсудить пилот</p>
       <div class="contact-grid">
         <div>
-          <div class="l">Студенты группы U4125</div>
-          <div class="v">Михайлов А.А. · Синицина П.Д.<br>Костюкова А.К. · Багаутдинов А.Л.</div>
+          <div class="l">Команда</div>
+          <div class="v">Группа U4125 · ИТМО · ФТМИ</div>
         </div>
         <div>
-          <div class="l">Преподаватель</div>
-          <div class="v"><b>Сергиенко О.И.</b></div>
+          <div class="l">Заказчик</div>
+          <div class="v"><b>Хоккейная академия</b><br>Левкин А.В. · Завгородний С.И.</div>
         </div>
         <div>
           <div class="l">Дисциплина</div>
-          <div class="v"><i>«Инновационные подходы<br>к&nbsp;созданию чистых производств»</i></div>
+          <div class="v"><i>Продуктовая проектная мастерская<br>ППМ-2 · 2026</i></div>
         </div>
         <div>
-          <div class="l">Организация</div>
-          <div class="v">ИТМО · ФТМИ · 2026</div>
+          <div class="l">Проект</div>
+          <div class="v">«Хоккейный родитель» — независимый проект<br>на благо российского хоккея</div>
         </div>
       </div>
     </div>
@@ -1357,7 +1786,7 @@ sup.ref::after  { content: ']'; }
 
 <div id="hud" aria-label="Управление">
   <button id="prev" title="Предыдущий слайд (←)">‹</button>
-  <span class="counter" id="counter">1 / 13</span>
+  <span class="counter" id="counter">1 / 16</span>
   <button id="next" title="Следующий слайд (→)">›</button>
   <button id="printbtn" title="Печать / экспорт в PDF (P)">PDF</button>
   <span class="help">← → · Space · F · P</span>
