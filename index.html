@@ -801,6 +801,142 @@ html, body {
 .tier.solid li { color: rgba(255,255,255,.95); }
 .tier.solid li::before { background: #fff; }
 
+/* ─── Browser-window screenshot card ─────────────────────────────── */
+.screen-card {
+  position: relative;
+  background: #15161A;
+  border: 2px solid var(--itmo-red);
+  border-radius: var(--radius-lg);
+  padding: 3.0cqh 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  min-height: 0;
+  overflow: hidden;
+  box-shadow: 0 8px 22px -14px rgba(236,11,67,.30);
+}
+.screen-card::before, .screen-card::after {
+  content: '';
+  position: absolute; top: 1.1cqh;
+  width: 1.1cqw; height: 1.1cqw;
+  border-radius: 50%;
+  background: var(--itmo-red);
+}
+.screen-card::before { left: 1.2cqw; }
+.screen-card::after  { left: 2.9cqw; }
+.screen-card .dot3 {
+  content: '';
+  position: absolute; top: 1.1cqh;
+  left: 4.6cqw;
+  width: 1.1cqw; height: 1.1cqw;
+  border-radius: 50%;
+  background: var(--itmo-red);
+  opacity: .6;
+}
+.screen-card .url {
+  position: absolute;
+  top: 1.0cqh;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-mono);
+  font-size: 0.78cqw;
+  color: var(--grey-3);
+  background: rgba(255,255,255,.08);
+  padding: .35cqh 1.1cqw;
+  border-radius: 999px;
+  max-width: 55%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.screen-card .img-wrap {
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  background: #000;
+  position: relative;
+}
+.screen-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+}
+.screen-card.fit img {
+  object-fit: contain;
+  object-position: top center;
+}
+.screen-card.mobile {
+  padding-top: 0;
+}
+.screen-card.mobile::before,
+.screen-card.mobile::after,
+.screen-card.mobile .dot3 { display: none; }
+.screen-card.mobile .url { display: none; }
+.screen-card.mobile {
+  background: #000;
+}
+.screen-card.mobile img {
+  object-fit: contain;
+  object-position: center;
+}
+.screen-card figcaption {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  font-family: var(--font-mono);
+  font-size: 0.82cqw;
+  color: #fff;
+  text-align: center;
+  letter-spacing: .04em;
+  background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,.85) 60%);
+  padding: 2.5cqh 1cqw .8cqh;
+}
+
+.screen-grid {
+  display: grid;
+  gap: 1.2cqw;
+  flex: 1;
+  min-height: 0;
+}
+.screen-grid.cols-2 { grid-template-columns: 1fr 1fr; }
+.screen-grid.cols-3 { grid-template-columns: 1fr 1fr 1fr; }
+.screen-grid.cols-4 { grid-template-columns: 1fr 1fr 1fr 1fr; }
+.screen-grid.cols-1-hero { grid-template-columns: 1.65fr 1fr; }
+.screen-grid.cols-mob-3  { grid-template-columns: 1fr 1fr 1fr; }
+
+.feature-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.0cqh;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.feature-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: .8cqw;
+  font-size: 1.1cqw;
+  line-height: 1.35;
+  color: var(--ink);
+}
+.feature-list li .ico {
+  flex: 0 0 1.6cqw;
+  height: 1.6cqw;
+  border-radius: 50%;
+  background: var(--itmo-red);
+  color: #fff;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 0.78cqw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: .15cqh;
+}
+.feature-list li b { color: var(--black); }
+
 /* ─── Navigation HUD ──────────────────────────────────────────────── */
 #hud {
   position: fixed; bottom: 14px; left: 50%; transform: translateX(-50%);
@@ -1040,7 +1176,53 @@ sup.ref::after  { content: ']'; }
     </div>
   </section>
 
-  <!-- ────────────────── Slide 2: ПРОБЛЕМА ────────────────── -->
+  <!-- ────────────────── Slide 2: Команда ────────────────── -->
+  <section class="slide bg-light" data-n="2">
+    <div class="slide-inner">
+      <div class="slide-header">
+        <div class="title-block">
+          <span class="kicker">Команда · 01</span>
+          <h2 class="slide-title">Команда проекта и роли</h2>
+        </div>
+      </div>
+      <div class="slide-body">
+        <div class="cards-grid" style="grid-template-columns: repeat(5, 1fr); gap: 1.0cqw;">
+          <div class="card accent">
+            <span class="card-l">Product Lead</span>
+            <h4 class="card-h">Селянина Анастасия</h4>
+            <div class="card-p">Координация команды, синхронизация с заказчиком, продуктовые решения, общая концепция платформы.</div>
+          </div>
+          <div class="card">
+            <span class="card-l">Tech / Analytics</span>
+            <h4 class="card-h">Адрианов Константин</h4>
+            <div class="card-p">Анализ рынка хоккея, TAM/SAM/SOM, технические требования к платформе и архитектуре MVP.</div>
+          </div>
+          <div class="card solid">
+            <span class="card-l">UX / UI · Prototype</span>
+            <h4 class="card-h">Багаутдинов Айваз</h4>
+            <div class="card-p">Прототипирование интерфейса в Figma, дизайн-система, защитная презентация и сценарии.</div>
+          </div>
+          <div class="card">
+            <span class="card-l">Customer Research</span>
+            <h4 class="card-h">Цыбенко Екатерина</h4>
+            <div class="card-p">Глубинные интервью с родителями и скаутами, JTBD-методология, валидация гипотез.</div>
+          </div>
+          <div class="card accent">
+            <span class="card-l">Marketing · GTM</span>
+            <h4 class="card-h">Марченко Мария</h4>
+            <div class="card-p">Конкурентный анализ, стратегия продвижения, монетизация и подписки, контент-стратегия.</div>
+          </div>
+        </div>
+        <div class="footer-note">
+          <span class="kicker">Кросс-функциональная работа</span>
+          <div>Каждый участник вёл свой блок, но <b>ключевые решения принимали совместно</b> — продукт, UX, гипотезы и go-to-market.</div>
+        </div>
+      </div>
+      <div class="slide-num"><span>02</span> / 25</div>
+    </div>
+  </section>
+
+  <!-- ────────────────── Slide 3: ПРОБЛЕМА ────────────────── -->
   <section class="slide bg-light" data-n="2">
     <div class="slide-inner">
       <div class="slide-header">
@@ -1061,11 +1243,70 @@ sup.ref::after  { content: ']'; }
           <div><b>Нет единой системы сравнения</b> игроков из разных регионов — это <i>главное узкое место</i> рынка.</div>
         </div>
       </div>
-      <div class="slide-num"><span>02</span> / 16</div>
+      <div class="slide-num"><span>03</span> / 25</div>
     </div>
   </section>
 
-  <!-- ────────────────── Slide 3: ЦА ────────────────── -->
+  <!-- ────────────────── Slide 4: Подтверждение проблемы ────────────────── -->
+  <section class="slide bg-light" data-n="4">
+    <div class="slide-inner">
+      <div class="slide-header">
+        <div class="title-block">
+          <span class="kicker">Подтверждение · 03</span>
+          <h2 class="slide-title">Что мы узнали из интервью и опросов</h2>
+        </div>
+      </div>
+      <div class="slide-body">
+        <div class="body-grid cols-2">
+          <div class="card accent">
+            <span class="card-l">Интервью со скаутом · Академия «Авангард»</span>
+            <h4 class="card-h">Как сейчас ищут игроков</h4>
+            <ul class="card-list">
+              <li>сбор данных <i>вручную</i> с разных сайтов;</li>
+              <li>нет единой удобной системы;</li>
+              <li>слишком много времени уходит на анализ;</li>
+              <li>данные обновляются с задержкой;</li>
+              <li>видео не всегда даёт полную картину.</li>
+            </ul>
+            <div class="card-p" style="margin-top:auto; color:var(--itmo-red); font-weight:700;">Запрос: «1–2 клика и вся информация перед глазами»</div>
+          </div>
+          <div class="card solid">
+            <span class="card-l">Опрос родителей юных хоккеистов</span>
+            <h4 class="card-h">Чего не хватает родителям</h4>
+            <ul class="card-list">
+              <li><b>объективной оценки</b> прогресса ребёнка;</li>
+              <li>видеоразбора и аналитики;</li>
+              <li>понимания уровня <i>относительно других</i> игроков;</li>
+              <li>рекомендаций по развитию;</li>
+              <li>цельной программы — сейчас «разрозненно».</li>
+            </ul>
+            <div class="card-p" style="margin-top:auto; color:#fff; font-weight:700;">100% опрошенных — готовы загружать видео раз в 2–3 мес</div>
+          </div>
+        </div>
+        <div class="kpi-grid" style="grid-template-columns: 1fr 1fr 1fr 1fr; margin-top:.6cqh;">
+          <div class="kpi accent">
+            <div class="l">Готовность к платным функциям</div>
+            <div class="v" style="font-size:1.3cqw; white-space:normal;">«Да / Скорее да» — все респонденты</div>
+          </div>
+          <div class="kpi accent">
+            <div class="l">Интерес к турнирам</div>
+            <div class="v" style="font-size:1.3cqw; white-space:normal;">100% — бесплатный замер с сохранением</div>
+          </div>
+          <div class="kpi accent">
+            <div class="l">Доверие к рейтингу по видео</div>
+            <div class="v" style="font-size:1.3cqw; white-space:normal;">«Да» — у большинства родителей</div>
+          </div>
+          <div class="kpi solid">
+            <div class="l">Главный риск</div>
+            <div class="v" style="font-size:1.3cqw; white-space:normal;">сложность платформы и отсутствие пользы</div>
+          </div>
+        </div>
+      </div>
+      <div class="slide-num"><span>04</span> / 25</div>
+    </div>
+  </section>
+
+  <!-- ────────────────── Slide 5: ЦА ────────────────── -->
   <section class="slide bg-light" data-n="3">
     <div class="slide-inner">
       <div class="slide-header">
@@ -1117,7 +1358,7 @@ sup.ref::after  { content: ']'; }
           </div>
         </div>
       </div>
-      <div class="slide-num"><span>03</span> / 16</div>
+      <div class="slide-num"><span>05</span> / 25</div>
     </div>
   </section>
 
@@ -1172,7 +1413,7 @@ sup.ref::after  { content: ']'; }
           </div>
         </div>
       </div>
-      <div class="slide-num"><span>04</span> / 16</div>
+      <div class="slide-num"><span>06</span> / 25</div>
     </div>
   </section>
 
@@ -1206,7 +1447,7 @@ sup.ref::after  { content: ']'; }
           <div>Не более <b>3 кликов до загрузки видео</b> после регистрации · «2 клика до видео и ключевых метрик».</div>
         </div>
       </div>
-      <div class="slide-num"><span>05</span> / 16</div>
+      <div class="slide-num"><span>07</span> / 25</div>
     </div>
   </section>
 
@@ -1252,7 +1493,7 @@ sup.ref::after  { content: ']'; }
           </div>
         </div>
       </div>
-      <div class="slide-num"><span>06</span> / 16</div>
+      <div class="slide-num"><span>08</span> / 25</div>
     </div>
   </section>
 
@@ -1303,11 +1544,253 @@ sup.ref::after  { content: ']'; }
           <div><b>Результат не может существовать без видеоподтверждения</b> · единые требования к ракурсу, длительности, разрешению (≥&nbsp;720p).</div>
         </div>
       </div>
-      <div class="slide-num"><span>07</span> / 16</div>
+      <div class="slide-num"><span>09</span> / 25</div>
     </div>
   </section>
 
-  <!-- ────────────────── Slide 8: Достоверность данных ────────────────── -->
+  <!-- ────────────────── Slide 10: Демо · Лендинг и вход ────────────────── -->
+  <section class="slide bg-light" data-n="10">
+    <div class="slide-inner">
+      <div class="slide-header">
+        <div class="title-block">
+          <span class="kicker">Демо · vetrychok.ru · 09</span>
+          <h2 class="slide-title">Лендинг и вход — рабочий прототип</h2>
+        </div>
+      </div>
+      <div class="slide-body">
+        <div class="screen-grid cols-2">
+          <figure class="screen-card">
+            <span class="dot3"></span>
+            <span class="url">vetrychok.ru</span>
+            <div class="img-wrap">
+              <img src="site_media/01_home.png" alt="Главная страница">
+              <figcaption>Лендинг · УТП и блок «Проблема объективной оценки»</figcaption>
+            </div>
+          </figure>
+          <figure class="screen-card">
+            <span class="dot3"></span>
+            <span class="url">vetrychok.ru/login</span>
+            <div class="img-wrap">
+              <img src="site_media/02_login.png" alt="Экран входа" style="object-fit:contain; background:#0A0A0A;">
+              <figcaption>Вход · выбор роли «Родитель / Скаут»</figcaption>
+            </div>
+          </figure>
+        </div>
+        <div class="footer-note">
+          <span class="kicker">Что показываем</span>
+          <div>Публичный лендинг с УТП «<b>Раскрой потенциал твоего чемпиона</b>». На входе пользователь выбирает <i>роль</i> — это переключает интерфейс и набор функций.</div>
+        </div>
+      </div>
+      <div class="slide-num"><span>10</span> / 25</div>
+    </div>
+  </section>
+
+  <!-- ────────────────── Slide 11: Демо · Каталог игроков ────────────────── -->
+  <section class="slide bg-light" data-n="11">
+    <div class="slide-inner">
+      <div class="slide-header">
+        <div class="title-block">
+          <span class="kicker">Демо · Каталог · 10</span>
+          <h2 class="slide-title">База игроков и фильтрация для скаутов</h2>
+        </div>
+      </div>
+      <div class="slide-body">
+        <div class="screen-grid cols-1-hero">
+          <figure class="screen-card">
+            <span class="dot3"></span>
+            <span class="url">vetrychok.ru/players</span>
+            <div class="img-wrap">
+              <img src="site_media/03_players.png" alt="Каталог игроков">
+              <figcaption>21 игрок · фильтры по региону, позиции, возрасту, хвату · поиск по имени</figcaption>
+            </div>
+          </figure>
+          <div style="display:flex; flex-direction:column; gap:1.4cqh; min-height:0;">
+            <div class="subhead">Что в каталоге</div>
+            <ul class="feature-list">
+              <li><span class="ico">1</span><div><b>Карточки игроков:</b> ФИО, позиция, возраст, рейтинг, регион.</div></li>
+              <li><span class="ico">2</span><div><b>Статус данных:</b> «Частично» / «Полностью» / «Верифицировано».</div></li>
+              <li><span class="ico">3</span><div><b>Фильтры:</b> регион, позиция, возраст, хват — расширяются.</div></li>
+              <li><span class="ico">4</span><div><b>Шорт-лист</b> по клику на закладку — справа от карточки.</div></li>
+              <li><span class="ico">5</span><div><b>Баннер о прозрачности данных</b> — отдельная политика доверия.</div></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="slide-num"><span>11</span> / 25</div>
+    </div>
+  </section>
+
+  <!-- ────────────────── Slide 12: Демо · Дашборд игрока ────────────────── -->
+  <section class="slide bg-light" data-n="12">
+    <div class="slide-inner">
+      <div class="slide-header">
+        <div class="title-block">
+          <span class="kicker">Демо · Главная игрока · 11</span>
+          <h2 class="slide-title">Дашборд: рейтинг, навыки, антропометрия</h2>
+        </div>
+      </div>
+      <div class="slide-body">
+        <div class="screen-grid cols-1-hero">
+          <figure class="screen-card">
+            <span class="dot3"></span>
+            <span class="url">vetrychok.ru/dashboard</span>
+            <div class="img-wrap">
+              <img src="site_media/04_dashboard.png" alt="Дашборд игрока">
+              <figcaption>Алексей Морозов, 14 лет · рейтинг 87 · прогресс и радар навыков</figcaption>
+            </div>
+          </figure>
+          <div style="display:flex; flex-direction:column; gap:1.4cqh; min-height:0;">
+            <div class="subhead">Что видит родитель</div>
+            <ul class="feature-list">
+              <li><span class="ico">★</span><div><b>Общий рейтинг 87 баллов</b> · +2 к предыдущей точке.</div></li>
+              <li><span class="ico">⚡</span><div>Метрики: сыгранные матчи, активные травмы, дни с теста.</div></li>
+              <li><span class="ico">🏆</span><div>Достижения: лучший результат, без травм, 10+ матчей, рост.</div></li>
+              <li><span class="ico">📈</span><div>График <b>прогресса рейтинга</b> по сезонам 2023–2024.</div></li>
+              <li><span class="ico">🛡</span><div>Радар: <b>катание, броски, пас, дисциплина, физика, тактика</b>.</div></li>
+              <li><span class="ico">📏</span><div>Графики <b>антропометрии</b> и «Обновить показатели».</div></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="slide-num"><span>12</span> / 25</div>
+    </div>
+  </section>
+
+  <!-- ────────────────── Slide 13: Демо · Профиль игрока — 9 разделов ────────────────── -->
+  <section class="slide bg-light" data-n="13">
+    <div class="slide-inner">
+      <div class="slide-header">
+        <div class="title-block">
+          <span class="kicker">Демо · Профиль · 12</span>
+          <h2 class="slide-title">Профиль игрока — 9 вкладок в одной карточке</h2>
+        </div>
+      </div>
+      <div class="slide-body">
+        <div class="screen-grid cols-4" style="gap:1.0cqw;">
+          <figure class="screen-card">
+            <span class="dot3"></span>
+            <span class="url">Профиль</span>
+            <div class="img-wrap">
+              <img src="site_media/tab_profile.png" alt="Профиль">
+              <figcaption>Позиция, хват, команда, регион</figcaption>
+            </div>
+          </figure>
+          <figure class="screen-card">
+            <span class="dot3"></span>
+            <span class="url">Антропометрия</span>
+            <div class="img-wrap">
+              <img src="site_media/tab_anthropometry.png" alt="Антропометрия">
+              <figcaption>Рост, вес, размах · перцентиль</figcaption>
+            </div>
+          </figure>
+          <figure class="screen-card">
+            <span class="dot3"></span>
+            <span class="url">Тесты</span>
+            <div class="img-wrap">
+              <img src="site_media/tab_tests.png" alt="Тесты">
+              <figcaption>«На&nbsp;льду» / «Общая&nbsp;подготовка»</figcaption>
+            </div>
+          </figure>
+          <figure class="screen-card">
+            <span class="dot3"></span>
+            <span class="url">Статистика</span>
+            <div class="img-wrap">
+              <img src="site_media/tab_stats.png" alt="Статистика">
+              <figcaption>Матчи · И·Г·П·О · +/− · штрафы</figcaption>
+            </div>
+          </figure>
+          <figure class="screen-card">
+            <span class="dot3"></span>
+            <span class="url">Травмы</span>
+            <div class="img-wrap">
+              <img src="site_media/tab_injuries.png" alt="Травмы">
+              <figcaption>История · сроки восстановления</figcaption>
+            </div>
+          </figure>
+          <figure class="screen-card">
+            <span class="dot3"></span>
+            <span class="url">Оценки</span>
+            <div class="img-wrap">
+              <img src="site_media/tab_reviews.png" alt="Оценки">
+              <figcaption>Видеооценки тренера · план</figcaption>
+            </div>
+          </figure>
+          <figure class="screen-card">
+            <span class="dot3"></span>
+            <span class="url">Видеотека</span>
+            <div class="img-wrap">
+              <img src="site_media/tab_video.png" alt="Видеотека">
+              <figcaption>Категории: техника, броски, тактика</figcaption>
+            </div>
+          </figure>
+          <figure class="screen-card">
+            <span class="dot3"></span>
+            <span class="url">Семья</span>
+            <div class="img-wrap">
+              <img src="site_media/tab_family.png" alt="Семья">
+              <figcaption>Рост / вес родителей · прогноз</figcaption>
+            </div>
+          </figure>
+        </div>
+        <div class="footer-note">
+          <span class="kicker">+ 9-я вкладка</span>
+          <div><b>Отзывы</b> — текстовые комментарии тренеров и скаутов · <i>один профиль</i> работает и на родителя, и на B2B.</div>
+        </div>
+      </div>
+      <div class="slide-num"><span>13</span> / 25</div>
+    </div>
+  </section>
+
+  <!-- ────────────────── Slide 14: Демо · Добавление + Обучение + Mobile ────────────────── -->
+  <section class="slide bg-light" data-n="14">
+    <div class="slide-inner">
+      <div class="slide-header">
+        <div class="title-block">
+          <span class="kicker">Демо · Создание · Обучение · Mobile · 13</span>
+          <h2 class="slide-title">Регистрация игрока, обучение и мобильная версия</h2>
+        </div>
+      </div>
+      <div class="slide-body">
+        <div class="screen-grid" style="grid-template-columns: 1.3fr 1.3fr 0.7fr 0.7fr; gap: 1.0cqw;">
+          <figure class="screen-card">
+            <span class="dot3"></span>
+            <span class="url">/add-player · 4 шага</span>
+            <div class="img-wrap">
+              <img src="site_media/11_add_player.png" alt="Добавление игрока">
+              <figcaption><b>1. Личные → 2. Антропометрия → 3. Тесты → 4. Подтверждение</b></figcaption>
+            </div>
+          </figure>
+          <figure class="screen-card">
+            <span class="dot3"></span>
+            <span class="url">/education · 44 навыка</span>
+            <div class="img-wrap">
+              <img src="site_media/12_education.png" alt="Обучение">
+              <figcaption>U10–U16+ · катание, броски, дриблинг, позиционирование, вратарь</figcaption>
+            </div>
+          </figure>
+          <figure class="screen-card mobile">
+            <div class="img-wrap">
+              <img src="site_media/16_mobile_dashboard.png" alt="Mobile dashboard">
+              <figcaption>Mobile · дашборд</figcaption>
+            </div>
+          </figure>
+          <figure class="screen-card mobile">
+            <div class="img-wrap">
+              <img src="site_media/15_mobile_players.png" alt="Mobile players">
+              <figcaption>Mobile · каталог</figcaption>
+            </div>
+          </figure>
+        </div>
+        <div class="footer-note">
+          <span class="kicker">Mobile-first</span>
+          <div>Мастер из 4 шагов <b>снижает барьер</b>. Обучение — <i>retention-механика</i>. Адаптив под телефон — потому что родители <b>снимают видео с мобильного</b>.</div>
+        </div>
+      </div>
+      <div class="slide-num"><span>14</span> / 25</div>
+    </div>
+  </section>
+
+  <!-- ────────────────── Slide 11: Достоверность данных ────────────────── -->
   <section class="slide bg-light" data-n="8">
     <div class="slide-inner">
       <div class="slide-header">
@@ -1354,11 +1837,75 @@ sup.ref::after  { content: ']'; }
           </div>
         </div>
       </div>
-      <div class="slide-num"><span>08</span> / 16</div>
+      <div class="slide-num"><span>15</span> / 25</div>
     </div>
   </section>
 
-  <!-- ────────────────── Slide 9: Конкуренты + УТП ────────────────── -->
+  <!-- ────────────────── Slide 12: Было → Стало ────────────────── -->
+  <section class="slide bg-light" data-n="12">
+    <div class="slide-inner">
+      <div class="slide-header">
+        <div class="title-block">
+          <span class="kicker">Эволюция продукта · 11</span>
+          <h2 class="slide-title">Что изменили после интервью и созвонов</h2>
+        </div>
+      </div>
+      <div class="slide-body">
+        <div class="cards-grid" style="grid-template-columns: 1fr 1fr; gap: 1.2cqw;">
+          <div class="card">
+            <span class="card-l">Было · v0</span>
+            <h4 class="card-h">Цифры в профиле — без проверки</h4>
+            <div class="card-p" style="margin-top:auto; font-size:.95cqw;">Родитель мог вписать любой результат теста вручную.</div>
+          </div>
+          <div class="card accent">
+            <span class="card-l">Стало · v1</span>
+            <h4 class="card-h">Видеоподтверждение — обязательно</h4>
+            <div class="card-p" style="margin-top:auto; font-size:.95cqw;">Любая метрика существует только при наличии видео + антифрод.</div>
+          </div>
+
+          <div class="card">
+            <span class="card-l">Было · v0</span>
+            <h4 class="card-h">Только данные ребёнка</h4>
+            <div class="card-p" style="margin-top:auto; font-size:.95cqw;">Антропометрия игрока без учёта генетики.</div>
+          </div>
+          <div class="card accent">
+            <span class="card-l">Стало · v1</span>
+            <h4 class="card-h">Семейная антропометрия</h4>
+            <div class="card-p" style="margin-top:auto; font-size:.95cqw;">Рост/вес родителей и родственников — прогноз потенциала.</div>
+          </div>
+
+          <div class="card">
+            <span class="card-l">Было · v0</span>
+            <h4 class="card-h">Только чистые тесты</h4>
+            <div class="card-p" style="margin-top:auto; font-size:.95cqw;">Тесты можно «натренировать» без переноса в игру.</div>
+          </div>
+          <div class="card accent">
+            <span class="card-l">Стало · v1</span>
+            <h4 class="card-h">Тесты + игровые ситуации</h4>
+            <div class="card-p" style="margin-top:auto; font-size:.95cqw;">Видео с давлением соперника и хоккейное IQ — отдельно.</div>
+          </div>
+
+          <div class="card">
+            <span class="card-l">Было · v0</span>
+            <h4 class="card-h">Загрузка с компьютера</h4>
+            <div class="card-p" style="margin-top:auto; font-size:.95cqw;">Сложный воркфлоу — родители быстро отваливаются.</div>
+          </div>
+          <div class="card solid">
+            <span class="card-l">Стало · v1</span>
+            <h4 class="card-h">Mobile-first + 3 клика</h4>
+            <div class="card-p" style="margin-top:auto; font-size:.95cqw;">Снимаю с телефона → загрузил → получил рейтинг.</div>
+          </div>
+        </div>
+        <div class="footer-note">
+          <span class="kicker">Дополнительно</span>
+          <div>Добавили <b>геолокацию</b> и контекст региона · обновление профиля <i>раз в 3–4 мес.</i> · <u>freemium</u> вместо «только B2B» · реклама на сайте как доп. модель монетизации.</div>
+        </div>
+      </div>
+      <div class="slide-num"><span>16</span> / 25</div>
+    </div>
+  </section>
+
+  <!-- ────────────────── Slide 13: Конкуренты + УТП ────────────────── -->
   <section class="slide bg-light" data-n="9">
     <div class="slide-inner">
       <div class="slide-header">
@@ -1422,7 +1969,7 @@ sup.ref::after  { content: ']'; }
           <div>Первая в РФ открытая платформа, где <b>родитель — главный пользователь</b>, видео обязательно, а скаут получает <i>фильтруемый поиск с видеоподтверждением</i>.</div>
         </div>
       </div>
-      <div class="slide-num"><span>09</span> / 16</div>
+      <div class="slide-num"><span>17</span> / 25</div>
     </div>
   </section>
 
@@ -1462,7 +2009,7 @@ sup.ref::after  { content: ']'; }
           </div>
         </div>
       </div>
-      <div class="slide-num"><span>10</span> / 16</div>
+      <div class="slide-num"><span>18</span> / 25</div>
     </div>
   </section>
 
@@ -1531,7 +2078,7 @@ sup.ref::after  { content: ']'; }
           <div>Сначала <b>наполнение базы родителями</b> (порог &gt;&nbsp;<b>1000 профилей на возраст</b>) → потом подключение платных функций. Драйвер выручки — <i>B2B-подписка</i>.</div>
         </div>
       </div>
-      <div class="slide-num"><span>11</span> / 16</div>
+      <div class="slide-num"><span>19</span> / 25</div>
     </div>
   </section>
 
@@ -1581,7 +2128,7 @@ sup.ref::after  { content: ']'; }
           </div>
         </div>
       </div>
-      <div class="slide-num"><span>12</span> / 16</div>
+      <div class="slide-num"><span>20</span> / 25</div>
     </div>
   </section>
 
@@ -1622,7 +2169,7 @@ sup.ref::after  { content: ']'; }
           <div>Чем больше профилей и видео — тем выше ценность для скаутов; именно <b>родители — драйвер контента</b> на старте.</div>
         </div>
       </div>
-      <div class="slide-num"><span>13</span> / 16</div>
+      <div class="slide-num"><span>21</span> / 25</div>
     </div>
   </section>
 
@@ -1679,7 +2226,7 @@ sup.ref::after  { content: ']'; }
           </div>
         </div>
       </div>
-      <div class="slide-num"><span>14</span> / 16</div>
+      <div class="slide-num"><span>22</span> / 25</div>
     </div>
   </section>
 
@@ -1752,11 +2299,59 @@ sup.ref::after  { content: ']'; }
           </div>
         </div>
       </div>
-      <div class="slide-num"><span>15</span> / 16</div>
+      <div class="slide-num"><span>23</span> / 25</div>
     </div>
   </section>
 
-  <!-- ────────────────── Slide 16: Финал ────────────────── -->
+  <!-- ────────────────── Slide 20: Итоги проекта ────────────────── -->
+  <section class="slide bg-light" data-n="20">
+    <div class="slide-inner">
+      <div class="slide-header">
+        <div class="title-block">
+          <span class="kicker">Итоги · 19</span>
+          <h2 class="slide-title">Что получилось в рамках ППМ-2</h2>
+        </div>
+      </div>
+      <div class="slide-body">
+        <div class="bigfacts">
+          <div class="fact"><div class="v">21</div><div class="l">слайд pitch deck</div></div>
+          <div class="fact"><div class="v">≥&nbsp;15</div><div class="l">экранов в Figma-прототипе</div></div>
+          <div class="fact"><div class="v">3 / 3</div><div class="l">гипотезы валидированы качественно</div></div>
+        </div>
+        <div class="body-grid cols-2" style="margin-top:.6cqh;">
+          <div>
+            <div class="subhead">Что сделали</div>
+            <ul class="bullets tighter">
+              <li>аналитический отчёт по рынку (TAM/SAM/SOM, тренды);</li>
+              <li>конкурентный анализ и матрица отстройки;</li>
+              <li>концепция продукта + 6 типов стандартизированных видео;</li>
+              <li>UX/UI прототип в Figma с двумя сценариями (родитель / скаут);</li>
+              <li>система достоверности данных и антифрод-логика;</li>
+              <li>модель монетизации freemium с B2B-подпиской.</li>
+            </ul>
+          </div>
+          <div>
+            <div class="subhead">Что рекомендуем дальше</div>
+            <ul class="bullets tighter">
+              <li><b>MVP:</b> backend на Python, хранилище видео, CV-демо;</li>
+              <li><b>Пилот:</b> 1–2 региональные академии + турнир «Сибириус»;</li>
+              <li><b>Контент:</b> 6 промо-роликов, образовательный раздел;</li>
+              <li><b>Маркетинг:</b> наполнение базы до 1000 профилей на возраст;</li>
+              <li><b>Этап 2:</b> подключение платных подписок и B2B-доступа;</li>
+              <li><b>Долгосрочно:</b> мобильное приложение и AI-видеоанализ.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-note">
+          <span class="kicker">Главный вывод</span>
+          <div>Проект <b>обоснован</b> технически и продуктово · занимает пустую нишу российского хоккея · готов к переходу в <i>MVP-разработку</i>.</div>
+        </div>
+      </div>
+      <div class="slide-num"><span>24</span> / 25</div>
+    </div>
+  </section>
+
+  <!-- ────────────────── Slide 21: Финал ────────────────── -->
   <section class="slide bg-red final-slide" data-n="16">
     <div class="slide-inner">
       <h1>Спасибо <span class="accent">за&nbsp;внимание!</span></h1>
@@ -1786,7 +2381,7 @@ sup.ref::after  { content: ']'; }
 
 <div id="hud" aria-label="Управление">
   <button id="prev" title="Предыдущий слайд (←)">‹</button>
-  <span class="counter" id="counter">1 / 16</span>
+  <span class="counter" id="counter">1 / 25</span>
   <button id="next" title="Следующий слайд (→)">›</button>
   <button id="printbtn" title="Печать / экспорт в PDF (P)">PDF</button>
   <span class="help">← → · Space · F · P</span>
