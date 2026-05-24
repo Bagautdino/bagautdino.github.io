@@ -801,6 +801,70 @@ html, body {
 .tier.solid li { color: rgba(255,255,255,.95); }
 .tier.solid li::before { background: #fff; }
 
+/* ─── Team member tiles (slide 2) ────────────────────────────────── */
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1.4cqw;
+  align-items: start;
+  align-content: center;
+  flex: 1;
+  min-height: 0;
+}
+.team-member {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1.4cqh;
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  border: none;
+}
+.team-member .ava {
+  width: 11cqw;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid var(--itmo-red);
+  background: var(--grey-2);
+  flex: 0 0 auto;
+  box-shadow: 0 12px 30px -14px rgba(236,11,67,.40);
+}
+.team-member.accent .ava {
+  border-width: 4px;
+  box-shadow: 0 16px 36px -14px rgba(236,11,67,.55);
+}
+.team-member .ava img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+  display: block;
+}
+.team-member .name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.35cqw;
+  line-height: 1.18;
+  color: var(--black);
+  letter-spacing: -0.01em;
+}
+.team-member .role {
+  font-family: var(--font-mono);
+  font-size: 0.85cqw;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--itmo-red);
+  font-weight: 700;
+  background: #FFF6F8;
+  padding: .45cqh 1.0cqw;
+  border-radius: 999px;
+  border: 1.5px solid var(--itmo-red);
+  white-space: nowrap;
+}
+
 /* ─── Browser-window screenshot card ─────────────────────────────── */
 .screen-card {
   position: relative;
@@ -812,8 +876,10 @@ html, body {
   flex-direction: column;
   gap: 0;
   min-height: 0;
+  min-width: 0;
   overflow: hidden;
   box-shadow: 0 8px 22px -14px rgba(236,11,67,.30);
+  contain: layout paint;
 }
 .screen-card::before, .screen-card::after {
   content: '';
@@ -863,9 +929,11 @@ html, body {
   object-position: top center;
   display: block;
 }
-.screen-card.fit img {
+.screen-card.fit img,
+.screen-card .img-wrap.contain img {
   object-fit: contain;
-  object-position: top center;
+  object-position: center;
+  background: #0A0A0A;
 }
 .screen-card.mobile {
   padding-top: 0;
@@ -898,12 +966,28 @@ html, body {
   gap: 1.2cqw;
   flex: 1;
   min-height: 0;
+  min-width: 0;
 }
+.screen-grid > * { min-width: 0; min-height: 0; }
 .screen-grid.cols-2 { grid-template-columns: 1fr 1fr; }
 .screen-grid.cols-3 { grid-template-columns: 1fr 1fr 1fr; }
-.screen-grid.cols-4 { grid-template-columns: 1fr 1fr 1fr 1fr; }
+.screen-grid.cols-4 {
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+}
+.screen-grid.cols-2x2 {
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+}
 .screen-grid.cols-1-hero { grid-template-columns: 1.65fr 1fr; }
 .screen-grid.cols-mob-3  { grid-template-columns: 1fr 1fr 1fr; }
+
+/* Lock card aspect so screenshots never overflow */
+.screen-grid.cols-4 .screen-card  { aspect-ratio: 16 / 11; }
+.screen-grid.cols-2 .screen-card  { aspect-ratio: 16 / 10; max-height: 100%; }
+.screen-grid.cols-2x2 .screen-card { aspect-ratio: 16 / 10; max-height: 100%; }
+.screen-grid.cols-1-hero > .screen-card { max-height: 100%; }
+.screen-card.mobile { aspect-ratio: 9 / 18; }
 
 .feature-list {
   display: flex;
@@ -936,6 +1020,153 @@ html, body {
   margin-top: .15cqh;
 }
 .feature-list li b { color: var(--black); }
+
+/* ─── AI assistant mock chat ─────────────────────────────────────── */
+.ai-chat {
+  display: flex;
+  flex-direction: column;
+  background: #0E0F12;
+  border-radius: var(--radius-lg);
+  border: 2px solid var(--itmo-red);
+  padding: 1.8cqh 1.4cqw;
+  gap: 1.0cqh;
+  min-height: 0;
+  flex: 1;
+  overflow: hidden;
+  box-shadow: 0 10px 30px -14px rgba(236,11,67,.40);
+}
+.ai-chat .ai-head {
+  display: flex; align-items: center; gap: .8cqw;
+  padding-bottom: .8cqh;
+  border-bottom: 1px solid rgba(236,11,67,.25);
+}
+.ai-chat .ai-head .pulse {
+  width: 0.7cqw; height: 0.7cqw;
+  border-radius: 50%;
+  background: #16A34A;
+  box-shadow: 0 0 0 0 rgba(22,163,74,.7);
+  animation: ai-pulse 2s ease-out infinite;
+}
+@keyframes ai-pulse {
+  0%   { box-shadow: 0 0 0 0 rgba(22,163,74,.7); }
+  70%  { box-shadow: 0 0 0 .7cqw rgba(22,163,74,0); }
+  100% { box-shadow: 0 0 0 0 rgba(22,163,74,0); }
+}
+.ai-chat .ai-head .tit {
+  font-family: var(--font-mono);
+  font-size: 0.9cqw;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: #fff;
+  font-weight: 700;
+}
+.ai-chat .ai-head .tit b { color: var(--itmo-red); }
+.ai-chat .ai-head .badge {
+  font-family: var(--font-mono);
+  font-size: 0.72cqw;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  background: rgba(22,163,74,.18);
+  color: #34C764;
+  padding: .25cqh .7cqw;
+  border-radius: 999px;
+  margin-left: auto;
+}
+.ai-chat .ai-stream {
+  display: flex;
+  flex-direction: column;
+  gap: .9cqh;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+.ai-bubble {
+  display: flex; gap: .7cqw;
+  font-size: 0.92cqw;
+  line-height: 1.4;
+}
+.ai-bubble .who {
+  flex: 0 0 2.2cqw;
+  height: 2.2cqw;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 0.72cqw;
+  font-weight: 700;
+}
+.ai-bubble.user .who { background: rgba(255,255,255,.08); color: #fff; border: 1px solid rgba(255,255,255,.18); }
+.ai-bubble.ai .who   { background: var(--itmo-red); color: #fff; }
+.ai-bubble .body {
+  background: rgba(255,255,255,.05);
+  border-radius: var(--radius-md);
+  padding: .8cqh 1.0cqw;
+  color: #E5E7EB;
+  border: 1px solid rgba(255,255,255,.08);
+  flex: 1;
+  min-width: 0;
+}
+.ai-bubble.ai .body {
+  background: rgba(236,11,67,.10);
+  border-color: rgba(236,11,67,.35);
+  color: #fff;
+}
+.ai-bubble .body b { color: #fff; }
+.ai-bubble .body .citation {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.68cqw;
+  background: rgba(255,255,255,.08);
+  color: var(--itmo-red);
+  padding: .08cqh .35cqw;
+  border-radius: 4px;
+  margin: 0 .1cqw;
+  white-space: nowrap;
+  font-weight: 700;
+}
+.ai-bubble .body ul {
+  list-style: none;
+  margin: .4cqh 0 0;
+  padding: 0;
+}
+.ai-bubble .body ul li {
+  position: relative;
+  padding-left: 1.1cqw;
+  margin-top: .3cqh;
+  font-size: 0.86cqw;
+}
+.ai-bubble .body ul li::before {
+  content: '';
+  position: absolute;
+  left: 0; top: .55em;
+  width: .55cqw;
+  height: .15cqw;
+  background: var(--itmo-red);
+  border-radius: 2px;
+}
+.ai-input {
+  display: flex; align-items: center; gap: .8cqw;
+  padding: .9cqh 1.0cqw;
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.03);
+  border-radius: 999px;
+  font-family: var(--font-body);
+  font-size: 0.88cqw;
+  color: var(--grey-4);
+  margin-top: auto;
+}
+.ai-input .send {
+  margin-left: auto;
+  font-family: var(--font-mono);
+  font-size: 0.72cqw;
+  color: #fff;
+  background: var(--itmo-red);
+  padding: .35cqh .85cqw;
+  border-radius: 999px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
 
 /* ─── Navigation HUD ──────────────────────────────────────────────── */
 #hud {
@@ -1186,39 +1417,39 @@ sup.ref::after  { content: ']'; }
         </div>
       </div>
       <div class="slide-body">
-        <div class="cards-grid" style="grid-template-columns: repeat(5, 1fr); gap: 1.0cqw;">
-          <div class="card accent">
-            <span class="card-l">Product Lead</span>
-            <h4 class="card-h">Селянина Анастасия</h4>
-            <div class="card-p">Координация команды, синхронизация с заказчиком, продуктовые решения, общая концепция платформы.</div>
-          </div>
-          <div class="card">
-            <span class="card-l">Tech / Analytics</span>
-            <h4 class="card-h">Адрианов Константин</h4>
-            <div class="card-p">Анализ рынка хоккея, TAM/SAM/SOM, технические требования к платформе и архитектуре MVP.</div>
-          </div>
-          <div class="card solid">
-            <span class="card-l">UX / UI · Prototype</span>
-            <h4 class="card-h">Багаутдинов Айваз</h4>
-            <div class="card-p">Прототипирование интерфейса в Figma, дизайн-система, защитная презентация и сценарии.</div>
-          </div>
-          <div class="card">
-            <span class="card-l">Customer Research</span>
-            <h4 class="card-h">Цыбенко Екатерина</h4>
-            <div class="card-p">Глубинные интервью с родителями и скаутами, JTBD-методология, валидация гипотез.</div>
-          </div>
-          <div class="card accent">
-            <span class="card-l">Marketing · GTM</span>
-            <h4 class="card-h">Марченко Мария</h4>
-            <div class="card-p">Конкурентный анализ, стратегия продвижения, монетизация и подписки, контент-стратегия.</div>
-          </div>
+        <div class="team-grid">
+          <figure class="team-member">
+            <div class="ava"><img src="site_media/nastya.jpg" alt="Селянина Анастасия"></div>
+            <div class="role">Designer</div>
+            <div class="name">Селянина<br>Анастасия</div>
+          </figure>
+          <figure class="team-member">
+            <div class="ava"><img src="site_media/konstantin.jpg" alt="Адрианов Константин"></div>
+            <div class="role">Product</div>
+            <div class="name">Адрианов<br>Константин</div>
+          </figure>
+          <figure class="team-member accent">
+            <div class="ava"><img src="site_media/aivaz.jpg" alt="Багаутдинов Айваз"></div>
+            <div class="role">Developer</div>
+            <div class="name">Багаутдинов<br>Айваз</div>
+          </figure>
+          <figure class="team-member">
+            <div class="ava"><img src="site_media/katya.jpg" alt="Цыбенко Екатерина"></div>
+            <div class="role">Project Manager</div>
+            <div class="name">Цыбенко<br>Екатерина</div>
+          </figure>
+          <figure class="team-member">
+            <div class="ava"><img src="site_media/maria.jpg" alt="Марченко Мария"></div>
+            <div class="role">Marketing · GTM</div>
+            <div class="name">Марченко<br>Мария</div>
+          </figure>
         </div>
         <div class="footer-note">
-          <span class="kicker">Кросс-функциональная работа</span>
-          <div>Каждый участник вёл свой блок, но <b>ключевые решения принимали совместно</b> — продукт, UX, гипотезы и go-to-market.</div>
+          <span class="kicker">Команда U4125 · ИТМО · ФТМИ</span>
+          <div>Кросс-функциональная работа · <b>ключевые решения принимали совместно</b>.</div>
         </div>
       </div>
-      <div class="slide-num"><span>02</span> / 25</div>
+      <div class="slide-num"><span>02</span> / 28</div>
     </div>
   </section>
 
@@ -1243,7 +1474,7 @@ sup.ref::after  { content: ']'; }
           <div><b>Нет единой системы сравнения</b> игроков из разных регионов — это <i>главное узкое место</i> рынка.</div>
         </div>
       </div>
-      <div class="slide-num"><span>03</span> / 25</div>
+      <div class="slide-num"><span>03</span> / 28</div>
     </div>
   </section>
 
@@ -1302,7 +1533,7 @@ sup.ref::after  { content: ']'; }
           </div>
         </div>
       </div>
-      <div class="slide-num"><span>04</span> / 25</div>
+      <div class="slide-num"><span>04</span> / 28</div>
     </div>
   </section>
 
@@ -1358,7 +1589,7 @@ sup.ref::after  { content: ']'; }
           </div>
         </div>
       </div>
-      <div class="slide-num"><span>05</span> / 25</div>
+      <div class="slide-num"><span>05</span> / 28</div>
     </div>
   </section>
 
@@ -1413,7 +1644,7 @@ sup.ref::after  { content: ']'; }
           </div>
         </div>
       </div>
-      <div class="slide-num"><span>06</span> / 25</div>
+      <div class="slide-num"><span>06</span> / 28</div>
     </div>
   </section>
 
@@ -1447,7 +1678,7 @@ sup.ref::after  { content: ']'; }
           <div>Не более <b>3 кликов до загрузки видео</b> после регистрации · «2 клика до видео и ключевых метрик».</div>
         </div>
       </div>
-      <div class="slide-num"><span>07</span> / 25</div>
+      <div class="slide-num"><span>07</span> / 28</div>
     </div>
   </section>
 
@@ -1493,7 +1724,7 @@ sup.ref::after  { content: ']'; }
           </div>
         </div>
       </div>
-      <div class="slide-num"><span>08</span> / 25</div>
+      <div class="slide-num"><span>08</span> / 28</div>
     </div>
   </section>
 
@@ -1544,44 +1775,46 @@ sup.ref::after  { content: ']'; }
           <div><b>Результат не может существовать без видеоподтверждения</b> · единые требования к ракурсу, длительности, разрешению (≥&nbsp;720p).</div>
         </div>
       </div>
-      <div class="slide-num"><span>09</span> / 25</div>
+      <div class="slide-num"><span>09</span> / 28</div>
     </div>
   </section>
 
-  <!-- ────────────────── Slide 10: Демо · Лендинг и вход ────────────────── -->
+  <!-- ────────────────── Slide 10: Демо · Live-обзор сайта (GIF) ────────────────── -->
   <section class="slide bg-light" data-n="10">
     <div class="slide-inner">
       <div class="slide-header">
         <div class="title-block">
           <span class="kicker">Демо · vetrychok.ru · 09</span>
-          <h2 class="slide-title">Лендинг и вход — рабочий прототип</h2>
+          <h2 class="slide-title">Live-обзор работающего прототипа</h2>
         </div>
       </div>
       <div class="slide-body">
-        <div class="screen-grid cols-2">
-          <figure class="screen-card">
+        <div class="screen-grid cols-1-hero">
+          <figure class="screen-card fit">
             <span class="dot3"></span>
-            <span class="url">vetrychok.ru</span>
-            <div class="img-wrap">
-              <img src="site_media/01_home.png" alt="Главная страница">
-              <figcaption>Лендинг · УТП и блок «Проблема объективной оценки»</figcaption>
+            <span class="url">vetrychok.ru · live demo</span>
+            <div class="img-wrap contain">
+              <img src="site_media/demo.gif" alt="Демо обхода платформы">
             </div>
           </figure>
-          <figure class="screen-card">
-            <span class="dot3"></span>
-            <span class="url">vetrychok.ru/login</span>
-            <div class="img-wrap">
-              <img src="site_media/02_login.png" alt="Экран входа" style="object-fit:contain; background:#0A0A0A;">
-              <figcaption>Вход · выбор роли «Родитель / Скаут»</figcaption>
+          <div style="display:flex; flex-direction:column; gap:1.2cqh; min-height:0;">
+            <div class="subhead">Что показывает обход</div>
+            <ul class="feature-list">
+              <li><span class="ico">1</span><div><b>Лендинг</b> с УТП «Раскрой потенциал твоего чемпиона».</div></li>
+              <li><span class="ico">2</span><div><b>Вход</b> с выбором роли «Родитель / Скаут».</div></li>
+              <li><span class="ico">3</span><div><b>Каталог</b> игроков с фильтрами и статусом данных.</div></li>
+              <li><span class="ico">4</span><div><b>Дашборд</b>: рейтинг, прогресс, навыки, антропометрия.</div></li>
+              <li><span class="ico">5</span><div><b>Профиль</b> и переключение между 9 вкладками.</div></li>
+              <li><span class="ico">6</span><div><b>Обучение</b> — 44 фундаментальных навыка.</div></li>
+            </ul>
+            <div class="kicker" style="margin-top:.4cqh;">Стек</div>
+            <div style="font-size:.95cqw; color:var(--grey-7); line-height:1.4;">
+              React + Vite · FastAPI · PostgreSQL · S3 для видео · JWT-аутентификация · LLM-ассистент (готов в&nbsp;API)
             </div>
-          </figure>
-        </div>
-        <div class="footer-note">
-          <span class="kicker">Что показываем</span>
-          <div>Публичный лендинг с УТП «<b>Раскрой потенциал твоего чемпиона</b>». На входе пользователь выбирает <i>роль</i> — это переключает интерфейс и набор функций.</div>
+          </div>
         </div>
       </div>
-      <div class="slide-num"><span>10</span> / 25</div>
+      <div class="slide-num"><span>10</span> / 28</div>
     </div>
   </section>
 
@@ -1616,11 +1849,46 @@ sup.ref::after  { content: ']'; }
           </div>
         </div>
       </div>
-      <div class="slide-num"><span>11</span> / 25</div>
+      <div class="slide-num"><span>11</span> / 28</div>
     </div>
   </section>
 
-  <!-- ────────────────── Slide 12: Демо · Дашборд игрока ────────────────── -->
+  <!-- ────────────────── Slide 12: Демо · Расширенные фильтры ────────────────── -->
+  <section class="slide bg-light" data-n="12">
+    <div class="slide-inner">
+      <div class="slide-header">
+        <div class="title-block">
+          <span class="kicker">Демо · Фильтры скаута · 11</span>
+          <h2 class="slide-title">Расширенные фильтры — поиск перспективных игроков</h2>
+        </div>
+      </div>
+      <div class="slide-body">
+        <div class="screen-grid cols-2">
+          <figure class="screen-card fit">
+            <span class="dot3"></span>
+            <span class="url">vetrychok.ru/players · filters demo</span>
+            <div class="img-wrap contain">
+              <img src="site_media/filters_demo.gif" alt="Демо фильтрации">
+            </div>
+          </figure>
+          <figure class="screen-card">
+            <span class="dot3"></span>
+            <span class="url">расширенные фильтры (раскрыты)</span>
+            <div class="img-wrap">
+              <img src="site_media/filters_advanced.png" alt="Расширенные фильтры">
+            </div>
+          </figure>
+        </div>
+        <div class="footer-note">
+          <span class="kicker">Что есть</span>
+          <div>4&nbsp;dropdown-фильтра + 4&nbsp;слайдера (<b>рост, вес, жировая масса, рейтинг</b>) + toggle «<i>Только с видео</i>» + дата теста · <b>живой поиск</b> по имени · счётчик активных фильтров и кнопка «Сброс».</div>
+        </div>
+      </div>
+      <div class="slide-num"><span>12</span> / 28</div>
+    </div>
+  </section>
+
+  <!-- ────────────────── Slide 13: Демо · Дашборд игрока ────────────────── -->
   <section class="slide bg-light" data-n="12">
     <div class="slide-inner">
       <div class="slide-header">
@@ -1652,92 +1920,113 @@ sup.ref::after  { content: ']'; }
           </div>
         </div>
       </div>
-      <div class="slide-num"><span>12</span> / 25</div>
+      <div class="slide-num"><span>13</span> / 28</div>
     </div>
   </section>
 
-  <!-- ────────────────── Slide 13: Демо · Профиль игрока — 9 разделов ────────────────── -->
+  <!-- ────────────────── Slide 13: Профиль игрока — основные 4 вкладки ────────────────── -->
   <section class="slide bg-light" data-n="13">
     <div class="slide-inner">
       <div class="slide-header">
         <div class="title-block">
-          <span class="kicker">Демо · Профиль · 12</span>
-          <h2 class="slide-title">Профиль игрока — 9 вкладок в одной карточке</h2>
+          <span class="kicker">Демо · Профиль · 12 · ч. 1</span>
+          <h2 class="slide-title">Профиль игрока — основные данные и метрики</h2>
         </div>
       </div>
       <div class="slide-body">
-        <div class="screen-grid cols-4" style="gap:1.0cqw;">
+        <div class="screen-grid cols-2x2">
           <figure class="screen-card">
             <span class="dot3"></span>
-            <span class="url">Профиль</span>
+            <span class="url">Профиль · общая информация</span>
             <div class="img-wrap">
               <img src="site_media/tab_profile.png" alt="Профиль">
-              <figcaption>Позиция, хват, команда, регион</figcaption>
+              <figcaption>Позиция, хват, команда, регион, дата рождения, номер</figcaption>
             </div>
           </figure>
           <figure class="screen-card">
             <span class="dot3"></span>
-            <span class="url">Антропометрия</span>
+            <span class="url">Антропометрия · перцентили</span>
             <div class="img-wrap">
               <img src="site_media/tab_anthropometry.png" alt="Антропометрия">
-              <figcaption>Рост, вес, размах · перцентиль</figcaption>
+              <figcaption>Рост, вес, размах рук, ширина плеч · норма / ниже нормы</figcaption>
             </div>
           </figure>
           <figure class="screen-card">
             <span class="dot3"></span>
-            <span class="url">Тесты</span>
+            <span class="url">Тесты · «На льду» / ОФП</span>
             <div class="img-wrap">
               <img src="site_media/tab_tests.png" alt="Тесты">
-              <figcaption>«На&nbsp;льду» / «Общая&nbsp;подготовка»</figcaption>
+              <figcaption>Сессии «На&nbsp;льду» и «Общая подготовка», тренды по метрикам</figcaption>
             </div>
           </figure>
           <figure class="screen-card">
             <span class="dot3"></span>
-            <span class="url">Статистика</span>
+            <span class="url">Статистика · турниры</span>
             <div class="img-wrap">
               <img src="site_media/tab_stats.png" alt="Статистика">
-              <figcaption>Матчи · И·Г·П·О · +/− · штрафы</figcaption>
+              <figcaption>Матчи: Игры · Голы · Пасы · Очки · +/− · штрафы · дата</figcaption>
             </div>
           </figure>
+        </div>
+        <div class="footer-note">
+          <span class="kicker">Ядро профиля</span>
+          <div>Эти <b>4 раздела</b> формируют объективную картину игрока · далее — <i>контент и подтверждения</i>.</div>
+        </div>
+      </div>
+      <div class="slide-num"><span>14</span> / 28</div>
+    </div>
+  </section>
+
+  <!-- ────────────────── Slide 14: Профиль игрока — медиа и контекст ────────────────── -->
+  <section class="slide bg-light" data-n="14">
+    <div class="slide-inner">
+      <div class="slide-header">
+        <div class="title-block">
+          <span class="kicker">Демо · Профиль · 12 · ч. 2</span>
+          <h2 class="slide-title">Профиль игрока — видео, оценки, семья</h2>
+        </div>
+      </div>
+      <div class="slide-body">
+        <div class="screen-grid cols-2x2">
           <figure class="screen-card">
             <span class="dot3"></span>
-            <span class="url">Травмы</span>
-            <div class="img-wrap">
-              <img src="site_media/tab_injuries.png" alt="Травмы">
-              <figcaption>История · сроки восстановления</figcaption>
-            </div>
-          </figure>
-          <figure class="screen-card">
-            <span class="dot3"></span>
-            <span class="url">Оценки</span>
-            <div class="img-wrap">
-              <img src="site_media/tab_reviews.png" alt="Оценки">
-              <figcaption>Видеооценки тренера · план</figcaption>
-            </div>
-          </figure>
-          <figure class="screen-card">
-            <span class="dot3"></span>
-            <span class="url">Видеотека</span>
+            <span class="url">Видеотека · по категориям</span>
             <div class="img-wrap">
               <img src="site_media/tab_video.png" alt="Видеотека">
-              <figcaption>Категории: техника, броски, тактика</figcaption>
+              <figcaption>Техника броска, обращение с шайбой, игровые ситуации, тактика</figcaption>
             </div>
           </figure>
           <figure class="screen-card">
             <span class="dot3"></span>
-            <span class="url">Семья</span>
+            <span class="url">Оценки · видеоразборы тренера</span>
+            <div class="img-wrap">
+              <img src="site_media/tab_reviews.png" alt="Оценки">
+              <figcaption>Видеооценки тренера, план развития, текстовые рекомендации</figcaption>
+            </div>
+          </figure>
+          <figure class="screen-card">
+            <span class="dot3"></span>
+            <span class="url">Травмы · история и восстановление</span>
+            <div class="img-wrap">
+              <img src="site_media/tab_injuries.png" alt="Травмы">
+              <figcaption>Список травм, сроки восстановления, статус и заметки</figcaption>
+            </div>
+          </figure>
+          <figure class="screen-card">
+            <span class="dot3"></span>
+            <span class="url">Семья · генетика и потенциал</span>
             <div class="img-wrap">
               <img src="site_media/tab_family.png" alt="Семья">
-              <figcaption>Рост / вес родителей · прогноз</figcaption>
+              <figcaption>Рост / вес родителей и родственников — прогноз потенциала</figcaption>
             </div>
           </figure>
         </div>
         <div class="footer-note">
           <span class="kicker">+ 9-я вкладка</span>
-          <div><b>Отзывы</b> — текстовые комментарии тренеров и скаутов · <i>один профиль</i> работает и на родителя, и на B2B.</div>
+          <div><b>Отзывы</b> — комментарии тренеров и скаутов · <i>один профиль</i> работает и на родителя, и на B2B.</div>
         </div>
       </div>
-      <div class="slide-num"><span>13</span> / 25</div>
+      <div class="slide-num"><span>15</span> / 28</div>
     </div>
   </section>
 
@@ -1786,11 +2075,80 @@ sup.ref::after  { content: ']'; }
           <div>Мастер из 4 шагов <b>снижает барьер</b>. Обучение — <i>retention-механика</i>. Адаптив под телефон — потому что родители <b>снимают видео с мобильного</b>.</div>
         </div>
       </div>
-      <div class="slide-num"><span>14</span> / 25</div>
+      <div class="slide-num"><span>16</span> / 28</div>
     </div>
   </section>
 
-  <!-- ────────────────── Slide 11: Достоверность данных ────────────────── -->
+  <!-- ────────────────── Slide 17: AI-ассистент (новая фича) ────────────────── -->
+  <section class="slide bg-light" data-n="17">
+    <div class="slide-inner">
+      <div class="slide-header">
+        <div class="title-block">
+          <span class="kicker">Новая фича · AI · 16</span>
+          <h2 class="slide-title">AI-ассистент — анализ профилей и подбор игроков</h2>
+        </div>
+      </div>
+      <div class="slide-body">
+        <div class="body-grid cols-2" style="gap:2.0cqw;">
+          <div class="ai-chat">
+            <div class="ai-head">
+              <span class="pulse"></span>
+              <span class="tit">«Хоккейный <b>AI</b>» · ассистент скаута</span>
+              <span class="badge">● онлайн</span>
+            </div>
+            <div class="ai-stream">
+              <div class="ai-bubble user">
+                <div class="who">С</div>
+                <div class="body">Найди нападающих 14&nbsp;лет в&nbsp;Москве с рейтингом выше 80 и&nbsp;есть видео&nbsp;броска.</div>
+              </div>
+              <div class="ai-bubble ai">
+                <div class="who">AI</div>
+                <div class="body">
+                  Нашёл <b>2 кандидата</b> по фильтрам:
+                  <ul>
+                    <li><b>Алексей Морозов</b> · 14&nbsp;л · ЦСКА Юниоры · рейтинг <b>87</b> <span class="citation">#1</span></li>
+                    <li><b>Артём Кузнецов</b> · 14&nbsp;л · Москва · рейтинг <b>88</b> <span class="citation">#2</span></li>
+                  </ul>
+                  У&nbsp;Морозова <b>+2&nbsp;балла</b> за последнюю точку — стабильный рост за полгода.
+                </div>
+              </div>
+              <div class="ai-bubble user">
+                <div class="who">С</div>
+                <div class="body">Кратко: чем отличаются?</div>
+              </div>
+              <div class="ai-bubble ai">
+                <div class="who">AI</div>
+                <div class="body">
+                  Морозов — <b>левый хват</b>, выше антропометрия для возраста (норма по росту&nbsp;152&nbsp;см); Кузнецов — выше рейтинг, но <i>нет видео броска</i>&nbsp;<span class="citation">!</span> и&nbsp;слабее статистика в&nbsp;последнем турнире.
+                </div>
+              </div>
+            </div>
+            <div class="ai-input">
+              Спросить AI · «покажи прогресс по тестам», «сравни двух игроков»…
+              <span class="send">Send ↵</span>
+            </div>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:1.4cqh; min-height:0;">
+            <div class="subhead">Что умеет AI</div>
+            <ul class="feature-list">
+              <li><span class="ico">🔎</span><div><b>Подбор игроков</b> по естественному запросу — без сборки фильтров вручную.</div></li>
+              <li><span class="ico">📊</span><div><b>Сводка по профилю:</b> «как развивался за&nbsp;6&nbsp;мес», «сильные/слабые стороны».</div></li>
+              <li><span class="ico">⚖</span><div><b>Сравнение игроков</b> с учётом антропометрии, тестов и&nbsp;видео.</div></li>
+              <li><span class="ico">💡</span><div><b>Рекомендации развития</b> родителю и&nbsp;план тренировок.</div></li>
+              <li><span class="ico">🛡</span><div><b>Цитирует</b> данные профиля — никаких галлюцинаций.</div></li>
+            </ul>
+            <div class="footer-note" style="border-top:none; padding-top:0; margin-top:.2cqh;">
+              <span class="kicker">Статус</span>
+              <div><b>Готов в&nbsp;API</b> (<code style="font-family:var(--font-mono);">POST /api/v1/assistant/chat</code>) · UI выкатываем после&nbsp;ППМ-2.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="slide-num"><span>17</span> / 28</div>
+    </div>
+  </section>
+
+  <!-- ────────────────── Slide 18: Достоверность данных ────────────────── -->
   <section class="slide bg-light" data-n="8">
     <div class="slide-inner">
       <div class="slide-header">
@@ -1837,7 +2195,7 @@ sup.ref::after  { content: ']'; }
           </div>
         </div>
       </div>
-      <div class="slide-num"><span>15</span> / 25</div>
+      <div class="slide-num"><span>18</span> / 28</div>
     </div>
   </section>
 
@@ -1901,7 +2259,7 @@ sup.ref::after  { content: ']'; }
           <div>Добавили <b>геолокацию</b> и контекст региона · обновление профиля <i>раз в 3–4 мес.</i> · <u>freemium</u> вместо «только B2B» · реклама на сайте как доп. модель монетизации.</div>
         </div>
       </div>
-      <div class="slide-num"><span>16</span> / 25</div>
+      <div class="slide-num"><span>19</span> / 28</div>
     </div>
   </section>
 
@@ -1969,7 +2327,7 @@ sup.ref::after  { content: ']'; }
           <div>Первая в РФ открытая платформа, где <b>родитель — главный пользователь</b>, видео обязательно, а скаут получает <i>фильтруемый поиск с видеоподтверждением</i>.</div>
         </div>
       </div>
-      <div class="slide-num"><span>17</span> / 25</div>
+      <div class="slide-num"><span>20</span> / 28</div>
     </div>
   </section>
 
@@ -2009,7 +2367,7 @@ sup.ref::after  { content: ']'; }
           </div>
         </div>
       </div>
-      <div class="slide-num"><span>18</span> / 25</div>
+      <div class="slide-num"><span>21</span> / 28</div>
     </div>
   </section>
 
@@ -2078,7 +2436,7 @@ sup.ref::after  { content: ']'; }
           <div>Сначала <b>наполнение базы родителями</b> (порог &gt;&nbsp;<b>1000 профилей на возраст</b>) → потом подключение платных функций. Драйвер выручки — <i>B2B-подписка</i>.</div>
         </div>
       </div>
-      <div class="slide-num"><span>19</span> / 25</div>
+      <div class="slide-num"><span>22</span> / 28</div>
     </div>
   </section>
 
@@ -2128,7 +2486,7 @@ sup.ref::after  { content: ']'; }
           </div>
         </div>
       </div>
-      <div class="slide-num"><span>20</span> / 25</div>
+      <div class="slide-num"><span>23</span> / 28</div>
     </div>
   </section>
 
@@ -2169,7 +2527,7 @@ sup.ref::after  { content: ']'; }
           <div>Чем больше профилей и видео — тем выше ценность для скаутов; именно <b>родители — драйвер контента</b> на старте.</div>
         </div>
       </div>
-      <div class="slide-num"><span>21</span> / 25</div>
+      <div class="slide-num"><span>24</span> / 28</div>
     </div>
   </section>
 
@@ -2226,7 +2584,7 @@ sup.ref::after  { content: ']'; }
           </div>
         </div>
       </div>
-      <div class="slide-num"><span>22</span> / 25</div>
+      <div class="slide-num"><span>25</span> / 28</div>
     </div>
   </section>
 
@@ -2299,7 +2657,7 @@ sup.ref::after  { content: ']'; }
           </div>
         </div>
       </div>
-      <div class="slide-num"><span>23</span> / 25</div>
+      <div class="slide-num"><span>26</span> / 28</div>
     </div>
   </section>
 
@@ -2347,7 +2705,7 @@ sup.ref::after  { content: ']'; }
           <div>Проект <b>обоснован</b> технически и продуктово · занимает пустую нишу российского хоккея · готов к переходу в <i>MVP-разработку</i>.</div>
         </div>
       </div>
-      <div class="slide-num"><span>24</span> / 25</div>
+      <div class="slide-num"><span>27</span> / 28</div>
     </div>
   </section>
 
@@ -2381,7 +2739,7 @@ sup.ref::after  { content: ']'; }
 
 <div id="hud" aria-label="Управление">
   <button id="prev" title="Предыдущий слайд (←)">‹</button>
-  <span class="counter" id="counter">1 / 25</span>
+  <span class="counter" id="counter">1 / 28</span>
   <button id="next" title="Следующий слайд (→)">›</button>
   <button id="printbtn" title="Печать / экспорт в PDF (P)">PDF</button>
   <span class="help">← → · Space · F · P</span>
