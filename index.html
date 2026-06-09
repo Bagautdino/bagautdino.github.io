@@ -1,2814 +1,517 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Хоккейный родитель · Pitch Deck · ППМ-2 · ИТМО · 2026</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;600;700;800;900&family=Golos+Text:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SURF COFFEE® × G34 — Цифровая экосистема</title>
 <style>
-/* ─── ITMO design tokens ──────────────────────────────────────────── */
-:root {
-  --itmo-red:     #EC0B43;
-  --itmo-red-bg:  #FF3E35;
-  --itmo-red-d:   #B0082F;
-  --black:  #000000;
-  --ink:    #1A1A1A;
-  --grey-9: #1A1A1A;
-  --grey-7: #4D4D4D;
-  --grey-6: #5F5F5F;
-  --grey-5: #808080;
-  --grey-4: #969696;
-  --grey-3: #B2B2B2;
-  --grey-2: #E5E7EB;
-  --grey-1: #F4F4F5;
-  --light:  #F8F8F8;
-  --white:  #FFFFFF;
-
-  --font-display: 'Unbounded', 'Onest', 'Inter', system-ui, sans-serif;
-  --font-body:    'Golos Text', 'Inter', 'PT Sans', system-ui, sans-serif;
-  --font-mono:    'JetBrains Mono', ui-monospace, Menlo, monospace;
-
-  --radius-sm: 4px;
-  --radius-md: 10px;
-  --radius-lg: 20px;
-  --radius-xl: 32px;
-}
-
-* { box-sizing: border-box; }
-html, body {
-  margin: 0; padding: 0;
-  font-family: var(--font-body);
-  color: var(--ink);
-  background: #ECEDEE;
-  overflow: hidden;
-  -webkit-font-smoothing: antialiased;
-}
-
-/* ─── Deck and slide framework ─────────────────────────────────────── */
-#deck {
-  position: relative;
-  width: 100vw; height: 100vh;
-  display: grid;
-  place-items: center;
-}
-
-.slide {
-  position: absolute;
-  width: min(98vw, calc(98vh * 16 / 9));
-  aspect-ratio: 16 / 9;
-  background-color: var(--white);
-  border-radius: var(--radius-md);
-  overflow: hidden;
-  container-type: size;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity .35s ease, transform .45s ease;
-  transform: translateY(6px);
-  box-shadow:
-    0 1px 0 rgba(255,255,255,.5) inset,
-    0 30px 80px -30px rgba(0,0,0,.40),
-    0 12px 24px -14px rgba(236,11,67,.18);
-}
-.slide.active { opacity: 1; pointer-events: auto; transform: none; }
-
-.slide.bg-light {
-  background-image: url('template_assets/itmo_bg_light.jpg');
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
-}
-.slide.bg-red {
-  background-image: url('template_assets/itmo_bg_red.jpg');
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
-}
-
-/* ─── Typography utilities ────────────────────────────────────────── */
-.kicker {
-  font-family: var(--font-mono);
-  font-size: 1.05cqw;
-  letter-spacing: .16em;
-  text-transform: uppercase;
-  color: var(--itmo-red);
-  font-weight: 600;
-}
-.kicker.muted { color: var(--grey-5); }
-.lbl {
-  font-family: var(--font-mono);
-  font-size: 0.92cqw;
-  letter-spacing: .14em;
-  text-transform: uppercase;
-  color: var(--grey-5);
-}
-
-.slide-title {
-  font-family: var(--font-display);
-  font-weight: 800;
-  font-size: 2.7cqw;
-  line-height: 1.05;
-  letter-spacing: -0.005em;
-  color: var(--black);
-  margin: 0;
-  text-transform: none;
-  max-width: 100%;
-  overflow-wrap: break-word;
-}
-
-.em-b, b, strong { font-weight: 700; color: var(--black); }
-.em-i, i, em    { font-style: italic; color: var(--grey-7); font-weight: 500; }
-.em-u, u {
-  text-decoration: underline;
-  text-decoration-color: var(--itmo-red);
-  text-decoration-thickness: 2px;
-  text-underline-offset: 3px;
-}
-.red { color: var(--itmo-red); }
-
-/* ─── Page chrome on content slides (white bg) ────────────────────── */
-.bg-light .slide-inner {
-  position: absolute; inset: 0;
-  padding: 5.0cqh 4cqw 5.0cqh;
-  display: flex; flex-direction: column;
-}
-.bg-light .slide-header {
-  display: flex; align-items: flex-end; justify-content: space-between;
-  gap: 2cqw;
-  padding-right: 12cqw;
-  padding-bottom: 1.4cqh;
-  border-bottom: 2px solid var(--itmo-red);
-  margin-bottom: 2.2cqh;
-  flex-shrink: 0;
-}
-.bg-light .slide-header .title-block {
-  display: flex; flex-direction: column; gap: .35cqh;
-  min-width: 0;
-  max-width: 100%;
-  flex: 1;
-}
-.bg-light .slide-body { flex: 1; min-height: 0; display: flex; flex-direction: column; gap: 1.4cqh; }
-
-.slide-num {
-  position: absolute;
-  right: 4cqw; bottom: 1.8cqh;
-  font-family: var(--font-mono);
-  font-size: 1.0cqw;
-  color: var(--grey-5);
-  letter-spacing: .12em;
-  z-index: 4;
-  background: rgba(255,255,255,.85);
-  padding: .3cqh .6cqw;
-  border-radius: 999px;
-}
-.slide-num span { color: var(--itmo-red); font-weight: 700; }
-
-/* ─── Content patterns ────────────────────────────────────────────── */
-.body-grid { display: grid; gap: 2.6cqw; min-height: 0; flex: 1; }
-.body-grid.cols-12-7 { grid-template-columns: minmax(0, 12fr) minmax(0, 7fr); }
-.body-grid.cols-7-12 { grid-template-columns: minmax(0, 7fr) minmax(0, 12fr); }
-.body-grid.cols-1   { grid-template-columns: 1fr; }
-.body-grid.cols-2   { grid-template-columns: 1fr 1fr; }
-.body-grid.cols-3   { grid-template-columns: 1fr 1fr 1fr; }
-
-.bullets { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 1.2cqh; }
-.bullets li {
-  font-size: 1.55cqw; line-height: 1.45;
-  color: var(--ink); padding-left: 1.8cqw;
-  position: relative;
-  text-align: justify;
-}
-.bullets li::before {
-  content: ''; position: absolute; left: 0; top: 0.66em;
-  width: 0.95cqw; height: 0.20cqw;
-  background: var(--itmo-red); border-radius: 2px;
-}
-.bullets.tight li { font-size: 1.32cqw; gap: 1cqh; }
-.bullets.tighter li { font-size: 1.15cqw; gap: .7cqh; }
-.bullets.large li { font-size: 1.75cqw; }
-
-.subhead {
-  font-family: var(--font-mono);
-  font-size: 1.0cqw; letter-spacing: .14em;
-  text-transform: uppercase;
-  color: var(--itmo-red); font-weight: 600;
-  margin: 0 0 .4cqh;
-}
-
-/* KPI tiles */
-.kpi-grid { display: grid; gap: 1.4cqw; }
-.kpi {
-  position: relative;
-  background: var(--white);
-  border: 2px solid var(--grey-2);
-  border-radius: var(--radius-md);
-  padding: 1.8cqh 1.4cqw;
-  display: flex; flex-direction: column; gap: .35cqh;
-}
-.kpi .l {
-  font-family: var(--font-mono);
-  font-size: 0.85cqw; letter-spacing: .14em;
-  text-transform: uppercase;
-  color: var(--grey-5);
-}
-.kpi .v {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 2.2cqw; line-height: 1.0;
-  color: var(--black);
-  letter-spacing: -0.01em;
-  white-space: nowrap;
-}
-.kpi .v small {
-  font-family: var(--font-body);
-  font-weight: 600; font-size: 1.05cqw;
-  color: var(--grey-7); letter-spacing: 0;
-  white-space: nowrap;
-}
-.kpi .f { font-size: 1.0cqw; color: var(--grey-6); }
-.kpi.accent { border-color: var(--itmo-red); }
-.kpi.accent .l { color: var(--itmo-red); }
-.kpi.accent .v { color: var(--itmo-red); }
-.kpi.solid {
-  background: var(--itmo-red);
-  border-color: var(--itmo-red);
-  color: #fff;
-}
-.kpi.solid .l { color: rgba(255,255,255,.85); }
-.kpi.solid .v { color: #fff; }
-.kpi.solid .f { color: rgba(255,255,255,.9); }
-
-/* Pipeline */
-.pipeline {
-  display: flex; flex-wrap: wrap; align-items: center;
-  gap: .8cqh .4cqw;
-  padding: 1.4cqh 1.6cqw;
-  border: 2px dashed var(--itmo-red);
-  border-radius: var(--radius-md);
-  background: #FFF6F8;
-}
-.pipeline span {
-  font-family: var(--font-mono);
-  font-size: 1.05cqw;
-  color: var(--black);
-  background: #fff;
-  border: 1.5px solid var(--itmo-red);
-  padding: .45cqh .85cqw;
-  border-radius: 999px;
-  font-weight: 500;
-}
-.pipeline span.accent {
-  background: var(--itmo-red);
-  border-color: var(--itmo-red);
-  color: #fff;
-  font-weight: 700;
-}
-.pipeline em {
-  font-style: normal;
-  color: var(--itmo-red);
-  font-weight: 800;
-  font-size: 1.2cqw;
-  font-family: var(--font-display);
-}
-
-/* Cards */
-.cards-grid {
-  display: grid;
-  gap: 1.4cqw;
-  min-height: 0;
-  flex: 1;
-}
-.cards-grid.cols-2 { grid-template-columns: 1fr 1fr; }
-.cards-grid.cols-3 { grid-template-columns: 1fr 1fr 1fr; }
-.cards-grid.cols-4 { grid-template-columns: 1fr 1fr 1fr 1fr; }
-
-.card {
-  background: #fff;
-  border: 2px solid var(--grey-2);
-  border-radius: var(--radius-md);
-  padding: 1.6cqh 1.4cqw;
-  display: flex;
-  flex-direction: column;
-  gap: .8cqh;
-  min-height: 0;
-}
-.card.accent { border-color: var(--itmo-red); }
-.card.solid {
-  background: var(--itmo-red);
-  border-color: var(--itmo-red);
-  color: #fff;
-}
-.card .card-l {
-  font-family: var(--font-mono);
-  font-size: 0.85cqw;
-  letter-spacing: .14em;
-  text-transform: uppercase;
-  color: var(--itmo-red);
-  font-weight: 700;
-}
-.card.solid .card-l { color: rgba(255,255,255,.92); }
-.card .card-h {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 1.45cqw;
-  line-height: 1.15;
-  color: var(--black);
-  margin: 0;
-}
-.card.solid .card-h { color: #fff; }
-.card .card-p {
-  font-size: 1.05cqw;
-  line-height: 1.4;
-  color: var(--grey-7);
-}
-.card.solid .card-p { color: rgba(255,255,255,.92); }
-.card .card-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: .5cqh;
-}
-.card .card-list li {
-  position: relative;
-  padding-left: 1.4cqw;
-  font-size: 1.0cqw;
-  line-height: 1.35;
-  color: var(--ink);
-}
-.card .card-list li::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: .58em;
-  width: 0.7cqw;
-  height: 0.18cqw;
-  background: var(--itmo-red);
-  border-radius: 2px;
-}
-.card.solid .card-list li { color: rgba(255,255,255,.95); }
-.card.solid .card-list li::before { background: #fff; }
-
-/* Big facts */
-.bigfacts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.6cqw; }
-.bigfacts .fact {
-  background: #fff;
-  border: 2px solid var(--ink);
-  border-radius: var(--radius-md);
-  padding: 2.2cqh 1.4cqw;
-  display: flex; flex-direction: column; gap: .6cqh;
-}
-.bigfacts .fact .v {
-  font-family: var(--font-display);
-  font-weight: 800;
-  font-size: 2.4cqw; line-height: 1.0;
-  color: var(--itmo-red);
-  letter-spacing: -0.01em;
-}
-.bigfacts .fact .l {
-  font-family: var(--font-mono);
-  font-size: 0.95cqw;
-  letter-spacing: .12em;
-  text-transform: uppercase;
-  color: var(--grey-6);
-}
-
-/* Conclusion footer */
-.footer-note {
-  margin-top: auto;
-  display: flex; align-items: center; gap: 1.2cqw;
-  padding-top: 1.6cqh;
-  border-top: 2px solid var(--itmo-red);
-  font-size: 1.45cqw;
-}
-.footer-note .kicker { white-space: nowrap; }
-
-/* ─── Title / Final slide (red bg + content inside browser window) ── */
-.bg-red .slide-inner {
-  position: absolute;
-  left: 8%; right: 8%;
-  top: 27%; bottom: 12%;
-  display: flex; flex-direction: column;
-  gap: 1.4cqh;
-}
-.bg-red.title-slide h1 {
-  font-family: var(--font-display);
-  font-weight: 900;
-  font-size: 3.4cqw;
-  line-height: 1.04;
-  letter-spacing: -0.015em;
-  color: var(--black);
-  margin: 0;
-  max-width: 95%;
-  overflow-wrap: break-word;
-}
-.bg-red.title-slide h1 .accent { color: var(--itmo-red); }
-.bg-red.title-slide .lead {
-  font-family: var(--font-body);
-  font-style: italic;
-  font-size: 1.45cqw;
-  color: var(--grey-7);
-  max-width: 80%;
-  margin: 0;
-}
-.bg-red.title-slide .meta {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.6cqw;
-  margin-top: auto;
-  padding-top: 2cqh;
-  border-top: 2px solid var(--itmo-red);
-}
-.bg-red.title-slide .meta .item .l {
-  font-family: var(--font-mono);
-  font-size: .92cqw;
-  letter-spacing: .14em;
-  text-transform: uppercase;
-  color: var(--grey-5);
-  margin-bottom: .45cqh;
-}
-.bg-red.title-slide .meta .item .v {
-  font-size: 1.15cqw;
-  color: var(--ink);
-  line-height: 1.4;
-  font-weight: 500;
-}
-.bg-red.title-slide .meta .item .v strong { color: var(--itmo-red); font-weight: 700; }
-
-.bg-red.title-slide .badge {
-  display: inline-flex; align-items: center; gap: .5cqw;
-  padding: .6cqh 1.1cqw;
-  background: var(--itmo-red);
-  color: #fff;
-  border-radius: 999px;
-  font-family: var(--font-mono);
-  font-size: 0.95cqw;
-  letter-spacing: .14em;
-  text-transform: uppercase;
-  font-weight: 700;
-  align-self: flex-start;
-}
-
-/* Final slide */
-.bg-red.final-slide .slide-inner {
-  justify-content: center; align-items: center;
-  text-align: center;
-}
-.bg-red.final-slide h1 {
-  font-family: var(--font-display);
-  font-weight: 900;
-  font-size: 6.5cqw;
-  line-height: .95;
-  letter-spacing: -0.02em;
-  color: var(--black);
-  margin: 0;
-}
-.bg-red.final-slide h1 .accent { color: var(--itmo-red); }
-.bg-red.final-slide .sub {
-  font-family: var(--font-body);
-  font-style: italic;
-  color: var(--grey-7);
-  font-size: 1.45cqw;
-  margin: 0;
-}
-.bg-red.final-slide .contact-grid {
-  display: grid; grid-template-columns: repeat(2, 1fr);
-  gap: 1.4cqh 4cqw;
-  margin-top: 1cqh;
-  text-align: left;
-  max-width: 85%;
-}
-.bg-red.final-slide .contact-grid .l {
-  font-family: var(--font-mono);
-  font-size: .9cqw;
-  letter-spacing: .14em;
-  text-transform: uppercase;
-  color: var(--grey-5);
-  margin-bottom: .3cqh;
-}
-.bg-red.final-slide .contact-grid .v {
-  font-size: 1.2cqw;
-  color: var(--ink);
-}
-
-/* ─── Competitor matrix table ─────────────────────────────────────── */
-.matrix {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 0.98cqw;
-  background: #fff;
-  border-radius: var(--radius-md);
-  overflow: hidden;
-  border: 2px solid var(--grey-2);
-}
-.matrix th, .matrix td {
-  padding: 0.7cqh 0.7cqw;
-  text-align: left;
-  border-bottom: 1px solid var(--grey-2);
-  vertical-align: middle;
-}
-.matrix th {
-  background: var(--grey-1);
-  font-family: var(--font-mono);
-  font-size: 0.88cqw;
-  letter-spacing: .08em;
-  text-transform: uppercase;
-  color: var(--grey-7);
-  font-weight: 700;
-}
-.matrix th.ours {
-  background: var(--itmo-red);
-  color: #fff;
-}
-.matrix td.ours {
-  background: #FFF6F8;
-  font-weight: 700;
-  color: var(--itmo-red);
-}
-.matrix td.feat {
-  font-weight: 600;
-  color: var(--ink);
-}
-.matrix .yes { color: #16A34A; font-weight: 700; }
-.matrix .no  { color: var(--grey-4); font-weight: 600; }
-.matrix .partial { color: #D97706; font-weight: 700; }
-.matrix tr:last-child td { border-bottom: none; }
-
-/* SWOT grid */
-.swot {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.2cqw;
-  flex: 1;
-  min-height: 0;
-}
-.swot-cell {
-  display: flex;
-  flex-direction: column;
-  background: #fff;
-  border-radius: var(--radius-md);
-  border: 2px solid var(--grey-2);
-  padding: 1.2cqh 1.1cqw;
-  gap: .6cqh;
-  min-height: 0;
-  overflow: hidden;
-}
-.swot-cell .swot-l {
-  font-family: var(--font-display);
-  font-weight: 800;
-  font-size: 1.3cqw;
-  letter-spacing: .04em;
-  text-transform: uppercase;
-  color: var(--itmo-red);
-  display: flex;
-  align-items: center;
-  gap: .6cqw;
-}
-.swot-cell .swot-l::before {
-  content: '';
-  display: inline-block;
-  width: .55cqw;
-  height: 1.3cqw;
-  background: var(--itmo-red);
-  border-radius: 2px;
-}
-.swot-cell.s { border-color: var(--itmo-red); }
-.swot-cell.s .swot-l { color: var(--itmo-red); }
-.swot-cell.w .swot-l { color: var(--grey-7); }
-.swot-cell.w .swot-l::before { background: var(--grey-7); }
-.swot-cell.o .swot-l { color: #16A34A; }
-.swot-cell.o .swot-l::before { background: #16A34A; }
-.swot-cell.t .swot-l { color: #D97706; }
-.swot-cell.t .swot-l::before { background: #D97706; }
-.swot-cell ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: .35cqh;
-}
-.swot-cell li {
-  font-size: 0.9cqw;
-  line-height: 1.32;
-  color: var(--ink);
-  padding-left: 1.0cqw;
-  position: relative;
-}
-.swot-cell li::before {
-  content: '';
-  position: absolute;
-  left: 0; top: 0.58em;
-  width: 0.55cqw;
-  height: 0.15cqw;
-  background: var(--grey-4);
-  border-radius: 2px;
-}
-
-/* Roadmap timeline */
-.timeline {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 0.6cqw;
-  min-height: 0;
-}
-.timeline .step {
-  background: #fff;
-  border: 2px solid var(--grey-2);
-  border-top: 5px solid var(--itmo-red);
-  border-radius: var(--radius-md);
-  padding: 1.2cqh 0.7cqw;
-  display: flex;
-  flex-direction: column;
-  gap: .35cqh;
-}
-.timeline .step .n {
-  font-family: var(--font-mono);
-  font-size: 0.8cqw;
-  letter-spacing: .12em;
-  color: var(--itmo-red);
-  font-weight: 700;
-}
-.timeline .step .d {
-  font-family: var(--font-mono);
-  font-size: 0.78cqw;
-  color: var(--grey-6);
-}
-.timeline .step .h {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 0.95cqw;
-  line-height: 1.2;
-  color: var(--black);
-}
-.timeline .step .p {
-  font-size: 0.78cqw;
-  color: var(--grey-7);
-  line-height: 1.3;
-}
-
-/* Personas grid */
-.personas {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 1.4cqw;
-  min-height: 0;
-  flex: 1;
-}
-.persona {
-  background: #fff;
-  border: 2px solid var(--grey-2);
-  border-radius: var(--radius-md);
-  padding: 1.6cqh 1.3cqw;
-  display: flex;
-  flex-direction: column;
-  gap: .6cqh;
-}
-.persona .p-tag {
-  font-family: var(--font-mono);
-  font-size: 0.78cqw;
-  letter-spacing: .14em;
-  text-transform: uppercase;
-  color: #fff;
-  background: var(--itmo-red);
-  padding: .25cqh .6cqw;
-  border-radius: 999px;
-  align-self: flex-start;
-}
-.persona.b2c .p-tag { background: var(--itmo-red); }
-.persona.b2b .p-tag { background: var(--ink); }
-.persona.partner .p-tag { background: #D97706; }
-.persona .p-h {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 1.3cqw;
-  line-height: 1.15;
-  color: var(--black);
-  margin: 0;
-}
-.persona .p-meta {
-  font-family: var(--font-mono);
-  font-size: 0.78cqw;
-  letter-spacing: .04em;
-  color: var(--grey-5);
-}
-.persona .p-block {
-  display: flex;
-  flex-direction: column;
-  gap: .25cqh;
-}
-.persona .p-block .p-bl {
-  font-family: var(--font-mono);
-  font-size: 0.75cqw;
-  letter-spacing: .12em;
-  text-transform: uppercase;
-  color: var(--itmo-red);
-  font-weight: 700;
-}
-.persona .p-block .p-bd {
-  font-size: 0.95cqw;
-  line-height: 1.35;
-  color: var(--ink);
-}
-
-/* Pricing tiers */
-.tiers {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1.0cqw;
-  min-height: 0;
-  flex: 1;
-}
-.tier {
-  background: #fff;
-  border: 2px solid var(--grey-2);
-  border-radius: var(--radius-md);
-  padding: 1.6cqh 1.0cqw;
-  display: flex;
-  flex-direction: column;
-  gap: .6cqh;
-}
-.tier.accent { border-color: var(--itmo-red); }
-.tier.solid {
-  background: var(--itmo-red);
-  border-color: var(--itmo-red);
-  color: #fff;
-}
-.tier .t-tag {
-  font-family: var(--font-mono);
-  font-size: 0.78cqw;
-  letter-spacing: .12em;
-  text-transform: uppercase;
-  color: var(--grey-5);
-  font-weight: 700;
-}
-.tier.accent .t-tag, .tier.solid .t-tag { color: var(--itmo-red); }
-.tier.solid .t-tag { color: rgba(255,255,255,.92); }
-.tier .t-h {
-  font-family: var(--font-display);
-  font-weight: 800;
-  font-size: 1.5cqw;
-  line-height: 1.0;
-  color: var(--black);
-  margin: 0;
-}
-.tier.solid .t-h { color: #fff; }
-.tier .t-price {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 1.6cqw;
-  color: var(--itmo-red);
-  line-height: 1.0;
-}
-.tier.solid .t-price { color: #fff; }
-.tier .t-price small {
-  font-family: var(--font-body);
-  font-weight: 500;
-  font-size: 0.85cqw;
-  color: var(--grey-6);
-}
-.tier.solid .t-price small { color: rgba(255,255,255,.85); }
-.tier .t-aud {
-  font-size: 0.85cqw;
-  color: var(--grey-7);
-  font-style: italic;
-}
-.tier.solid .t-aud { color: rgba(255,255,255,.92); }
-.tier ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: .35cqh;
-}
-.tier li {
-  font-size: 0.82cqw;
-  line-height: 1.3;
-  color: var(--ink);
-  padding-left: 0.9cqw;
-  position: relative;
-}
-.tier li::before {
-  content: '';
-  position: absolute;
-  left: 0; top: 0.55em;
-  width: 0.5cqw;
-  height: 0.14cqw;
-  background: var(--itmo-red);
-  border-radius: 2px;
-}
-.tier.solid li { color: rgba(255,255,255,.95); }
-.tier.solid li::before { background: #fff; }
-
-/* ─── Team member tiles (slide 2) ────────────────────────────────── */
-.team-grid {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 1.4cqw;
-  align-items: start;
-  align-content: center;
-  flex: 1;
-  min-height: 0;
-}
-.team-member {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  gap: 1.4cqh;
-  margin: 0;
-  padding: 0;
-  background: transparent;
-  border: none;
-}
-.team-member .ava {
-  width: 11cqw;
-  aspect-ratio: 1 / 1;
-  border-radius: 50%;
-  overflow: hidden;
-  border: 3px solid var(--itmo-red);
-  background: var(--grey-2);
-  flex: 0 0 auto;
-  box-shadow: 0 12px 30px -14px rgba(236,11,67,.40);
-}
-.team-member.accent .ava {
-  border-width: 4px;
-  box-shadow: 0 16px 36px -14px rgba(236,11,67,.55);
-}
-.team-member .ava img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center 30%;
-  display: block;
-}
-.team-member .name {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 1.35cqw;
-  line-height: 1.18;
-  color: var(--black);
-  letter-spacing: -0.01em;
-}
-.team-member .role {
-  font-family: var(--font-mono);
-  font-size: 0.85cqw;
-  letter-spacing: .12em;
-  text-transform: uppercase;
-  color: var(--itmo-red);
-  font-weight: 700;
-  background: #FFF6F8;
-  padding: .45cqh 1.0cqw;
-  border-radius: 999px;
-  border: 1.5px solid var(--itmo-red);
-  white-space: nowrap;
-}
-
-/* ─── Browser-window screenshot card ─────────────────────────────── */
-.screen-card {
-  position: relative;
-  background: #15161A;
-  border: 2px solid var(--itmo-red);
-  border-radius: var(--radius-lg);
-  padding: 3.0cqh 0 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-  min-height: 0;
-  min-width: 0;
-  overflow: hidden;
-  box-shadow: 0 8px 22px -14px rgba(236,11,67,.30);
-  contain: layout paint;
-}
-.screen-card::before, .screen-card::after {
-  content: '';
-  position: absolute; top: 1.1cqh;
-  width: 1.1cqw; height: 1.1cqw;
-  border-radius: 50%;
-  background: var(--itmo-red);
-}
-.screen-card::before { left: 1.2cqw; }
-.screen-card::after  { left: 2.9cqw; }
-.screen-card .dot3 {
-  content: '';
-  position: absolute; top: 1.1cqh;
-  left: 4.6cqw;
-  width: 1.1cqw; height: 1.1cqw;
-  border-radius: 50%;
-  background: var(--itmo-red);
-  opacity: .6;
-}
-.screen-card .url {
-  position: absolute;
-  top: 1.0cqh;
-  left: 50%;
-  transform: translateX(-50%);
-  font-family: var(--font-mono);
-  font-size: 0.78cqw;
-  color: var(--grey-3);
-  background: rgba(255,255,255,.08);
-  padding: .35cqh 1.1cqw;
-  border-radius: 999px;
-  max-width: 55%;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.screen-card .img-wrap {
-  flex: 1;
-  min-height: 0;
-  overflow: hidden;
-  background: #000;
-  position: relative;
-}
-.screen-card img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: top center;
-  display: block;
-}
-.screen-card.fit img,
-.screen-card .img-wrap.contain img {
-  object-fit: contain;
-  object-position: center;
-  background: #0A0A0A;
-}
-.screen-card.mobile {
-  padding-top: 0;
-}
-.screen-card.mobile::before,
-.screen-card.mobile::after,
-.screen-card.mobile .dot3 { display: none; }
-.screen-card.mobile .url { display: none; }
-.screen-card.mobile {
-  background: #000;
-}
-.screen-card.mobile img {
-  object-fit: contain;
-  object-position: center;
-}
-.screen-card figcaption {
-  position: absolute;
-  bottom: 0; left: 0; right: 0;
-  font-family: var(--font-mono);
-  font-size: 0.82cqw;
-  color: #fff;
-  text-align: center;
-  letter-spacing: .04em;
-  background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,.85) 60%);
-  padding: 2.5cqh 1cqw .8cqh;
-}
-
-.screen-grid {
-  display: grid;
-  gap: 1.2cqw;
-  flex: 1;
-  min-height: 0;
-  min-width: 0;
-}
-.screen-grid > * { min-width: 0; min-height: 0; }
-.screen-grid.cols-2 { grid-template-columns: 1fr 1fr; }
-.screen-grid.cols-3 { grid-template-columns: 1fr 1fr 1fr; }
-.screen-grid.cols-4 {
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
-}
-.screen-grid.cols-2x2 {
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
-}
-.screen-grid.cols-1-hero { grid-template-columns: 1.65fr 1fr; }
-.screen-grid.cols-mob-3  { grid-template-columns: 1fr 1fr 1fr; }
-
-/* Lock card aspect so screenshots never overflow */
-.screen-grid.cols-4 .screen-card  { aspect-ratio: 16 / 11; }
-.screen-grid.cols-2 .screen-card  { aspect-ratio: 16 / 10; max-height: 100%; }
-.screen-grid.cols-2x2 .screen-card { aspect-ratio: 16 / 10; max-height: 100%; }
-.screen-grid.cols-1-hero > .screen-card { max-height: 100%; }
-.screen-card.mobile { aspect-ratio: 9 / 18; }
-
-.feature-list {
-  display: flex;
-  flex-direction: column;
-  gap: 1.0cqh;
-  padding: 0;
-  margin: 0;
-  list-style: none;
-}
-.feature-list li {
-  display: flex;
-  align-items: flex-start;
-  gap: .8cqw;
-  font-size: 1.1cqw;
-  line-height: 1.35;
-  color: var(--ink);
-}
-.feature-list li .ico {
-  flex: 0 0 1.6cqw;
-  height: 1.6cqw;
-  border-radius: 50%;
-  background: var(--itmo-red);
-  color: #fff;
-  font-family: var(--font-mono);
-  font-weight: 700;
-  font-size: 0.78cqw;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: .15cqh;
-}
-.feature-list li b { color: var(--black); }
-
-/* ─── AI assistant mock chat ─────────────────────────────────────── */
-.ai-chat {
-  display: flex;
-  flex-direction: column;
-  background: #0E0F12;
-  border-radius: var(--radius-lg);
-  border: 2px solid var(--itmo-red);
-  padding: 1.8cqh 1.4cqw;
-  gap: 1.0cqh;
-  min-height: 0;
-  flex: 1;
-  overflow: hidden;
-  box-shadow: 0 10px 30px -14px rgba(236,11,67,.40);
-}
-.ai-chat .ai-head {
-  display: flex; align-items: center; gap: .8cqw;
-  padding-bottom: .8cqh;
-  border-bottom: 1px solid rgba(236,11,67,.25);
-}
-.ai-chat .ai-head .pulse {
-  width: 0.7cqw; height: 0.7cqw;
-  border-radius: 50%;
-  background: #16A34A;
-  box-shadow: 0 0 0 0 rgba(22,163,74,.7);
-  animation: ai-pulse 2s ease-out infinite;
-}
-@keyframes ai-pulse {
-  0%   { box-shadow: 0 0 0 0 rgba(22,163,74,.7); }
-  70%  { box-shadow: 0 0 0 .7cqw rgba(22,163,74,0); }
-  100% { box-shadow: 0 0 0 0 rgba(22,163,74,0); }
-}
-.ai-chat .ai-head .tit {
-  font-family: var(--font-mono);
-  font-size: 0.9cqw;
-  letter-spacing: .12em;
-  text-transform: uppercase;
-  color: #fff;
-  font-weight: 700;
-}
-.ai-chat .ai-head .tit b { color: var(--itmo-red); }
-.ai-chat .ai-head .badge {
-  font-family: var(--font-mono);
-  font-size: 0.72cqw;
-  letter-spacing: .08em;
-  text-transform: uppercase;
-  background: rgba(22,163,74,.18);
-  color: #34C764;
-  padding: .25cqh .7cqw;
-  border-radius: 999px;
-  margin-left: auto;
-}
-.ai-chat .ai-stream {
-  display: flex;
-  flex-direction: column;
-  gap: .9cqh;
-  flex: 1;
-  min-height: 0;
-  overflow: hidden;
-}
-.ai-bubble {
-  display: flex; gap: .7cqw;
-  font-size: 0.92cqw;
-  line-height: 1.4;
-}
-.ai-bubble .who {
-  flex: 0 0 2.2cqw;
-  height: 2.2cqw;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--font-mono);
-  font-size: 0.72cqw;
-  font-weight: 700;
-}
-.ai-bubble.user .who { background: rgba(255,255,255,.08); color: #fff; border: 1px solid rgba(255,255,255,.18); }
-.ai-bubble.ai .who   { background: var(--itmo-red); color: #fff; }
-.ai-bubble .body {
-  background: rgba(255,255,255,.05);
-  border-radius: var(--radius-md);
-  padding: .8cqh 1.0cqw;
-  color: #E5E7EB;
-  border: 1px solid rgba(255,255,255,.08);
-  flex: 1;
-  min-width: 0;
-}
-.ai-bubble.ai .body {
-  background: rgba(236,11,67,.10);
-  border-color: rgba(236,11,67,.35);
-  color: #fff;
-}
-.ai-bubble .body b { color: #fff; }
-.ai-bubble .body .citation {
-  display: inline-block;
-  font-family: var(--font-mono);
-  font-size: 0.68cqw;
-  background: rgba(255,255,255,.08);
-  color: var(--itmo-red);
-  padding: .08cqh .35cqw;
-  border-radius: 4px;
-  margin: 0 .1cqw;
-  white-space: nowrap;
-  font-weight: 700;
-}
-.ai-bubble .body ul {
-  list-style: none;
-  margin: .4cqh 0 0;
-  padding: 0;
-}
-.ai-bubble .body ul li {
-  position: relative;
-  padding-left: 1.1cqw;
-  margin-top: .3cqh;
-  font-size: 0.86cqw;
-}
-.ai-bubble .body ul li::before {
-  content: '';
-  position: absolute;
-  left: 0; top: .55em;
-  width: .55cqw;
-  height: .15cqw;
-  background: var(--itmo-red);
-  border-radius: 2px;
-}
-.ai-input {
-  display: flex; align-items: center; gap: .8cqw;
-  padding: .9cqh 1.0cqw;
-  border: 1px solid rgba(255,255,255,.12);
-  background: rgba(255,255,255,.03);
-  border-radius: 999px;
-  font-family: var(--font-body);
-  font-size: 0.88cqw;
-  color: var(--grey-4);
-  margin-top: auto;
-}
-.ai-input .send {
-  margin-left: auto;
-  font-family: var(--font-mono);
-  font-size: 0.72cqw;
-  color: #fff;
-  background: var(--itmo-red);
-  padding: .35cqh .85cqw;
-  border-radius: 999px;
-  letter-spacing: .08em;
-  text-transform: uppercase;
-}
-
-/* ─── Navigation HUD ──────────────────────────────────────────────── */
-#hud {
-  position: fixed; bottom: 14px; left: 50%; transform: translateX(-50%);
-  display: flex; align-items: center; gap: 8px;
-  background: rgba(0,0,0,.82);
-  color: #fff;
-  padding: 7px 11px;
-  border-radius: 999px;
-  font-family: var(--font-mono);
-  font-size: 12px;
-  z-index: 10;
-  backdrop-filter: blur(6px);
-  border: 1px solid rgba(255,255,255,.12);
-  box-shadow: 0 10px 30px -15px rgba(0,0,0,.5);
-}
-#hud button {
-  background: transparent;
-  color: #fff;
-  border: 1px solid rgba(255,255,255,.18);
-  padding: 4px 10px;
-  border-radius: 999px;
-  cursor: pointer;
-  font-family: inherit;
-  font-size: 12px;
-  transition: background .15s, border-color .15s;
-}
-#hud button:hover { background: var(--itmo-red); border-color: var(--itmo-red); }
-#hud .counter { padding: 0 8px; min-width: 56px; text-align: center; letter-spacing: .12em; }
-#hud .help { color: rgba(255,255,255,.55); font-size: 10.5px; padding-left: 6px; border-left: 1px solid rgba(255,255,255,.15); margin-left: 4px; }
-
-@media (max-width: 720px) {
-  .slide { width: 96vw; height: auto; }
-}
-
-/* ─── Inline abbr (hover-tooltip) ─────────────────────────────────── */
-abbr[title] {
-  border-bottom: 1.5px dotted var(--itmo-red);
-  text-decoration: none;
-  cursor: help;
-  font-weight: inherit;
-}
-sup.ref {
-  font-family: var(--font-mono);
-  font-size: 0.55em;
-  color: var(--itmo-red);
-  font-weight: 700;
-  cursor: help;
-  padding: 0 .15em;
-  border-bottom: 1.5px dotted var(--itmo-red);
-  vertical-align: super;
-}
-sup.ref::before { content: '['; }
-sup.ref::after  { content: ']'; }
-
-/* ─── Animations ─────────────────────────────────────────────────── */
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(8px); }
-  to   { opacity: 1; transform: none; }
-}
-@keyframes scaleIn {
-  from { opacity: 0; transform: scale(.94); }
-  to   { opacity: 1; transform: scale(1); }
-}
-@keyframes shimmer-arrow {
-  0%   { color: var(--itmo-red); transform: translateX(0); }
-  50%  { color: var(--itmo-red-d); transform: translateX(2px); }
-  100% { color: var(--itmo-red); transform: translateX(0); }
-}
-
-.slide.active .bullets li,
-.slide.active .kpi,
-.slide.active .bigfacts .fact,
-.slide.active .pipeline > *,
-.slide.active .card,
-.slide.active .persona,
-.slide.active .tier,
-.slide.active .swot-cell,
-.slide.active .timeline .step,
-.slide.active .footer-note {
-  animation: fadeUp .55s cubic-bezier(.2,.7,.3,1) backwards;
-}
-.slide.active .slide-title,
-.slide.active .kicker,
-.slide.active .subhead {
-  animation: fadeUp .5s ease backwards;
-  animation-delay: .05s;
-}
-
-.slide.active .bullets li:nth-child(1)  { animation-delay: .12s }
-.slide.active .bullets li:nth-child(2)  { animation-delay: .19s }
-.slide.active .bullets li:nth-child(3)  { animation-delay: .26s }
-.slide.active .bullets li:nth-child(4)  { animation-delay: .33s }
-.slide.active .bullets li:nth-child(5)  { animation-delay: .40s }
-.slide.active .bullets li:nth-child(6)  { animation-delay: .47s }
-.slide.active .bullets li:nth-child(7)  { animation-delay: .54s }
-
-.slide.active .persona:nth-child(1) { animation-delay: .15s }
-.slide.active .persona:nth-child(2) { animation-delay: .25s }
-.slide.active .persona:nth-child(3) { animation-delay: .35s }
-
-.slide.active .card:nth-child(1) { animation-delay: .12s }
-.slide.active .card:nth-child(2) { animation-delay: .20s }
-.slide.active .card:nth-child(3) { animation-delay: .28s }
-.slide.active .card:nth-child(4) { animation-delay: .36s }
-.slide.active .card:nth-child(5) { animation-delay: .44s }
-.slide.active .card:nth-child(6) { animation-delay: .52s }
-
-.slide.active .tier:nth-child(1) { animation-delay: .15s }
-.slide.active .tier:nth-child(2) { animation-delay: .25s }
-.slide.active .tier:nth-child(3) { animation-delay: .35s }
-.slide.active .tier:nth-child(4) { animation-delay: .45s }
-
-.slide.active .swot-cell:nth-child(1) { animation-delay: .15s }
-.slide.active .swot-cell:nth-child(2) { animation-delay: .25s }
-.slide.active .swot-cell:nth-child(3) { animation-delay: .35s }
-.slide.active .swot-cell:nth-child(4) { animation-delay: .45s }
-
-.slide.active .timeline .step:nth-child(1) { animation-delay: .12s }
-.slide.active .timeline .step:nth-child(2) { animation-delay: .18s }
-.slide.active .timeline .step:nth-child(3) { animation-delay: .24s }
-.slide.active .timeline .step:nth-child(4) { animation-delay: .30s }
-.slide.active .timeline .step:nth-child(5) { animation-delay: .36s }
-.slide.active .timeline .step:nth-child(6) { animation-delay: .42s }
-.slide.active .timeline .step:nth-child(7) { animation-delay: .48s }
-
-.slide.active .bigfacts .fact:nth-child(1) { animation-delay: .18s }
-.slide.active .bigfacts .fact:nth-child(2) { animation-delay: .30s }
-.slide.active .bigfacts .fact:nth-child(3) { animation-delay: .42s }
-
-.slide.active .pipeline > *:nth-child(1)  { animation-delay: .14s }
-.slide.active .pipeline > *:nth-child(2)  { animation-delay: .20s }
-.slide.active .pipeline > *:nth-child(3)  { animation-delay: .26s }
-.slide.active .pipeline > *:nth-child(4)  { animation-delay: .32s }
-.slide.active .pipeline > *:nth-child(5)  { animation-delay: .38s }
-.slide.active .pipeline > *:nth-child(6)  { animation-delay: .44s }
-.slide.active .pipeline > *:nth-child(7)  { animation-delay: .50s }
-.slide.active .pipeline > *:nth-child(8)  { animation-delay: .56s }
-.slide.active .pipeline > *:nth-child(9)  { animation-delay: .62s }
-.slide.active .pipeline > *:nth-child(10) { animation-delay: .68s }
-.slide.active .pipeline > *:nth-child(11) { animation-delay: .74s }
-
-.slide.active .pipeline em { animation: shimmer-arrow 2.4s ease-in-out infinite; }
-
-/* Title-slide intro */
-@keyframes badge-slide-in { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
-@keyframes h1-rise        { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
-.slide.active.title-slide .badge { animation: badge-slide-in .55s ease backwards; animation-delay: .15s; }
-.slide.active.title-slide h1     { animation: h1-rise .7s cubic-bezier(.2,.7,.3,1) backwards; animation-delay: .25s; }
-.slide.active.title-slide .lead  { animation: fadeUp .55s ease backwards; animation-delay: .45s; }
-.slide.active.title-slide .meta .item:nth-child(1) { animation: fadeUp .5s ease backwards; animation-delay: .60s; }
-.slide.active.title-slide .meta .item:nth-child(2) { animation: fadeUp .5s ease backwards; animation-delay: .70s; }
-.slide.active.title-slide .meta .item:nth-child(3) { animation: fadeUp .5s ease backwards; animation-delay: .80s; }
-
-.slide.active.final-slide h1 { animation: h1-rise .7s cubic-bezier(.2,.7,.3,1) backwards; animation-delay: .15s; }
-.slide.active.final-slide .sub { animation: fadeUp .55s ease backwards; animation-delay: .35s; }
-.slide.active.final-slide .contact-grid > * { animation: fadeUp .5s ease backwards; }
-.slide.active.final-slide .contact-grid > *:nth-child(1) { animation-delay: .50s; }
-.slide.active.final-slide .contact-grid > *:nth-child(2) { animation-delay: .60s; }
-.slide.active.final-slide .contact-grid > *:nth-child(3) { animation-delay: .70s; }
-.slide.active.final-slide .contact-grid > *:nth-child(4) { animation-delay: .80s; }
-
-@media (prefers-reduced-motion: reduce) {
-  .slide.active * { animation: none !important; }
-}
-
-/* ─── Print (PDF) ─────────────────────────────────────────────────── */
-@media print {
-  html, body {
-    overflow: visible;
-    background: #fff;
-    height: auto;
-    -webkit-print-color-adjust: exact !important;
-    print-color-adjust: exact !important;
-    color-adjust: exact !important;
+  :root{
+    --black:#0a0a0a;
+    --white:#ffffff;
+    --yellow:#fff705;
+    --red:#e60322;
+    --grey:#f5f5f5;
+    --grey2:#bababa;
+    --ink:#1a1a1a;
+    --font: 'Helvetica Neue', Arial, system-ui, sans-serif;
   }
-  body::before { display: none !important; }
-  #hud { display: none !important; }
-  #deck { display: block; width: auto; height: auto; place-items: initial; }
-  .slide, .slide * {
-    -webkit-print-color-adjust: exact !important;
-    print-color-adjust: exact !important;
-    color-adjust: exact !important;
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:var(--font);
+    color:var(--ink);
+    background:var(--white);
+    line-height:1.4;
+    -webkit-font-smoothing:antialiased;
   }
-  .slide {
-    position: relative !important;
-    display: block !important;
-    width: 297mm !important;
-    height: 167mm !important;
-    aspect-ratio: auto !important;
-    max-width: none !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    border-radius: 0 !important;
-    box-shadow: none !important;
-    opacity: 1 !important;
-    pointer-events: auto !important;
-    transform: none !important;
-    page-break-after: always;
-    break-after: page;
-    page-break-inside: avoid;
-    break-inside: avoid;
-    background-size: 100% 100% !important;
-    background-repeat: no-repeat !important;
-    overflow: hidden !important;
+  a{color:inherit;text-decoration:none;}
+
+  /* ---------- HEADER ---------- */
+  header{
+    position:fixed;top:0;left:0;width:100%;height:60px;z-index:990;
+    background:var(--white);border-bottom:1px solid rgba(0,0,0,.12);
+    display:flex;align-items:center;justify-content:space-between;
+    padding:0 24px;
   }
-  .slide:last-child { page-break-after: auto; break-after: auto; }
-  .slide:not(.active) { opacity: 1 !important; transform: none !important; }
-  .slide *, .slide.active * { animation: none !important; transition: none !important; }
-  @page { size: 297mm 167mm; margin: 0; }
-}
+  .logo{font-weight:800;letter-spacing:-1px;font-size:20px;text-transform:uppercase;display:flex;align-items:center;gap:10px;}
+  .logo .wave{width:34px;height:24px;}
+  nav.top{display:flex;gap:26px;font-size:13px;letter-spacing:-.3px;opacity:.75;}
+  nav.top a:hover{opacity:1;color:var(--red);}
+  @media(max-width:860px){nav.top{display:none;}}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    padding:140px 24px 70px;text-align:center;
+    border-bottom:1px solid rgba(0,0,0,.12);
+  }
+  .hero .kicker{
+    color:var(--red);font-weight:800;letter-spacing:1px;font-size:14px;
+    text-transform:uppercase;margin-bottom:22px;
+  }
+  .hero h1{
+    font-size:clamp(38px,8vw,96px);line-height:.92;font-weight:800;
+    letter-spacing:-2px;text-transform:uppercase;
+  }
+  .hero h1 .yh{background:var(--yellow);padding:0 .15em;}
+  .hero p.sub{
+    max-width:680px;margin:28px auto 0;font-size:18px;opacity:.7;letter-spacing:-.3px;
+  }
+  .meta-row{
+    display:flex;flex-wrap:wrap;justify-content:center;gap:0;margin-top:48px;
+    border:1px solid rgba(0,0,0,.15);max-width:900px;margin-left:auto;margin-right:auto;
+  }
+  .meta-row .cell{flex:1;min-width:150px;padding:18px 14px;border-right:1px solid rgba(0,0,0,.12);}
+  .meta-row .cell:last-child{border-right:none;}
+  .meta-row .t{font-size:12px;text-transform:uppercase;letter-spacing:1px;opacity:.5;font-weight:700;}
+  .meta-row .v{font-size:15px;margin-top:6px;font-weight:600;}
+
+  /* ---------- SECTION SHELL ---------- */
+  section.block{padding:90px 24px;max-width:1180px;margin:0 auto;}
+  .sec-head{display:flex;align-items:baseline;gap:18px;margin-bottom:48px;flex-wrap:wrap;}
+  .sec-num{
+    font-size:14px;font-weight:800;color:var(--red);letter-spacing:1px;
+    border:1px solid var(--red);border-radius:50%;width:42px;height:42px;
+    display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  }
+  .sec-head h2{
+    font-size:clamp(30px,5vw,58px);line-height:.95;font-weight:800;
+    letter-spacing:-1.5px;text-transform:uppercase;
+  }
+  .sec-head .note{font-size:15px;opacity:.55;letter-spacing:-.3px;margin-top:6px;}
+  .alt{background:var(--black);color:var(--white);}
+  .alt .sec-head h2{color:#fff;}
+  .alt .sec-num{color:var(--yellow);border-color:var(--yellow);}
+  .alt-wrap{background:var(--black);}
+  .grey-wrap{background:var(--grey);}
+
+  /* ---------- INSIGHT ---------- */
+  .insight{background:var(--yellow);padding:60px 24px;text-align:center;}
+  .insight p{max-width:900px;margin:0 auto;font-size:clamp(20px,3vw,30px);font-weight:700;letter-spacing:-.8px;line-height:1.2;}
+  .insight .lab{font-size:13px;font-weight:800;text-transform:uppercase;letter-spacing:2px;margin-bottom:18px;}
+
+  /* ---------- CARDS GRID ---------- */
+  .grid{display:grid;gap:1px;background:rgba(0,0,0,.12);border:1px solid rgba(0,0,0,.12);}
+  .grid.cols3{grid-template-columns:repeat(3,1fr);}
+  .grid.cols2{grid-template-columns:repeat(2,1fr);}
+  .grid .card{background:var(--white);padding:30px 26px;}
+  .alt .grid,.alt-wrap .grid{background:rgba(255,255,255,.18);border-color:rgba(255,255,255,.18);}
+  .alt .grid .card,.alt-wrap .grid .card{background:var(--black);color:var(--white);}
+  .card h3{font-size:20px;text-transform:uppercase;letter-spacing:-.5px;font-weight:800;margin-bottom:6px;}
+  .card .tag{display:inline-block;font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;
+    background:var(--red);color:#fff;padding:3px 9px;margin-bottom:12px;}
+  .card .tag.y{background:var(--yellow);color:#000;}
+  .card p{font-size:14.5px;opacity:.78;letter-spacing:-.2px;}
+  .card ul{font-size:14px;opacity:.78;margin-top:8px;padding-left:18px;}
+  .card ul li{margin-bottom:4px;}
+  @media(max-width:820px){.grid.cols3,.grid.cols2{grid-template-columns:1fr;}}
+
+  /* ---------- OFFLINE TOOLS ---------- */
+  .tools{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+  .tool{
+    border:1px solid rgba(0,0,0,.15);padding:22px 18px;position:relative;
+    transition:transform .2s,background .2s,color .2s;
+  }
+  .tool:hover{background:var(--black);color:#fff;transform:translateY(-4px);}
+  .tool:hover .tn{color:var(--yellow);}
+  .tool .tn{font-size:13px;font-weight:800;color:var(--red);letter-spacing:1px;}
+  .tool h4{font-size:17px;text-transform:uppercase;font-weight:800;letter-spacing:-.4px;margin:10px 0 8px;}
+  .tool p{font-size:13px;opacity:.72;letter-spacing:-.2px;}
+  @media(max-width:980px){.tools{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:520px){.tools{grid-template-columns:1fr;}}
+
+  /* ---------- FUNNEL ---------- */
+  .funnel{display:flex;flex-direction:column;gap:0;}
+  .step{
+    display:grid;grid-template-columns:120px 1fr 280px;gap:24px;align-items:center;
+    padding:26px 0;border-bottom:1px solid rgba(255,255,255,.15);
+  }
+  .step:first-child{border-top:1px solid rgba(255,255,255,.15);}
+  .step .sn{font-size:clamp(34px,6vw,64px);font-weight:800;color:var(--yellow);letter-spacing:-2px;line-height:1;}
+  .step .body h4{font-size:20px;text-transform:uppercase;font-weight:800;color:#fff;letter-spacing:-.5px;margin-bottom:8px;}
+  .step .body h4 em{color:var(--red);font-style:normal;}
+  .step .body p{font-size:14.5px;color:rgba(255,255,255,.72);letter-spacing:-.2px;}
+  .step .body .feel{display:inline-block;margin-top:10px;font-size:12px;color:var(--yellow);
+    border:1px solid var(--yellow);padding:3px 10px;text-transform:uppercase;letter-spacing:1px;font-weight:700;}
+  .step .grab{
+    background:var(--red);color:#fff;padding:16px 18px;
+  }
+  .step .grab .gl{font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;opacity:.85;}
+  .step .grab .gv{font-size:15px;font-weight:700;margin-top:6px;letter-spacing:-.3px;}
+  @media(max-width:880px){
+    .step{grid-template-columns:60px 1fr;}
+    .step .sn{font-size:30px;}
+    .step .grab{grid-column:1/-1;}
+  }
+
+  /* ---------- СВЯЗКИ (CHAINS) ---------- */
+  .bundle{
+    border:1px solid rgba(0,0,0,.15);margin-bottom:24px;background:#fff;
+  }
+  .bundle .bh{
+    display:flex;align-items:center;gap:14px;padding:20px 24px;
+    border-bottom:1px solid rgba(0,0,0,.12);flex-wrap:wrap;
+  }
+  .bundle .bnum{font-size:22px;font-weight:800;color:var(--red);letter-spacing:-1px;}
+  .bundle .bt{font-size:19px;font-weight:800;text-transform:uppercase;letter-spacing:-.5px;flex:1;min-width:200px;}
+  .badge{font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;padding:5px 11px;}
+  .badge.hard{background:var(--black);color:var(--yellow);}
+  .badge.demon{background:var(--red);color:#fff;}
+  .badge.soft{background:var(--yellow);color:#000;}
+  .chain{display:flex;align-items:stretch;flex-wrap:wrap;gap:0;padding:26px 24px;}
+  .link{
+    background:var(--grey);border:1px solid rgba(0,0,0,.1);padding:14px 16px;
+    flex:1;min-width:150px;max-width:230px;display:flex;flex-direction:column;justify-content:center;
+  }
+  .link .ls{font-size:11px;font-weight:800;color:var(--red);letter-spacing:1px;margin-bottom:5px;}
+  .link .lt{font-size:14px;font-weight:600;letter-spacing:-.2px;}
+  .arrow{
+    display:flex;align-items:center;justify-content:center;padding:0 10px;
+    font-size:22px;font-weight:800;color:var(--red);flex-shrink:0;
+  }
+  .chain .link.win{background:var(--yellow);border-color:var(--yellow);}
+  .chain .link.win .ls{color:#000;}
+  @media(max-width:780px){
+    .chain{flex-direction:column;}
+    .link{max-width:none;}
+    .arrow{transform:rotate(90deg);padding:6px 0;}
+  }
+
+  /* ---------- EXCLUDE ---------- */
+  .ex{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.18);}
+  .ex .item{background:var(--black);padding:28px 26px;}
+  .ex .item .x{color:var(--red);font-size:28px;font-weight:800;line-height:1;}
+  .ex .item h4{color:#fff;font-size:19px;text-transform:uppercase;font-weight:800;letter-spacing:-.5px;margin:12px 0 8px;}
+  .ex .item p{color:rgba(255,255,255,.7);font-size:14px;letter-spacing:-.2px;}
+  @media(max-width:780px){.ex{grid-template-columns:1fr;}}
+
+  /* ---------- CONCLUSION ---------- */
+  .concl{background:var(--yellow);padding:80px 24px;text-align:center;}
+  .concl .lab{font-size:13px;font-weight:800;letter-spacing:3px;text-transform:uppercase;margin-bottom:22px;}
+  .concl h2{font-size:clamp(26px,4vw,46px);font-weight:800;letter-spacing:-1.2px;text-transform:uppercase;
+    max-width:980px;margin:0 auto;line-height:1.05;}
+  .concl .loops{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;margin-top:40px;}
+  .concl .loop{background:#000;color:#fff;padding:20px 26px;max-width:420px;text-align:left;}
+  .concl .loop .ln{color:var(--yellow);font-weight:800;font-size:13px;letter-spacing:1px;text-transform:uppercase;margin-bottom:8px;}
+  .concl .loop p{font-size:14px;opacity:.85;}
+
+  /* ---------- FOOTER ---------- */
+  footer{background:#000;color:#fff;padding:80px 24px 40px;text-align:center;}
+  footer .big{font-size:clamp(30px,9vw,120px);font-weight:800;letter-spacing:-2px;text-transform:uppercase;
+    opacity:.9;line-height:.9;}
+  footer .sm{opacity:.5;font-size:13px;margin-top:24px;letter-spacing:.5px;}
+
+  /* ---------- REVEAL ---------- */
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .6s ease,transform .6s ease;}
+  .reveal.in{opacity:1;transform:none;}
 </style>
 </head>
 <body>
 
-<div id="deck">
+<header>
+  <div class="logo">
+    <svg class="wave" viewBox="0 0 49 35" fill="none"><path fill="#000" d="M47.1 8.7C40.6 3.1 32.3 0 23.7 0 15.1 0 6.7 3.1.2 8.6c-.1.1-.1.1-.2.2v.3c0 7.2 2.4 13.8 6.9 18.6 9.1 9.8 24.5 10.4 34.3 1.3 4.5-4.8 6.9-11.4 6.9-18.6v-.2l-.9-.7zM23.6 33.9C15 33.9 7.9 29.2 4 21.8c1.7-1.7 3.6-3.3 5.7-4.5 5.5 9.4 17.5 12.5 26.9 7 2.9-1.7 5.4-4.2 7.1-7.1 2.1 1.2 4 2.8 5.7 4.5-3.8 7.4-11 12.1-25.8 12.2z"/></svg>
+    SURF COFFEE®
+  </div>
+  <nav class="top">
+    <a href="#ca">ЦА</a>
+    <a href="#offline">Офлайн</a>
+    <a href="#funnel">Воронка</a>
+    <a href="#includes">Экосистема</a>
+    <a href="#bundles">Связки</a>
+    <a href="#concl">Вывод</a>
+  </nav>
+</header>
 
-  <!-- ────────────────── Slide 1: TITLE ────────────────── -->
-  <section class="slide bg-red title-slide active" data-n="1">
-    <div class="slide-inner">
-      <span class="badge">Pitch Deck · ППМ-2 · 2026</span>
-      <h1>«Хоккейный <span class="accent">родитель</span>»&nbsp;— платформа объективной оценки и поиска юных хоккеистов</h1>
-      <p class="lead">Стандартизированные видео-тесты, рейтинги, прогресс — для родителей; фильтруемая база с видеоподтверждением — для скаутов и академий</p>
-      <div class="meta">
-        <div class="item">
-          <div class="l">Команда проекта · ИТМО ФТМИ</div>
-          <div class="v">Селянина&nbsp;Анастасия · Адрианов&nbsp;Константин<br>Багаутдинов&nbsp;Айваз · Цыбенко&nbsp;Екатерина · Марченко&nbsp;Мария</div>
-        </div>
-        <div class="item">
-          <div class="l">Заказчик</div>
-          <div class="v"><strong>Хоккейная академия</strong><br>Левкин&nbsp;А.В. · Завгородний&nbsp;С.И.</div>
-        </div>
-        <div class="item">
-          <div class="l">Дисциплина / сроки</div>
-          <div class="v">Продуктовая проектная мастерская<br>2 марта – 29 мая 2026</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ────────────────── Slide 2: Команда ────────────────── -->
-  <section class="slide bg-light" data-n="2">
-    <div class="slide-inner">
-      <div class="slide-header">
-        <div class="title-block">
-          <span class="kicker">Команда · 01</span>
-          <h2 class="slide-title">Команда проекта и роли</h2>
-        </div>
-      </div>
-      <div class="slide-body">
-        <div class="team-grid">
-          <figure class="team-member">
-            <div class="ava"><img src="site_media/nastya.jpg" alt="Селянина Анастасия"></div>
-            <div class="role">Designer</div>
-            <div class="name">Селянина<br>Анастасия</div>
-          </figure>
-          <figure class="team-member">
-            <div class="ava"><img src="site_media/konstantin.jpg" alt="Адрианов Константин"></div>
-            <div class="role">Product</div>
-            <div class="name">Адрианов<br>Константин</div>
-          </figure>
-          <figure class="team-member accent">
-            <div class="ava"><img src="site_media/aivaz.jpg" alt="Багаутдинов Айваз"></div>
-            <div class="role">Developer</div>
-            <div class="name">Багаутдинов<br>Айваз</div>
-          </figure>
-          <figure class="team-member">
-            <div class="ava"><img src="site_media/katya.jpg" alt="Цыбенко Екатерина"></div>
-            <div class="role">Project Manager</div>
-            <div class="name">Цыбенко<br>Екатерина</div>
-          </figure>
-          <figure class="team-member">
-            <div class="ava"><img src="site_media/maria.jpg" alt="Марченко Мария"></div>
-            <div class="role">Marketing · GTM</div>
-            <div class="name">Марченко<br>Мария</div>
-          </figure>
-        </div>
-        <div class="footer-note">
-          <span class="kicker">Команда U4125 · ИТМО · ФТМИ</span>
-          <div>Кросс-функциональная работа · <b>ключевые решения принимали совместно</b>.</div>
-        </div>
-      </div>
-      <div class="slide-num"><span>02</span> / 28</div>
-    </div>
-  </section>
-
-  <!-- ────────────────── Slide 3: ПРОБЛЕМА ────────────────── -->
-  <section class="slide bg-light" data-n="2">
-    <div class="slide-inner">
-      <div class="slide-header">
-        <div class="title-block">
-          <span class="kicker">Проблема · 01</span>
-          <h2 class="slide-title">Невидимые таланты и оценка «на глаз»</h2>
-        </div>
-      </div>
-      <div class="slide-body">
-        <ul class="bullets large">
-          <li>Юных хоккеистов оценивают по <b>локальной статистике, мнению тренера и точечным просмотрам</b> — сравнение между регионами и школами невозможно.</li>
-          <li>Родители не понимают <i>реального уровня ребёнка</i> и тратят деньги на сборы и экипировку без понимания потенциала.</li>
-          <li>Скаутам не хватает единой базы: данные разрознены, видео разного качества, поиск «руками» через таблицы.</li>
-          <li>Игрок может быть лидером в регионе, но <u>не соответствовать уровню сильной академии</u> — это вскрывается только при переходе.</li>
-        </ul>
-        <div class="footer-note">
-          <span class="kicker">Вывод</span>
-          <div><b>Нет единой системы сравнения</b> игроков из разных регионов — это <i>главное узкое место</i> рынка.</div>
-        </div>
-      </div>
-      <div class="slide-num"><span>03</span> / 28</div>
-    </div>
-  </section>
-
-  <!-- ────────────────── Slide 4: Подтверждение проблемы ────────────────── -->
-  <section class="slide bg-light" data-n="4">
-    <div class="slide-inner">
-      <div class="slide-header">
-        <div class="title-block">
-          <span class="kicker">Подтверждение · 03</span>
-          <h2 class="slide-title">Что мы узнали из интервью и опросов</h2>
-        </div>
-      </div>
-      <div class="slide-body">
-        <div class="body-grid cols-2">
-          <div class="card accent">
-            <span class="card-l">Интервью со скаутом · Академия «Авангард»</span>
-            <h4 class="card-h">Как сейчас ищут игроков</h4>
-            <ul class="card-list">
-              <li>сбор данных <i>вручную</i> с разных сайтов;</li>
-              <li>нет единой удобной системы;</li>
-              <li>слишком много времени уходит на анализ;</li>
-              <li>данные обновляются с задержкой;</li>
-              <li>видео не всегда даёт полную картину.</li>
-            </ul>
-            <div class="card-p" style="margin-top:auto; color:var(--itmo-red); font-weight:700;">Запрос: «1–2 клика и вся информация перед глазами»</div>
-          </div>
-          <div class="card solid">
-            <span class="card-l">Опрос родителей юных хоккеистов</span>
-            <h4 class="card-h">Чего не хватает родителям</h4>
-            <ul class="card-list">
-              <li><b>объективной оценки</b> прогресса ребёнка;</li>
-              <li>видеоразбора и аналитики;</li>
-              <li>понимания уровня <i>относительно других</i> игроков;</li>
-              <li>рекомендаций по развитию;</li>
-              <li>цельной программы — сейчас «разрозненно».</li>
-            </ul>
-            <div class="card-p" style="margin-top:auto; color:#fff; font-weight:700;">100% опрошенных — готовы загружать видео раз в 2–3 мес</div>
-          </div>
-        </div>
-        <div class="kpi-grid" style="grid-template-columns: 1fr 1fr 1fr 1fr; margin-top:.6cqh;">
-          <div class="kpi accent">
-            <div class="l">Готовность к платным функциям</div>
-            <div class="v" style="font-size:1.3cqw; white-space:normal;">«Да / Скорее да» — все респонденты</div>
-          </div>
-          <div class="kpi accent">
-            <div class="l">Интерес к турнирам</div>
-            <div class="v" style="font-size:1.3cqw; white-space:normal;">100% — бесплатный замер с сохранением</div>
-          </div>
-          <div class="kpi accent">
-            <div class="l">Доверие к рейтингу по видео</div>
-            <div class="v" style="font-size:1.3cqw; white-space:normal;">«Да» — у большинства родителей</div>
-          </div>
-          <div class="kpi solid">
-            <div class="l">Главный риск</div>
-            <div class="v" style="font-size:1.3cqw; white-space:normal;">сложность платформы и отсутствие пользы</div>
-          </div>
-        </div>
-      </div>
-      <div class="slide-num"><span>04</span> / 28</div>
-    </div>
-  </section>
-
-  <!-- ────────────────── Slide 5: ЦА ────────────────── -->
-  <section class="slide bg-light" data-n="3">
-    <div class="slide-inner">
-      <div class="slide-header">
-        <div class="title-block">
-          <span class="kicker">Целевая аудитория · 02</span>
-          <h2 class="slide-title">Три сегмента, две стороны рынка</h2>
-        </div>
-      </div>
-      <div class="slide-body">
-        <div class="personas">
-          <div class="persona b2c">
-            <span class="p-tag">B2C · Драйвер контента</span>
-            <h3 class="p-h">Родители юных хоккеистов</h3>
-            <div class="p-meta">Дети 5–12 лет · Омская, Ленинградская обл. → РФ</div>
-            <div class="p-block">
-              <div class="p-bl">Мотивация</div>
-              <div class="p-bd">Объективная оценка, сравнение, заметность для скаутов, снижение тревожности «правильно ли мы занимаемся».</div>
-            </div>
-            <div class="p-block">
-              <div class="p-bl">Боли</div>
-              <div class="p-bd">Нет прозрачных критериев; траты без понимания потенциала; нельзя сравнить с ровесниками из других городов.</div>
-            </div>
-          </div>
-          <div class="persona b2b">
-            <span class="p-tag">B2B · Источник выручки</span>
-            <h3 class="p-h">Скауты, тренеры, академии</h3>
-            <div class="p-meta">Главные тренеры, селекционеры, спортивные директора</div>
-            <div class="p-block">
-              <div class="p-bl">Задачи</div>
-              <div class="p-bd">Поиск талантов из регионов, мониторинг прогресса, стандартизация отбора, снижение субъективизма.</div>
-            </div>
-            <div class="p-block">
-              <div class="p-bl">Боли</div>
-              <div class="p-bd">Разрозненность данных, поздние обновления, ручной сбор по сайтам и таблицам, «сарафанное радио».</div>
-            </div>
-          </div>
-          <div class="persona partner">
-            <span class="p-tag">Партнёры · Каналы</span>
-            <h3 class="p-h">Турниры, школы, инфоресурсы</h3>
-            <div class="p-meta">«Сибириус», KidsHockey.ru, AirHockey, ФХР</div>
-            <div class="p-block">
-              <div class="p-bl">Что дают</div>
-              <div class="p-bd">Доступ к концентрированной аудитории родителей и игроков, эталонные нормативы, инфоповоды.</div>
-            </div>
-            <div class="p-block">
-              <div class="p-bl">Что хотят</div>
-              <div class="p-bd">Цифровые сервисы для участников, уникальный контент (рейтинги, аналитика), повышение вовлечённости.</div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="slide-num"><span>05</span> / 28</div>
-    </div>
-  </section>
-
-  <!-- ────────────────── Slide 4: РЕШЕНИЕ ────────────────── -->
-  <section class="slide bg-light" data-n="4">
-    <div class="slide-inner">
-      <div class="slide-header">
-        <div class="title-block">
-          <span class="kicker">Решение · 03</span>
-          <h2 class="slide-title">Платформа «Хоккейный родитель»</h2>
-        </div>
-      </div>
-      <div class="slide-body">
-        <p style="font-size:1.55cqw; line-height:1.4; color:var(--ink); margin:0 0 1.2cqh; text-align:justify;">
-          Цифровой сервис, который превращает <b>разрозненные и субъективные данные</b> в <u>структурированную систему оценки и поиска</u>. Родители загружают стандартизированные видео и тесты — платформа формирует профиль, рейтинг и прогресс — скауты находят талантов по объективным параметрам с видеоподтверждением.
-        </p>
-        <div class="pipeline">
-          <span>родители</span><em>→</em>
-          <span class="accent">стандартизированные видео</span><em>→</em>
-          <span>профиль игрока</span><em>→</em>
-          <span class="accent">рейтинг и прогресс</span><em>→</em>
-          <span>фильтры и поиск</span><em>→</em>
-          <span>скауты и академии</span>
-        </div>
-        <div class="cards-grid cols-3" style="margin-top:.6cqh;">
-          <div class="card accent">
-            <span class="card-l">Для родителей</span>
-            <h4 class="card-h">Объективная оценка и развитие ребёнка</h4>
-            <ul class="card-list">
-              <li>прогресс и динамика по тестам;</li>
-              <li>сравнение с ровесниками по региону и РФ;</li>
-              <li>обучающий раздел и рекомендации.</li>
-            </ul>
-          </div>
-          <div class="card accent">
-            <span class="card-l">Для скаутов</span>
-            <h4 class="card-h">Быстрый поиск перспективных игроков</h4>
-            <ul class="card-list">
-              <li>фильтрация по антропометрии и тестам;</li>
-              <li>видео стандартных упражнений;</li>
-              <li>шорт-лист и сравнение профилей.</li>
-            </ul>
-          </div>
-          <div class="card solid">
-            <span class="card-l">Ключевая ценность</span>
-            <h4 class="card-h">Единая база с видео-подтверждением навыков</h4>
-            <ul class="card-list">
-              <li>стандартизированные форматы;</li>
-              <li>прозрачные критерии оценки;</li>
-              <li>двусторонняя ценность B2C и B2B.</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div class="slide-num"><span>06</span> / 28</div>
-    </div>
-  </section>
-
-  <!-- ────────────────── Slide 5: Сценарий родителя ────────────────── -->
-  <section class="slide bg-light" data-n="5">
-    <div class="slide-inner">
-      <div class="slide-header">
-        <div class="title-block">
-          <span class="kicker">Как это работает · 04</span>
-          <h2 class="slide-title">Сценарий родителя — основной</h2>
-        </div>
-      </div>
-      <div class="slide-body">
-        <div class="pipeline">
-          <span class="accent">регистрация</span><em>→</em>
-          <span>профиль ребёнка</span><em>→</em>
-          <span>инструкция по съёмке</span><em>→</em>
-          <span class="accent">загрузка видео-тестов</span><em>→</em>
-          <span>анализ платформы</span><em>→</em>
-          <span class="accent">рейтинг + прогресс</span><em>→</em>
-          <span>повторные загрузки</span>
-        </div>
-        <ul class="bullets tight" style="margin-top:.6cqh;">
-          <li>Родитель регистрируется и заполняет профиль: возраст, позиция, антропометрия (рост, вес), регион, школа.</li>
-          <li>Платформа объясняет <b>как правильно снимать</b>: ракурс, длительность, освещение — чтобы все видео были сопоставимы.</li>
-          <li>Загружаются стандартизированные тесты — <i>скорость, техника катания, бросок</i>, нормативное упражнение.</li>
-          <li>Родитель видит <u>понятные метрики, рейтинг по региону</u> и графики прогресса; возвращается раз в <b>3–4 месяца</b> за новой динамикой.</li>
-        </ul>
-        <div class="footer-note">
-          <span class="kicker">UX-правило</span>
-          <div>Не более <b>3 кликов до загрузки видео</b> после регистрации · «2 клика до видео и ключевых метрик».</div>
-        </div>
-      </div>
-      <div class="slide-num"><span>07</span> / 28</div>
-    </div>
-  </section>
-
-  <!-- ────────────────── Slide 6: Сценарий скаута ────────────────── -->
-  <section class="slide bg-light" data-n="6">
-    <div class="slide-inner">
-      <div class="slide-header">
-        <div class="title-block">
-          <span class="kicker">Как это работает · 05</span>
-          <h2 class="slide-title">Сценарий скаута — вторичный</h2>
-        </div>
-      </div>
-      <div class="slide-body">
-        <div class="pipeline">
-          <span>вход скаута</span><em>→</em>
-          <span class="accent">фильтры</span><em>→</em>
-          <span>список карточек</span><em>→</em>
-          <span class="accent">профиль игрока</span><em>→</em>
-          <span>видео-тесты</span><em>→</em>
-          <span class="accent">шорт-лист</span><em>→</em>
-          <span>передача в клуб</span>
-        </div>
-        <div class="body-grid cols-2" style="margin-top:.6cqh;">
-          <div>
-            <div class="subhead">Что нужно скауту (интервью)</div>
-            <ul class="bullets tighter">
-              <li>широкая фильтрация: возраст, позиция, регион, антропометрия, статистика, тесты;</li>
-              <li>видео стандартных упражнений + игровые нарезки;</li>
-              <li>сохранение, сравнение, выгрузка профилей;</li>
-              <li>информация о тренере, клубе, семейной антропометрии;</li>
-              <li>удобство «1–2 клика и вся нужная информация перед глазами».</li>
-            </ul>
-          </div>
-          <div>
-            <div class="subhead">Приоритеты при отборе</div>
-            <ul class="bullets tighter">
-              <li><b>1.</b> Игровое мышление и принятие решений;</li>
-              <li><b>2.</b> Техника катания;</li>
-              <li><b>3.</b> Физические способности;</li>
-              <li><b>4.</b> Техника владения клюшкой;</li>
-              <li>+ личностные качества: целеустремлённость, трудоспособность.</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div class="slide-num"><span>08</span> / 28</div>
-    </div>
-  </section>
-
-  <!-- ────────────────── Slide 7: Ядро продукта — видео-форматы ────────────────── -->
-  <section class="slide bg-light" data-n="7">
-    <div class="slide-inner">
-      <div class="slide-header">
-        <div class="title-block">
-          <span class="kicker">Ядро продукта · 06</span>
-          <h2 class="slide-title">6 стандартизированных видео-форматов</h2>
-        </div>
-      </div>
-      <div class="slide-body">
-        <div class="cards-grid cols-3">
-          <div class="card accent">
-            <span class="card-l">Базовые тесты</span>
-            <h4 class="card-h">Скоростно-силовой</h4>
-            <div class="card-p">Дистанция 20&nbsp;м · <i>раз в 2–3 мес.</i> Объективная метрика, сравнение со сверстниками.</div>
-          </div>
-          <div class="card accent">
-            <span class="card-l">Базовые тесты</span>
-            <h4 class="card-h">Техника катания</h4>
-            <div class="card-p">Повороты, торможение · <i>раз в месяц</i>. CV-сравнение с эталоном, рекомендации.</div>
-          </div>
-          <div class="card accent">
-            <span class="card-l">Базовые тесты</span>
-            <h4 class="card-h">Бросок</h4>
-            <div class="card-p">Кистевой / щелчок · <i>раз в 1–2 мес.</i> Сила и точность — ключевой критерий скаутов.</div>
-          </div>
-          <div class="card">
-            <span class="card-l">Прогресс</span>
-            <h4 class="card-h">Нормативное упражнение</h4>
-            <div class="card-p">Слалом по конусам · <i>по запросу</i> для участия в региональном рейтинге.</div>
-          </div>
-          <div class="card">
-            <span class="card-l">Доп. материалы</span>
-            <h4 class="card-h">Игровой момент</h4>
-            <div class="card-p">1–2 мин нарезка матча · <i>после турниров</i>. Хоккейное IQ, поведение на льду.</div>
-          </div>
-          <div class="card solid">
-            <span class="card-l">Удержание</span>
-            <h4 class="card-h">Коллаж «было / стало»</h4>
-            <div class="card-p">Автогенерация платформой. Эмоциональный якорь и стимул повторных загрузок.</div>
-          </div>
-        </div>
-        <div class="footer-note">
-          <span class="kicker">Принцип</span>
-          <div><b>Результат не может существовать без видеоподтверждения</b> · единые требования к ракурсу, длительности, разрешению (≥&nbsp;720p).</div>
-        </div>
-      </div>
-      <div class="slide-num"><span>09</span> / 28</div>
-    </div>
-  </section>
-
-  <!-- ────────────────── Slide 10: Демо · Live-обзор сайта (GIF) ────────────────── -->
-  <section class="slide bg-light" data-n="10">
-    <div class="slide-inner">
-      <div class="slide-header">
-        <div class="title-block">
-          <span class="kicker">Демо · vetrychok.ru · 09</span>
-          <h2 class="slide-title">Live-обзор работающего прототипа</h2>
-        </div>
-      </div>
-      <div class="slide-body">
-        <div class="screen-grid cols-1-hero">
-          <figure class="screen-card fit">
-            <span class="dot3"></span>
-            <span class="url">vetrychok.ru · live demo</span>
-            <div class="img-wrap contain">
-              <img src="site_media/demo.gif" alt="Демо обхода платформы">
-            </div>
-          </figure>
-          <div style="display:flex; flex-direction:column; gap:1.2cqh; min-height:0;">
-            <div class="subhead">Что показывает обход</div>
-            <ul class="feature-list">
-              <li><span class="ico">1</span><div><b>Лендинг</b> с УТП «Раскрой потенциал твоего чемпиона».</div></li>
-              <li><span class="ico">2</span><div><b>Вход</b> с выбором роли «Родитель / Скаут».</div></li>
-              <li><span class="ico">3</span><div><b>Каталог</b> игроков с фильтрами и статусом данных.</div></li>
-              <li><span class="ico">4</span><div><b>Дашборд</b>: рейтинг, прогресс, навыки, антропометрия.</div></li>
-              <li><span class="ico">5</span><div><b>Профиль</b> и переключение между 9 вкладками.</div></li>
-              <li><span class="ico">6</span><div><b>Обучение</b> — 44 фундаментальных навыка.</div></li>
-            </ul>
-            <div class="kicker" style="margin-top:.4cqh;">Стек</div>
-            <div style="font-size:.95cqw; color:var(--grey-7); line-height:1.4;">
-              React + Vite · FastAPI · PostgreSQL · S3 для видео · JWT-аутентификация · LLM-ассистент (готов в&nbsp;API)
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="slide-num"><span>10</span> / 28</div>
-    </div>
-  </section>
-
-  <!-- ────────────────── Slide 11: Демо · Каталог игроков ────────────────── -->
-  <section class="slide bg-light" data-n="11">
-    <div class="slide-inner">
-      <div class="slide-header">
-        <div class="title-block">
-          <span class="kicker">Демо · Каталог · 10</span>
-          <h2 class="slide-title">База игроков и фильтрация для скаутов</h2>
-        </div>
-      </div>
-      <div class="slide-body">
-        <div class="screen-grid cols-1-hero">
-          <figure class="screen-card">
-            <span class="dot3"></span>
-            <span class="url">vetrychok.ru/players</span>
-            <div class="img-wrap">
-              <img src="site_media/03_players.png" alt="Каталог игроков">
-              <figcaption>21 игрок · фильтры по региону, позиции, возрасту, хвату · поиск по имени</figcaption>
-            </div>
-          </figure>
-          <div style="display:flex; flex-direction:column; gap:1.4cqh; min-height:0;">
-            <div class="subhead">Что в каталоге</div>
-            <ul class="feature-list">
-              <li><span class="ico">1</span><div><b>Карточки игроков:</b> ФИО, позиция, возраст, рейтинг, регион.</div></li>
-              <li><span class="ico">2</span><div><b>Статус данных:</b> «Частично» / «Полностью» / «Верифицировано».</div></li>
-              <li><span class="ico">3</span><div><b>Фильтры:</b> регион, позиция, возраст, хват — расширяются.</div></li>
-              <li><span class="ico">4</span><div><b>Шорт-лист</b> по клику на закладку — справа от карточки.</div></li>
-              <li><span class="ico">5</span><div><b>Баннер о прозрачности данных</b> — отдельная политика доверия.</div></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div class="slide-num"><span>11</span> / 28</div>
-    </div>
-  </section>
-
-  <!-- ────────────────── Slide 12: Демо · Расширенные фильтры ────────────────── -->
-  <section class="slide bg-light" data-n="12">
-    <div class="slide-inner">
-      <div class="slide-header">
-        <div class="title-block">
-          <span class="kicker">Демо · Фильтры скаута · 11</span>
-          <h2 class="slide-title">Расширенные фильтры — поиск перспективных игроков</h2>
-        </div>
-      </div>
-      <div class="slide-body">
-        <div class="screen-grid cols-2">
-          <figure class="screen-card fit">
-            <span class="dot3"></span>
-            <span class="url">vetrychok.ru/players · filters demo</span>
-            <div class="img-wrap contain">
-              <img src="site_media/filters_demo.gif" alt="Демо фильтрации">
-            </div>
-          </figure>
-          <figure class="screen-card">
-            <span class="dot3"></span>
-            <span class="url">расширенные фильтры (раскрыты)</span>
-            <div class="img-wrap">
-              <img src="site_media/filters_advanced.png" alt="Расширенные фильтры">
-            </div>
-          </figure>
-        </div>
-        <div class="footer-note">
-          <span class="kicker">Что есть</span>
-          <div>4&nbsp;dropdown-фильтра + 4&nbsp;слайдера (<b>рост, вес, жировая масса, рейтинг</b>) + toggle «<i>Только с видео</i>» + дата теста · <b>живой поиск</b> по имени · счётчик активных фильтров и кнопка «Сброс».</div>
-        </div>
-      </div>
-      <div class="slide-num"><span>12</span> / 28</div>
-    </div>
-  </section>
-
-  <!-- ────────────────── Slide 13: Демо · Дашборд игрока ────────────────── -->
-  <section class="slide bg-light" data-n="12">
-    <div class="slide-inner">
-      <div class="slide-header">
-        <div class="title-block">
-          <span class="kicker">Демо · Главная игрока · 11</span>
-          <h2 class="slide-title">Дашборд: рейтинг, навыки, антропометрия</h2>
-        </div>
-      </div>
-      <div class="slide-body">
-        <div class="screen-grid cols-1-hero">
-          <figure class="screen-card">
-            <span class="dot3"></span>
-            <span class="url">vetrychok.ru/dashboard</span>
-            <div class="img-wrap">
-              <img src="site_media/04_dashboard.png" alt="Дашборд игрока">
-              <figcaption>Алексей Морозов, 14 лет · рейтинг 87 · прогресс и радар навыков</figcaption>
-            </div>
-          </figure>
-          <div style="display:flex; flex-direction:column; gap:1.4cqh; min-height:0;">
-            <div class="subhead">Что видит родитель</div>
-            <ul class="feature-list">
-              <li><span class="ico">★</span><div><b>Общий рейтинг 87 баллов</b> · +2 к предыдущей точке.</div></li>
-              <li><span class="ico">⚡</span><div>Метрики: сыгранные матчи, активные травмы, дни с теста.</div></li>
-              <li><span class="ico">🏆</span><div>Достижения: лучший результат, без травм, 10+ матчей, рост.</div></li>
-              <li><span class="ico">📈</span><div>График <b>прогресса рейтинга</b> по сезонам 2023–2024.</div></li>
-              <li><span class="ico">🛡</span><div>Радар: <b>катание, броски, пас, дисциплина, физика, тактика</b>.</div></li>
-              <li><span class="ico">📏</span><div>Графики <b>антропометрии</b> и «Обновить показатели».</div></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div class="slide-num"><span>13</span> / 28</div>
-    </div>
-  </section>
-
-  <!-- ────────────────── Slide 13: Профиль игрока — основные 4 вкладки ────────────────── -->
-  <section class="slide bg-light" data-n="13">
-    <div class="slide-inner">
-      <div class="slide-header">
-        <div class="title-block">
-          <span class="kicker">Демо · Профиль · 12 · ч. 1</span>
-          <h2 class="slide-title">Профиль игрока — основные данные и метрики</h2>
-        </div>
-      </div>
-      <div class="slide-body">
-        <div class="screen-grid cols-2x2">
-          <figure class="screen-card">
-            <span class="dot3"></span>
-            <span class="url">Профиль · общая информация</span>
-            <div class="img-wrap">
-              <img src="site_media/tab_profile.png" alt="Профиль">
-              <figcaption>Позиция, хват, команда, регион, дата рождения, номер</figcaption>
-            </div>
-          </figure>
-          <figure class="screen-card">
-            <span class="dot3"></span>
-            <span class="url">Антропометрия · перцентили</span>
-            <div class="img-wrap">
-              <img src="site_media/tab_anthropometry.png" alt="Антропометрия">
-              <figcaption>Рост, вес, размах рук, ширина плеч · норма / ниже нормы</figcaption>
-            </div>
-          </figure>
-          <figure class="screen-card">
-            <span class="dot3"></span>
-            <span class="url">Тесты · «На льду» / ОФП</span>
-            <div class="img-wrap">
-              <img src="site_media/tab_tests.png" alt="Тесты">
-              <figcaption>Сессии «На&nbsp;льду» и «Общая подготовка», тренды по метрикам</figcaption>
-            </div>
-          </figure>
-          <figure class="screen-card">
-            <span class="dot3"></span>
-            <span class="url">Статистика · турниры</span>
-            <div class="img-wrap">
-              <img src="site_media/tab_stats.png" alt="Статистика">
-              <figcaption>Матчи: Игры · Голы · Пасы · Очки · +/− · штрафы · дата</figcaption>
-            </div>
-          </figure>
-        </div>
-        <div class="footer-note">
-          <span class="kicker">Ядро профиля</span>
-          <div>Эти <b>4 раздела</b> формируют объективную картину игрока · далее — <i>контент и подтверждения</i>.</div>
-        </div>
-      </div>
-      <div class="slide-num"><span>14</span> / 28</div>
-    </div>
-  </section>
-
-  <!-- ────────────────── Slide 14: Профиль игрока — медиа и контекст ────────────────── -->
-  <section class="slide bg-light" data-n="14">
-    <div class="slide-inner">
-      <div class="slide-header">
-        <div class="title-block">
-          <span class="kicker">Демо · Профиль · 12 · ч. 2</span>
-          <h2 class="slide-title">Профиль игрока — видео, оценки, семья</h2>
-        </div>
-      </div>
-      <div class="slide-body">
-        <div class="screen-grid cols-2x2">
-          <figure class="screen-card">
-            <span class="dot3"></span>
-            <span class="url">Видеотека · по категориям</span>
-            <div class="img-wrap">
-              <img src="site_media/tab_video.png" alt="Видеотека">
-              <figcaption>Техника броска, обращение с шайбой, игровые ситуации, тактика</figcaption>
-            </div>
-          </figure>
-          <figure class="screen-card">
-            <span class="dot3"></span>
-            <span class="url">Оценки · видеоразборы тренера</span>
-            <div class="img-wrap">
-              <img src="site_media/tab_reviews.png" alt="Оценки">
-              <figcaption>Видеооценки тренера, план развития, текстовые рекомендации</figcaption>
-            </div>
-          </figure>
-          <figure class="screen-card">
-            <span class="dot3"></span>
-            <span class="url">Травмы · история и восстановление</span>
-            <div class="img-wrap">
-              <img src="site_media/tab_injuries.png" alt="Травмы">
-              <figcaption>Список травм, сроки восстановления, статус и заметки</figcaption>
-            </div>
-          </figure>
-          <figure class="screen-card">
-            <span class="dot3"></span>
-            <span class="url">Семья · генетика и потенциал</span>
-            <div class="img-wrap">
-              <img src="site_media/tab_family.png" alt="Семья">
-              <figcaption>Рост / вес родителей и родственников — прогноз потенциала</figcaption>
-            </div>
-          </figure>
-        </div>
-        <div class="footer-note">
-          <span class="kicker">+ 9-я вкладка</span>
-          <div><b>Отзывы</b> — комментарии тренеров и скаутов · <i>один профиль</i> работает и на родителя, и на B2B.</div>
-        </div>
-      </div>
-      <div class="slide-num"><span>15</span> / 28</div>
-    </div>
-  </section>
-
-  <!-- ────────────────── Slide 14: Демо · Добавление + Обучение + Mobile ────────────────── -->
-  <section class="slide bg-light" data-n="14">
-    <div class="slide-inner">
-      <div class="slide-header">
-        <div class="title-block">
-          <span class="kicker">Демо · Создание · Обучение · Mobile · 13</span>
-          <h2 class="slide-title">Регистрация игрока, обучение и мобильная версия</h2>
-        </div>
-      </div>
-      <div class="slide-body">
-        <div class="screen-grid" style="grid-template-columns: 1.3fr 1.3fr 0.7fr 0.7fr; gap: 1.0cqw;">
-          <figure class="screen-card">
-            <span class="dot3"></span>
-            <span class="url">/add-player · 4 шага</span>
-            <div class="img-wrap">
-              <img src="site_media/11_add_player.png" alt="Добавление игрока">
-              <figcaption><b>1. Личные → 2. Антропометрия → 3. Тесты → 4. Подтверждение</b></figcaption>
-            </div>
-          </figure>
-          <figure class="screen-card">
-            <span class="dot3"></span>
-            <span class="url">/education · 44 навыка</span>
-            <div class="img-wrap">
-              <img src="site_media/12_education.png" alt="Обучение">
-              <figcaption>U10–U16+ · катание, броски, дриблинг, позиционирование, вратарь</figcaption>
-            </div>
-          </figure>
-          <figure class="screen-card mobile">
-            <div class="img-wrap">
-              <img src="site_media/16_mobile_dashboard.png" alt="Mobile dashboard">
-              <figcaption>Mobile · дашборд</figcaption>
-            </div>
-          </figure>
-          <figure class="screen-card mobile">
-            <div class="img-wrap">
-              <img src="site_media/15_mobile_players.png" alt="Mobile players">
-              <figcaption>Mobile · каталог</figcaption>
-            </div>
-          </figure>
-        </div>
-        <div class="footer-note">
-          <span class="kicker">Mobile-first</span>
-          <div>Мастер из 4 шагов <b>снижает барьер</b>. Обучение — <i>retention-механика</i>. Адаптив под телефон — потому что родители <b>снимают видео с мобильного</b>.</div>
-        </div>
-      </div>
-      <div class="slide-num"><span>16</span> / 28</div>
-    </div>
-  </section>
-
-  <!-- ────────────────── Slide 17: AI-ассистент (новая фича) ────────────────── -->
-  <section class="slide bg-light" data-n="17">
-    <div class="slide-inner">
-      <div class="slide-header">
-        <div class="title-block">
-          <span class="kicker">Новая фича · AI · 16</span>
-          <h2 class="slide-title">AI-ассистент — анализ профилей и подбор игроков</h2>
-        </div>
-      </div>
-      <div class="slide-body">
-        <div class="body-grid cols-2" style="gap:2.0cqw;">
-          <div class="ai-chat">
-            <div class="ai-head">
-              <span class="pulse"></span>
-              <span class="tit">«Хоккейный <b>AI</b>» · ассистент скаута</span>
-              <span class="badge">● онлайн</span>
-            </div>
-            <div class="ai-stream">
-              <div class="ai-bubble user">
-                <div class="who">С</div>
-                <div class="body">Найди нападающих 14&nbsp;лет в&nbsp;Москве с рейтингом выше 80 и&nbsp;есть видео&nbsp;броска.</div>
-              </div>
-              <div class="ai-bubble ai">
-                <div class="who">AI</div>
-                <div class="body">
-                  Нашёл <b>2 кандидата</b> по фильтрам:
-                  <ul>
-                    <li><b>Алексей Морозов</b> · 14&nbsp;л · ЦСКА Юниоры · рейтинг <b>87</b> <span class="citation">#1</span></li>
-                    <li><b>Артём Кузнецов</b> · 14&nbsp;л · Москва · рейтинг <b>88</b> <span class="citation">#2</span></li>
-                  </ul>
-                  У&nbsp;Морозова <b>+2&nbsp;балла</b> за последнюю точку — стабильный рост за полгода.
-                </div>
-              </div>
-              <div class="ai-bubble user">
-                <div class="who">С</div>
-                <div class="body">Кратко: чем отличаются?</div>
-              </div>
-              <div class="ai-bubble ai">
-                <div class="who">AI</div>
-                <div class="body">
-                  Морозов — <b>левый хват</b>, выше антропометрия для возраста (норма по росту&nbsp;152&nbsp;см); Кузнецов — выше рейтинг, но <i>нет видео броска</i>&nbsp;<span class="citation">!</span> и&nbsp;слабее статистика в&nbsp;последнем турнире.
-                </div>
-              </div>
-            </div>
-            <div class="ai-input">
-              Спросить AI · «покажи прогресс по тестам», «сравни двух игроков»…
-              <span class="send">Send ↵</span>
-            </div>
-          </div>
-          <div style="display:flex; flex-direction:column; gap:1.4cqh; min-height:0;">
-            <div class="subhead">Что умеет AI</div>
-            <ul class="feature-list">
-              <li><span class="ico">🔎</span><div><b>Подбор игроков</b> по естественному запросу — без сборки фильтров вручную.</div></li>
-              <li><span class="ico">📊</span><div><b>Сводка по профилю:</b> «как развивался за&nbsp;6&nbsp;мес», «сильные/слабые стороны».</div></li>
-              <li><span class="ico">⚖</span><div><b>Сравнение игроков</b> с учётом антропометрии, тестов и&nbsp;видео.</div></li>
-              <li><span class="ico">💡</span><div><b>Рекомендации развития</b> родителю и&nbsp;план тренировок.</div></li>
-              <li><span class="ico">🛡</span><div><b>Цитирует</b> данные профиля — никаких галлюцинаций.</div></li>
-            </ul>
-            <div class="footer-note" style="border-top:none; padding-top:0; margin-top:.2cqh;">
-              <span class="kicker">Статус</span>
-              <div><b>Готов в&nbsp;API</b> (<code style="font-family:var(--font-mono);">POST /api/v1/assistant/chat</code>) · UI выкатываем после&nbsp;ППМ-2.</div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="slide-num"><span>17</span> / 28</div>
-    </div>
-  </section>
-
-  <!-- ────────────────── Slide 18: Достоверность данных ────────────────── -->
-  <section class="slide bg-light" data-n="8">
-    <div class="slide-inner">
-      <div class="slide-header">
-        <div class="title-block">
-          <span class="kicker">Доверие · 07</span>
-          <h2 class="slide-title">Достоверность данных и антифрод</h2>
-        </div>
-      </div>
-      <div class="slide-body">
-        <div class="body-grid cols-2">
-          <div>
-            <div class="subhead">Риски недостоверности</div>
-            <ul class="bullets tighter">
-              <li>ускоренное видео, монтаж и склейки;</li>
-              <li>загрузка старого / чужого видео;</li>
-              <li>ручная подмена результатов;</li>
-              <li>съёмка не по правилам, плохой ракурс;</li>
-              <li>обрезка начала или конца упражнения.</li>
-            </ul>
-          </div>
-          <div>
-            <div class="subhead">Многоуровневая защита</div>
-            <ul class="bullets tighter">
-              <li><b>1.</b> Стандартизированные требования к видео;</li>
-              <li><b>2.</b> Чёткие инструкции перед загрузкой;</li>
-              <li><b>3.</b> Автопроверка файла (длительность, fps, метаданные);</li>
-              <li><b>4.</b> Антифрод: монтаж, ускорение, тайминги;</li>
-              <li><b>5.</b> Флаги, ручная модерация, санкции (предупреждение → блок).</li>
-            </ul>
-          </div>
-        </div>
-        <div class="kpi-grid" style="grid-template-columns: 1fr 1fr 1fr; margin-top:.6cqh;">
-          <div class="kpi accent">
-            <div class="l">Статусы профилей</div>
-            <div class="v" style="font-size:1.3cqw; white-space:normal;">базовый → подтверждённый → проверен&nbsp;тренером</div>
-          </div>
-          <div class="kpi accent">
-            <div class="l">Видеоподтверждение</div>
-            <div class="v" style="font-size:1.3cqw; white-space:normal;">любая метрика — только с приложенным видео</div>
-          </div>
-          <div class="kpi solid">
-            <div class="l">Эффект</div>
-            <div class="v" style="font-size:1.3cqw; white-space:normal;">объективность рейтингов и доверие скаутов</div>
-          </div>
-        </div>
-      </div>
-      <div class="slide-num"><span>18</span> / 28</div>
-    </div>
-  </section>
-
-  <!-- ────────────────── Slide 12: Было → Стало ────────────────── -->
-  <section class="slide bg-light" data-n="12">
-    <div class="slide-inner">
-      <div class="slide-header">
-        <div class="title-block">
-          <span class="kicker">Эволюция продукта · 11</span>
-          <h2 class="slide-title">Что изменили после интервью и созвонов</h2>
-        </div>
-      </div>
-      <div class="slide-body">
-        <div class="cards-grid" style="grid-template-columns: 1fr 1fr; gap: 1.2cqw;">
-          <div class="card">
-            <span class="card-l">Было · v0</span>
-            <h4 class="card-h">Цифры в профиле — без проверки</h4>
-            <div class="card-p" style="margin-top:auto; font-size:.95cqw;">Родитель мог вписать любой результат теста вручную.</div>
-          </div>
-          <div class="card accent">
-            <span class="card-l">Стало · v1</span>
-            <h4 class="card-h">Видеоподтверждение — обязательно</h4>
-            <div class="card-p" style="margin-top:auto; font-size:.95cqw;">Любая метрика существует только при наличии видео + антифрод.</div>
-          </div>
-
-          <div class="card">
-            <span class="card-l">Было · v0</span>
-            <h4 class="card-h">Только данные ребёнка</h4>
-            <div class="card-p" style="margin-top:auto; font-size:.95cqw;">Антропометрия игрока без учёта генетики.</div>
-          </div>
-          <div class="card accent">
-            <span class="card-l">Стало · v1</span>
-            <h4 class="card-h">Семейная антропометрия</h4>
-            <div class="card-p" style="margin-top:auto; font-size:.95cqw;">Рост/вес родителей и родственников — прогноз потенциала.</div>
-          </div>
-
-          <div class="card">
-            <span class="card-l">Было · v0</span>
-            <h4 class="card-h">Только чистые тесты</h4>
-            <div class="card-p" style="margin-top:auto; font-size:.95cqw;">Тесты можно «натренировать» без переноса в игру.</div>
-          </div>
-          <div class="card accent">
-            <span class="card-l">Стало · v1</span>
-            <h4 class="card-h">Тесты + игровые ситуации</h4>
-            <div class="card-p" style="margin-top:auto; font-size:.95cqw;">Видео с давлением соперника и хоккейное IQ — отдельно.</div>
-          </div>
-
-          <div class="card">
-            <span class="card-l">Было · v0</span>
-            <h4 class="card-h">Загрузка с компьютера</h4>
-            <div class="card-p" style="margin-top:auto; font-size:.95cqw;">Сложный воркфлоу — родители быстро отваливаются.</div>
-          </div>
-          <div class="card solid">
-            <span class="card-l">Стало · v1</span>
-            <h4 class="card-h">Mobile-first + 3 клика</h4>
-            <div class="card-p" style="margin-top:auto; font-size:.95cqw;">Снимаю с телефона → загрузил → получил рейтинг.</div>
-          </div>
-        </div>
-        <div class="footer-note">
-          <span class="kicker">Дополнительно</span>
-          <div>Добавили <b>геолокацию</b> и контекст региона · обновление профиля <i>раз в 3–4 мес.</i> · <u>freemium</u> вместо «только B2B» · реклама на сайте как доп. модель монетизации.</div>
-        </div>
-      </div>
-      <div class="slide-num"><span>19</span> / 28</div>
-    </div>
-  </section>
-
-  <!-- ────────────────── Slide 13: Конкуренты + УТП ────────────────── -->
-  <section class="slide bg-light" data-n="9">
-    <div class="slide-inner">
-      <div class="slide-header">
-        <div class="title-block">
-          <span class="kicker">Конкуренты · 08</span>
-          <h2 class="slide-title">Конкурентная матрица — пустая ниша</h2>
-        </div>
-      </div>
-      <div class="slide-body">
-        <table class="matrix">
-          <thead>
-            <tr>
-              <th>Параметр</th>
-              <th>Юнистат</th>
-              <th>HockeyTech</th>
-              <th>InStat Hockey</th>
-              <th>SkillShark</th>
-              <th class="ours">Хоккейный родитель</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="feat">Родитель — основной пользователь</td>
-              <td class="no">нет</td><td class="no">нет</td><td class="no">нет</td><td class="no">нет</td>
-              <td class="ours">ДА</td>
-            </tr>
-            <tr>
-              <td class="feat">Загрузка стандартизированного видео</td>
-              <td class="no">нет</td><td class="partial">матчи</td><td class="yes">да</td><td class="no">нет</td>
-              <td class="ours">ДА</td>
-            </tr>
-            <tr>
-              <td class="feat">Открытый рейтинг по региону / возрасту</td>
-              <td class="no">нет</td><td class="no">нет</td><td class="no">нет</td><td class="no">нет</td>
-              <td class="ours">ДА</td>
-            </tr>
-            <tr>
-              <td class="feat">B2B-фильтрация для скаутов</td>
-              <td class="partial">частично</td><td class="yes">да</td><td class="yes">да</td><td class="no">нет</td>
-              <td class="ours">ДА</td>
-            </tr>
-            <tr>
-              <td class="feat">Бесплатно для родителей на старте</td>
-              <td class="no">нет</td><td class="no">нет</td><td class="no">нет</td><td class="no">нет</td>
-              <td class="ours">ДА</td>
-            </tr>
-            <tr>
-              <td class="feat">Русский язык и регионы РФ</td>
-              <td class="yes">да</td><td class="no">нет</td><td class="no">нет</td><td class="no">нет</td>
-              <td class="ours">ДА</td>
-            </tr>
-            <tr>
-              <td class="feat">Интеграция с детскими турнирами</td>
-              <td class="partial">футбол</td><td class="no">нет</td><td class="no">нет</td><td class="no">нет</td>
-              <td class="ours">ДА</td>
-            </tr>
-          </tbody>
-        </table>
-        <div class="footer-note">
-          <span class="kicker">УТП</span>
-          <div>Первая в РФ открытая платформа, где <b>родитель — главный пользователь</b>, видео обязательно, а скаут получает <i>фильтруемый поиск с видеоподтверждением</i>.</div>
-        </div>
-      </div>
-      <div class="slide-num"><span>20</span> / 28</div>
-    </div>
-  </section>
-
-  <!-- ────────────────── Slide 10: Рынок TAM/SAM/SOM ────────────────── -->
-  <section class="slide bg-light" data-n="10">
-    <div class="slide-inner">
-      <div class="slide-header">
-        <div class="title-block">
-          <span class="kicker">Рынок · 09</span>
-          <h2 class="slide-title">TAM / SAM / SOM — Россия, 2025</h2>
-        </div>
-      </div>
-      <div class="slide-body">
-        <div class="bigfacts">
-          <div class="fact"><div class="v">150 млн ₽</div><div class="l">TAM · весь рынок РФ</div></div>
-          <div class="fact"><div class="v">35 млн ₽</div><div class="l">SAM · ключевые регионы</div></div>
-          <div class="fact"><div class="v">11 млн ₽</div><div class="l">SOM · горизонт 1–2 года</div></div>
-        </div>
-        <div class="body-grid cols-2" style="margin-top:.6cqh;">
-          <div>
-            <div class="subhead">Базовые цифры рынка</div>
-            <ul class="bullets tighter">
-              <li><b>600 000</b> человек занимаются хоккеем в РФ <i>(Минспорт, 2025)</i>.</li>
-              <li><b>35 000</b> детей участвуют в офиц. соревнованиях ФХР.</li>
-              <li><b>765</b> хоккейных организаций · <b>~180</b> с активным скаутингом.</li>
-              <li>МХЛ&nbsp;39 + НМХЛ&nbsp;40 + ЮХЛ&nbsp;~100 школ.</li>
-            </ul>
-          </div>
-          <div>
-            <div class="subhead">Структура SOM (B2C + B2B)</div>
-            <ul class="bullets tighter">
-              <li><b>B2B · 2,7 млн ₽:</b> 45 клубов × 60 000 ₽/год (25% SAM).</li>
-              <li><b>B2C · 8,4 млн ₽:</b> 3 800 профилей × 2 200 ₽/год.</li>
-              <li>Каналы: аутрич + партнёрство с 2–3 региональными ФХР.</li>
-              <li>Семьи тратят <b>~10,9 млн ₽</b> за карьеру ребёнка <i>(Forbes Sport, 2024)</i>.</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div class="slide-num"><span>21</span> / 28</div>
-    </div>
-  </section>
-
-  <!-- ────────────────── Slide 11: Бизнес-модель ────────────────── -->
-  <section class="slide bg-light" data-n="11">
-    <div class="slide-inner">
-      <div class="slide-header">
-        <div class="title-block">
-          <span class="kicker">Бизнес-модель · 10</span>
-          <h2 class="slide-title">Freemium → подписки B2C и B2B</h2>
-        </div>
-      </div>
-      <div class="slide-body">
-        <div class="tiers">
-          <div class="tier">
-            <span class="t-tag">B2C · Start</span>
-            <h4 class="t-h">Бесплатно</h4>
-            <div class="t-price">0&nbsp;₽<small>&nbsp;/&nbsp;мес</small></div>
-            <div class="t-aud">Знакомство, наполнение базы</div>
-            <ul>
-              <li>профиль ребёнка;</li>
-              <li>ограниченная загрузка видео;</li>
-              <li>базовые тесты ОФП;</li>
-              <li>один отчёт; участие в рейтинге.</li>
-            </ul>
-          </div>
-          <div class="tier accent">
-            <span class="t-tag">B2C · Progress</span>
-            <h4 class="t-h">Прогресс</h4>
-            <div class="t-price">299–499<small>&nbsp;₽&nbsp;/&nbsp;мес</small></div>
-            <div class="t-aud">Регулярный мониторинг</div>
-            <ul>
-              <li>расширенная статистика;</li>
-              <li>история и сравнение по возрасту;</li>
-              <li>рекомендации, образовательный раздел;</li>
-              <li>напоминания об обновлении.</li>
-            </ul>
-          </div>
-          <div class="tier accent">
-            <span class="t-tag">B2C · Premium</span>
-            <h4 class="t-h">Максимум</h4>
-            <div class="t-price">799–1490<small>&nbsp;₽&nbsp;/&nbsp;мес</small></div>
-            <div class="t-aud">Глубокое сопровождение</div>
-            <ul>
-              <li>расширенный видеоанализ;</li>
-              <li>приоритет в выдаче скаутам;</li>
-              <li>уведомления о просмотрах;</li>
-              <li>ранний доступ к новым функциям.</li>
-            </ul>
-          </div>
-          <div class="tier solid">
-            <span class="t-tag">B2B · Scout / Academy</span>
-            <h4 class="t-h">Скаут&nbsp;/&nbsp;Академия</h4>
-            <div class="t-price">5–15&nbsp;тыс.<small>&nbsp;₽&nbsp;/&nbsp;мес</small></div>
-            <div class="t-aud">Поиск перспективных игроков</div>
-            <ul>
-              <li>доступ к базе и фильтрам;</li>
-              <li>видео и аналитика игроков;</li>
-              <li>шорт-листы и сравнение;</li>
-              <li>расширенные отчёты.</li>
-            </ul>
-          </div>
-        </div>
-        <div class="footer-note">
-          <span class="kicker">Логика</span>
-          <div>Сначала <b>наполнение базы родителями</b> (порог &gt;&nbsp;<b>1000 профилей на возраст</b>) → потом подключение платных функций. Драйвер выручки — <i>B2B-подписка</i>.</div>
-        </div>
-      </div>
-      <div class="slide-num"><span>22</span> / 28</div>
-    </div>
-  </section>
-
-  <!-- ────────────────── Slide 12: Гипотезы и валидация ────────────────── -->
-  <section class="slide bg-light" data-n="12">
-    <div class="slide-inner">
-      <div class="slide-header">
-        <div class="title-block">
-          <span class="kicker">Валидация · 11</span>
-          <h2 class="slide-title">Три ключевые гипотезы — критерии успеха</h2>
-        </div>
-      </div>
-      <div class="slide-body">
-        <div class="cards-grid cols-3">
-          <div class="card accent">
-            <span class="card-l">Гипотеза 1 · B2C</span>
-            <h4 class="card-h">Родители готовы систематически загружать видео</h4>
-            <div class="card-p">если видят <i>объективную обратную связь</i> и сравнение с другими игроками.</div>
-            <ul class="card-list">
-              <li>JTBD-интервью с 10–15 родителями;</li>
-              <li>MVP-тест: лендинг + загрузка + таргет;</li>
-              <li>анализ воронки в прототипе.</li>
-            </ul>
-            <div class="card-p" style="margin-top:auto; color:var(--itmo-red); font-weight:700;">Критерий: профиль ≥&nbsp;60%, видео ≥&nbsp;40%</div>
-          </div>
-          <div class="card accent">
-            <span class="card-l">Гипотеза 2 · B2B</span>
-            <h4 class="card-h">Академии готовы платить за поиск с фильтрацией</h4>
-            <div class="card-p">когда в базе накоплена <i>критическая масса</i> качественных данных.</div>
-            <ul class="card-list">
-              <li>глубинные интервью 5–7 академий;</li>
-              <li>демо-вебинар прототипа;</li>
-              <li>пилотные соглашения на тест.</li>
-            </ul>
-            <div class="card-p" style="margin-top:auto; color:var(--itmo-red); font-weight:700;">Критерий: ≥&nbsp;3 академии в пилоте</div>
-          </div>
-          <div class="card solid">
-            <span class="card-l">Гипотеза 3 · Каналы</span>
-            <h4 class="card-h">Турниры — самый эффективный канал привлечения</h4>
-            <div class="card-p">офлайн-промо + цифровой онбординг дают <i>выше конверсию</i>, чем онлайн.</div>
-            <ul class="card-list">
-              <li>промо-стенд на турнире «Сибириус»;</li>
-              <li>бесплатные замеры + QR-код;</li>
-              <li>сравнение с онлайн-кампанией.</li>
-            </ul>
-            <div class="card-p" style="margin-top:auto; color:#fff; font-weight:700;">Критерий: конверсия выше на 30–50%</div>
-          </div>
-        </div>
-      </div>
-      <div class="slide-num"><span>23</span> / 28</div>
-    </div>
-  </section>
-
-  <!-- ────────────────── Slide 13: Go-to-market ────────────────── -->
-  <section class="slide bg-light" data-n="13">
-    <div class="slide-inner">
-      <div class="slide-header">
-        <div class="title-block">
-          <span class="kicker">Go-to-market · 12</span>
-          <h2 class="slide-title">Стратегия запуска и продвижения</h2>
-        </div>
-      </div>
-      <div class="slide-body">
-        <div class="body-grid cols-2">
-          <div>
-            <div class="subhead">Этап 1 — наполнение базы</div>
-            <ul class="bullets tighter">
-              <li><b>Социальные сети:</b> разборы техники, советы родителям, истории игроков, «было / стало».</li>
-              <li><b>Школы и академии:</b> платформа как инструмент демонстрации прогресса.</li>
-              <li><b>Турниры («Сибириус»):</b> стенды, бесплатные замеры, QR-онбординг.</li>
-              <li><b>Рекомендации:</b> тренеры, родители, локальные спортивные медиа.</li>
-              <li><b>Цель:</b> <u>&gt;&nbsp;1000 профилей на один возраст</u>.</li>
-            </ul>
-          </div>
-          <div>
-            <div class="subhead">Этап 2 — подключение монетизации</div>
-            <ul class="bullets tighter">
-              <li>запуск Premium-функций для родителей;</li>
-              <li>B2B-подписка для скаутов, агентов, клубов;</li>
-              <li>развитие образовательного раздела и аналитики;</li>
-              <li>интеграции: ФХР, KidsHockey.ru, AirHockey;</li>
-              <li>рекламные форматы внутри платформы (как доп. модель).</li>
-            </ul>
-          </div>
-        </div>
-        <div class="footer-note">
-          <span class="kicker">Принцип</span>
-          <div>Чем больше профилей и видео — тем выше ценность для скаутов; именно <b>родители — драйвер контента</b> на старте.</div>
-        </div>
-      </div>
-      <div class="slide-num"><span>24</span> / 28</div>
-    </div>
-  </section>
-
-  <!-- ────────────────── Slide 14: SWOT ────────────────── -->
-  <section class="slide bg-light" data-n="14">
-    <div class="slide-inner">
-      <div class="slide-header">
-        <div class="title-block">
-          <span class="kicker">Риски · 13</span>
-          <h2 class="slide-title">SWOT-анализ продукта</h2>
-        </div>
-      </div>
-      <div class="slide-body">
-        <div class="swot">
-          <div class="swot-cell s">
-            <div class="swot-l">Strengths · Сильные стороны</div>
-            <ul>
-              <li>решает реальную и понятную проблему отсутствия объективной оценки;</li>
-              <li>уникальный подход — стандартизированные тесты вместо хаотичных видео;</li>
-              <li>две аудитории в одном продукте создают ценность с двух сторон;</li>
-              <li>видео как подтверждение результатов повышает доверие;</li>
-              <li>масштабирование на турниры, академии и другие виды спорта.</li>
-            </ul>
-          </div>
-          <div class="swot-cell w">
-            <div class="swot-l">Weaknesses · Слабые стороны</div>
-            <ul>
-              <li>сложность объяснения продукта на старте — неочевидная ценность;</li>
-              <li>зависимость от качества съёмки видео родителями;</li>
-              <li>строгая стандартизация снижает гибкость контента;</li>
-              <li>сложный «холодный старт» — нужно привлекать обе аудитории;</li>
-              <li>необходимо доказать объективность системы оценки.</li>
-            </ul>
-          </div>
-          <div class="swot-cell o">
-            <div class="swot-l">Opportunities · Возможности</div>
-            <ul>
-              <li>партнёрство с хоккейными школами, академиями и ФХР;</li>
-              <li>интеграция с турнирами и соревнованиями;</li>
-              <li>развитие AI-анализа техники (компьютерное зрение);</li>
-              <li>расширение на другие виды спорта;</li>
-              <li>создание базы талантов на уровне страны и регионов.</li>
-            </ul>
-          </div>
-          <div class="swot-cell t">
-            <div class="swot-l">Threats · Угрозы</div>
-            <ul>
-              <li>недоверие к автоматической оценке со стороны тренеров;</li>
-              <li>конкуренция с академиями и существующими базами;</li>
-              <li>риск подделки данных и неправильной съёмки;</li>
-              <li>низкая вовлечённость без быстрого результата;</li>
-              <li>возможное сопротивление традиционной системы.</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div class="slide-num"><span>25</span> / 28</div>
-    </div>
-  </section>
-
-  <!-- ────────────────── Slide 15: Roadmap ────────────────── -->
-  <section class="slide bg-light" data-n="15">
-    <div class="slide-inner">
-      <div class="slide-header">
-        <div class="title-block">
-          <span class="kicker">Дорожная карта · 14</span>
-          <h2 class="slide-title">Этапы ППМ-2 · 2 марта&nbsp;– 29 мая 2026</h2>
-        </div>
-      </div>
-      <div class="slide-body">
-        <div class="timeline">
-          <div class="step">
-            <span class="n">01</span>
-            <span class="d">2–6 марта</span>
-            <span class="h">Контекст</span>
-            <span class="p">Знакомство с заказчиком, уточнение требований, бриф.</span>
-          </div>
-          <div class="step">
-            <span class="n">02</span>
-            <span class="d">7–20 марта</span>
-            <span class="h">Анализ&nbsp;рынка</span>
-            <span class="p">Аналоги «Юнистат», HockeyTech, SkillShark. Отчёт.</span>
-          </div>
-          <div class="step">
-            <span class="n">03</span>
-            <span class="d">21–31 марта</span>
-            <span class="h">Конкуренты</span>
-            <span class="p">Сильные/слабые стороны, отстройка, матрица.</span>
-          </div>
-          <div class="step">
-            <span class="n">04</span>
-            <span class="d">1–10 апреля</span>
-            <span class="h">Концепция&nbsp;УТП</span>
-            <span class="p">Формирование УТП и сценариев двух ролей.</span>
-          </div>
-          <div class="step">
-            <span class="n">05</span>
-            <span class="d">11.04 – 15.05</span>
-            <span class="h">Прототип</span>
-            <span class="p">UI+UX в Figma, ≥&nbsp;15 экранов, адаптив.</span>
-          </div>
-          <div class="step">
-            <span class="n">06</span>
-            <span class="d">16–22 мая</span>
-            <span class="h">Тестирование</span>
-            <span class="p">JTBD на 5–7 родителях, замечания.</span>
-          </div>
-          <div class="step">
-            <span class="n">07</span>
-            <span class="d">23–29 мая</span>
-            <span class="h">Защита</span>
-            <span class="p">Презентация, отчёт, передача заказчику.</span>
-          </div>
-        </div>
-        <div class="kpi-grid" style="grid-template-columns: 1fr 1fr 1fr; margin-top:1cqh;">
-          <div class="kpi accent">
-            <div class="l">Результат ППМ-2</div>
-            <div class="v" style="font-size:1.25cqw; white-space:normal;">Прототип UI+UX (Figma) и аналитический отчёт</div>
-          </div>
-          <div class="kpi accent">
-            <div class="l">Следующий шаг</div>
-            <div class="v" style="font-size:1.25cqw; white-space:normal;">MVP: backend (Python), хранение видео, CV-демо</div>
-          </div>
-          <div class="kpi solid">
-            <div class="l">Долгосрочно</div>
-            <div class="v" style="font-size:1.25cqw; white-space:normal;">Мобильное приложение, AI-видеоанализ, выход в РФ</div>
-          </div>
-        </div>
-      </div>
-      <div class="slide-num"><span>26</span> / 28</div>
-    </div>
-  </section>
-
-  <!-- ────────────────── Slide 20: Итоги проекта ────────────────── -->
-  <section class="slide bg-light" data-n="20">
-    <div class="slide-inner">
-      <div class="slide-header">
-        <div class="title-block">
-          <span class="kicker">Итоги · 19</span>
-          <h2 class="slide-title">Что получилось в рамках ППМ-2</h2>
-        </div>
-      </div>
-      <div class="slide-body">
-        <div class="bigfacts">
-          <div class="fact"><div class="v">21</div><div class="l">слайд pitch deck</div></div>
-          <div class="fact"><div class="v">≥&nbsp;15</div><div class="l">экранов в Figma-прототипе</div></div>
-          <div class="fact"><div class="v">3 / 3</div><div class="l">гипотезы валидированы качественно</div></div>
-        </div>
-        <div class="body-grid cols-2" style="margin-top:.6cqh;">
-          <div>
-            <div class="subhead">Что сделали</div>
-            <ul class="bullets tighter">
-              <li>аналитический отчёт по рынку (TAM/SAM/SOM, тренды);</li>
-              <li>конкурентный анализ и матрица отстройки;</li>
-              <li>концепция продукта + 6 типов стандартизированных видео;</li>
-              <li>UX/UI прототип в Figma с двумя сценариями (родитель / скаут);</li>
-              <li>система достоверности данных и антифрод-логика;</li>
-              <li>модель монетизации freemium с B2B-подпиской.</li>
-            </ul>
-          </div>
-          <div>
-            <div class="subhead">Что рекомендуем дальше</div>
-            <ul class="bullets tighter">
-              <li><b>MVP:</b> backend на Python, хранилище видео, CV-демо;</li>
-              <li><b>Пилот:</b> 1–2 региональные академии + турнир «Сибириус»;</li>
-              <li><b>Контент:</b> 6 промо-роликов, образовательный раздел;</li>
-              <li><b>Маркетинг:</b> наполнение базы до 1000 профилей на возраст;</li>
-              <li><b>Этап 2:</b> подключение платных подписок и B2B-доступа;</li>
-              <li><b>Долгосрочно:</b> мобильное приложение и AI-видеоанализ.</li>
-            </ul>
-          </div>
-        </div>
-        <div class="footer-note">
-          <span class="kicker">Главный вывод</span>
-          <div>Проект <b>обоснован</b> технически и продуктово · занимает пустую нишу российского хоккея · готов к переходу в <i>MVP-разработку</i>.</div>
-        </div>
-      </div>
-      <div class="slide-num"><span>27</span> / 28</div>
-    </div>
-  </section>
-
-  <!-- ────────────────── Slide 21: Финал ────────────────── -->
-  <section class="slide bg-red final-slide" data-n="16">
-    <div class="slide-inner">
-      <h1>Спасибо <span class="accent">за&nbsp;внимание!</span></h1>
-      <p class="sub">Готовы ответить на вопросы и обсудить пилот</p>
-      <div class="contact-grid">
-        <div>
-          <div class="l">Команда · ИТМО ФТМИ</div>
-          <div class="v">Селянина&nbsp;Анастасия · Адрианов&nbsp;Константин<br>Багаутдинов&nbsp;Айваз · Цыбенко&nbsp;Екатерина · Марченко&nbsp;Мария</div>
-        </div>
-        <div>
-          <div class="l">Заказчик</div>
-          <div class="v"><b>Хоккейная академия</b><br>Левкин&nbsp;А.В. · Завгородний&nbsp;С.И.</div>
-        </div>
-        <div>
-          <div class="l">Дисциплина</div>
-          <div class="v"><i>Продуктовая проектная мастерская<br>ППМ-2 · 2026</i></div>
-        </div>
-        <div>
-          <div class="l">Проект</div>
-          <div class="v">«Хоккейный родитель» — независимый проект<br>на благо российского хоккея</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
+<!-- HERO -->
+<div class="hero">
+  <div class="kicker">Сообщество Surf Coffee — задание по маркетингу</div>
+  <h1>ЦИФРОВАЯ<br><span class="yh">ЭКОСИСТЕМА</span><br>SURF COFFEE® × G34</h1>
+  <p class="sub">Не продаём кофе — продаём причастность к сёрф-семье. Экосистема, которая чинит реальные боли спота и не отпускает гостя.</p>
+  <div class="meta-row">
+    <div class="cell"><div class="t">Спот</div><div class="v">Гороховая 34, СПб</div></div>
+    <div class="cell"><div class="t">Сеть</div><div class="v">13 точек · «каждый разный»</div></div>
+    <div class="cell"><div class="t">Средний чек</div><div class="v">~500 ₽</div></div>
+    <div class="cell"><div class="t">Telegram</div><div class="v">18 600 подписчиков</div></div>
+  </div>
 </div>
 
-<div id="hud" aria-label="Управление">
-  <button id="prev" title="Предыдущий слайд (←)">‹</button>
-  <span class="counter" id="counter">1 / 28</span>
-  <button id="next" title="Следующий слайд (→)">›</button>
-  <button id="printbtn" title="Печать / экспорт в PDF (P)">PDF</button>
-  <span class="help">← → · Space · F · P</span>
+<!-- INSIGHT -->
+<div class="insight reveal">
+  <div class="lab">Главный инсайт</div>
+  <p>Ядро Surf приходит не за кофеином, а за идентичностью и тусовкой. Значит цифра должна продавать не скидку, а статус «я свой» — и удерживать через привычку + комьюнити.</p>
 </div>
+
+<!-- ЦА -->
+<section class="block reveal" id="ca">
+  <div class="sec-head">
+    <div class="sec-num">01</div>
+    <div>
+      <h2>Целевая аудитория</h2>
+      <div class="note">Кому и что мы на самом деле продаём</div>
+    </div>
+  </div>
+  <div class="grid cols3" id="ca-grid"></div>
+</section>
+
+<!-- OFFLINE -->
+<div class="grey-wrap">
+<section class="block reveal" id="offline">
+  <div class="sec-head">
+    <div class="sec-num">02</div>
+    <div>
+      <h2>Офлайн-инструменты</h2>
+      <div class="note">Сильные активы бренда — на них строим всё остальное. Наведи курсор.</div>
+    </div>
+  </div>
+  <div class="tools" id="tools-grid"></div>
+</section>
+</div>
+
+<!-- FUNNEL -->
+<div class="alt-wrap">
+<section class="block alt reveal" id="funnel">
+  <div class="sec-head">
+    <div class="sec-num">03</div>
+    <div>
+      <h2>Супер-жёсткая воронка</h2>
+      <div class="note" style="color:rgba(255,255,255,.55)">Точки контакта: этап → коммуникация → чувство. На каждом шаге что-то ЗАБИРАЕМ и не даём выйти.</div>
+    </div>
+  </div>
+  <div class="funnel" id="funnel-list"></div>
+</section>
+</div>
+
+<!-- INCLUDES -->
+<section class="block reveal" id="includes">
+  <div class="sec-head">
+    <div class="sec-num">04</div>
+    <div>
+      <h2>Что включает экосистема</h2>
+      <div class="note">И почему — привязка к ЦА и воронке</div>
+    </div>
+  </div>
+  <div class="grid cols2" id="inc-grid"></div>
+</section>
+
+<!-- EXCLUDES -->
+<div class="alt-wrap">
+<section class="block alt reveal" id="excludes">
+  <div class="sec-head">
+    <div class="sec-num">05</div>
+    <div>
+      <h2>Что НЕ включает</h2>
+      <div class="note" style="color:rgba(255,255,255,.55)">Осознанно за бортом — что размывает бренд или жжёт бюджет вхолостую</div>
+    </div>
+  </div>
+  <div class="ex" id="ex-grid"></div>
+</section>
+</div>
+
+<!-- BUNDLES -->
+<div class="grey-wrap">
+<section class="block reveal" id="bundles">
+  <div class="sec-head">
+    <div class="sec-num">06</div>
+    <div>
+      <h2>Связки</h2>
+      <div class="note">Сквозные маршруты от «увидел» до «не могу уйти». 🔻 — жёсткие, 😈 — демонски стратегичные.</div>
+    </div>
+  </div>
+  <div id="bundles-list"></div>
+</section>
+</div>
+
+<!-- CONCLUSION -->
+<div class="concl reveal" id="concl">
+  <div class="lab">Вывод для защиты</div>
+  <h2>Surf удерживает не кофе, а тремя крючками: комьюнити + привычка (утро/спорт) + сгорающая лояльность</h2>
+  <div class="loops">
+    <div class="loop">
+      <div class="ln">Петля 1 — вербовка</div>
+      <p>Вайб в соцсетях/мерче → визит → форс-установка приложения → лояльность → возврат.</p>
+    </div>
+    <div class="loop">
+      <div class="ln">Петля 2 — реактивация</div>
+      <p>Офлайн-момент (стакан, бариста, ивент) → QR → данные → персональный гео-пуш с дедлайном.</p>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="big">SURFING<br>NEVER ALONE</div>
+  <div class="sm">© 2026 · Surf Coffee® × G34 · учебный кейс цифровой экосистемы</div>
+</footer>
 
 <script>
-(() => {
-  const slides = Array.from(document.querySelectorAll('.slide'));
-  const total = slides.length;
-  let idx = 0;
-  const counter = document.getElementById('counter');
-  const prev = document.getElementById('prev');
-  const next = document.getElementById('next');
-  const printBtn = document.getElementById('printbtn');
-  function setHash(n) { history.replaceState(null, '', '#' + (n + 1)); }
-  function fromHash() {
-    const m = location.hash.match(/^#(\d+)$/);
-    if (!m) return 0;
-    return Math.min(total - 1, Math.max(0, parseInt(m[1], 10) - 1));
-  }
-  function render() {
-    slides.forEach((s, i) => s.classList.toggle('active', i === idx));
-    counter.textContent = `${idx + 1} / ${total}`;
-    setHash(idx);
-  }
-  function go(n) { idx = Math.min(total - 1, Math.max(0, n)); render(); }
-  prev.addEventListener('click', () => go(idx - 1));
-  next.addEventListener('click', () => go(idx + 1));
-  printBtn.addEventListener('click', () => window.print());
-  document.addEventListener('keydown', (e) => {
-    if (e.target.matches('input, textarea')) return;
-    switch (e.key) {
-      case 'ArrowRight': case 'PageDown': case ' ':
-        e.preventDefault(); go(idx + 1); break;
-      case 'ArrowLeft': case 'PageUp':
-        e.preventDefault(); go(idx - 1); break;
-      case 'Home': go(0); break;
-      case 'End':  go(total - 1); break;
-      case 'f': case 'F':
-        if (!document.fullscreenElement) document.documentElement.requestFullscreen?.();
-        else document.exitFullscreen?.();
-        break;
-      case 'p': case 'P':
-        e.preventDefault(); window.print(); break;
-    }
-    if (/^[0-9]$/.test(e.key)) {
-      const n = parseInt(e.key, 10);
-      if (n >= 1 && n <= total) go(n - 1);
-    }
-  });
-  document.addEventListener('click', (e) => {
-    if (e.target.closest('#hud') || e.target.closest('a, button')) return;
-    const x = e.clientX, w = window.innerWidth;
-    if (x < w * 0.18) go(idx - 1);
-    else if (x > w * 0.82) go(idx + 1);
-  });
-  let touchStartX = null;
-  document.addEventListener('touchstart', (e) => { touchStartX = e.touches[0].clientX; });
-  document.addEventListener('touchend', (e) => {
-    if (touchStartX === null) return;
-    const dx = e.changedTouches[0].clientX - touchStartX;
-    if (Math.abs(dx) > 40) go(idx + (dx < 0 ? 1 : -1));
-    touchStartX = null;
-  });
-  idx = fromHash();
-  render();
-  window.addEventListener('hashchange', () => { const n = fromHash(); if (n !== idx) { idx = n; render(); } });
-})();
-</script>
+/* ---------------- DATA ---------------- */
+const audience = [
+  {tag:'ядро бренда', t:'Сёрф-комьюнити', p:'20–35, креаклы, диджитал, студенты. Покупают принадлежность, айдентику, мерч.', extra:['Триггеры: атмосфера, ивенты, лимитки','Уходит не от кофейни — от друзей']},
+  {tag:'трафик центра', t:'Прохожие Гороховой', p:'Туристы, гости Сенной, шопперы. Покупают быстрый кофе + эстетичное фото.', extra:['Триггеры: геолокация, витрина, рейтинг 8.3','Боль: «вход не найти», очереди']},
+  {tag:'частота', t:'Местные на районе', p:'Офисные, фрилансеры рядом. Покупают стабильный вкус и скорость.', extra:['Триггеры: лояльность, привычка','Ядро LTV — ходят каждый день']},
+];
 
+const tools = [
+  {n:'01', t:'Каждый Surf — разный', p:'Нет копипаста точек → повод обойти все споты, «коллекционирование».'},
+  {n:'02', t:'Мерч', p:'Гость носит рекламу по городу 24/7 + статус «я свой».'},
+  {n:'03', t:'Коллаборации', p:'Чужая аудитория за 0 ₽: сёрф, скейт, спорт, локальные дизайнеры.'},
+  {n:'04', t:'Соцсети', p:'Витрина вайба и вербовка в комьюнити. Не «кофе» — «движ».'},
+  {n:'05', t:'Неформальное общение', p:'Бариста зовёт по имени → ты не клиент, ты «свой». Крючок №1.'},
+  {n:'06', t:'Morning Club', p:'Утренний ритуал + причина вставать к ним рано.'},
+  {n:'07', t:'Running Club', p:'Спорт-комьюнити: ходят за людьми, а не за кофе.'},
+  {n:'08', t:'Карта сёрфера', p:'Физический вход в лояльность, ощущение членства в клубе.'},
+  {n:'09', t:'Своё комьюнити', p:'Высший уровень удержания — уходишь от друзей, а не от спота.'},
+  {n:'10', t:'Протеиновый кофе', p:'Связка с Running Club: «кофе после пробежки». Новый повод + чек.'},
+  {n:'11', t:'Магазин на споте', p:'Зерно Blue Hawaii Roast® и дрипы домой — продлеваем бренд за пределы чашки.'},
+];
+
+const funnel = [
+  {n:'0', t:'Зацеп', em:'Осведомлённость', p:'Блогер выкладывает Reels с вайбом + стикер-бомбинг района (столбы, ноуты, коворкинги) с QR.', feel:'«Что за движ — хочу туда»', gl:'Забираем', gv:'Внимание + первый скан QR'},
+  {n:'1', t:'Заход', em:'Форсим установку', p:'Первый напиток −50% ТОЛЬКО через приложение. Бариста: «скачай, активируется на кассе».', feel:'«Глупо терять полцены»', gl:'Забираем', gv:'Установка приложения + контакт навсегда'},
+  {n:'2', t:'Первая транзакция', em:'Запускаем счётчик', p:'В момент оплаты push: «До бесплатного 5-го напитка осталось 4. Сёрфы сгорают через 30 дней».', feel:'Азарт + страх потерять начатое', gl:'Забираем', gv:'Обязательство вернуться 4× за месяц'},
+  {n:'3', t:'Привязка', em:'Вшиваем в образ жизни', p:'Карта сёрфера + Morning Club (до 10:00 = ×2 сёрфа) + Running Club (протеин-кофе только участникам).', feel:'«Я часть клуба»', gl:'Забираем', gv:'Утро + спорт = 2 причины ходить помимо кофе'},
+  {n:'4', t:'Частота', em:'Давим по данным', p:'Push по поведению: «твой лавандовый раф ждёт», «вторник = твой день −30% до 12:00».', feel:'«Они меня знают»', gl:'Забираем', gv:'Рост частоты и среднего чека'},
+  {n:'5', t:'Реферал', em:'Превращаем в промоутера', p:'«Приведи сёрфера — оба получаете напиток». Дроп мерча только активным. UGC за геометку.', feel:'Гордость, «я в теме»', gl:'Забираем', gv:'Новых клиентов руками старых'},
+  {n:'6', t:'Реактивация', em:'Не отпускаем уснувших', p:'Не заходил 14 дней → push: «Твои 240 сёрфов сгорят через 48 часов. Вернись».', feel:'FOMO, жалко накопленного', gl:'Забираем', gv:'Возврат на грани ухода'},
+];
+
+const includes = [
+  {t:'Соцсети с Reels', p:'Главный канал осведомлённости для комьюнити. Продаёт атмосферу, а не кофе.'},
+  {t:'2ГИС / Яндекс.Карты + отзывы', p:'Ловит прохожих центра. Критично закрыть боль «вход не найти» через фото и видео-навигацию.'},
+  {t:'Telegram-канал (18 600)', p:'Удержание ядра: анонсы лимиток, ивентов, плейлисты, конкурсы. Готовая база.'},
+  {t:'Приложение / бот лояльности', p:'Карта сёрфера, накопление и сгорание бонусов, ДР-подарок → данные и реактивация.'},
+  {t:'Предзаказ «кофе с собой»', p:'Прямой фикс боли очередей и 17-минутного ожидания. Отдельная стойка выдачи.'},
+  {t:'QR-мост (стакан / стол / мерч)', p:'Бесшовный переход офлайн → онлайн с минимальным трением.'},
+  {t:'UGC и коллаборации', p:'Гости с мерчем и геометками = бесплатный охват и усиление айдентики.'},
+  {t:'Email / push о ивентах и дропах', p:'Монетизация лояльности и комьюнити вне чашки кофе.'},
+];
+
+const excludes = [
+  {t:'SEO / поисковое продвижение', p:'Дорого и долго окупается. Бренд-спрос «Surf Coffee» уже есть, а «кофейня рядом» закрывают карты бесплатно.'},
+  {t:'Дорогой «живой» продакшн-контент', p:'Студийный глянец убивает аутентичность сёрф-вайба. Работает живой UGC и бариста, а не постановка. Деньги в трубу.'},
+  {t:'Агрегаторы доставки как основа', p:'Комиссия 25–35% при чеке 500 ₽ съедает маржу + спешелти умирает в дороге + ломает «приди за вайбом».'},
+  {t:'Широкий охватный таргет на весь город', p:'Точки локальные → льём бюджет на тех, кто не дойдёт. Только узкий гео вокруг адресов.'},
+];
+
+const bundles = [
+  {num:'1', badge:'soft', badgeTxt:'😎 коллаб', t:'Совместный Reels + секретный сторис «для своих»',
+   links:[
+     {s:'Шаг 1', t:'Совместный Reels с партнёром по коллабу'},
+     {s:'Шаг 2', t:'Аудитория партнёра подписывается на наш аккаунт'},
+     {s:'Шаг 3', t:'Сторис с бонус-скидкой на совместный продукт — «секретный сторис для наших»'},
+     {s:'Шаг 4', t:'Ссылка на приложение в сторис'},
+     {s:'Результат', t:'Пуши в приложении удерживают', win:true},
+   ]},
+  {num:'2', badge:'hard', badgeTxt:'🔻 телега', t:'Конкурс в Telegram-канале',
+   links:[
+     {s:'Шаг 1', t:'Конкурс в нашем канале (18 600 подписчиков)'},
+     {s:'Шаг 2', t:'Условие участия — переход по ссылке в приложение'},
+     {s:'Шаг 3', t:'Установка и регистрация в карте сёрфера'},
+     {s:'Результат', t:'Пуши добивают до визита', win:true},
+   ]},
+  {num:'3', badge:'hard', badgeTxt:'🔻 блогер', t:'Реклама у блогера с вшитым промокодом',
+   links:[
+     {s:'Шаг 1', t:'Реклама у блогера'},
+     {s:'Шаг 2', t:'Переход в наш аккаунт'},
+     {s:'Шаг 3', t:'Вшитый персональный промокод блогера (трекаем, кто привёл)'},
+     {s:'Результат', t:'Перевод и активация в приложении', win:true},
+   ]},
+  {num:'4', badge:'soft', badgeTxt:'🎉 ивент', t:'Мероприятие как точка входа',
+   links:[
+     {s:'Шаг 1', t:'Сёрф-вечеринка / каппинг / забег Running Club'},
+     {s:'Шаг 2', t:'Регистрация на ивент только через приложение / бот'},
+     {s:'Шаг 3', t:'На ивенте — мерч, UGC, отметки геолокации'},
+     {s:'Результат', t:'Новый участник комьюнити в базе', win:true},
+   ]},
+  {num:'5', badge:'demon', badgeTxt:'😈 демонская', t:'Гео-перехват уснувшего: loss aversion + личный контакт',
+   links:[
+     {s:'Триггер', t:'Не заходил 14 дней + приложение ловит: он в 200 м от спота'},
+     {s:'Удар', t:'Гео-пуш: «300 сёрфов сгорят сегодня в 18:00. Ты в 2 минутах»'},
+     {s:'Захват', t:'Заходит → бариста по имени + апсейл протеинового кофе'},
+     {s:'Результат', t:'Сёрфы восстановлены, привычка перезапущена', win:true},
+   ]},
+  {num:'6', badge:'demon', badgeTxt:'😈 демонская', t:'Самораскручивающийся маховик: мерч → реферал → новый юзер',
+   links:[
+     {s:'Старт', t:'Гость покупает термокружку с личным QR'},
+     {s:'Вирус', t:'Друг сканирует QR → −50% на первый напиток, владелец получает сёрфы'},
+     {s:'Захват', t:'Новый юзер ставит приложение и входит в воронку с Шага 0'},
+     {s:'Петля', t:'Новый юзер покупает свою кружку → цикл повторяется', win:true},
+   ]},
+];
+
+/* ---------------- RENDER ---------------- */
+function el(html){const t=document.createElement('template');t.innerHTML=html.trim();return t.content.firstChild;}
+
+const caGrid=document.getElementById('ca-grid');
+audience.forEach(a=>caGrid.appendChild(el(`
+  <div class="card">
+    <span class="tag">${a.tag}</span>
+    <h3>${a.t}</h3>
+    <p>${a.p}</p>
+    <ul>${a.extra.map(e=>`<li>${e}</li>`).join('')}</ul>
+  </div>`)));
+
+const toolsGrid=document.getElementById('tools-grid');
+tools.forEach(t=>toolsGrid.appendChild(el(`
+  <div class="tool">
+    <div class="tn">${t.n}</div>
+    <h4>${t.t}</h4>
+    <p>${t.p}</p>
+  </div>`)));
+
+const funnelList=document.getElementById('funnel-list');
+funnel.forEach(s=>funnelList.appendChild(el(`
+  <div class="step">
+    <div class="sn">${s.n}</div>
+    <div class="body">
+      <h4>${s.t} — <em>${s.em}</em></h4>
+      <p>${s.p}</p>
+      <span class="feel">${s.feel}</span>
+    </div>
+    <div class="grab">
+      <div class="gl">${s.gl}</div>
+      <div class="gv">${s.gv}</div>
+    </div>
+  </div>`)));
+
+const incGrid=document.getElementById('inc-grid');
+includes.forEach(i=>incGrid.appendChild(el(`
+  <div class="card">
+    <span class="tag y">включаем</span>
+    <h3>${i.t}</h3>
+    <p>${i.p}</p>
+  </div>`)));
+
+const exGrid=document.getElementById('ex-grid');
+excludes.forEach(e=>exGrid.appendChild(el(`
+  <div class="item">
+    <div class="x">✕</div>
+    <h4>${e.t}</h4>
+    <p>${e.p}</p>
+  </div>`)));
+
+const bList=document.getElementById('bundles-list');
+bundles.forEach(b=>{
+  const chain=b.links.map((l,i)=>{
+    const block=`<div class="link ${l.win?'win':''}"><div class="ls">${l.s}</div><div class="lt">${l.t}</div></div>`;
+    const arr=i<b.links.length-1?`<div class="arrow">→</div>`:'';
+    return block+arr;
+  }).join('');
+  bList.appendChild(el(`
+    <div class="bundle">
+      <div class="bh">
+        <span class="bnum">№${b.num}</span>
+        <span class="bt">${b.t}</span>
+        <span class="badge ${b.badge}">${b.badgeTxt}</span>
+      </div>
+      <div class="chain">${chain}</div>
+    </div>`));
+});
+
+/* ---------------- SCROLL REVEAL ---------------- */
+const io=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(r=>io.observe(r));
+</script>
 </body>
 </html>
