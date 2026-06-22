@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Благо — Гастротур в Прованс · питч-дек</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Marck+Script&family=Manrope:wght@400;500;600;700;800&display=swap');
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--ind:#3a2a6e;--ind2:#52409a;--lav:#8E78C8;--lavd:#5E4C9A;--cream:#F5ECDC;--cream2:#EFE2CC;--peach:#F8E8D2;--org:#E8742C;--orgd:#C85E1C;--gold:#D99A2B;--ink:#352b52;--mut:#6f6593;--red:#BF4A2E;--grn:#3E8E5A}
+body{font-family:'Manrope',system-ui,sans-serif;color:var(--ink);background:linear-gradient(135deg,#efeaf6,#f6efe6 60%,#f3e9f0);min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:26px 16px 80px}
+.deck{width:100%;max-width:960px}
+.stage{position:relative}
+.slide{display:flex;flex-direction:column;width:100%;min-height:512px;border-radius:24px;padding:34px 44px;background:var(--cream);position:relative;box-shadow:0 18px 50px rgba(58,42,110,.16)}
+.slide.cover{padding:0;overflow:hidden;justify-content:flex-start}
+.kick{font-size:13px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--org)}
+.ttl{font-weight:800;font-size:31px;line-height:1.12;color:var(--ind);margin:6px 0 20px}
+.card{background:#fff;border-radius:16px;padding:18px 20px;box-shadow:0 4px 14px rgba(58,42,110,.06)}
+.bd{font-size:14.5px;line-height:1.5;color:#4b4170}
+.mut{color:var(--mut)}
+.btn-cta{display:inline-block;background:var(--org);color:#fff;font-weight:700;font-size:14px;padding:10px 20px;border-radius:30px}
+.chip{display:inline-flex;align-items:center;gap:7px;background:#fff;border-radius:30px;padding:8px 16px;font-size:13px;font-weight:600;color:var(--ind);box-shadow:0 4px 14px rgba(58,42,110,.06)}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:26px;flex:1;align-items:center}
+.pill-n{width:27px;height:27px;border-radius:50%;color:#fff;font-weight:700;font-size:13px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.imgwrap{border-radius:16px;overflow:hidden;box-shadow:0 10px 30px rgba(58,42,110,.18);background:#efe6d6}
+.imgwrap img{width:100%;height:auto;display:block}
+.cmp{display:grid;grid-template-columns:1fr auto 1fr;gap:10px 14px;align-items:center}
+.cmp .was{background:#F6E0D8;color:#933;border-radius:11px;padding:11px 14px;font-size:13.5px;font-weight:600}
+.cmp .now{background:#E3F1E5;color:#2c6b40;border-radius:11px;padding:11px 14px;font-size:13.5px;font-weight:600}
+.cmp .ar{color:var(--org);font-weight:800;font-size:17px}
+.chrow{display:flex;align-items:center;gap:14px;margin-bottom:11px}
+.chname{width:168px;font-weight:700;font-size:14px;color:var(--ind)}
+.bartrack{flex:1;background:#e7dcc6;border-radius:9px}
+.bar{height:18px;border-radius:9px;background:var(--org)}
+.chrole{flex:1;font-size:12.5px;color:var(--mut)}
+.chbud{font-weight:700;font-size:13.5px;color:var(--ind);width:84px;text-align:right}
+.tl{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;flex:1}
+.tlc{background:#fff;border-radius:15px;padding:16px;border-top:5px solid var(--org);box-shadow:0 4px 14px rgba(58,42,110,.06)}
+.jr{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;flex:1}
+.jrc{background:#fff;border-radius:13px;padding:14px 11px;text-align:center;box-shadow:0 4px 14px rgba(58,42,110,.06)}
+.met{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+.metc{background:#fff;border-radius:13px;padding:16px 13px;box-shadow:0 4px 14px rgba(58,42,110,.06)}
+.metc b{display:block;font-size:23px;color:var(--org);font-weight:800;margin-bottom:3px}
+.callouts{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:16px}
+.co{background:#fff;border-radius:12px;padding:11px 12px;box-shadow:0 4px 14px rgba(58,42,110,.06)}
+.co .h{font-weight:700;font-size:13px;color:var(--grn);display:flex;align-items:center;gap:6px}
+.co .t{font-size:12px;color:#4b4170;margin-top:4px;line-height:1.35}
+.nav{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:16px;background:rgba(255,255,255,.92);backdrop-filter:blur(6px);border-radius:34px;padding:8px 14px;box-shadow:0 8px 26px rgba(58,42,110,.22)}
+.navbtn{font-family:'Manrope';font-weight:700;font-size:14px;color:var(--orgd);background:#fff;border:1.5px solid var(--org);border-radius:30px;padding:8px 18px;cursor:pointer}
+.navbtn:hover{background:var(--org);color:#fff}
+.navcount{font-weight:700;font-size:14px;color:var(--ind);min-width:64px;text-align:center}
+</style>
+</head>
+<body>
+<div class="deck"><div class="stage" id="bdeck">
+
+<section class="slide cover">
+ <div class="imgwrap" style="border-radius:0;box-shadow:none"><img src="blago-real.png" alt="Новая реклама Благо: гастротур в Прованс"></div>
+ <div style="padding:22px 44px 28px">
+  <div style="font-weight:800;font-size:26px;color:var(--ind)">Рекламная кампания «Благо»</div>
+  <div class="bd" style="margin-top:5px">Гастрономический тур во Францию на двоих · акция · бюджет 1 000 000 ₽</div>
+  <div class="mut" style="font-size:12.5px;margin-top:9px;letter-spacing:1px">ТЕНДЕРНОЕ ПРЕДЛОЖЕНИЕ · МАРКЕТИНГОВОЕ АГЕНТСТВО</div>
+ </div>
+</section>
+
+<section class="slide">
+ <div class="kick">Задача</div>
+ <div class="ttl">Три цели кампании</div>
+ <div class="grid3" style="flex:1;align-content:center">
+  <div class="card"><div style="font-size:32px;color:var(--org);font-weight:800">01</div><div style="font-weight:700;font-size:18px;color:var(--ind);margin:7px 0">Участие</div><div class="bd">Стимулировать участие в акции — регистрацию кодов с упаковки</div></div>
+  <div class="card"><div style="font-size:32px;color:var(--org);font-weight:800">02</div><div style="font-weight:700;font-size:18px;color:var(--ind);margin:7px 0">Знание бренда</div><div class="bd">Повысить узнаваемость «Благо» — чтобы запомнили бренд, а не «акцию»</div></div>
+  <div class="card"><div style="font-size:32px;color:var(--org);font-weight:800">03</div><div style="font-weight:700;font-size:18px;color:var(--ind);margin:7px 0">Приз-мечта</div><div class="bd">Донести гран-при — гастротур в Прованс на двоих</div></div>
+ </div>
+ <div class="chip" style="align-self:flex-start;margin-top:22px"><span style="color:var(--org)">●</span> Бюджет на всю кампанию: 1 000 000 ₽</div>
+</section>
+
+<section class="slide">
+ <div class="kick" style="color:var(--red)">Было</div>
+ <div class="ttl">Что не так с текущим креативом</div>
+ <div class="row2">
+  <div class="imgwrap"><img src="blago-old.png" alt="Старый тёмный баннер Благо"></div>
+  <div>
+   <div class="chrow" style="margin-bottom:13px"><span class="pill-n" style="background:var(--red)">1</span><div class="bd">Франция/Прованс <b style="color:var(--ink)">не считывается</b></div></div>
+   <div class="chrow" style="margin-bottom:13px"><span class="pill-n" style="background:var(--red)">2</span><div class="bd">Нет призыва к действию</div></div>
+   <div class="chrow" style="margin-bottom:13px"><span class="pill-n" style="background:var(--red)">3</span><div class="bd">Непонятно, что за продукт</div></div>
+   <div class="chrow" style="margin-bottom:13px"><span class="pill-n" style="background:var(--red)">4</span><div class="bd">Дизайн не на нашу аудиторию — «для бабушек»</div></div>
+   <div class="chrow" style="margin-bottom:13px"><span class="pill-n" style="background:var(--red)">5</span><div class="bd">Похоже на визитку, а не на рекламу</div></div>
+   <div class="chrow"><span class="pill-n" style="background:var(--red)">6</span><div class="bd">Нет эмоции и мечты — не хочется участвовать</div></div>
+  </div>
+ </div>
+</section>
+
+<section class="slide">
+ <div class="kick" style="color:var(--grn)">Стало</div>
+ <div class="ttl">Наш новый ключевой кадр — и почему он работает</div>
+ <div class="imgwrap"><img src="blago-real.png" alt="Новая реклама Благо с воздушным шаром"></div>
+ <div class="callouts">
+  <div class="co"><div class="h">✓ Бренд</div><div class="t">Логотип на шаре — видно издалека</div></div>
+  <div class="co"><div class="h">✓ Прованс</div><div class="t">Лаванда + закат = Франция мгновенно</div></div>
+  <div class="co"><div class="h">✓ Продукт</div><div class="t">Бутылка масла прямо в кадре</div></div>
+  <div class="co"><div class="h">✓ Призыв</div><div class="t">Кнопка «Участвовать в акции»</div></div>
+  <div class="co"><div class="h">✓ Эмоция</div><div class="t">Кадр-мечта для активной ЦА</div></div>
+ </div>
+</section>
+
+<section class="slide">
+ <div class="kick">Было → стало</div>
+ <div class="ttl">Чем наша реклама лучше</div>
+ <div class="cmp" style="flex:1;align-content:center">
+  <div class="was">Франция не считывается</div><div class="ar">→</div><div class="now">Лаванда, закат, шар = Прованс мгновенно</div>
+  <div class="was">Нет призыва</div><div class="ar">→</div><div class="now">Кнопка «Участвовать» + «купи и улети»</div>
+  <div class="was">Непонятен продукт</div><div class="ar">→</div><div class="now">Бутылка масла «Благо» в кадре</div>
+  <div class="was">Дизайн «для бабушек»</div><div class="ar">→</div><div class="now">Современный визуал для активной ЦА</div>
+  <div class="was">Похоже на визитку</div><div class="ar">→</div><div class="now">Кинокадр-мечта, эмоция путешествия</div>
+  <div class="was">Нет эмоции</div><div class="ar">→</div><div class="now">Шар уносит в Прованс — мечта продаёт</div>
+ </div>
+</section>
+
+<section class="slide">
+ <div class="kick">Медиа + performance</div>
+ <div class="ttl">Каналы и бюджет — 1 000 000 ₽</div>
+ <div style="flex:1;align-content:center">
+  <div class="chrow"><div class="chname">VK Реклама</div><div class="bartrack"><div class="bar" style="width:84%"></div></div><div class="chrole">охват + таргет на ЦА</div><div class="chbud">280 000</div></div>
+  <div class="chrow"><div class="chname">Инфлюенсеры</div><div class="bartrack"><div class="bar" style="width:75%"></div></div><div class="chrole">эмоция, приз, доверие</div><div class="chbud">250 000</div></div>
+  <div class="chrow"><div class="chname">Яндекс Директ</div><div class="bartrack"><div class="bar" style="width:57%"></div></div><div class="chrole">спрос → участие</div><div class="chbud">190 000</div></div>
+  <div class="chrow"><div class="chname">OLV / видео</div><div class="bartrack"><div class="bar" style="width:33%"></div></div><div class="chrole">знание бренда</div><div class="chbud">110 000</div></div>
+  <div class="chrow"><div class="chname">Промо-сайт + бот</div><div class="bartrack"><div class="bar" style="width:30%"></div></div><div class="chrole">точка участия</div><div class="chbud">100 000</div></div>
+  <div class="chrow"><div class="chname">Ретаргетинг</div><div class="bartrack"><div class="bar" style="width:15%"></div></div><div class="chrole">доведение до участия</div><div class="chbud">50 000</div></div>
+ </div>
+ <div class="chip" style="align-self:flex-start;margin-top:18px;background:#F6E0D8;color:#933"><span>✕</span> Telegram убрали — фокус на активной аудитории (VK + блогеры + видео). Резерв на оптимизацию: 20 000 ₽</div>
+</section>
+
+<section class="slide">
+ <div class="kick">График</div>
+ <div class="ttl">Единый план запуска — 8 недель</div>
+ <div class="tl">
+  <div class="tlc"><div style="font-weight:700;color:var(--ind);font-size:16px">Разогрев</div><div class="mut" style="font-size:12.5px;margin:4px 0 9px">Недели 1–2</div><div class="bd">Тизер мечты, охват VK + OLV. Готовим сайт и блогеров</div></div>
+  <div class="tlc"><div style="font-weight:700;color:var(--ind);font-size:16px">Запуск</div><div class="mut" style="font-size:12.5px;margin:4px 0 9px">Недели 3–4</div><div class="bd">Performance на максимум + 1-я волна инфлюенсеров</div></div>
+  <div class="tlc"><div style="font-weight:700;color:var(--ind);font-size:16px">Поддержка</div><div class="mut" style="font-size:12.5px;margin:4px 0 9px">Недели 5–6</div><div class="bd">Ретаргет, UGC, 2-я волна блогеров, напоминания</div></div>
+  <div class="tlc" style="border-top-color:var(--ind)"><div style="font-weight:700;color:var(--ind);font-size:16px">Финал</div><div class="mut" style="font-size:12.5px;margin:4px 0 9px">Недели 7–8</div><div class="bd">Срочность: «последний шанс улететь в Прованс»</div></div>
+ </div>
+</section>
+
+<section class="slide">
+ <div class="kick">Customer journey</div>
+ <div class="ttl">Путь клиента</div>
+ <div class="jr">
+  <div class="jrc"><div style="color:var(--org);font-weight:800;font-size:19px">1</div><div style="font-weight:700;font-size:14px;color:var(--ind);margin:5px 0">Касание</div><div class="bd" style="font-size:12.5px">Лента VK, видео, полка — увидел шар и Прованс</div></div>
+  <div class="jrc"><div style="color:var(--org);font-weight:800;font-size:19px">2</div><div style="font-weight:700;font-size:14px;color:var(--ind);margin:5px 0">Интерес</div><div class="bd" style="font-size:12.5px">Рецепт у блогера → «хочу в Прованс»</div></div>
+  <div class="jrc"><div style="color:var(--org);font-weight:800;font-size:19px">3</div><div style="font-weight:700;font-size:14px;color:var(--ind);margin:5px 0">Изучение</div><div class="bd" style="font-size:12.5px">Промо-сайт: условия, приз, гарант. призы</div></div>
+  <div class="jrc"><div style="color:var(--org);font-weight:800;font-size:19px">4</div><div style="font-weight:700;font-size:14px;color:var(--ind);margin:5px 0">Участие</div><div class="bd" style="font-size:12.5px">Купил «Благо», ввёл код — в розыгрыше</div></div>
+  <div class="jrc"><div style="color:var(--org);font-weight:800;font-size:19px">5</div><div style="font-weight:700;font-size:14px;color:var(--ind);margin:5px 0">Удержание</div><div class="bd" style="font-size:12.5px">Ретаргет, бот: «купи ещё — больше шансов»</div></div>
+ </div>
+ <div class="chip" style="align-self:flex-start;margin-top:20px">Главный разрыв «интерес → участие» закрывают сайт + ретаргетинг</div>
+</section>
+
+<section class="slide">
+ <div class="kick">Метрики</div>
+ <div class="ttl">Как меряем успех</div>
+ <div class="met" style="flex:1;align-content:center">
+  <div class="metc"><b>4–6 млн</b><div class="bd" style="font-size:12.5px">Охват, показы</div></div>
+  <div class="metc"><b>1%+</b><div class="bd" style="font-size:12.5px">CTR / ER, VTR 25%+</div></div>
+  <div class="metc"><b>15–35 ₽</b><div class="bd" style="font-size:12.5px">CPC, трафик на сайт</div></div>
+  <div class="metc" style="outline:2px solid var(--org)"><b>10–15%</b><div class="bd" style="font-size:12.5px">CR в участие · CPA — гл. KPI</div></div>
+  <div class="metc"><b>+X п.п.</b><div class="bd" style="font-size:12.5px">Рост знания бренда</div></div>
+ </div>
+ <div class="chip" style="align-self:flex-start;margin-top:20px"><span style="color:var(--org)">★</span> Главный KPI для клиента — число регистраций кодов и стоимость участия (CPA)</div>
+</section>
+
+<section class="slide" style="background:linear-gradient(135deg,#3a2a6e 0%,#52409a 55%,#8E78C8 100%);color:#fff">
+ <div class="kick" style="color:#FFC78A">Финал</div>
+ <div style="font-weight:800;font-size:27px;margin:6px 0 22px;color:#fff">Вопросы другим командам</div>
+ <div style="display:flex;gap:13px;margin-bottom:15px"><span class="pill-n" style="background:var(--org)">1</span><div style="font-size:15px;line-height:1.5">Какова прогнозная <b>стоимость одной регистрации</b> кода в вашем главном канале? Чем докажете, что 1 млн не уйдёт в охват без участия?</div></div>
+ <div style="display:flex;gap:13px;margin-bottom:15px"><span class="pill-n" style="background:var(--org)">2</span><div style="font-size:15px;line-height:1.5">Как у вас <b>связаны бренд «Благо» и приз</b> одной идеей? Что мешает запомнить акцию, но забыть бренд?</div></div>
+ <div style="display:flex;gap:13px;margin-bottom:26px"><span class="pill-n" style="background:var(--org)">3</span><div style="font-size:15px;line-height:1.5">Сколько <b>шагов</b> от рекламы до регистрации кода и где самый большой отвал? Чем закрываете?</div></div>
+ <div style="font-family:'Marck Script';font-size:38px;color:#FFD9A8;margin-top:auto">«Благо» — ещё немного, и в Прованс</div>
+</section>
+
+</div></div>
+<div class="nav">
+ <button class="navbtn" id="bprev">‹ Назад</button>
+ <span class="navcount" id="bcount">1 / 10</span>
+ <button class="navbtn" id="bnext">Вперёд ›</button>
+</div>
+<script>
+(function(){
+ var deck=document.getElementById('bdeck');
+ var slides=Array.prototype.slice.call(deck.querySelectorAll('.slide'));
+ var cnt=document.getElementById('bcount');var i=0;
+ window.gotoSlide=function(n){i=Math.max(0,Math.min(slides.length-1,n));
+  for(var k=0;k<slides.length;k++){slides[k].style.display=(k===i)?'flex':'none';}
+  cnt.textContent=(i+1)+' / '+slides.length;window.scrollTo(0,0);};
+ document.getElementById('bprev').onclick=function(){window.gotoSlide(i-1);};
+ document.getElementById('bnext').onclick=function(){window.gotoSlide(i+1);};
+ document.addEventListener('keydown',function(e){if(e.key==='ArrowLeft'){window.gotoSlide(i-1);}if(e.key==='ArrowRight'){window.gotoSlide(i+1);}});
+ window.gotoSlide(0);
+})();
+</script>
+</body>
+</html>
