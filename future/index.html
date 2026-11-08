@@ -52,6 +52,7 @@ em{font-family:Georgia,"Times New Roman",serif;font-style:italic;color:#ead9c8}
 .c-lime{color:var(--lime)}.c-pink{color:var(--pink)}.c-green{color:var(--green)}.c-red{color:var(--red)}.c-blue{color:var(--blue)}.c-amber{color:var(--amber)}
 .row{display:flex}.col{display:flex;flex-direction:column}.grow{flex:1;min-height:0}.center{align-items:center;justify-content:center}
 .glass{background:#0e1826b8;border:1px solid #ffffff22;border-radius:26px;padding:34px 40px;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 20px 70px #0006}
+.chip.big{font-size:34px;padding:14px 28px}.chip.mono{font-size:28px}
 .chip{display:inline-flex;align-items:center;gap:10px;padding:10px 22px;border-radius:40px;border:1px solid #ffffff33;font-size:24px;background:#0f1826cc}
 .foot{position:absolute;left:120px;right:120px;bottom:104px;font-size:22px;color:#77848f}
 .hl{background:linear-gradient(transparent 60%,#e4f5af55 60%);padding:0 4px}
@@ -222,8 +223,8 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:44px;heigh
 /* day */
 .dayrow{display:flex;align-items:center;gap:26px;opacity:0;transform:translateX(-20px);transition:all .5s}
 .scene.on .dayrow{opacity:1;transform:none}
-.dayrow .mid{font-size:30px}.dayrow .t{font-size:40px;width:130px;flex:none;font-variant-numeric:tabular-nums}
-.tag{display:inline-block;padding:5px 16px;border-radius:20px;font-size:20px;margin:8px 8px 0 0;border:1px solid #e4f5af66;color:var(--lime)}
+.dayrow .mid{font-size:33px}.dayrow .t{font-size:40px;width:130px;flex:none;font-variant-numeric:tabular-nums}
+.tag{display:inline-block;padding:5px 16px;border-radius:20px;font-size:23px;margin:8px 8px 0 0;border:1px solid #e4f5af66;color:var(--lime)}
 
 /* notes */
 #notes{position:fixed;top:0;right:0;bottom:0;width:34%;background:#0b111b;border-left:1px solid #ffffff22;padding:28px 30px;display:none;flex-direction:column;gap:16px;overflow:auto;z-index:50}
@@ -345,7 +346,7 @@ body.notes #viewport{right:34%}
   <p class="kicker">Это уже не фантастика</p>
   <h2 class="h2">Еда из газа <em>уже выходит на рынок</em></h2>
   <div class="row rise" style="gap:40px;margin-top:60px">
-    <div class="glass col pop" style="--i:1;flex:1;gap:20px;align-items:flex-start"><div class="ico" style="width:150px;height:150px"><div class="doodle" data-d="factory" data-c="violet"></div></div><p class="mono" style="font-size:90px;color:#c9b6ff">2024</p><p class="mid">Россия: «Биопрактика» — белок из газа. Пока коровам.</p></div>
+    <div class="glass col pop" style="--i:1;flex:1;gap:20px;align-items:flex-start"><div class="ico" style="width:150px;height:150px"><div class="doodle" data-d="factory" data-c="violet"></div></div><p class="mono" style="font-size:90px;color:#c9b6ff">2024</p><p class="mid">Россия: «Биопрактика» — белок из газа. Пока — на корм животным.</p></div>
     <div class="glass col pop" style="--i:2;flex:1;gap:20px;align-items:flex-start"><div class="ico" style="width:150px;height:150px"><div class="doodle" data-d="butter" data-c="yellow"></div></div><p class="mono" style="font-size:90px;color:var(--blue)">2025</p><p class="mid">США: Savor — «сливочное масло» из CO₂.</p></div>
     <div class="glass col pop" style="--i:3;flex:1;gap:20px;align-items:flex-start"><div class="ico" style="width:150px;height:150px"><div class="doodle" data-d="pack" data-c="green"></div></div><p class="mono" style="font-size:90px;color:var(--green)">2026</p><p class="mid">Финский белок Solein из воздуха — в магазинах США.</p></div>
   </div>
@@ -366,11 +367,11 @@ body.notes #viewport{right:34%}
       <div class="glass" style="padding:20px 34px"><div class="row" style="justify-content:space-between;align-items:baseline"><p class="mid">Выдыхаем CO₂ за день</p><p class="big c-blue" id="calc-co2"></p></div></div>
       <div class="glass" style="padding:20px 34px"><div class="row" style="justify-content:space-between;align-items:baseline"><p class="mid">Углерода в нём / нужно на белок</p><p class="big" id="calc-c"></p></div>
         <div class="meter" style="margin-top:16px"><i id="calc-need" style="background:var(--green)"></i></div><p class="xs" style="margin-top:8px">зелёным — сколько углерода нужно на дневную норму белка</p></div>
-      <div class="glass" style="padding:20px 34px"><div class="row" style="justify-content:space-between;align-items:baseline"><p class="mid">Энергии нужно в день</p><p class="big c-amber" id="calc-kwh"></p></div><p class="sm" id="calc-fridge" style="margin-top:6px"></p></div><div class="glass" style="padding:20px 34px;border-color:#e4f5af66"><div class="row" style="justify-content:space-between;align-items:baseline"><p class="mid">Котлет в день из дыхания</p><p class="big c-lime" id="calc-kot"></p></div><p class="xs" style="margin-top:4px">теоретически, если хватит энергии · одна котлета ≈ 20 г белка</p></div>
+      <div class="glass" style="padding:20px 34px"><div class="row" style="justify-content:space-between;align-items:baseline"><p class="mid">Энергии нужно в день</p><p class="big c-amber" id="calc-kwh"></p></div><p class="sm" id="calc-fridge" style="margin-top:6px"></p></div><div class="glass" style="padding:20px 34px;border-color:#e4f5af66"><div class="row" style="justify-content:space-between;align-items:baseline"><p class="mid">Порций белка в день (теоретически)</p><p class="big c-lime" id="calc-kot"></p></div><p class="xs" style="margin-top:4px">если хватит энергии · одна порция ≈ 20 г белка</p></div>
     </div>
   </div>
   <p class="foot">Азот бактерия тоже берёт из воздуха. Энергию на улавливание CO₂ не считали — оценка грубая.</p>
-  <aside class="notes">Мы посчитали (двигайте ползунок). Человек выдыхает около килограмма CO₂ в день — это примерно 270 граммов углерода. На 80 граммов белка, дневную норму, нужно всего 45. Воздуха хватает в шесть раз с запасом. Проблема — энергия: бактериям нужен водород из воды и электричества, это около трёх киловатт-часов в день, как холодильник за два-три дня. Оговорки: азот некоторые бактерии берут из воздуха сами, а улавливание CO₂ из комнаты мы не считали — поэтому прибор удобнее с трубочкой. Видели на картинке, как Айваз в неё дует? Это не шутка, это инженерное решение.</aside>
+  <aside class="notes">Мы посчитали (двигайте ползунок). Человек выдыхает около килограмма CO₂ в день — это примерно 270 граммов углерода. На 80 граммов белка, дневную норму, нужно всего 45. Воздуха хватает в шесть раз с запасом. Проблема — энергия: бактериям нужен водород из воды и электричества, это около трёх киловатт-часов в день, как холодильник за два-три дня. Оговорки: азот некоторые бактерии берут из воздуха сами, а улавливание CO₂ из комнаты мы не считали — поэтому прибор удобнее с трубочкой.</aside>
 </section>
 
 <!-- ===== ДОКАЗАТЕЛЬСТВА ===== -->
@@ -432,18 +433,18 @@ body.notes #viewport{right:34%}
     </div>
     <div class="ico round sticker" style="width:320px;height:320px"><div class="doodle" data-d="sadbact" data-c="red"></div></div>
   </div>
-  <aside class="notes">За рубежом — Solar Foods, Air Protein, которая выросла из идей NASA, и Savor с маслом из CO₂. В России — «Биопрактика» и «Метаника», белок из газа, пока для животных. Но Arkeon и NovoNutrients в 2025-м закрылись: технология работала, а денег на большой завод не хватило. Эта бактерия грустит как раз о них.</aside>
+  <aside class="notes">За рубежом — Solar Foods, Air Protein, которая выросла из идей NASA, и Savor с маслом из CO₂. В России — «Биопрактика» и «Метаника», белок из газа, пока для животных. Но Arkeon и NovoNutrients в 2025-м закрылись: технология работала, а денег на большой завод не хватило.</aside>
 </section>
 
 <section class="scene" data-chapter="Доказательства" data-role="Айваз" data-t="330" data-optional="1">
   <p class="kicker">Россия и мир</p>
-  <h2 class="h2">Россия кормит коров. <em>Мир — людей.</em></h2>
+  <h2 class="h2">Россия делает корм. <em>Мир — еду для людей.</em></h2>
   <div class="row rise" style="gap:60px;margin-top:50px;align-items:stretch">
     <div class="glass col center pop" style="--i:1;flex:1;gap:22px;text-align:center"><div class="ico round" style="width:220px;height:220px"><div class="doodle" data-d="cow" data-c="violet"></div></div><p class="big" style="color:#c9b6ff">Россия</p><p class="sm">белок из газа — на корм</p></div>
     <div class="glass col center pop" style="--i:2;flex:1;gap:22px;text-align:center"><div class="ico round" style="width:220px;height:220px"><div class="doodle" data-d="yum" data-c="yellow"></div></div><p class="big c-blue">Мир</p><p class="sm">белок из воздуха — в магазинах</p></div>
     <div class="glass col pop" style="--i:3;flex:1.2;gap:18px;justify-content:center;border-color:var(--green)"><p class="xs" style="letter-spacing:3px">НАШ ШАНС</p><p class="big">дешёвый газ<br>+ опыт БИОС-3<br>= <span class="c-green">свой прибор</span></p></div>
   </div>
-  <aside class="notes">У России сильная база: дешёвый газ, советский опыт микробного белка, космические системы жизнеобеспечения. Но сегодня наш белок из газа идёт коровам и рыбам, а за рубежом его продают людям. Шанс — соединить газ и космический опыт и первыми сделать бытовой прибор.</aside>
+  <aside class="notes">У России сильная база: дешёвый газ, советский опыт микробного белка, космические системы жизнеобеспечения. Но сегодня наш белок из газа идёт на корм животным, а за рубежом его продают людям. Шанс — соединить газ и космический опыт и первыми сделать бытовой прибор.</aside>
 </section>
 
 <section class="scene" data-chapter="Доказательства" data-role="Айваз" data-t="355">
@@ -502,7 +503,7 @@ body.notes #viewport{right:34%}
   </div>
   <div class="w-layer w-grid" data-for="good" style="padding:140px 110px 0">
     <p class="kicker c-green">Все 10 трендов · если всё пойдёт хорошо</p>
-    <h2 class="h2 c-green" style="font-size:58px">2070: еда стала <em>проще и веселее</em></h2>
+    <h2 class="h2 c-green" style="font-size:58px">2070: еда стала <em>проще и доступнее</em></h2>
     <div class="tgrid" style="--tc:var(--green)"></div>
     <button class="wbtn" data-go="photo-good">Наш тренд крупным планом →</button>
   </div>
@@ -528,14 +529,14 @@ body.notes #viewport{right:34%}
   </div>
   <div class="w-layer w-photo" data-for="bad" style="padding:150px 120px 120px">
     <div class="row" style="gap:60px;align-items:center;height:100%">
-      <div class="duo"><div class="solo" data-solo="polina-bad-2070" data-fb="personal/home-polina-2070.jpg" data-idx="0" data-tint=1><span class="solo-tag" style="--tc:var(--pink)">Полина · королева подписок</span></div><div class="solo" data-solo="aivaz-bad-2070" data-fb="personal/home-aivaz-2070.jpg" data-idx="0" data-tint=1><span class="solo-tag" style="--tc:var(--lime)">Айваз · Робин Гуд белка</span></div></div>
+      <div class="duo"><div class="solo" data-solo="polina-bad-2070" data-fb="personal/home-polina-2070-bad.jpg" data-idx="0"><span class="solo-tag" style="--tc:var(--pink)">Полина · владелица «Вдох Корп»</span></div><div class="solo" data-solo="aivaz-bad-2070" data-fb="personal/home-aivaz-2070-bad.jpg" data-idx="0"><span class="solo-tag" style="--tc:var(--lime)">Айваз · живёт в горах</span></div></div>
       <div class="col" style="flex:1;gap:24px">
-        <p class="kicker c-red">Плохой 2070 · наш тренд (плохой для Айваза)</p>
+        <p class="kicker c-red">Плохой 2070 · наш тренд</p>
         <h2 class="h2 c-red" style="font-size:50px">«Дыхание по подписке»</h2>
         <p class="mid">не оплатил → нет обеда</p>
         <p class="mid">датчик выдоха → дороже страховка</p>
-        <p class="mid">одна корпорация решает, кто ест. Её CEO — Полина.</p>
-        <p class="mid c-lime">а Айваз взламывает подписки и раздаёт еду бесплатно</p>
+        <p class="mid">одна корпорация решает, кто ест. Её владелица — Полина.</p>
+        <p class="mid c-lime">а Айваз уехал в горы и добывает белок сам</p>
       </div>
     </div>
     <p class="ai" style="left:140px;bottom:132px">ИЗОБРАЖЕНИЕ СГЕНЕРИРОВАНО ИИ</p>
@@ -550,8 +551,8 @@ body.notes #viewport{right:34%}
     <p class="kicker">Мы в 2070 году</p>
     <h2 class="h2">Два героя. Две Земли. <em>В чьё будущее зайдём?</em></h2>
     <div class="cards">
-      <button class="hcard" data-hero="polina"><div class="pic" data-bg="personal/home-polina-2070.jpg"></div><div class="shade"></div><div class="face"><img data-a="deck/polina.jpg" alt="">ЕЁ ИСТОРИЯ</div><div class="who"><p class="xs c-pink" style="letter-spacing:3px">CEO «ВДОХ КОРП» · ПАРИЖ · ДВЕ СУДЬБЫ</p><p class="name">Полина</p><div class="stats" style="--sc:var(--pink)"><div class="stat"><span>Стиль</span><i><b style="--v:100%"></b></i><span class="n">100</span></div><div class="stat"><span>Деньги</span><i><b style="--v:95%"></b></i><span class="n">95</span></div><div class="stat"><span>Терпение к еде из воздуха</span><i><b style="--v:12%"></b></i><span class="n">12</span></div></div><span class="pill" style="background:var(--pink)">Смотреть её будущее →</span></div></button>
-      <button class="hcard" data-hero="aivaz"><div class="pic" data-bg="personal/home-aivaz-2070.jpg"></div><div class="shade"></div><div class="face"><img data-a="deck/me.jpg" alt="">ЕГО ИСТОРИЯ</div><div class="who"><p class="xs c-lime" style="letter-spacing:3px">DEVSECOPS · СКАЛЫ · ДВЕ СУДЬБЫ</p><p class="name">Айваз</p><div class="stats" style="--sc:var(--lime)"><div class="stat"><span>Безопасность</span><i><b style="--v:99%"></b></i><span class="n">99</span></div><div class="stat"><span>Скалы</span><i><b style="--v:90%"></b></i><span class="n">90</span></div><div class="stat"><span>Любовь к Ferrari</span><i><b style="--v:100%"></b></i><span class="n">100</span></div></div><span class="pill" style="background:var(--lime)">Смотреть его будущее →</span></div></button>
+      <button class="hcard" data-hero="polina"><div class="pic" data-bg="personal/home-polina-2070.jpg"></div><div class="shade"></div><div class="face"><img data-a="deck/polina.jpg" alt="">ЕЁ ИСТОРИЯ</div><div class="who"><p class="xs c-pink" style="letter-spacing:3px">CEO «ВДОХ КОРП» · ПАРИЖ · ДВЕ СУДЬБЫ</p><p class="name">Полина</p><div class="stats" style="--sc:var(--pink)"><div class="stat"><span>Стиль</span><i><b style="--v:100%"></b></i><span class="n">100</span></div><div class="stat"><span>Бизнес</span><i><b style="--v:95%"></b></i><span class="n">95</span></div><div class="stat"><span>Лидерство</span><i><b style="--v:90%"></b></i><span class="n">90</span></div></div><span class="pill" style="background:var(--pink)">Смотреть её будущее →</span></div></button>
+      <button class="hcard" data-hero="aivaz"><div class="pic" data-bg="personal/home-aivaz-2070.jpg"></div><div class="shade"></div><div class="face"><img data-a="deck/me.jpg" alt="">ЕГО ИСТОРИЯ</div><div class="who"><p class="xs c-lime" style="letter-spacing:3px">DEVSECOPS · СКАЛЫ · ДВЕ СУДЬБЫ</p><p class="name">Айваз</p><div class="stats" style="--sc:var(--lime)"><div class="stat"><span>Безопасность</span><i><b style="--v:99%"></b></i><span class="n">99</span></div><div class="stat"><span>Скалолазание</span><i><b style="--v:90%"></b></i><span class="n">90</span></div><div class="stat"><span>Самостоятельность</span><i><b style="--v:95%"></b></i><span class="n">95</span></div></div><span class="pill" style="background:var(--lime)">Смотреть его будущее →</span></div></button>
     </div>
   </div>
   <div class="h-story">
@@ -581,13 +582,13 @@ body.notes #viewport{right:34%}
     <div class="duo"><div class="solo" data-solo="polina-kitchen-2070" data-fb="world/food-2070.jpg" data-idx="0"><span class="solo-tag" style="--tc:var(--pink)">Полина · ужин</span></div><div class="solo" data-solo="aivaz-kitchen-2070" data-fb="world/food-2070.jpg" data-idx="1"><span class="solo-tag" style="--tc:var(--lime)">Айваз · ужин</span></div></div>
     <div class="col rise" style="flex:1;gap:30px">
       <p class="kicker" style="--i:0">Кем мы стали к 2070-му</p>
-      <div class="glass" style="--i:1;border-color:#e4f5af66"><p class="big c-lime">Айваз, 66</p><p class="mid">DevSecOps-легенда: следит, чтобы ваш ужин никто не взломал</p></div>
-      <div class="glass" style="--i:2;border-color:#f3bad266"><p class="big c-pink">Полина, 65</p><p class="mid">CEO «Вдох Корп». Выглядит на 40.</p></div>
-      <p class="sm" style="--i:3">У каждого свой дом и свой прибор. Котлеты — из собственного выдоха.</p>
+      <div class="glass" style="--i:1;border-color:#f3bad266"><p class="big c-pink">Полина, 65</p><p class="mid">CEO «Вдох Корп» — компании, которая выпускает домашние приборы</p></div>
+      <div class="glass" style="--i:2;border-color:#e4f5af66"><p class="big c-lime">Айваз, 66</p><p class="mid">DevSecOps-инженер, отвечает за безопасность таких приборов</p></div>
+      <p class="sm" style="--i:3">У каждого свой дом и свой прибор: белок к ужину — из собственного выдоха.</p>
     </div>
   </div>
   <p class="ai" style="left:140px;bottom:132px">ИЗОБРАЖЕНИЕ СГЕНЕРИРОВАНО ИИ</p>
-  <aside class="notes">Это мы в 2070-м. Айваз — DevSecOps: в мире, где еда делается в приборе, взломать прибор — значит оставить человека без ужина, так что его работа важнее, чем кажется. Полина — CEO «Вдох Корп», которая эти приборы выпускает. А дома у каждого свой прибор: Айваз дует в трубочку и «заряжает» его выдохом, Полина на своей кухне с подозрением изучает котлету на вилке.</aside>
+  <aside class="notes">Это мы в 2070-м. Полина — CEO «Вдох Корп», компании, которая выпускает домашние приборы. Айваз — DevSecOps-инженер: отвечает за безопасность таких приборов и работает удалённо. Дома у каждого свой прибор, и белок к ужину делается из собственного выдоха.</aside>
 </section>
 
 <section class="scene" data-chapter="Герои" data-role="Полина" data-t="610">
@@ -595,16 +596,16 @@ body.notes #viewport{right:34%}
     <div class="col" style="flex:1;gap:20px">
       <p class="kicker">Мы в 2070 году · где здесь тренды</p>
       <h2 class="h2" style="margin-bottom:16px">Наш <em>вторник</em> 2070 года</h2>
-      <div class="dayrow" style="transition-delay:.2s"><p class="t">07:00</p><div class="ico" style="width:64px;height:64px"><div class="doodle" data-d="kettle" data-c="yellow"></div></div><div><p class="mid">прибор «Вдох» за ночь «надышал» завтрак</p><span class="tag">альт. белки</span><span class="tag">автоматизация</span></div></div>
-      <div class="dayrow" style="transition-delay:.35s"><p class="t">08:00</p><div class="ico" style="width:64px;height:64px"><div class="doodle" data-d="dna" data-c="blue"></div></div><div><p class="mid">браслет: «сегодня добавьте железа»</p><span class="tag">персонализация</span><span class="tag">функциональное</span></div></div>
+      <div class="dayrow" style="transition-delay:.2s"><p class="t">07:00</p><div class="ico" style="width:64px;height:64px"><div class="doodle" data-d="kettle" data-c="yellow"></div></div><div><p class="mid">прибор «Вдох» приготовил белок к завтраку</p><span class="tag">альт. белки</span><span class="tag">автоматизация</span></div></div>
+      <div class="dayrow" style="transition-delay:.35s"><p class="t">08:00</p><div class="ico" style="width:64px;height:64px"><div class="doodle" data-d="dna" data-c="blue"></div></div><div><p class="mid">браслет советует добавить железа</p><span class="tag">персонализация</span><span class="tag">функциональное</span></div></div>
       <div class="dayrow" style="transition-delay:.5s"><p class="t">10:00</p><div class="ico" style="width:64px;height:64px"><div class="doodle" data-d="crown" data-c="yellow"></div></div><div><p class="mid">Полина на совете директоров: углеродный отчёт</p><span class="tag">ИИ</span><span class="tag">устойчивость</span></div></div>
-      <div class="dayrow" style="transition-delay:.65s"><p class="t">13:00</p><div class="ico" style="width:64px;height:64px"><div class="doodle" data-d="drone" data-c="green"></div></div><div><p class="mid">обед дроном с фермы на крыше</p><span class="tag">доставка</span><span class="tag">AgTech</span></div></div>
-      <div class="dayrow" style="transition-delay:.8s"><p class="t">16:00</p><div class="ico" style="width:64px;height:64px"><div class="doodle" data-d="scan" data-c="orange"></div></div><div><p class="mid">Айваз сканирует котлету: «из чего ты и кто тебя взламывал?»</p><span class="tag">чистая этикетка</span></div></div>
-      <div class="dayrow" style="transition-delay:.95s"><p class="t">19:00</p><div class="ico" style="width:64px;height:64px"><div class="doodle" data-d="yum" data-c="yellow"></div></div><div><p class="mid">борщ-рамен по бабушкиному рецепту</p><span class="tag">вкусы</span><span class="tag">автоматизация</span></div></div>
+      <div class="dayrow" style="transition-delay:.65s"><p class="t">13:00</p><div class="ico" style="width:64px;height:64px"><div class="doodle" data-d="drone" data-c="green"></div></div><div><p class="mid">обед дроном с городской фермы</p><span class="tag">доставка</span><span class="tag">AgTech</span></div></div>
+      <div class="dayrow" style="transition-delay:.8s"><p class="t">16:00</p><div class="ico" style="width:64px;height:64px"><div class="doodle" data-d="scan" data-c="orange"></div></div><div><p class="mid">Айваз проверяет состав обеда по QR-коду</p><span class="tag">чистая этикетка</span></div></div>
+      <div class="dayrow" style="transition-delay:.95s"><p class="t">19:00</p><div class="ico" style="width:64px;height:64px"><div class="doodle" data-d="yum" data-c="yellow"></div></div><div><p class="mid">робот-повар готовит ужин по бабушкиному рецепту</p><span class="tag">вкусы</span><span class="tag">автоматизация</span></div></div>
     </div>
     <div class="glass col center" style="width:440px;gap:10px;text-align:center;border-color:#e4f5af66"><p style="font-size:150px;letter-spacing:-6px;line-height:1" class="c-lime">10/10</p><p class="big">трендов — в одном нашем дне</p></div>
   </div>
-  <aside class="notes">Как всё это скажется на нас — обычный вторник 2070. В семь прибор уже сделал завтрак из воздуха квартиры. В восемь браслет советует добавить железа. В десять Полина на совете директоров смотрит углеродный отчёт. В час обед прилетает дроном с фермы на крыше. В четыре Айваз сканирует котлету: из чего она и не взламывал ли её кто-нибудь. Вечером — борщ-рамен по бабушкиному рецепту, который готовит робот. Все десять трендов — в одном нашем дне.</aside>
+  <aside class="notes">Как всё это скажется на нас — обычный вторник 2070. В семь прибор «Вдох» приготовил белок к завтраку. В восемь браслет советует добавить железа. В десять Полина на совете директоров смотрит углеродный отчёт. В час обед привозит дрон с городской фермы. В четыре Айваз проверяет состав обеда по QR-коду. Вечером робот-повар готовит ужин по бабушкиному рецепту. Все десять трендов — в одном нашем дне.</aside>
 </section>
 
 <!-- ===== ФИНАЛ ===== -->
@@ -631,21 +632,20 @@ body.notes #viewport{right:34%}
     </div>
     <div class="pollopts"></div>
   </div>
-  <aside class="notes">(Сначала соберите голоса, потом «дальше» — конфетти.) Спасибо! И тот же вопрос, что в начале: съели бы котлету из своего выдоха? Посмотрим, стало ли меньше «ни за что». Возможно, сегодня это странно. Но когда-то странной казалась и идея искусственного мяса. И кто знает — может, через 44 года мы вспомним этот разговор за ужином, который сами же и выдохнули.</aside>
+  <aside class="notes">(Сначала соберите голоса, потом «дальше» — конфетти.) Спасибо! И тот же вопрос, что в начале: съели бы котлету из своего выдоха? Посмотрим, стало ли меньше «ни за что». Возможно, сегодня это странно. Но когда-то странной казалась и идея искусственного мяса. И, возможно, через 44 года такой ужин станет обычным.</aside>
 </section>
 
 <section class="scene" data-chapter="Финал" data-role="Оба" data-t="675" data-hook="credits">
   <div class="credits"><div class="roll">
-    <p class="kicker">Едим своё дыхание · 2070</p><h2 class="h2" style="font-size:96px">Титры</h2>
-    <p class="cr-role">В главных ролях</p><p class="cr-name">Полина — CEO «Вдох Корп» и королева подписок</p><p class="cr-name">Айваз — DevSecOps и Робин Гуд белка</p>
-    <p class="cr-role">Камео</p><p class="cr-name">Бактерия Xanthobacter — играет саму себя</p><p class="cr-name">Белка со скалы — без слов</p><p class="cr-name">Роботы-охранники — не впечатлены</p>
-    <p class="cr-role">Научные консультанты</p><p class="cr-name">Science · Nature Food · PNAS · NASA · БИОС-3</p>
-    <p class="cr-role">Спецэффекты</p><p class="cr-name">Солнце, CO₂ и 3 кВт·ч в день</p>
-    <p class="cr-role">Сценарий</p><p class="cr-name">Рабочий чат, в котором всё началось</p>
-    <p class="cr-role">Ни одна котлета не пострадала</p>
+    <p class="kicker">Едим своё дыхание · форсайт 2070</p><h2 class="h2" style="font-size:96px">Над проектом работали</h2>
+    <p class="cr-role">Авторы</p><p class="cr-name">Полина и Айваз</p>
+    <p class="cr-role">Научная основа</p><p class="cr-name">Science · Nature Food · PNAS · NASA · БИОС-3 · Волова</p>
+    <p class="cr-role">Компании</p><p class="cr-name">Solar Foods · Air Protein · Savor · «Биопрактика» · «Метаника»</p>
+    <p class="cr-role">Изображения</p><p class="cr-name">ИИ-визуализации по фото авторов</p>
+    <p class="cr-role">ИТМО · FoodTech · 2026</p>
     <p class="h1" style="margin-top:90px">Спасибо!</p>
   </div></div>
-  <aside class="notes">Титры. Пусть прокручиваются, пока зал задаёт вопросы.</aside>
+  <aside class="notes">Титры: кто что делал и на что опирались. Пусть прокручиваются, пока зал задаёт вопросы.</aside>
 </section>
 
 <section class="scene" data-chapter="Финал" data-role="Оба" data-t="685">
@@ -759,13 +759,13 @@ function newStar(z){return{x:Math.random()*2-1,y:Math.random()*2-1,z:z??(Math.ra
 function initSky(){sky.width=innerWidth*devicePixelRatio;sky.height=innerHeight*devicePixelRatio;if(!stars.length)stars=Array.from({length:460},()=>newStar())}
 function warpGo(){if(RM)return;warpT=performance.now();stage.classList.remove('warp');void stage.offsetWidth;stage.classList.add('warp');setTimeout(()=>stage.classList.remove('warp'),1000)}
 function drawSky(ts){const W=sky.width,H=sky.height,cx=W/2,cy=H/2,f=Math.max(W,H)*.5;
-  const k=warpT?Math.max(0,1-(ts-warpT)/1150):0,speed=.00035+k*k*.055;
+  const k=warpT?Math.max(0,1-(ts-warpT)/900):0,speed=.00035+k*k*.04;
   const g=sx.createRadialGradient(W*.7,H*.3,0,W*.7,H*.3,W*.8);g.addColorStop(0,k>0?'#1b2d52':'#13213a');g.addColorStop(1,'#070b13');sx.fillStyle=g;sx.fillRect(0,0,W,H);
   sx.lineCap='round';sx.strokeStyle='#fff';sx.fillStyle='#fff';
   for(const st of stars){st.z-=speed;if(st.z<=.02){Object.assign(st,newStar(1));continue}
     const x=cx+st.x/st.z*f*.5,y=cy+st.y/st.z*f*.5;if(x<-20||x>W+20||y<-20||y>H+20){Object.assign(st,newStar(1));continue}
     const a=Math.min(1,(1-st.z)*1.5)*(.55+.45*Math.abs(Math.sin(ts/900+st.t)));sx.globalAlpha=a;
-    if(k>.04){const z2=Math.min(1,st.z+speed*9),qx=cx+st.x/z2*f*.5,qy=cy+st.y/z2*f*.5;sx.lineWidth=((1-st.z)*2.4+.4)*devicePixelRatio;sx.beginPath();sx.moveTo(qx,qy);sx.lineTo(x,y);sx.stroke()}
+    if(k>.04){sx.globalAlpha=a*.55;const z2=Math.min(1,st.z+speed*5),qx=cx+st.x/z2*f*.5,qy=cy+st.y/z2*f*.5;sx.lineWidth=((1-st.z)*2.4+.4)*devicePixelRatio;sx.beginPath();sx.moveTo(qx,qy);sx.lineTo(x,y);sx.stroke()}
     else{sx.beginPath();sx.arc(x,y,((1-st.z)*1.5+.25)*devicePixelRatio,0,7);sx.fill()}}
   sx.globalAlpha=1;requestAnimationFrame(drawSky)}
 
@@ -775,28 +775,28 @@ document.querySelectorAll('[data-bg]').forEach(e=>e.style.backgroundImage=`url("
 paintDoodles();
 
 /* ---------- trends ---------- */
-const TRENDS=[['bact','Альтернативные белки','котлета из воздуха дешевле картошки','настоящая котлета — только на свадьбу и по паспорту'],
-['sprout','Новое сельское хозяйство','ферма на крыше каждого дома, робот-пчела опыляет огурцы','семена по подписке: не продлил — помидоры не взошли'],
-['earth','Устойчивость и климат','отходов нет: очистки становятся новой едой','углеродный налог на шашлык: 3 штрафа — и мангал изымают'],
-['drone','Доставка и ритейл','дрон приносит ужин за 4 минуты, лишнее отдаёт соседям','плит дома нет, а дрон не летит, если низкий рейтинг'],
-['robot','Автоматизация кухни','робот-повар готовит по бабушкиному рецепту','робот-повар: «обновление 3 ГБ, ужин через 6 часов»'],
-['dna','Персонализированное питание','меню по анализам: каждому своё, без диет','холодильник не открывается: «по анализам вам нельзя сыр»'],
-['pill','Функциональное питание','хлеб от простуды, чай от стресса перед сессией','на каждом йогурте «доказано учёными» — какими, неизвестно'],
-['scan','Чистая этикетка','сканируешь котлету — видишь всю её жизнь','этикетка на 40 страниц: подписал, не читая'],
-['chip','ИИ и цифровизация','ИИ угадывает, чего хочется, раньше тебя','ИИ 10 лет выбирает меню — ты забыл, что любишь сам'],
-['yum','Вкусы и культура','пельмени с манго и борщ-рамен — новая классика','один «оптимальный вкус» на весь мир, бабушкины рецепты — в музее']];
+const TRENDS=[['bact','Альтернативные белки','белок из воздуха дешевле мяса и доступен каждому','натуральное мясо — дорогой деликатес для немногих'],
+['sprout','Новое сельское хозяйство','фермы на крышах и роботы-опылители кормят город','семена и удобрения — только по подписке у корпораций'],
+['earth','Устойчивость и климат','отходов почти нет: очистки идут на корм и белок','углеродный налог делает мясо и шашлык роскошью'],
+['drone','Доставка и ритейл','дрон привозит ужин за минуты, излишки уходят соседям','плит дома нет, а доставка зависит от рейтинга'],
+['robot','Автоматизация кухни','робот-повар готовит по семейным рецептам','без интернета и обновлений кухня не работает'],
+['dna','Персонализированное питание','меню по анализам — без жёстких диет','холодильник блокирует продукты, «запрещённые» анализами'],
+['pill','Функциональное питание','хлеб с витаминами, чай против стресса','на каждом продукте «доказано учёными» — без доказательств'],
+['scan','Чистая этикетка','по QR-коду видна вся история продукта','этикетка на 40 страниц, которую никто не читает'],
+['chip','ИИ и цифровизация','ИИ подсказывает меню под твой день','ИИ годами выбирает меню — люди забывают свои вкусы'],
+['yum','Вкусы и культура','гибридные кухни: пельмени с манго, борщ-рамен','один «оптимальный» вкус, местные рецепты исчезают']];
 document.querySelectorAll('.w-grid').forEach(g=>{const good=g.dataset.for==='good';g.querySelector('.tgrid').innerHTML=TRENDS.map((t,i)=>`<div class="tcard" style="--i:${i}"><div class="th"><div class="ico" style="width:78px;height:78px"><div class="doodle" data-d="${t[0]}" data-c="${good?'green':'red'}"></div></div><p class="tn">${t[1].replace('Персонализированное','Персонали&shy;зированное').replace('Альтернативные','Альтерна&shy;тивные')}</p></div><p class="tt">${good?t[2]:t[3]}</p></div>`).join('')});
 paintDoodles();
 
 /* ---------- stories ---------- */
-const STORIES={polina:{2028:{age:'23 года',role:'только что из Парижа',city:['Только что из Парижа.','Гелик пока в мечтах. Красивая жизнь — уже в характере.'],home:['Париж — у себя дома.','Своя квартира. Свет, цветы и хороший вкус.'],inside:['Здесь всё по её вкусу.','Парижские детали. Ни одного компромисса.'],car:['Пока — гелик мечты.','Свой будет. Вопрос времени.'],food:['«Это что, грязь?»','Кофе и круассан пока убедительнее белка из воздуха.']},
-2030:{age:'25 лет',role:'маркетинг в фудтехе',city:['Продаёт воздух. Успешно.','Первый десерт из белка CO₂ — её запуск.'],home:['Пентхаус с характером.','Терраса и место для больших планов.'],inside:['Жизнь стала просторнее.','Образцы десертов, гардероб и вид на город.'],car:['Свой. Пока в лизинг.','Гелик переехал из мечты в гараж.'],food:['«В Париже вкуснее».','Фондан из белка CO₂. Почти уговорили.']},
-2050:{age:'45 лет',role:'основала «Вдох Корп»',city:['Воздух стал люксом.','Своя корпорация «Вдох». Приборы — в каждом доме.'],home:['Вилла для красивой жизни.','Её дом. Её стиль. Её берег.'],inside:['Ферментер как кофемашина.','Дизайнерская кухня для воздушных десертов.'],car:['Водород. Розовый салон.','Гелик будущего. Всё как она любит.'],food:['Фондан, который не стыдно есть.','Премиальная линейка «Вдох». Белок — из воздуха.']},
-2070:{age:'65 лет · выглядит на 40',role:'CEO «Вдох Корп» · икона стиля',city:['Возраст — просто цифра.','CEO «Вдох Корп». Белок из воздуха теперь дешевле хлеба.'],home:['Дом иконы стиля.','Вилла, цветы, вода и большое будущее.'],inside:['Париж теперь внутри.','Личная кухня, гардероб и идеальный десерт.'],car:['Гелик остался геликом.','Форма из будущего. Розовый салон — навсегда.'],food:['Парижский воздух. С выдержкой.','«Раньше еду выращивали на полях. Представляете? Грязь».']}},
-aivaz:{2028:{age:'24 года · магистрант ИТМО',role:'DevSecOps · скалодром',city:['«Ну всё же чётко».','Днём защищает данные. Вечером скалы. Ночью — слайды.'],home:['Студия для своих идей.','Свой стол. Свой сервер. Своя точка старта.'],inside:['Тут всё по делу.','Ноутбук, три монитора и скальные туфли.'],car:['Amalfi на горизонте.','Большая цель. Скальные туфли в багажнике — мысленно уже там.'],food:['Пока со вкусом курицы.','Протеин после скалодрома. Три раза в неделю.']},
-2030:{age:'26 лет',role:'защищает фабрики белка',city:['Взломать ужин? Не при нём.','Первые фабрики белка из CO₂ — под его защитой.'],home:['Дом для кода и скал.','Свой таунхаус. Гараж. Лес рядом.'],inside:['Тренировка не выходя из дома.','Рабочий стол, стойка серверов и своя стена.'],car:['Ferrari между релизами.','Amalfi. И маршрут, который он выбрал сам.'],food:['Перекус из своего выдоха.','Белковый батончик с собой в Хибины.']},
-2050:{age:'46 лет',role:'глава безопасности сети «Вдох»',city:['Миллионы приборов. Ноль взломов.','Если ваш ужин никто не украл — это он.'],home:['Дом у воды.','Дерево, металл, скалы и лес.'],inside:['Своя стена. Свой дата-центр.','Скалолазание и серверная — часть архитектуры.'],car:['Amalfi. Следующая версия.','Красный гран-турер для дороги в будущее.'],food:['Протеин на больших высотах.','И байка про Эверест «на своём дыхании».']},
-2070:{age:'66 лет',role:'легенда кибербезопасности · ещё лазает',city:['«Я же говорил».','40 лет — ни одного взломанного ужина. Он всё ещё лазает.'],home:['Дом легенды.','Среди скал, леса и будущего.'],inside:['Высота — привычка.','Домашняя стена, библиотека и пароль из 64 символов.'],car:['Легенде под стать.','Ferrari Amalfi 2070. Красная. Его.'],food:['Курицу можно не покупать.','Дыхательный протеин после тренировки.']}}};
+const STORIES={polina:{2028:{age:'23 года',role:'только что из Парижа',city:['Только что из Парижа.','Мечтает о своём бренде и гелике.'],home:['Первая своя квартира.','Свет, цветы и хороший вкус.'],inside:['Всё по её вкусу.','Парижские детали в каждой комнате.'],car:['Гелик — пока мечта.','Свой будет. Вопрос времени.'],food:['Пока — кофе и круассан.','К белку из воздуха относится скептически.']},
+2030:{age:'25 лет',role:'маркетинг в фудтехе',city:['Первый запуск.','Выводит на рынок десерт из белка CO₂.'],home:['Пентхаус с террасой.','Место для больших планов.'],inside:['Жизнь стала просторнее.','Образцы десертов, гардероб и вид на город.'],car:['Свой гелик.','Пока в лизинг.'],food:['Десерт из белка CO₂.','Первый продукт, который понравился ей самой.']},
+2050:{age:'45 лет',role:'основала «Вдох Корп»',city:['Своя корпорация «Вдох».','Домашние приборы стоят в миллионах квартир.'],home:['Вилла у воды.','Её дом и её стиль.'],inside:['Прибор как кофемашина.','Дизайнерская кухня с собственным ферментером.'],car:['Гелик на водороде.','Розовый салон, как она любит.'],food:['Премиальная линейка «Вдох».','Десерты на белке из воздуха.']},
+2070:{age:'65 лет',role:'CEO «Вдох Корп»',city:['CEO «Вдох Корп».','Белок из воздуха стал дешевле хлеба.'],home:['Вилла в Париже.','Цветы, вода и вид на город.'],inside:['Её кухня.','Ферментер, гардероб и любимые десерты.'],car:['Гелик будущего.','Электрический, с розовым салоном.'],food:['Фирменный десерт.','Фондан на белке из CO₂.']}},
+aivaz:{2028:{age:'24 года · магистрант ИТМО',role:'DevSecOps · скалодром',city:['Работа и скалы.','Днём — безопасность данных, вечером — скалодром.'],home:['Первая студия.','Свой стол и своя точка старта.'],inside:['Рабочее место.','Ноутбук, мониторы и скальные туфли.'],car:['Ferrari — цель.','Пока мечта, но конкретная.'],food:['Протеин после тренировки.','Пока обычный, со вкусом курицы.']},
+2030:{age:'26 лет',role:'DevSecOps в фудтехе',city:['Безопасность фабрик белка.','Защищает первые заводы белка из CO₂.'],home:['Таунхаус у леса.','Свой гараж и тишина.'],inside:['Дом и работа.','Рабочее место, серверная стойка и стена для лазания.'],car:['Первая Ferrari.','Amalfi в гараже.'],food:['Белковый батончик.','С собой в горы, в Хибины.']},
+2050:{age:'46 лет',role:'глава безопасности сети «Вдох»',city:['Безопасность миллионов приборов.','Отвечает за защиту всей сети «Вдох».'],home:['Дом у озера.','Дерево, металл, скалы и лес.'],inside:['Свой дата-центр.','Серверная и стена для лазания прямо в доме.'],car:['Новая Amalfi.','Красный гран-турер.'],food:['Белок из своего прибора.','Перед тренировками и походами.']},
+2070:{age:'66 лет',role:'DevSecOps · всё ещё лазает',city:['Опыт — 40 лет.','Консультирует по безопасности и всё ещё лазает.'],home:['Дом в скалах.','Лес, озеро и горы рядом.'],inside:['Библиотека и стена.','Домашний скалодром и рабочее место.'],car:['Ferrari Amalfi 2070.','Красная, как всегда.'],food:['Свой белок.','После тренировки — из домашнего прибора.']}}};
 const YEARS=[2028,2030,2050,2070],VIEWS=[['home','Дом'],['inside','Внутри'],['city','Город'],['car','Машина'],['food','Еда']];
 
 /* ---------- engine ---------- */
@@ -901,13 +901,13 @@ function wset(i,anim=true){const from=FLOW[wi],to=FLOW[i];wi=i;const [kind,mode]
 hooks.world={enter(back){wset(back?FLOW.length-1:0,false)},leave(){document.documentElement.style.setProperty('--accent','#e4f5af')},
   next(){if(busy)return true;if(wi<FLOW.length-1){wset(wi+1);return true}return false},
   prev(){if(busy)return true;if(wi>0){wset(wi-1,false);return true}return false},
-  notes(){const N={system:['Айваз','Теперь про весь мир. Все десять трендов фудтеха с нашего слайда — и что с ними будет к 2070. Летим к Земле.'],
-   'earth-good':['Айваз','Сначала хорошая версия: энергия дешёвая, правила честные, прибор твой. Проваливаемся внутрь.'],
-   'grid-good':['Айваз','Десять трендов, если всё хорошо. Доставка: дрон приносит ужин за четыре минуты, лишнее отдаёт соседям. Автоматизация: робот-повар готовит по бабушкиному рецепту. Персонализация: меню по анализам, без диет. Чистая этикетка: сканируешь котлету — видишь всю её жизнь. Вкусы: пельмени с манго и борщ-рамен — новая классика.'],
-   'photo-good':['Айваз','А наш тренд крупным планом: «никто не голодает, пока дышит». Прибор как чайник, полей под корм меньше — часть снова леса. Полина на сцене показывает, что белок из воздуха стал дешевле хлеба. А я на вершине скалы над этим лесом: обед — это глубокий вдох. Белка пока не понимает, что происходит.'],
-   'earth-bad':['Полина','А теперь та же Земля, если всё пошло не так. Видите — краснеет. Проваливаемся.'],
-   'grid-bad':['Полина','Те же десять трендов, но плохо. Холодильник не открывается: «по анализам вам нельзя сыр». Плит дома нет, а дрон не летит, если низкий рейтинг. Робот-повар: «обновление 3 ГБ, ужин через 6 часов». Углеродный налог на шашлык. ИИ десять лет выбирает тебе меню — и ты забыл, что любишь сам.'],
-   'photo-bad':['Полина','И наш тренд в плохом варианте: дыхание по подписке. Не оплатил — без обеда, данные о дыхании продаются страховым, а еду решает одна корпорация. Её CEO — я: трон, роботы и голограмма должников. А Айваз в это время сидит в пещере и взламывает мои подписки — раздаёт котлеты бесплатно. Робин Гуд белка.']}[FLOW[wi]];return{role:N[0],text:N[1]}}};
+  notes(){const N={system:['Айваз','Теперь про весь мир: все десять трендов фудтеха с нашего слайда и что с ними будет к 2070 году. Летим к Земле.'],
+   'earth-good':['Айваз','Сначала хорошая версия: энергия дешёвая, правила честные, прибор принадлежит человеку.'],
+   'grid-good':['Айваз','Десять трендов, если всё пойдёт хорошо. Белок из воздуха дешевле мяса. Дрон привозит ужин за минуты, а излишки уходят соседям. Робот-повар готовит по семейным рецептам. Меню подбирается по анализам, без жёстких диет. По QR-коду видна вся история продукта.'],
+   'photo-good':['Айваз','Наш тренд в хорошем варианте: «никто не голодает, пока дышит». Прибор стоит как чайник, полей под корм нужно меньше — часть возвращается лесу. Полина презентует прибор, с которым белок дешевле хлеба. Я — на вершине над этим лесом.'],
+   'earth-bad':['Полина','А теперь та же Земля, если всё пошло не так.'],
+   'grid-bad':['Полина','Те же десять трендов в плохом варианте. Натуральное мясо — деликатес для немногих. Семена и удобрения — по подписке. Холодильник блокирует продукты, «запрещённые» анализами. Без интернета кухня не работает. А ИИ годами выбирает меню, и люди забывают свои вкусы.'],
+   'photo-bad':['Полина','Наш тренд в плохом варианте: дыхание по подписке. Не оплатил — без обеда, данные о дыхании продаются страховым, а еду контролирует одна корпорация. Её владелица — я. А Айваз в этом мире уехал в горы: работает онлайн и добывает белок сам, без подписок.']}[FLOW[wi]];return{role:N[0],text:N[1]}}};
 document.getElementById('e-small').onclick=()=>{if(FLOW[wi]==='system')hooks.world.next()};
 W.querySelectorAll('.modes [data-mode]').forEach(b=>b.onclick=()=>{const m=b.dataset.mode;wi=FLOW.indexOf('earth-'+m);setMode(m);flash(m==='good'?'#7ee2a8':'#ff6b5e');renderNotes()});
 document.getElementById('dive').onclick=()=>{if(!busy)hooks.world.next();renderNotes()};
@@ -921,12 +921,12 @@ document.querySelectorAll('[data-solo]').forEach(el=>setBg(el,A(el.dataset.fb),+
   im.onload=()=>{SOLO_OK[n]=1;document.querySelectorAll(`[data-solo="${n}"]`).forEach(el=>setBg(el,im.src,-1,false));if(scenes[cur]&&scenes[cur].id==='scene-heroes'&&!hs.choose)hrender()};im.src=A(key)});
 
 /* heroes */
-const BAD={polina:{2050:{age:'45 лет',role:'владелица «Вдох Корп»',city:['Воздух стал платным.','Подписка «Вдох Premium»: дышишь — платишь.'],home:['Крепость с видом.','Вилла за тремя заборами и роботами-охранниками.'],inside:['Здесь дышат бесплатно.','Только она и её гости.'],car:['Бронированный гелик.','Розовый, но пуленепробиваемый.'],food:['Еда по тарифу.','Базовый тариф — паста. Премиум — фондан.']},
- 2070:{age:'65 лет · выглядит на 40',role:'королева подписок',city:['Полмира должно ей за воздух.','«Это не жадность. Это бизнес-модель».'],home:['Дом королевы подписок.','Вилла, роботы и очередь должников у ворот.'],inside:['Трон — не метафора.','Золотое кресло, бокал зелёного. Тариф «Королева».'],car:['Гелик с дроном охраны.','Розовый салон, бронированный корпус.'],food:['Парижский воздух. Только для своих.','Остальным — «пробный период 3 дня».']}},
- aivaz:{2050:{age:'46 лет',role:'ушёл из «Вдох» со скандалом',city:['Ушёл, хлопнув файрволом.','Отказался встраивать в приборы слежку за дыханием.'],home:['Дом-убежище.','Скалы, лес и сервер, которого нет ни в одном реестре.'],inside:['Подпольная лаборатория.','Здесь платные подписки превращаются в бесплатный белок.'],car:['Ferrari в гараже под скалой.','Ездит редко: слишком заметная.'],food:['Белок без подписки.','Сам вырастил, сам взломал, сам съел.']},
- 2070:{age:'66 лет',role:'Робин Гуд белка',city:['Робин Гуд белка.','Взламывает подписки и раздаёт еду бесплатно.'],home:['Дом легенды подполья.','Адрес знают только скалолазы.'],inside:['Пароль — 64 символа и одна шутка.','Отсюда «Вдох» каждую ночь теряет миллион платных подписок.'],car:['Красная Ferrari. Номера меняются.','Легенде — легендарную машину.'],food:['Бесплатный ужин для всех.','«Я же говорил: еда — не подписка».']}}};
-const MEET={good:{polina:['Белок дешевле хлеба.','Её презентация «Вдох» — овации стоя.'],aivaz:['Обед — глубокий вдох.','Вершина над лесом, который вырос на месте полей. Белка не понимает, что происходит.']},
- bad:{polina:['Королева подписок.','Перед ней — голограмма очереди должников. Роботы-охранники не впечатлены.'],aivaz:['Робин Гуд белка.','Угощает вас бесплатной котлетой. Подписка не нужна.']}};
+const BAD={polina:{2050:{age:'45 лет',role:'владелица «Вдох Корп»',city:['Еда по подписке.','«Вдох» продаёт не приборы, а доступ к ним.'],home:['Вилла за забором.','Охрана и роботы у ворот.'],inside:['Закрытый дом.','Только она и её гости.'],car:['Бронированный гелик.','Розовый, но с охраной.'],food:['Тарифы на еду.','Базовый — простая еда, премиум — десерты.']},
+ 2070:{age:'65 лет',role:'владелица «Вдох Корп»',city:['Монополия на еду.','Подписка «Вдох» есть почти у всех.'],home:['Вилла-крепость.','Роботы-охранники и дрон над домом.'],inside:['Кабинет на вершине.','Мрамор, золото и вид на задымлённый город.'],car:['Гелик с охраной.','Бронированный корпус и дрон сопровождения.'],food:['Еда премиум-класса.','Для остальных — базовый тариф.']}},
+ aivaz:{2050:{age:'46 лет',role:'уехал в горы',city:['Уехал из города.','Отказался от подписок и перебрался в горы.'],home:['Дом в скале.','Построил сам, далеко от города.'],inside:['Работает онлайн.','Серверы, спутниковая связь и стена для лазания.'],car:['Ferrari в гараже под скалой.','В горах ездит редко.'],food:['Свой белок.','Добывает сам — из горного воздуха.']},
+ 2070:{age:'66 лет',role:'живёт один в горах · работает онлайн',city:['Живёт один в горах.','С миром связан только интернетом.'],home:['Дом в горах.','Скала, озеро и спутниковая антенна.'],inside:['Рабочее место.','Работает удалённо, тренируется дома.'],car:['Ferrari ждёт в гараже.','Выезжает редко.'],food:['Еда из горного воздуха.','Добывает сам и ни от кого не зависит.']}}};
+const MEET={good:{polina:['Белок дешевле хлеба.','Презентует новый прибор «Вдох» для каждого дома.'],aivaz:['Вдох на вершине.','Над лесом, который вырос на месте бывших полей.']},
+ bad:{polina:['Владелица «Вдох Корп».','Еда по подписке приносит ей миллиарды.'],aivaz:['Сам по себе.','Живёт в горах, работает онлайн и добывает белок сам.']}};
 const HS=document.getElementById('scene-heroes');
 const ORDER_FULL=[['choose'],['polina','good',2030,'home'],['polina','good',2070,'home'],['polina','bad',2070,'meet'],['aivaz','good',2030,'home'],['aivaz','good',2070,'home'],['aivaz','bad',2070,'meet']];
 const ORDER_FAST=[['choose'],['polina','good',2070,'home'],['polina','bad',2070,'meet'],['aivaz','good',2070,'home'],['aivaz','bad',2070,'meet']];
@@ -937,7 +937,7 @@ yearsEl.innerHTML=YEARS.map(y=>`<button data-y="${y}">${y}</button>`).join('');
 viewsEl.innerHTML=VIEWS.concat([['meet','★ Главное']]).map(([k,n])=>`<button data-v="${k}">${n}</button>`).join('');
 function story(p,w,y){return (w==='bad'&&BAD[p][y])||STORIES[p][y]}
 function himg(p,y,v,w){
-  if(v==='meet'){const n=`${p}-${w}-2070`;return SOLO_OK[n]?[`deck/${n}.jpg`,-1]:[`personal/home-${p}-2070.jpg`,0]}
+  if(v==='meet'){const n=`${p}-${w}-2070`;return SOLO_OK[n]?[`deck/${n}.jpg`,-1]:[`personal/home-${p}-2070${w==='bad'?'-bad':''}.jpg`,0]}
   if((v==='home'||v==='inside')&&w==='bad'&&y>=2050)return[`personal/home-${p}-${y}-bad.jpg`,v==='inside'?1:0];
   if(v==='home'||v==='inside')return[`personal/home-${p}-${y}${p==='aivaz'?'-v2':''}.jpg`,v==='inside'?1:0];
   if(w==='bad'&&y===2070){if(v==='car')return['world/cars-2070-bad.jpg',p==='polina'?0:1];if(v==='food')return['world/food-2070-bad.jpg',p==='polina'?0:1];return['world/city-2070-bad.jpg',-1]}
@@ -955,7 +955,7 @@ function hrender(){const ch=HS.querySelector('.h-choose'),story_=HS.querySelecto
   document.getElementById('hs-role').textContent=(w==='bad'&&y<2050?'красная Земля: пока всё как у всех · ':'')+d.role;document.getElementById('hs-yr').textContent=y;
   const [src,idx]=himg(p,y,v,w),pic=document.getElementById('hs-pic');pic.style.backgroundImage=`url("${A(src)}")`;
   if(idx<0){pic.style.backgroundSize='cover';pic.style.backgroundPosition='center'}else{pic.style.backgroundSize='200% 100%';pic.style.backgroundPosition=idx?'100% 0':'0 0'}
-  const soloOk=v==='meet'&&SOLO_OK[`${p}-${w}-2070`];const dedicatedBad=w==='bad'&&(((v==='home'||v==='inside')&&y>=2050)||(y===2070&&['city','car','food'].includes(v)));document.querySelector('#scene-heroes .frame').classList.toggle('red',w==='bad'&&!soloOk&&!dedicatedBad);
+  const soloOk=v==='meet'&&(SOLO_OK[`${p}-${w}-2070`]||w==='bad');const dedicatedBad=w==='bad'&&(((v==='home'||v==='inside')&&y>=2050)||(y===2070&&['city','car','food'].includes(v)));document.querySelector('#scene-heroes .frame').classList.toggle('red',w==='bad'&&!soloOk&&!dedicatedBad);
   document.getElementById('hs-ai').textContent=`${name.toUpperCase()} / ${y} / ${w==='bad'?'КРАСНАЯ':'ЗЕЛЁНАЯ'} ЗЕМЛЯ / ИИ-ВИЗУАЛИЗАЦИЯ`;
   yearsEl.querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',+b.dataset.y===y));
   viewsEl.querySelectorAll('button').forEach(b=>{b.setAttribute('aria-pressed',b.dataset.v===v);if(b.dataset.v==='meet')b.hidden=y!==2070});
@@ -969,7 +969,7 @@ HS.querySelectorAll('[data-hero]').forEach(b=>b.onclick=()=>{const o=ORD();hi=o.
 hooks.heroes={enter(back){const o=ORD();hi=back?o.length-1:0;hset(o[hi])},leave(){document.documentElement.style.setProperty('--accent','#e4f5af')},
   next(){const o=ORD();if(hi<o.length-1){hi++;hset(o[hi]);return true}return false},
   prev(){const o=ORD();if(hi>0){hi--;hset(o[hi]);return true}return false},
-  notes(){if(hs.choose)return{role:'Оба',text:'Теперь — как всё это скажется на нас. У каждого из нас две судьбы: на зелёной Земле и на красной. Посмотрите на характеристики: у Полины стиль — сто, а терпение к еде из воздуха — двенадцать. У Айваза любовь к Ferrari — сто. Сначала Полина.'};
+  notes(){if(hs.choose)return{role:'Оба',text:'Теперь — как всё это скажется на нас. У каждого из нас две возможные судьбы: на зелёной Земле и на красной. Сначала Полина.'};
    const {p,w,y,v}=hs,d=story(p,w,y),m=v==='meet'?MEET[w][p].join(' ')+' ':'';
    return{role:p==='polina'?'Полина':'Айваз',text:`${w==='bad'?'Красная Земля.':'Зелёная Земля.'} ${y}, ${d.age}. ${d.role}. ${m}${d.city.join(' ')} ${d.home.join(' ')} Еда: ${d.food.join(' ')}`}}};
 
