@@ -239,6 +239,10 @@ body.notes #viewport{right:34%}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 /* future newspaper archive */
 .press-trigger{border:1px solid #ffffff40;border-radius:30px;padding:12px 23px;font-size:22px;background:#ffffff0a;white-space:nowrap}.press-trigger:hover{background:var(--lime);color:#101710}
+.press-card{position:relative;display:grid;grid-template-columns:1fr 145px;align-items:center;gap:26px;width:100%;height:174px;margin-top:8px;padding:23px 28px;text-align:left;border:1px solid #ffffff25;border-radius:22px;background:linear-gradient(115deg,#ffffff0b,#ffffff03);overflow:hidden;transition:border-color .25s,background .25s,transform .25s}
+.press-card:hover{border-color:var(--accent);background:linear-gradient(115deg,#ffffff16,#ffffff06);transform:translateY(-3px)}
+.press-card-copy{display:flex;flex-direction:column;gap:10px;position:relative;z-index:1}.press-card-meta{font-size:16px;letter-spacing:2px;text-transform:uppercase;color:var(--accent)}.press-card-headline{font-family:Georgia,serif;font-size:27px;line-height:1.12;color:#fffaf3}.press-card-link{font-size:17px;color:#a9b5c0;display:flex;align-items:center;gap:12px}.press-card-link b{color:var(--accent);font-size:22px;transition:transform .25s}.press-card:hover .press-card-link b{transform:translateX(6px)}
+.press-card-cover{align-self:start;display:block;width:126px;height:168px;object-fit:cover;object-position:top;transform:rotate(7deg);box-shadow:0 10px 24px #0008;transition:transform .3s}.press-card:hover .press-card-cover{transform:rotate(2deg) translateY(-8px)}
 #press-dialog{width:min(1180px,96vw);height:94dvh;max-height:94dvh;padding:0;border:1px solid #ffffff30;border-radius:22px;background:#111923;color:var(--text);overflow:hidden;box-shadow:0 30px 120px #000a}
 #press-dialog::backdrop{background:#03070de8;backdrop-filter:blur(10px)}
 #press-dialog[open]{display:flex;flex-direction:column}
@@ -574,12 +578,11 @@ body.notes #viewport{right:34%}
           <button data-who="aivaz"><img data-a="deck/me.jpg" alt="">Айваз</button>
         </div>
         <div class="tabs worlds" id="worlds"><button data-w="good">● Зелёная Земля</button><button data-w="bad">● Красная Земля</button></div><div class="tabs" id="years"></div>
-        <div><button class="press-trigger" id="press-hero">Газета этого года ↗</button></div>
         <p class="kicker" id="hs-kick" style="margin-top:20px"></p>
         <h2 class="h2" id="hs-title" style="font-size:58px"></h2>
         <p class="lead" id="hs-line" style="font-size:36px"></p>
         <p class="sm" id="hs-role" style="color:var(--accent)"></p>
-        <p class="yr" id="hs-yr"></p>
+        <button class="press-card" id="press-hero" aria-label="Читать газету выбранного года"><span class="press-card-copy"><span class="press-card-meta">Питерский воздух · <span id="hs-yr">2030</span></span><span class="press-card-headline" id="press-hero-headline"></span><span class="press-card-link">Читать выпуск <b aria-hidden="true">↗</b></span></span><img class="press-card-cover" id="press-hero-cover" alt="Обложка газеты выбранного года" draggable="false"></button>
       </div>
       <div class="col" style="gap:16px">
         <div class="tabs" id="views"></div>
@@ -686,7 +689,7 @@ body.notes #viewport{right:34%}
 
 <footer id="bottom">
   <span id="hint">← → листать · N — заметки · F — во весь экран · в опросе A/B/C — голос, R — сброс</span>
-  <div class="nav"><button class="press-trigger" id="press-open">Газеты будущего ↗</button><button class="ctl" id="prev" aria-label="Назад">←</button><button class="nextbtn" id="next"><span id="next-label">Дальше</span><span>→</span></button></div>
+  <div class="nav"><button class="press-trigger" id="press-open">Архив прессы ↗</button><button class="ctl" id="prev" aria-label="Назад">←</button><button class="nextbtn" id="next"><span id="next-label">Дальше</span><span>→</span></button></div>
 </footer>
 <div id="progress"></div>
 </div></div>
@@ -971,6 +974,7 @@ function hrender(){const ch=HS.querySelector('.h-choose'),story_=HS.querySelecto
   document.getElementById('hs-kick').textContent=`${name} · ${y} · ${d.age}`;
   document.getElementById('hs-title').textContent=txt[0];document.getElementById('hs-line').textContent=txt[1];
   document.getElementById('hs-role').textContent=(w==='bad'&&y<2050?'красная Земля: пока всё как у всех · ':'')+d.role;document.getElementById('hs-yr').textContent=y;
+  const pressKey=y===2070?`2070-${w}`:String(y);document.getElementById('press-hero-cover').src=A(`newspapers/${pressKey}.jpg`);document.getElementById('press-hero-headline').textContent=PRESS_TITLES[pressKey];document.getElementById('press-hero').setAttribute('aria-label',`Читать газету за ${y} год: ${PRESS_TITLES[pressKey]}`);
   const [src,idx]=himg(p,y,v,w),pic=document.getElementById('hs-pic');pic.style.backgroundImage=`url("${A(src)}")`;
   if(idx<0){pic.style.backgroundSize='cover';pic.style.backgroundPosition='center'}else{pic.style.backgroundSize='200% 100%';pic.style.backgroundPosition=idx?'100% 0':'0 0'}
   const soloOk=v==='meet'&&(SOLO_OK[`${p}-${w}-2070`]||w==='bad');const dedicatedBad=w==='bad'&&(((v==='home'||v==='inside')&&y>=2050)||(y===2070&&['city','car','food'].includes(v)));document.querySelector('#scene-heroes .frame').classList.toggle('red',w==='bad'&&!soloOk&&!dedicatedBad);
